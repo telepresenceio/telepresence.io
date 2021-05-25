@@ -1,0 +1,14 @@
+{
+  "description": "The https://telepresence.io/ website",
+  "private": true,
+  "engines": {
+    "npm": "Please use yarn instead of npm",
+    "yarn": "^v1.3.2"
+  },
+  "dependencies": {
+    "gatsby": "^2.24.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^2.8.0"
+  }
+}

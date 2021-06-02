@@ -36,6 +36,7 @@ Yarn:
 Gatsby:
  - `gatsby-config.js` configures which plugins Gatsby should use.  (It
    also contains some site metadata.)
+ - `gatsby-node.js` is the "main" Gatsby configuration.
  - `src/pages/**.js` by default, Gatsby creates web pages for `*.js`
    files under `src/pages/`.  Of particular note is `404.js`, since
    `/404` is special in that `gatsby serve` and Netlify expect to use
@@ -45,6 +46,10 @@ Gatsby:
 Our stuff:
  - `DEVELOPING.md`: This file.
  - `docs/` contains subtrees of ambassador-docs.git.
+ - `src/assets/` and `src/components/` contain reusable assets and
+   React web components that are shared by all versions of the docs.
+   When referring to these from in a docs file, use the `@src` alias,
+   rather than typing out a long series of `../../../../src`.
 
 Other:
  - `.editorconfig`: We use EditorConfig to configure text editors to

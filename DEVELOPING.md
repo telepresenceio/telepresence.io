@@ -4,7 +4,7 @@
 
 Prerequisites programs:
 
- - `node` (v12 or newer?)
+ - `node` (v15 or newer)
  - `yarn` (v1.3.2 or newer v1.X)
 
 Commands of interest:
@@ -50,6 +50,9 @@ Our stuff:
    React web components that are shared by all versions of the docs.
    When referring to these from in a docs file, use the `@src` alias,
    rather than typing out a long series of `../../../../src`.
+ - `src/templates/` contains the HTML templates for generating pages
+   from various sources (namely `doc-page.js` for generating pages
+   from the docs markdown).
 
 Other:
  - `.editorconfig`: We use EditorConfig to configure text editors to
@@ -123,3 +126,47 @@ out generalizable pieces in to `src/components/` so that you don't
 need per-product-version JS?  Because having per-product-version JS
 simply doesn't work: One of the versions overwrites the other
 versions.
+
+## Future work
+
+### Use `lessBabel`
+
+Gatsby 1.27 / gatsby-plugin-mdx 1.5.0 (both newer than what we
+currently use) introduced the `lessBabel` option for
+gatsby-plugin-mdx.  They claim it speeds up MDX builds by 40%.  It
+isn't the default because it breaks users who need Babel to process
+their markdown, but we don't do that, so it should be safe for us to
+turn it on.
+
+So we should upgrade Gatsby and associated plugins, and then turn
+`lessBabel` on.
+
+### Factor out the docs build
+
+The docs-build machinery in of `package.json`, `gatsby-config.js`,
+`gatsby-node.js`, `src/assets/` and `src/components/` seem obviously
+want be a separate reusable module, so that these things don't need to
+be manually kept in-sync between getambassador.io, telepresence.io,
+and emissaryingress.io.  This seems to be mostly obvious an trival to
+do... except for I can't figure how to handle
+`src/templates/doc-page.js` to where it's sufficiently
+parametarized/pluggable, or a way to make it possible to plug in the
+site-specific one.
+
+Just wrap the whole thing up in to a Gatsby plugin (share it either as
+a real NPM/Yarn package, or vendor it in as a subtree?), and give it
+several settings in `gatsby-config.js`:
+ - A unique instance name (to pass along to gatsby-source-filesystem)
+ - A directory to look for docs in (to pass along to
+   gatsby-source-filesystem)
+ - A function to map from `node.relativePath` to URL path (to handle
+   things being nested/placed differently in different sites)
+ - A function to map from `node.relativePath` to which variables YAML
+   file to use (likewise).
+
+But I don't know what to do about `doc-page.js`.  Why not just include
+a `component` filepath, to pass along verbatim to
+`actions.createPage`?  Because it turns out that the contents of the
+file pointed to are pretty tightly coupled to all the rest of it.  I
+guess having to keep one file in-sync manually is better than having
+to keep everything in-sync manually.

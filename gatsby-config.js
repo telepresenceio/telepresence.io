@@ -21,5 +21,14 @@ module.exports = {
     {
       resolve: "gatsby-plugin-less",
     },
+    // Plugins adding support for additional filetypes in ./src/assets/
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
   ],
 };

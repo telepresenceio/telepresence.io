@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import jsYAML from 'js-yaml';
 
 import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
@@ -33,7 +34,7 @@ const LinkList = ({ items }) => {
   )
 }
 
-export default function DocPage({ data, pathContext }) {
+export default function DocPage({ data, pageContext }) {
   const components = {
     // Override default markdown output.
     'pre': CodeBlock,
@@ -50,13 +51,13 @@ export default function DocPage({ data, pathContext }) {
   const readingTime = data.markdownFile.childMdx.frontmatter.reading_time ||
         data.markdownFile.childMdx.fields.readingTime.text;
 
-  const showReadingTime = pathContext.docinfo.maybeShowReadingTime &&
+  const showReadingTime = pageContext.docinfo.maybeShowReadingTime &&
         !data.markdownFile.childMdx.frontmatter.frontmatter.hide_reading_time;
 
   return (
     <Layout>
       <Helmet>
-        <link rel="canonical" href={pathContext.canonicalURL} />
+        <link rel="canonical" href={pageContext.canonicalURL} />
         <title>{title} | {data.site.siteMetadata.title}</title>
         <meta name="og:title" content={title + " | " + data.site.siteMetadata.title} />
         <meta name="description" content={description} />
@@ -64,18 +65,18 @@ export default function DocPage({ data, pathContext }) {
       </Helmet>
       <div className="docs">
         <nav className="docs__sidebar">
-          <LinkList items={pathContext.docinfo.sidebar} />
+          <LinkList items={jsYAML.safeLoad(data.sidebarFile.internal.content)} />
         </nav>
         <main className="docs__main">
           {showReadingTime ? <span className="docs__reading-time">{readingTime}</span> : ''}
           <MDXProvider components={components}>
             <MDXRenderer>
-              {template(data.markdownFile.childMdx.body, pathContext.docinfo.variables)}
+              {template(data.markdownFile.childMdx.body, jsYAML.safeLoad(data.variablesFile.internal.content))}
             </MDXRenderer>
           </MDXProvider>
         </main>
         <footer className="docs__footer">
-          <a href={pathContext.docinfo.githubURL} target="_blank" rel="noreferrer">Edit this page on GitHub</a>
+          <a href={pageContext.docinfo.githubURL} target="_blank" rel="noreferrer">Edit this page on GitHub</a>
         </footer>
       </div>
     </Layout>
@@ -83,12 +84,13 @@ export default function DocPage({ data, pathContext }) {
 }
 
 export const query = graphql`
-  query($markdownFileNodeID: String!) {
+  query($markdownFileNodeID: String!, $variablesFileNodeID: String!, $sidebarFileNodeID: String!) {
     site {
       siteMetadata {
         title
       }
     }
+
     markdownFile: file(id: { eq: $markdownFileNodeID }) {
       # We need the markdown file's relativePath for the "edit on GitHub" link.
       relativePath
@@ -116,5 +118,18 @@ export const query = graphql`
 
       }
     }
+
+    variablesFile: file(id: { eq: $variablesFileNodeID }) {
+      internal {
+        content
+      }
+    }
+
+    sidebarFile: file(id: { eq: $sidebarFileNodeID }) {
+      internal {
+        content
+      }
+    }
+
   }
 `

@@ -1,5 +1,6 @@
 const path = require('path');
-const jsYaml = require('js-yaml');
+
+const docsConfig = require('./docs-config');
 
 // Some of the files in the docs subtrees want to import site-global
 // things from the 'src/' directory.  Let them do this with the
@@ -15,90 +16,36 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-const config = {
-  urlpath: (node) => {
-    // We have `node.relativePath` path relative to the `options.path` given in
-    // to the gatsby-source-filesystem instance in `gatsby-config.js`; so
-    // `./docs/v2.2/howtos/intercepts.md` has
-    // `node.relativePath="v2.2/howtos/intercepts.md"`.
-    //
-    // We need to get from that relative filepath to the URL-path of the
-    // resulting web page (with a trailing slash, since Gatsby is opinionated).
-    return 'docs/' + (node.relativePath.
-                      replaceAll(path.sep, path.posix.sep).
-                      replace(/\/index\.md$/, '/').
-                      replace(/\.md$/, '/'));
-  },
-  variablesFilepath: (node) => {
-    // Which YAML file (relative to `options.path`, same as above) contains the
-    // variable definitions that we should use for expanding $variables$ in this
-    // markdown file?  If the YAML file doesn't exist, no variables with be
-    // expanded.
-    return path.join(node.relativePath.split(path.sep)[0], 'versions.yml');
-  },
-  sidebarFilepath: (node) => {
-    return path.join(node.relativePath.split(path.sep)[0], 'doc-links.yml');
-  },
-  canonicalURL: (node) => {
-    const urlpath = config.urlpath(node);
-    const relpath = urlpath.split(path.posix.sep).slice(2).join(path.posix.sep);
-    return `https://www.getambassador.io/docs/telepresence/latest/${relpath}`;
-  },
-  githubURL: (node) => {
-    let versionPart = node.relativePath.split(path.sep)[0];
-    if (versionPart === 'pre-release') {
-      versionPart = 'master';
-    }
-    const branch = `products/telepresence/${versionPart}`;
-    const filePart = node.relativePath.split(path.sep).slice(1).join(path.posix.sep);
-    return `https://github.com/datawire/ambassador-docs/blob/${branch}/${filePart}`;
-  },
-  version: (node) => {
-    return node.relativePath.split(path.sep)[0];
-  },
-  maybeShowReadingTime: (node) => {
-    return false;
+exports.onCreateNode = async ({ node, loadNodeContent, actions }) => {
+  if (node.internal.type === 'File' && node.sourceInstanceName === docsConfig.sourceInstanceName && node.ext === ".yml") {
+    // Call loadNodeContent to force-populate node.internal.content, because
+    // gatsby-source-filesystem is just a little too lazy about populating it,
+    // because otherwise it doesn't get populated even though doc-page.js asks
+    // for it.
+    await loadNodeContent(node);
   }
 };
 
-async function readYAML(helpers, sourceInstanceName, relativePath) {
-  // Part of me thinks this is disgusting, and to just hit the filesystem
-  // directly.  But really, if we keep this nice and hermetic it will save us
-  // headaches down the road.
-  let subResult = await helpers.graphql(`
-        query($sourceInstanceName: String!, $relativePath: String!) {
-          file(
-            sourceInstanceName: { eq: $sourceInstanceName },
-            relativePath: {eq: $relativePath },
-          ) {
-            # loadNodeContent needs internal.owner to determine which
-            # plugin to dispatch to.
-            internal {
-              owner
-            }
-            # The gatsby-source-filesystem plugin needs absolutePath
-            absolutePath
-            id
-          }
-        }
-      `, {
-        sourceInstanceName: sourceInstanceName,
-        relativePath: relativePath,
-      });
-  if (!subResult.data.file) {
-    return {}
-  } else {
-    const yamlStr = await helpers.loadNodeContent(subResult.data.file);
-    const yamlObj = await jsYaml.safeLoad(yamlStr);
-    return yamlObj
-  }
+// resolvePathToID takes a filepath, and resolves it to a node ID.
+async function resolvePathToID(helpers, sourceInstanceName, relativePath) {
+  let result = await helpers.graphql(`
+    query($sourceInstanceName: String!, $relativePath: String!) {
+      file(
+        sourceInstanceName: { eq: $sourceInstanceName },
+        relativePath: {eq: $relativePath },
+      ) {
+        id
+      }
+    }
+    `, {
+      sourceInstanceName: sourceInstanceName,
+      relativePath: relativePath,
+    });
+  return result.data.file.id;
 }
 
 // Tell Gatsby to create web pages for each of the docs markdown files.
 exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
-  // The gatsby-source-filesystem's options.name from gatsby-config.js
-  const sourceInstanceName = "docs";
-
   // List all the markdown files...
   const result = await graphql(`
     query($sourceInstanceName: String!) {
@@ -115,39 +62,39 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
       }
     }
   `, {
-    sourceInstanceName: sourceInstanceName,
+    sourceInstanceName: docsConfig.sourceInstanceName,
   });
 
   // ...and generate HTML pages for them
   let variablesCache = {};
   let sidebarCache = {};
   for (const { node } of result.data.allFile.edges) {
-    const variablesFilepath = config.variablesFilepath(node);
-    const sidebarFilepath = config.sidebarFilepath(node);
 
+    const variablesFilepath = docsConfig.variablesFilepath(node);
     if (!(variablesFilepath in variablesCache)) {
-      variablesCache[variablesFilepath] = await readYAML({ loadNodeContent, graphql }, sourceInstanceName, variablesFilepath)
+      variablesCache[variablesFilepath] = await resolvePathToID({ graphql }, docsConfig.sourceInstanceName, variablesFilepath);
     }
 
+    const sidebarFilepath = docsConfig.sidebarFilepath(node);
     if (!(sidebarFilepath in sidebarCache)) {
-      sidebarCache[sidebarFilepath] = await readYAML({ loadNodeContent, graphql }, sourceInstanceName, sidebarFilepath)
+      sidebarCache[sidebarFilepath] = await resolvePathToID({ graphql }, docsConfig.sourceInstanceName, sidebarFilepath);
     }
 
     actions.createPage({
       // URL-path to create the page at
-      path: config.urlpath(node),
+      path: docsConfig.urlpath(node),
       // Absolute filepath of the component to render the page with
       component: path.resolve('./src/templates/doc-page.js'),
       // Arguments to pass to that component's `query`
       context: {
         markdownFileNodeID: node.id,
+        variablesFileNodeID: variablesCache[variablesFilepath],
+        sidebarFileNodeID: sidebarCache[sidebarFilepath],
         docinfo: {
-          variables: variablesCache[variablesFilepath],
-          sidebar: sidebarCache[sidebarFilepath],
-          canonicalURL: config.canonicalURL(node),
-          githubURL: config.githubURL(node),
-          version: config.version(node),
-          maybeShowReadingTime: config.maybeShowReadingTime(node),
+          canonicalURL: docsConfig.canonicalURL(node),
+          githubURL: docsConfig.githubURL(node),
+          version: docsConfig.version(node),
+          maybeShowReadingTime: docsConfig.maybeShowReadingTime(node),
         },
       },
     });

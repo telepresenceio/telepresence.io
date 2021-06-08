@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 const Layout = ({ children, location }) => {
   return (
-    <div>
-      <div className="main-body">{children}</div>
-    </div>
+    <div className="main-body">{children}</div>
   );
 };
 

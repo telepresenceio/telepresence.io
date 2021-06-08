@@ -3,23 +3,24 @@ module.exports = {
     title: "Telepresence",
   },
   plugins: [
+
     // We have a bunch of documentation subtree'd in at ./docs/
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `docs`,
+        name: 'docs',
         path: `${__dirname}/docs/`,
       },
     },
     // Plugins adding support for additional filetypes in ./docs/
     {
-      resolve: "gatsby-plugin-mdx",
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        extensions: [".md"],
+        extensions: ['.md'],
       },
     },
     {
-      resolve: "gatsby-plugin-less",
+      resolve: 'gatsby-plugin-less',
     },
     // Plugins adding support for additional filetypes in ./src/assets/
     {
@@ -30,5 +31,18 @@ module.exports = {
         },
       },
     },
+
+    // We have some fancy page metadata
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'frontmatter-schema',
+        path: `${__dirname}/src/frontmatter-schema/`,
+      },
+    },
+    {
+      resolve: 'gatsby-remark-reading-time',
+    },
+
   ],
 };

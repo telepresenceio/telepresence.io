@@ -12,14 +12,14 @@ module.exports = {
   // We need to get from that relative filepath to the URL-path of the resulting
   // web page (with a trailing slash, since Gatsby is opinionated).
   urlpath: function(node) {
-    return 'docs/' + (node.relativePath.
+    return '/docs/' + (node.relativePath.
                       replaceAll(path.sep, path.posix.sep).
                       replace(/\/index\.md$/, '/').
                       replace(/\.md$/, '/'));
   },
 
   docrootURL: function(node) {
-    return `/docs/${this.version(node)}/`;
+    return `/docs/${node.relativePath.split(path.sep)[0]}/`;
   },
 
   // Which YAML file (relative to `options.path`, same as above) contains the
@@ -53,12 +53,8 @@ module.exports = {
     return `https://github.com/datawire/ambassador-docs/blob/${branch}/${filePart}`;
   },
 
-  version: function(node) {
-    return node.relativePath.split(path.sep)[0];
-  },
-
   // Don't show reading time for Telepresence.
   maybeShowReadingTime: function(node) {
     return false;
-  }
+  },
 };

@@ -24,15 +24,15 @@ const template = (content, vars) => {
 	});
 }
 
-const LinkList = ({ rooturl, items }) => {
+const LinkList = ({ rooturl, items, className }) => {
   if (!items) {
     return null;
   }
   return (
-    <ul>
+    <ul className={className}>
       {
-        items.map((item) => (
-          <li>
+        items.map((item, i) => (
+          <li key={i}>
             { item.link ? <a href={url.resolve(rooturl, item.link)}>{item.title}</a> : item.title }
             <LinkList rooturl={rooturl} items={item.items} />
           </li>
@@ -75,7 +75,9 @@ export default function DocPage({ data, pageContext }) {
       </Helmet>
       <div className="docs">
         <nav className="docs__sidebar">
-          <LinkList rooturl={pageContext.docinfo.docrootURL} items={jsYAML.safeLoad(template(data.sidebarFile.internal.content, variables))} />
+          <LinkList className="docs__sidebar_toc"
+                    rooturl={pageContext.docinfo.docrootURL}
+                    items={jsYAML.safeLoad(template(data.sidebarFile.internal.content, variables))} />
         </nav>
         <main className="docs__main">
           {showReadingTime ? <span className="docs__reading-time">{readingTime}</span> : ''}

@@ -87,14 +87,14 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
       component: path.resolve('./src/templates/doc-page.js'),
       // Arguments to pass to that component's `query`
       context: {
-        markdownFileNodeID: node.id,
+        markdownFileNodeID:  node.id,
         variablesFileNodeID: variablesCache[variablesFilepath],
-        sidebarFileNodeID: sidebarCache[sidebarFilepath],
+        sidebarFileNodeID:   sidebarCache[sidebarFilepath],
         docinfo: {
-          docrootURL: docsConfig.docrootURL(node),
+          docrootURL:   docsConfig.docrootURL(node),
           canonicalURL: docsConfig.canonicalURL(node),
-          githubURL: docsConfig.githubURL(node),
-          version: docsConfig.version(node),
+          githubURL:    docsConfig.githubURL(node),
+
           maybeShowReadingTime: docsConfig.maybeShowReadingTime(node),
         },
       },

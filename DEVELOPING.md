@@ -20,6 +20,9 @@ Commands of interest:
    # Production or production-like
    yarn run gatsby build    # Build a production-build, writing it to ./public/
    yarn run gatsby serve    # Serve ./public/ at http://localhost:9000/
+
+   # Other
+   yarn run gatsby clean    # Clean ./.cache/, which sometimes becomes corrupt.
    ```
 
 You may wish to say `PATH=$PWD/node_modules/.bin:$PATH` instead of

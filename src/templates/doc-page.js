@@ -62,6 +62,8 @@ export default function DocPage({ data, pageContext }) {
   const showReadingTime = pageContext.docinfo.maybeShowReadingTime &&
         !data.markdownFile.childMdx.frontmatter.frontmatter.hide_reading_time;
 
+  const variables = jsYAML.safeLoad(data.variablesFile.internal.content);
+
   return (
     <Layout>
       <Helmet>
@@ -73,13 +75,13 @@ export default function DocPage({ data, pageContext }) {
       </Helmet>
       <div className="docs">
         <nav className="docs__sidebar">
-          <LinkList rooturl={pageContext.docinfo.docrootURL} items={jsYAML.safeLoad(data.sidebarFile.internal.content)} />
+          <LinkList rooturl={pageContext.docinfo.docrootURL} items={jsYAML.safeLoad(template(data.sidebarFile.internal.content, variables))} />
         </nav>
         <main className="docs__main">
           {showReadingTime ? <span className="docs__reading-time">{readingTime}</span> : ''}
           <MDXProvider components={components}>
             <MDXRenderer>
-              {template(data.markdownFile.childMdx.body, jsYAML.safeLoad(data.variablesFile.internal.content))}
+              {template(data.markdownFile.childMdx.body, variables)}
             </MDXRenderer>
           </MDXProvider>
         </main>

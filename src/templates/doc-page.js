@@ -33,7 +33,7 @@ const LinkList = ({ rooturl, items, className }) => {
     <ul className={className}>
       {
         items.map((item, i) => (
-          <li key={i}>
+          <li className="docs__topic-item" key={i}>
             { item.link ? <a href={url.resolve(rooturl, item.link)}>{item.title}</a> : item.title }
             <LinkList rooturl={rooturl} items={item.items} />
           </li>

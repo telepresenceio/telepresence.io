@@ -91,6 +91,7 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
         variablesFileNodeID: variablesCache[variablesFilepath],
         sidebarFileNodeID: sidebarCache[sidebarFilepath],
         docinfo: {
+          docrootURL: docsConfig.docrootURL(node),
           canonicalURL: docsConfig.canonicalURL(node),
           githubURL: docsConfig.githubURL(node),
           version: docsConfig.version(node),

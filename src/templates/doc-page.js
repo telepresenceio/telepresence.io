@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import jsYAML from 'js-yaml';
+import url from 'url';
 
 import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
@@ -23,13 +24,20 @@ const template = (content, vars) => {
 	});
 }
 
-const LinkList = ({ items }) => {
+const LinkList = ({ rooturl, items }) => {
   if (!items) {
     return null;
   }
   return (
     <ul>
-      {items.map((item) => (<li><a href={item.link}>{item.title}</a><LinkList items={item.items} /></li>))}
+      {
+        items.map((item) => (
+          <li>
+            { item.link ? <a href={url.resolve(rooturl, item.link)}>{item.title}</a> : item.title }
+            <LinkList rooturl={rooturl} items={item.items} />
+          </li>
+        ))
+      }
     </ul>
   )
 }
@@ -65,7 +73,7 @@ export default function DocPage({ data, pageContext }) {
       </Helmet>
       <div className="docs">
         <nav className="docs__sidebar">
-          <LinkList items={jsYAML.safeLoad(data.sidebarFile.internal.content)} />
+          <LinkList rooturl={pageContext.docinfo.docrootURL} items={jsYAML.safeLoad(data.sidebarFile.internal.content)} />
         </nav>
         <main className="docs__main">
           {showReadingTime ? <span className="docs__reading-time">{readingTime}</span> : ''}

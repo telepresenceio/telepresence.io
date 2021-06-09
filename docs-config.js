@@ -18,6 +18,10 @@ module.exports = {
                       replace(/\.md$/, '/'));
   },
 
+  docrootURL: function(node) {
+    return `/docs/${this.version(node)}/`;
+  },
+
   // Which YAML file (relative to `options.path`, same as above) contains the
   // variable definitions that we should use for expanding $variables$ in this
   // markdown file?  If the YAML file doesn't exist, no variables with be

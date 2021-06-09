@@ -1,0 +1,52 @@
+@import '../Layout/vars.less';
+
+.contact-block {
+
+  &__heading {
+    color: @black;
+    font-size: 23px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  &__list {
+
+    display: flex;
+    margin-top: 13px;
+    
+    li {
+      border-right:  1px solid @grey-separator;
+      padding-right: 20px;
+      cursor: pointer;
+      transition: color 200ms linear 0ms;
+      
+      a {
+        display: flex;
+        text-decoration: underline;
+        color: @blue;
+        &:hover {
+          color: @blue-dark;
+          text-decoration: none;
+        }
+      }
+      
+      &:last-child {
+        border: none;
+        margin-left: 20px;
+      }
+
+      @media (max-width: 380px) {
+        padding-right: 8px;
+  
+        &:last-child {
+            margin-left: 8px;
+        }
+      }
+      
+    }
+    
+    &--icon {
+      margin-right: 7px;
+    }
+  }
+}

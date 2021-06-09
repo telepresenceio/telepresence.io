@@ -1,0 +1,123 @@
+@import '../Layout/vars.less';
+
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+.card {
+  border: 1px solid @red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  > div {
+    max-width: 20em;
+  }
+  h2 {
+    letter-spacing: 0;
+  }
+  a {
+    font-size: 1.1em;
+    display: inline-block;
+    margin-top: 0.75em;
+    letter-spacing: 1.2px;
+    color: inherit;
+  }
+  p {
+    margin: 0.5em 0;
+  }
+  :global(.gatsby-image-wrapper) {
+    max-width: 150px;
+    max-height: 100px;
+    margin: 0 auto 1em;
+    img {
+      object-fit: contain !important;
+    }
+  }
+}
+
+.left {
+  background: @red;
+  color: white;
+  padding: 2.5em 5em;
+  font-size: 18px;
+  position: relative;
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.2);
+  margin: 0 0 1em;
+  > div {
+    max-width: 380px;
+  }
+  a {
+    font-weight: 700;
+    border: 2px solid white;
+    font-size: 18px;
+    padding: 0.75em 1.75em;
+    &:hover {
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  h2 {
+    font-size: 28px;
+    margin: 0 0 10px;
+  }
+}
+
+.right {
+  font-size: 14px;
+  padding: 2.5em 2em 2.5em 4em;
+  h2 {
+    color: @textHeading;
+    font-size: 1.5em;
+    margin: 0;
+  }
+  a {
+    text-decoration: underline;
+    color: @gray800;
+  }
+}
+
+.announcing {
+  text-transform: uppercase;
+  color: @purple;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  position: absolute;
+  top: -0.75em;
+  left: 0;
+  transform: translateY(-100%);
+  display: flex;
+  align-items: center;
+  svg {
+    width: 1.5em;
+    margin-right: 0.35em;
+  }
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: auto 40px auto;
+    align-items: center;
+  }
+  .left {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin: 0;
+  }
+  .right {
+    grid-row: 1;
+    grid-column-start: 2;
+    grid-column-end: -1;
+  }
+}
+
+@media (min-width: 1050px) {
+  .wrapper {
+    grid-template-columns: auto 80px auto;
+  }
+}

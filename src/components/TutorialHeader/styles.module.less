@@ -1,0 +1,53 @@
+.Container {
+
+}
+
+.Title {
+    font-weight: 900;
+    font-size: 48px;
+    color: #111;
+    line-height: 60px;
+    margin: 0 0 15px;
+}
+
+.Category {
+    color: #FF4329;
+    text-transform: uppercase;
+    font-size: 23px;
+}
+
+.MetaContainer {
+    display: flex;
+    margin: 20px 0 40px;
+
+    .Metadata {
+        display: flex;
+        flex-direction: column;
+        color: #9B9B9B;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: -0.2px;
+        min-width: 140px;
+        margin-right: 20px;
+
+        @media (min-width: 1050px) {
+            min-width: 200px;
+            margin-right: 50px;
+        }
+
+        span {
+            padding-top: 8px;
+            display: flex;
+            align-items: center;
+
+            > img {
+                margin-right: 5px;
+            }
+        }
+
+        span:first-child {
+            border-bottom: 1px solid #C8C8C8;
+            padding-bottom: 8px;
+        }
+    }
+}

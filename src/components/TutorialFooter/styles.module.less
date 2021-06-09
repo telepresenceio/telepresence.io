@@ -1,0 +1,30 @@
+.Container {
+    display: flex;
+    margin-top: 150px;
+}
+
+.Link {
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 18px;
+    line-height: 60px;
+    font-weight: bold;
+    padding: 0 30px;
+
+    &.Prev {
+        background: #A1A1A1;
+        margin-right: 15px;
+
+        &:hover {
+            background: darken(#A1A1A1, 10);
+        }
+    }
+
+    &.Next {
+        background: #5F3EFF;
+
+        &:hover {
+            background: darken(#5F3EFF, 10);
+        }
+    }
+}

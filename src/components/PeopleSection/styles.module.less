@@ -1,0 +1,86 @@
+.wrapper {
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  > h2 {
+    text-align: center;
+    font-size: 36px;
+    line-height: 45px;
+    margin-bottom: 45px;
+  }
+  // Make the paragraph following the heading closer to it
+  > h2 + .body {
+    margin: -35px auto 50px;
+  }
+}
+
+.body {
+  max-width: 35em;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+.cardsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.person {
+  text-align: center;
+  margin: 0 20px;
+  flex: 1 0 200px;
+  max-width: 220px;
+  :global(.gatsby-image-wrapper) {
+    width: 90%;
+    height: 200px;
+    margin: 0 auto;
+  }
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 12px 0 5px;
+}
+
+.role {
+  font-weight: normal;
+  opacity: 0.95;
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 0 0 0;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 0;
+  a {
+    color: #5f3eff;
+    color: var(--btnColor);
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 0.75em;
+    transition: 0.25s;
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
+  }
+  svg {
+    width: 20px;
+  }
+}
+
+.personInfo {
+  margin: 12px 0 24px;
+  font-size: 14px;
+  opacity: 0.8;
+}

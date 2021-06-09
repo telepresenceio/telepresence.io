@@ -31,7 +31,13 @@ module.exports = {
         },
       },
     },
-
+    {
+      resolve: 'gatsby-source-sanity',
+        options: {
+          projectId: 'e3vd3ukt',
+          dataset: 'production',
+        },
+    },
     // We have some fancy page metadata
     {
       resolve: 'gatsby-source-filesystem',

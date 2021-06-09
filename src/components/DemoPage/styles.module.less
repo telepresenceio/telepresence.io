@@ -1,0 +1,76 @@
+.Hero {
+  margin: 55px auto 45px;
+  max-width: 860px;
+  padding: 0 15px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 25px;
+
+  h1 {
+    font-size: 38px;
+    font-weight: 800;
+    margin-top: 0;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 32px;
+  }
+}
+
+.ContactFormSection {
+  background: #f2f3f4;
+  padding: 35px 15px;
+
+  .ContactForm {
+    margin: 0 auto;
+    box-shadow: 0 9px 9px -6px rgba(204, 207, 209, 0.65);
+    background: white;
+    border-radius: 4px;
+    max-width: 800px;
+    padding: 28px;
+
+    > .Content {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #e6e7e8;
+      margin-bottom: 30px;
+
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+      }
+
+      h2 {
+        font-size: 22px;
+        margin: 0 0 15px;
+        font-weight: 400;
+      }
+
+      .ContactFormForm {
+        flex: 1;
+
+        @media screen and (min-width: 768px) {
+          border-right: 1px solid #e6e7e8;
+          padding-right: 45px;
+        }
+      }
+
+      .Benefits {
+        @media screen and (min-width: 768px) {
+          margin: 0;
+          padding-left: 30px;
+          width: 320px;
+        }
+
+        ul {
+          list-style-type: disc;
+
+          > li {
+            margin-left: 25px;
+          }
+        }
+      }
+    }
+  }
+}

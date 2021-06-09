@@ -1,0 +1,142 @@
+.container {
+  padding: 60px 20px 90px;
+  margin: 0 auto;
+  max-width: 1240px;
+  h2 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0;
+  }
+}
+
+.indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+
+  background: rgba(95, 62, 255, 0.25);
+  border: 1px solid #5f3eff;
+}
+
+.half {
+  border-radius: 12px 0 0 12px;
+  width: 12px;
+}
+
+.empty {
+  background: white;
+  border-color: hsl(0, 20%, 53%);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.table {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.row {
+  display: flex;
+  th,
+  td {
+    flex: 1;
+    padding: 20px 10px;
+    border: 0 solid #5f3eff;
+    border-width: 0 1px 1px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &:first-of-type th:not(:first-child) {
+    border-top: 1px solid #5f3eff;
+  }
+}
+
+.rowHighlighted {
+  background: rgba(95, 62, 255, 0.15);
+}
+
+.headerCell {
+  background: rgba(216, 216, 216, 0.3);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+td.headerCell {
+  border-left-width: 1px;
+}
+
+.headerLabel {
+  display: none;
+}
+
+@media (max-width: 959px) {
+  .row {
+    flex-wrap: wrap;
+    td:first-of-type {
+      flex: 0 0 100%;
+    }
+    &:first-of-type {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      width: 100%;
+      position: sticky;
+      z-index: 5;
+      background: white;
+      top: 40px;
+      // Hide the empty header
+      th:first-of-type {
+        display: none;
+      }
+      // Add a border left to the first actual header to close the table's borders
+      th:nth-of-type(2) {
+        border-left-width: 1px;
+      }
+    }
+  }
+  .headerCell {
+    font-size: 14px;
+    padding: 0.5em;
+  }
+}
+
+@media (max-width: 767px) {
+  .row {
+    td {
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px;
+      // Close the border on the left
+      &:nth-of-type(2) {
+        border-left-width: 1px;
+      }
+    }
+    // Hide the header
+    &:first-of-type {
+      display: none;
+    }
+    // Separate each row visually for better comprehension
+    .headerCell {
+      margin-top: 20px;
+      border-top-width: 1px;
+    }
+  }
+  .indicator {
+    flex: 0 0 24px;
+  }
+  .headerLabel {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+  }
+}

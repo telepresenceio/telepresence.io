@@ -1,0 +1,141 @@
+@purple: #5f3eff;
+@formOffset: -100px;
+
+.wrapper {
+  padding: 40px 0;
+  margin-bottom: 40px;
+  color: white;
+  background: url('/images/whitepaper-hero.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 300px;
+
+  h1 {
+    margin: 0 0 10px;
+
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1.25;
+  }
+
+  p {
+    font-size: 24px;
+    margin-bottom: 45px;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 10px;
+}
+
+.content {
+  max-width: 620px;
+  margin: 0 0 1.5rem 0;
+}
+
+.form {
+  background: #cae6f6;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 50px;
+  flex: 1;
+
+  h2 {
+    font-weight: bold;
+    margin: 0 0 22px;
+
+    font-size: 28px;
+    line-height: 35px;
+
+    color: #2d9cdb;
+  }
+
+  label {
+    font-weight: normal;
+    margin-bottom: 6px;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    color: #111111;
+  }
+
+  input {
+    background: #ffffff;
+    box-shadow: 6px 7px 17px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    border: none;
+
+    font-size: 20px;
+
+    color: #222222;
+
+    mix-blend-mode: normal;
+
+    height: 50px;
+    line-height: 50px;
+
+    margin-bottom: 15px;
+
+    -webkit-appearance: none;
+  }
+
+  input[type='submit'] {
+    margin-top: 25px;
+
+    background: @purple;
+    color: white;
+
+    font-weight: bold;
+    font-size: 20px;
+
+    line-height: 60px;
+    height: 60px;
+    min-width: 195px;
+    padding: 0 15px;
+    width: 100%;
+
+    cursor: pointer;
+
+    -webkit-appearance: none;
+
+    &:hover {
+      background: darken(@purple, 5%);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  .form {
+    margin-top: 0;
+    max-width: 515px;
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1050px) {
+  .wrapper {
+    padding: 80px 0 0;
+    margin-bottom: (-@formOffset + 40px);
+  }
+  .container {
+    display: flex;
+  }
+  .content {
+    padding-top: 10vh;
+    margin: 0 1.5rem 0 0;
+    h1 {
+      font-size: 50px;
+    }
+  }
+  .form {
+    margin-bottom: @formOffset;
+  }
+}

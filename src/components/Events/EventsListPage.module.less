@@ -1,0 +1,417 @@
+@import '../../less/_colors.less';
+
+.grid {
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: 1fr;
+  max-width: 1245px;
+  margin: auto;
+  padding: 30px 16px;
+}
+
+.heading {
+  color: @color-blue-dark;
+  font-weight: normal;
+  margin-top: 0;
+}
+
+.eventsPage {
+  font-family: @InterFont;
+  position: relative;
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    margin: 0;
+    top: 0;
+    width: 100%;
+    height: 328px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%), #E9F6FF;
+  }
+
+  .content {
+    position: relative;
+    background: transparent;
+  }
+
+  .navCategoriesContent {
+    max-width: 1245px;
+    margin: auto;
+    position: relative;
+    bottom: 55px;
+    margin-bottom: 26px;
+  }
+
+  .navCategories {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 16px;
+    width: 530px;
+    max-width: 100%;
+
+    li {
+      height: 40px;
+      border-radius: 112px;
+      margin: 0 10px 10px 0;
+      
+      a {
+        height: 40px;
+        border-radius: 112px;
+        border: 1px solid @color-blue-dark;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 2px 10px 2px 4px;
+        display: flex;
+        align-items: center;
+        color: @color-blue-dark;
+        transition: color 200ms linear 0ms;
+
+        svg {
+          margin-right: 8px;
+        }
+        
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .officeHoursIcon {
+      background: @color-purple-surface;
+      
+      svg{
+        width: 33px;
+      }
+
+      &.disableCategory svg {
+
+        opacity: 0.5;
+      }
+      
+      a {
+        border-color: @color-purple-light;
+        color: @color-purple-dark;
+        
+        &:hover {
+          color: @color-purple;
+          background: @color-purple-surface;
+          border-color: @color-purple-dark;
+          
+          svg {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    
+    .meetTheMaintainers {
+      background: @color-red-surface;
+      
+      &.disableCategory svg {
+        fill: @color-gray;
+      }
+      
+      a {
+        border-color: @color-red-electric;
+        color: @color-red-dark;
+
+        svg {
+          fill: @color-red-primary;
+          width: 24px;
+          height: 24px;
+        }
+
+        &:hover {
+          background: @color-red-surface;
+          border-color: @color-red-dark;
+          color: @color-red-electric;
+
+          svg {
+            fill: @color-red-primary;
+          }
+        }
+      }
+    }
+    
+    .ossContributorsMeetings {
+      background: @color-blue-surface;
+      
+      &.disableCategory svg {
+        fill: @color-gray;
+      }
+      
+      a {
+        border-color: @color-blue-light;
+        padding: 8px 11px 11px 11px;
+        color: @color-blue-dark;
+
+        svg {
+          width: 21px;
+          fill: @color-blue;
+        }
+
+        &:hover {
+          background: @color-blue-surface;
+          border-color: @color-blue-dark;
+          color: @color-blue-light;
+  
+          svg {
+            fill: @color-blue;
+          }
+        }
+      }
+
+    }
+    
+    .ambassadorFest {
+      background: linear-gradient(90.23deg, #0066FF 0.2%, #599CFF 11.15%, #C98BFF 18.55%, #F8C369 34.18%, #F5A623 49.81%, #9EF0B7 64.28%, #50FF8F 69.77%, #00C05B 99.8%);
+      padding: 1px;
+      border: none;
+      
+      a {
+        color: @color-green-dark-2;
+        border: none;
+        border-radius: 112px;
+        padding: 5px 10px 8px 10px;
+        background: @color-green-surface;
+        height: 38px;
+
+        &:hover {
+          color: @color-green-dark;
+        }
+
+        svg {
+          width: 27px;
+          height: 25px;
+        }
+      }
+
+      &.disableCategory {
+        background: @color-gray;
+
+        a {
+          background: @color-white;
+        }
+      }
+
+      &:hover {
+        background: @color-green-dark;
+
+        a {
+          background: @color-green-surface;
+        }
+      }
+    }
+
+    .allEvents {
+      background: @color-green-surface;
+      
+      a {
+        border-color: @color-green-dark;
+        padding: 11px 10px;
+        color: @color-green-dark-2;
+      }
+
+      &:hover {
+        border-color: @color-green-dark;
+        background: @color-green-surface;
+
+        a {
+          color: @color-green-dark;
+        }
+      }
+    }
+
+    .disableCategory {
+      background: transparent;
+      
+      a {
+        border-color: @color-gray;
+        color: @color-gray;
+      }
+    }
+
+  }
+  
+  .calendarIcon {
+    fill: @color-blue;
+  }
+
+  .hero {
+    color: @color-blue-dark;
+    font-weight: 400;
+    min-height: 220px;
+    overflow: auto;
+
+    &_title {
+      margin: 0;
+      font-weight: normal;
+      font-size: 33px;
+    }
+
+    &_body {
+      color: @color-blue-dark;
+      font-size: 19px;
+      margin: 24px 0;
+    }
+
+    &_links {
+      padding-left: 16px;
+
+      a {
+        color: @color-blue;
+        display: inline-block;
+        margin: 0 10px 0 0;
+        margin-right: 43px;
+        
+        span {
+          text-transform: uppercase;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &_icon {
+      grid-row-start: 2;
+      grid-row-end: 3;
+
+      width: 100%;
+
+      &>svg {
+        width: 100%;
+      }
+    }
+  }
+
+  .news {
+    position: sticky;
+    top: 108px;
+  }
+}
+
+.pastEvents {
+  background: rgba(39, 39, 51, 0.02);
+  width: 100%;
+
+  .heading {
+    grid-column-start: 1;
+  }
+
+  .events {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    grid-row-end: auto;
+  }
+
+  .missedEvents {
+    grid-column-end: 1;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    width: 100%;
+
+    &_container {
+      align-self: start;
+      border-radius: 8px;
+      border: 1px solid @color-red-electric;
+      box-shadow: -6px 12px 0px rgba(39, 39, 51, 0.12);
+      box-sizing: border-box;
+      color: @color-red-dark;
+      padding: 32px 24px;
+      position: sticky;
+      top: 108px;
+    }
+
+    &_arrow {
+      fill: @color-red-electric;
+      vertical-align: middle;
+      width: 25px;
+    }
+
+    &_text {
+      margin: 24px 0 32px;
+    }
+
+    &_header {
+      display: flex;
+    }
+
+    &_title {
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+  .grid {
+    column-gap: 10%;
+    grid-template-columns: 6.591fr 2.384fr;
+    padding: 108px 16px;
+  }
+
+  .eventsPage {
+    .featuredSection {
+      padding-bottom: 108px;
+      padding-top: 0;
+    }
+
+    .hero {
+      padding: 60px 16px 0 16px;
+
+      &_icon {
+        grid-column-start: 2;
+        grid-row-start: auto;
+        grid-row-end: span 3;
+      }
+
+      &_body {
+        grid-column-start: 1;
+        grid-row-start: 2;
+      }
+
+      &_links {
+        grid-column-start: 1;
+        grid-row-start: 3;
+      }
+    }
+  }
+
+  .pastEvents {
+    .heading {
+      grid-column-start: 1;
+    }
+
+    .events {
+      grid-column-start: 1;
+      grid-row-start: 2;
+      grid-row-end: 3;
+    }
+
+    .missedEvents {
+      grid-column-start: 2;
+      grid-row-start: 1;
+      grid-row-end: 2 span;
+      grid-column-end: 2;
+    }
+  }
+}
+
+@media (min-width: 960px) {
+  .categoriesSticky {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15),
+      0px 2px 6px rgba(90, 90, 90, 0.24);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero_links {
+    display: none;
+  }
+
+  .featuredSection {
+    position: relative;
+    bottom: 80px;
+  }
+}

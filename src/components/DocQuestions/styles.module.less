@@ -1,0 +1,70 @@
+@import '../Layout/vars.less';
+
+.docQuestions {
+    border-top: 1px solid @grey-separator;
+    margin: 40px auto;
+    max-width: @docs-max-width;
+    min-width: @docs-min-width;
+    padding: 30px 20px;
+
+    &__contact {
+        border: solid 1px red;
+        padding-bottom: 162px;
+    }
+
+    &__headingSecondary {
+        color: @black;
+        font-size: 23px;
+        margin: 0;
+        display: block;
+    }
+
+    &__contactList {
+        composes: ul from "../Layout/docs-layout.less";
+        display: flex;
+        list-style: none;
+        margin: 15px 0 0;
+        padding: 0;
+
+        li {
+            border-right:  1px solid @grey-separator;
+            padding-right: 20px;
+            cursor: pointer;
+
+            a {
+                color: @blue;
+                display: flex;
+                outline: 0;
+                text-decoration: underline;
+                transition: color 200ms linear 0ms;
+
+                &:hover {
+                    color: @blue-dark;
+                    text-decoration: none;
+                }
+            }
+
+            &:last-child {
+                border: none;
+                margin-left: 20px;
+            }
+
+        }
+
+        &Icon {
+            height: 24px;
+            margin-right: 7px;
+            width: 24px;
+        }
+    }
+}
+
+@media (max-width: 380px) {
+    .docQuestions__contactList li {
+        padding-right: 8px;
+
+        &:last-child {
+            margin-left: 8px;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+@import '../Layout/vars.less';
+
+.flyout {
+    font-family: @InterFont;
+    width: 160px;
+    padding: 18px 24px;
+    background: @grey-surface;
+    border-radius: 8px;
+    border: 1px solid #CFDDE0;
+    box-shadow: 6px 12px 24px rgba(39, 39, 51, 0.25);
+    z-index: 8;
+    font-size: 14px;
+
+    ul li {
+        margin-bottom: 18px;
+        cursor: pointer;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &:hover {
+            color: @blue;
+        }
+
+        .icon {
+            margin-right: 9px;
+            visibility: hidden;
+        }
+
+        &.active {
+            color: @blue;
+            font-weight: 600;
+
+            .icon {
+                visibility: visible;
+            }
+        }
+    }
+
+    .caret {
+        background-color: inherit;
+        border: inherit;
+        border-radius: 0 0 0 0.25em;
+        clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+        display: block;
+        height: 14px;
+        left: calc(50% - 7px);
+        position: absolute;
+        top: -8px;
+        transform: rotate(135deg);
+        width: 14px;
+        box-sizing: initial;
+    }
+}

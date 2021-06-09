@@ -1,0 +1,36 @@
+@import '../Layout/vars.less';
+
+.FeaturesPage {
+  color: @gray900;
+
+  background: url('/images/features-bg.png') no-repeat;
+  background-size: cover;
+
+  padding-bottom: 130px;
+}
+
+.Container {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 25px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0;
+  }
+}
+
+.Hero {
+  padding: 90px 0 40px;
+
+  h1 {
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 60px;
+    margin: 0 0 5px;
+  }
+
+  p {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}

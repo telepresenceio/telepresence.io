@@ -1,0 +1,127 @@
+@import '../Layout/vars.less';
+
+.Button {
+  border-radius: 5px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  height: 60px;
+  letter-spacing: 1.2px;
+  line-height: 60px;
+  padding: 0 30px;
+  text-decoration: none !important;
+
+  &.White {
+    background: white;
+    color: #111;
+
+    &:hover {
+      background: fadeout(white, 10%);
+    }
+  }
+
+  &.Purple {
+    background: @purple;
+    color: white;
+
+    &:hover {
+      background: @purple-dark;
+      color: white;
+    }
+  }
+
+  &.Blue {
+    background: @blue-light;
+    color: #fff;
+
+    &:hover {
+      background: darken(@blue-light, 5%);
+    }
+  }
+
+  &.BlueOutline {
+    background: #fff;
+    border-color: @blue;
+    color: @blue;
+    fill: @blue;
+
+    &:hover {
+      border-color: @blue-dark;
+      color: @blue-dark;
+      fill: @blue-dark;
+    }
+  }
+
+  &.PurpleOutline {
+    background: transparent;
+    color: #5f3eff;
+    border-color: #5f3eff;
+
+    &:hover {
+      background: fadeout(white, 90%);
+    }
+  }
+
+  &.Red {
+    background: #ff4329;
+    color: white;
+
+    &:hover {
+      background: darken(#ff4329, 10%);
+      color: white;
+    }
+  }
+
+  &.RedOutline {
+    background: transparent;
+    color: #ff4329;
+    border-color: #ff4329;
+
+    &:hover {
+      background: fadeout(#ff4329, 90%);
+    }
+  }
+
+  &.Orange {
+    background: #f9634e;
+    color: white;
+
+    &:hover {
+      background: darken(#f9634e, 10%);
+      color: white;
+    }
+  }
+
+  &.OrangeOutline {
+    background: transparent;
+    color: #f9634e;
+    border-color: #f9634e;
+
+    &:hover {
+      background: fadeout(#f9634e, 90%);
+    }
+  }
+
+  &.Green {
+    background: #00c58a;
+    color: white;
+
+    &:hover {
+      background: darken(#00c58a, 10%);
+      color: white;
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.ButtonSm {
+  height: auto;
+  line-height: 1.25;
+  font-size: 16px;
+  padding: 0.5em 1em;
+}

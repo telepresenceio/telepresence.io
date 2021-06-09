@@ -1,0 +1,215 @@
+@import '../../Layout/vars.less';
+
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 38px;
+    line-height: 1.3;
+    color: #111;
+    margin: 0 auto 15px;
+    font-weight: 900;
+
+    @media screen and (min-width: 768px) {
+      font-size: 44px;
+
+      p {
+        font-size: 24px;
+      }
+    }
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+
+.wrapper {
+  position: relative;
+  margin-bottom: 60px;
+  border: 1px solid #f2f2f2;
+  border-width: 1px 0 1px 0;
+}
+
+.sidebar {
+  padding: 30px 20px;
+  align-self: flex-start;
+  h2 {
+    font-size: 32px;
+    margin: 0 0 40px;
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 25px 0 15px;
+  }
+}
+
+.results {
+  background: @gray100;
+  border-left: 1px solid #f2f2f2;
+  padding: 30px 24px 50px;
+  flex: 1;
+  min-height: 100vh;
+  position: relative;
+}
+
+.resultsHeading {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+
+.resultsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 25px 20px;
+  justify-content: center;
+  > * {
+    max-width: 400px;
+  }
+}
+
+.typeBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 16px;
+  background: transparent;
+  color: inherit;
+  border: 1.5px solid #b8a9ff;
+  cursor: pointer;
+  margin: 0 0.5em 0.5em 0;
+  transition: 0.2s ease all;
+  outline: none;
+  div {
+    height: 1.25em;
+  }
+  svg {
+    height: 100%;
+    margin-right: 0.5em;
+    display: block;
+  }
+  rect,
+  path {
+    transition: 0.2s ease all;
+  }
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 0.175em @blue;
+  }
+}
+
+.typeBtnActive {
+  background: #3b1bb9;
+  border-color: #3b1bb9;
+  color: white;
+  rect {
+    fill: white;
+  }
+  path {
+    fill: #3b1bb9;
+  }
+}
+
+.topicBtn {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin: 0 0 1em;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  opacity: 0.9;
+}
+
+.topicCheck {
+  height: 1.25em;
+  margin-right: 0.5em;
+  display: block;
+  path {
+    opacity: 0;
+    transition: 0.2s;
+    stroke: #b8a9ff;
+  }
+  // Always show the base rectangle
+  path:first-of-type {
+    opacity: 1;
+  }
+}
+
+.topicBtnActive {
+  opacity: 1;
+  .topicCheck {
+    path {
+      opacity: 1;
+      stroke: @purple;
+    }
+  }
+}
+
+.pagination {
+  max-width: 100px;
+  margin: 20px auto 0;
+  position: relative;
+  button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    &:hover {
+      svg {
+        fill: @purple;
+        transform: scale(1.1);
+      }
+    }
+  }
+  svg {
+    width: 1em;
+    transition: 0.2s;
+    fill: @gray800;
+  }
+}
+
+.prevButton {
+  left: 0;
+  transform: translateX(-100%);
+}
+.nextButton {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.pageNumber {
+  color: @gray700;
+  font-weight: 300;
+  text-align: center;
+}
+
+@media (min-width: 1000px) {
+  .wrapper {
+    display: flex;
+  }
+
+  .sidebar {
+    position: sticky;
+    overflow: auto;
+    // Header's height is 60px
+    top: 60px;
+    max-height: 100vh;
+    max-height: calc(100vh - 60px);
+    flex: 1 0 250px;
+    max-width: 320px;
+  }
+
+  .resultsContainer {
+    > * {
+      max-width: 300px;
+    }
+  }
+}

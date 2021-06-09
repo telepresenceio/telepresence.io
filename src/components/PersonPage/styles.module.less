@@ -1,0 +1,64 @@
+.hero {
+  padding: 10vh 0;
+  background: #2d9cdb;
+  color: white;
+}
+
+.heroContainer {
+  max-width: 1150px;
+  margin: 0 auto;
+  --img-size: 120px;
+  :global(.gatsby-image-wrapper) {
+    width: var(--img-size);
+    height: var(--img-size);
+    border-radius: 50%;
+    margin: 0 0 10px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.resourcesWrapper,
+.heroContainer {
+  margin: 0 auto;
+  max-width: 1095px;
+  padding: 0 20px;
+}
+
+.resourcesWrapper {
+  margin: 80px auto 100px;
+}
+
+.resourcesContainer {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 30px;
+}
+
+.personInfo {
+  font-size: 20px;
+  h1 {
+    font-size: 1.35em;
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .heroContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    --img-size: 200px;
+    :global(.gatsby-image-wrapper) {
+      flex: 0 0 var(--img-size);
+      margin: 0 30px 0 0;
+    }
+  }
+  .personInfo {
+    font-size: 25px;
+  }
+}

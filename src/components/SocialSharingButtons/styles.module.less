@@ -1,0 +1,33 @@
+.wrapper {
+  margin: 50px auto;
+  text-align: center;
+  max-width: 550px;
+
+  > a {
+    margin-right: 20px;
+    color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #5f3eff;
+    width: 3.75em;
+    height: 3.75em;
+    border-radius: 50%;
+    transition: 0.2s;
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+      filter: saturate(1.2);
+    }
+    svg {
+      width: 50%;
+    }
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+  > h2 {
+    font-size: 2em;
+    margin: 0 0 1.25em;
+  }
+}

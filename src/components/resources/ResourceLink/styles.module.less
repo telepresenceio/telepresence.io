@@ -1,0 +1,79 @@
+.Resource {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #d2d4db;
+  border-radius: 2px;
+  height: 100%;
+  transition: all 0.25s ease-in-out;
+  color: #111;
+  background: white;
+
+  &:hover {
+    text-decoration: none;
+    border-color: #5f3eff;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+
+  .About {
+    padding: 20px;
+
+    .Type {
+      color: #9396a2;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        width: 20px;
+        margin-right: 10px;
+        display: block;
+      }
+    }
+    .Date {
+      margin-left: 0.25em;
+      &::before {
+        margin-right: 0.25em;
+        content: ' - ';
+      }
+    }
+  }
+
+  .thumbnail {
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 200px;
+  }
+
+  .thumbnail_placeholder {
+    flex: 1;
+    min-height: 140px;
+    background: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > img {
+      height: 22px;
+    }
+  }
+}
+
+.Title {
+  h2,
+  h3 {
+    margin: 10px 0 0;
+    font-size: 19px;
+    line-height: 26px;
+  }
+}
+
+.TitleSm {
+  h2,
+  h3 {
+    font-size: 17px;
+  }
+}

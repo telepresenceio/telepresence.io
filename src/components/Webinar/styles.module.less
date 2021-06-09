@@ -1,0 +1,162 @@
+@purple: #5f3eff;
+
+.wrapper {
+  background: @purple;
+  padding: 80px 0;
+  margin-bottom: 40px;
+  color: white;
+
+  h1 {
+    margin: 0 0 10px;
+
+    font-weight: 900;
+    font-size: 40px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-bottom: 35px;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 20px;
+}
+
+.content {
+  max-width: 620px;
+  margin: 0 0 1.5rem 0;
+}
+
+@media (min-width: 1050px) {
+  .container {
+    display: flex;
+  }
+  .content {
+    margin: 0 1.5rem 0 0;
+  }
+}
+
+.date {
+  display: block;
+  line-height: 35px;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 600;
+  div {
+    font-size: 24px;
+  }
+}
+
+.speaker {
+  display: flex;
+  align-items: center;
+
+  img {
+    border-radius: 100%;
+    max-width: 100px;
+  }
+}
+
+.speakerInfo {
+  flex: 1;
+  margin-left: 20px;
+
+  div:first-of-type {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  div:nth-of-type(2) {
+    font-size: 18px;
+  }
+}
+
+.form {
+  background: #bfb2ff;
+  border-radius: 10px;
+  padding: 40px;
+  margin-top: 50px;
+  flex: 1;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    max-width: 515px;
+  }
+
+  h2 {
+    font-weight: bold;
+    margin: 0 0 22px;
+
+    font-size: 28px;
+    line-height: 35px;
+
+    color: @purple;
+  }
+
+  label {
+    font-weight: normal;
+    margin-bottom: 6px;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    color: #111111;
+  }
+
+  input {
+    background: #ffffff;
+    box-shadow: 6px 7px 17px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    border: none;
+
+    font-size: 20px;
+
+    color: #222222;
+
+    mix-blend-mode: normal;
+
+    height: 50px;
+    line-height: 50px;
+
+    margin-bottom: 15px;
+
+    -webkit-appearance: none;
+  }
+
+  input[type='submit'] {
+    margin-top: 25px;
+
+    background: @purple;
+    color: white;
+
+    font-weight: bold;
+    font-size: 20px;
+
+    line-height: 60px;
+    height: 60px;
+    min-width: 195px;
+    padding: 0 15px;
+    width: 100%;
+
+    cursor: pointer;
+
+    -webkit-appearance: none;
+
+    &:hover {
+      background: darken(@purple, 5%);
+    }
+  }
+}
+
+.video {
+  flex: 1;
+  align-self: center;
+  border-radius: 0.1em;
+  overflow: hidden;
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.2);
+}

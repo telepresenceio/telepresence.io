@@ -1,0 +1,60 @@
+.FeatureTabs {
+    padding: 25px 0;
+}
+
+.AboutTabs {
+    display: flex;
+    justify-content: center;
+}
+
+.AboutTabs .Tab {
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 10px;
+}
+@media screen and (min-width: 768px) {
+    .AboutTabs .Tab {
+        width: 185px;
+        height: 131px;
+        font-size: 1em;
+        padding: 0;
+    }
+}
+.AboutTabs .Tab.active {
+    background: #F9634E;
+}
+.AboutTabs .Tab img {
+    margin-bottom: 10px;
+    height: 33px;
+}
+.TabContent {
+    padding: 20px 0 50px;
+    max-width: 925px;
+    margin: 0 auto;
+    font-size: 1.5em;
+}
+@media screen and (min-width: 768px) {
+    .TabContent {
+        font-size: 2.25em;
+    }
+}
+
+.TabContent div {
+    display: none;
+}
+
+.TabContent .active {
+    display: block;
+}
+
+.TabContent a {
+    color: #fff;
+    text-decoration: underline;
+}

@@ -1,0 +1,91 @@
+@imgMargin: 40px;
+
+.wrapper {
+  padding: 90px 20px;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  flex: 2;
+  max-width: 540px;
+  h2 {
+    margin-top: 0;
+    font-size: 1.65rem;
+  }
+}
+
+.body {
+  font-size: 1.25rem;
+  // .body children can be regular paragraphs or sections, which represent custom blocks such as TitleCTA
+  // For custom blocks, we want to get rid of their usual paddings and add a margin-top to them :)
+  > section {
+    padding: 0;
+    margin-top: 20px;
+  }
+  > section > div {
+    padding: 0;
+  }
+  > p {
+    margin: 0 0 0.5em;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.textSm {
+  .content h2 {
+    font-size: 1.5rem;
+  }
+  .body {
+    font-size: 1.1rem;
+  }
+}
+
+.image {
+  flex: 1;
+  // Content will be on top (mobile / isRight)
+  margin: @imgMargin 0 0;
+}
+
+.wrapper.isLeft {
+  .image {
+    order: -1;
+    // Content will be on bottom (mobile / isLeft)
+    margin: 0 0 @imgMargin;
+  }
+}
+
+.size_sm .image {
+  max-width: 300px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-wrap: nowrap;
+  }
+  .image {
+    // Content will be on left (large / isRight)
+    margin: 0 0 0 @imgMargin * 1.5;
+    :global(.gatsby-image-wrapper) {
+      max-height: 70vh;
+      img {
+        object-fit: contain !important;
+      }
+    }
+  }
+  .wrapper.isLeft {
+    .image {
+      // Content will be on right (large / isLeft)
+      margin: 0 @imgMargin * 1.5 0 0;
+    }
+  }
+}

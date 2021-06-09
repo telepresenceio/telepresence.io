@@ -1,0 +1,16 @@
+.draggable-element {
+
+  &__cursor-grab {
+    cursor: grab;
+  }
+  
+  &__cursor-grabbing {
+    cursor: grabbing;
+  }
+
+  @media (max-width: 999px) {
+    &__cursor-grab, &__cursor-grabbing {
+      cursor: default;
+    }
+  }
+}

@@ -1,0 +1,211 @@
+@import '..//Layout/vars.less';
+
+.Section {
+  padding: 30px 15px;
+
+  @media screen and (min-width: 768px) {
+    padding: 80px 25px;
+  }
+}
+
+.Subtitle {
+  font-size: 26px;
+  line-height: 32px;
+  color: #111;
+  font-weight: 300;
+  text-align: center;
+  padding: 15px 0 35px;
+  display: block;
+  margin: 0;
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 45px;
+  }
+}
+
+.Container {
+  max-width: 1095px;
+  margin: 0 auto;
+}
+
+.Quotes {
+  max-width: 900px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  background: white;
+  margin: 20px auto 50px;
+}
+
+.QuotesOnlyLogos {
+  max-width: 1400px;
+  box-shadow: none;
+
+  .Logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-rows: auto;
+    gap: 30px;
+    border: none;
+
+    > :global(.gatsby-image-wrapper) {
+      img {
+        object-fit: contain !important;
+      }
+    }
+  }
+
+  img {
+    filter: grayscale(1);
+    &:hover {
+      filter: grayscale(0);
+    }
+  }
+}
+
+.QuoteSlider {
+  position: relative;
+  padding: 35px 0;
+}
+.Arrow {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 10px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 36px;
+  width: 18px;
+  position: absolute;
+  bottom: -1em;
+  margin-top: -36px;
+  text-indent: -999999px;
+  transform: translateY(100%);
+}
+.Prev {
+  background: url('/images/left-arrow.svg') no-repeat;
+  left: 25px;
+}
+.Next {
+  background: url('/images/right-arrow.svg') no-repeat;
+  right: 25px;
+}
+.Quote {
+  display: none;
+  align-items: center;
+  padding: 0 30px;
+  background: none;
+  border: none;
+  footer {
+    padding: 0;
+  }
+
+  &.Active {
+    display: block;
+  }
+}
+
+.quoteContent {
+  flex: 1 0 250px;
+  max-width: 30em;
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.authorInfo {
+  margin-top: 1.5em;
+}
+
+.Name {
+  font-weight: 800;
+  font-size: 22px;
+  color: #222222;
+  line-height: 1.2;
+  font-style: italic;
+  display: block;
+  margin: 0;
+}
+
+.Title {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 22px;
+  font-style: italic;
+}
+
+.personPhoto {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 3.5em;
+  height: 3.5em;
+  margin: 0 0 0.5em auto;
+  img {
+    object-fit: cent;
+  }
+}
+
+.quoteLogo {
+  margin: 0.5em 0 0 auto;
+  max-width: 120px;
+}
+
+.Logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid @gray300;
+  padding: 15px 10px;
+  flex-wrap: wrap;
+
+  > :global(.gatsby-image-wrapper) {
+    flex: 1 0 50px;
+    max-width: 35%;
+    margin: 10px;
+    height: auto;
+    img {
+      object-fit: contain !important;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .Logos {
+    padding: 25px 10px;
+    justify-content: space-evenly;
+    > :global(.gatsby-image-wrapper) {
+      max-width: 120px;
+      margin: 0;
+    }
+  }
+  .Quote {
+    padding: 0 80px;
+
+    &.Active {
+      display: flex;
+    }
+  }
+  .Title {
+    font-size: 18px;
+    line-height: 23px;
+  }
+
+  .Name {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+  .authorInfo {
+    margin: 0 0 0 2em;
+    align-self: flex-end;
+    flex: 1;
+    text-align: right;
+  }
+  .Arrow {
+    bottom: 1em;
+    transform: none;
+  }
+}

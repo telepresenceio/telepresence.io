@@ -1,0 +1,38 @@
+.FeaturesBlock {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .Feature {
+    width: 50%;
+    display: flex;
+    padding: 12px;
+
+    flex-direction: column;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    > img {
+      width: 45px;
+      margin-right: 16px;
+      margin-top: 7px;
+      margin-bottom: 16px;
+    }
+
+    > div {
+      flex: 1;
+
+      h4 {
+        margin: 0;
+        font-size: 18px;
+
+        a {
+          color: black;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.wrapper {
+  padding: 6rem 20px 4rem;
+  max-width: 1095px;
+  margin: 0 auto;
+  > h2 {
+    text-align: center;
+    font-size: 36px;
+    line-height: 45px;
+    margin-bottom: 45px;
+  }
+  > p {
+    max-width: 35em;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.25em;
+    text-align: center;
+  }
+  // Make the paragraph following the heading closer to it
+  > h2 + p {
+    margin: -35px auto 50px;
+  }
+}
+
+.cardsContainer {
+  display: grid;
+  grid-gap: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  .cardsContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}

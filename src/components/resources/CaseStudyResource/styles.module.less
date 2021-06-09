@@ -1,0 +1,269 @@
+.Container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 100px;
+}
+
+.Row {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.Hero {
+  min-height: 670px;
+  border-bottom: 5px solid #2D9CDB;
+  background: url('/images/resources/case-study-bg-small.png') no-repeat;
+  background-position: bottom right;
+  background-size: cover;
+
+  @media screen and (min-width: 550px) {
+    background-image: url('/images/resources/case-study-bg.png');
+    background-position: center top;
+    background-size: cover;
+  }
+
+  @media screen and (min-width: 2000px) {
+    background-image: url('/images/resources/case-study-bg-big.png');
+  }
+
+  .Container {
+    padding-top: 60px;
+    margin-top: 0;
+    position: relative;
+
+    @media screen and (min-width: 768px) {
+      padding-top: 120px;
+    }
+  }
+
+  .Mascot {
+    right: 30px;
+    margin-top: 35px;
+    width: 192px;
+    position: absolute;
+
+    @media screen and (min-width: 900px) {
+      margin: 0;
+      right: 0;
+      top: 30px;
+      width: 291px;
+    }
+  }
+
+  strong {
+    color: #2D9CDB;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 11px;
+    display: block;
+  }
+
+  .Title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+
+    img {
+      height: 47px;
+
+      &:last-of-type {
+        height: 37px;
+      }
+    }
+
+    span {
+      // These font styles are just applied to the "+" sign
+      font-weight: 900;
+      font-size: 44px;
+      line-height: 55px;
+      color: #222;
+
+      margin: 0 30px;
+    }
+  }
+
+  .Subtitle {
+    font-size: 16px;
+    line-height: 20px;
+
+    @media screen and (min-width: 900px) {
+      margin-right: 300px;
+    }
+  }
+}
+
+.Sidebar {
+
+  @media screen and (min-width: 768px) {
+    width: 340px;
+    margin-left: 90px;
+  }
+
+  > div {
+    margin-bottom: 40px;
+    border-radius: 7px;
+  }
+
+  .CompanyInfo {
+    background: #FFFFFF;
+    box-shadow: -1px 1px 21px rgba(0, 0, 0, 0.10943);
+    padding: 30px 30px 15px;
+
+    font-size: 20px;
+    line-height: 25px;
+    color: #222222;
+
+    > img {
+      height: 60px;
+      margin-bottom: 20px;
+    }
+
+    > div {
+      margin-bottom: 15px;
+    }
+
+    strong {
+      font-weight: bold;
+      color: #2D9CDB;
+    }
+  }
+
+  .Quote {
+    background: linear-gradient(180deg, rgba(45, 156, 219, 0.405) 0%, rgba(45, 156, 219, 0.9) 99.97%);
+    position: relative;
+    padding: 100px 30px;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    color: #FFFFFF;
+
+    .TopQuotation {
+      position: absolute;
+      top: 0;
+      left: -13px;
+      font-weight: 900;
+      font-size: 222px;
+      color: #FFFFFF;
+      mix-blend-mode: normal;
+      opacity: 0.3;
+      line-height: 140px;
+    }
+
+    .BottomQuotation {
+      position: absolute;
+      bottom: 0;
+      right: -13px;
+      font-weight: 900;
+      font-size: 222px;
+      color: #FFFFFF;
+      mix-blend-mode: normal;
+      opacity: 0.3;
+      line-height: 0;
+    }
+  }
+}
+
+.CTA {
+  background: white;
+  box-shadow: -1px 1px 21px rgba(0, 0, 0, 0.10943);
+  padding: 30px;
+
+  p {
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    color: black;
+  }
+
+  .Button {
+    background: #2D9CDB;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    line-height: 50px;
+    padding: 0 50px;
+    display: block;
+    max-width: 205px;
+    margin: 25px auto 0;
+    text-decoration: none;
+
+    &:hover {
+      background: darken(#2D9CDB, 5%);
+    }
+  }
+
+  &.Stretch {
+    @media screen and (min-width: 1100px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        margin: 0;
+      }
+
+      .Button {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.Content {
+  flex: 1;
+  margin-bottom: 180px;
+  font-size: 20px;
+  line-height: 30px;
+  color: #222;
+
+  h1 {
+    margin: 0 0 20px;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  h3 {
+    margin: 0 0 16px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    color: #2D9CDB;
+  }
+
+  p {
+    margin-bottom: 40px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 30px;
+    margin-bottom: 15px;
+
+    li {
+      margin-bottom: 5px;
+    }
+  }
+
+  a {
+    color: #F9634E;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

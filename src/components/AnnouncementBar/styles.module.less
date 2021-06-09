@@ -1,0 +1,49 @@
+@import '../../less/_colors.less';
+
+.AnnouncementBar {
+  margin: 0 0 1px;
+  padding: 15px;
+  border-radius: 0;
+  position: relative;
+  z-index: 9;
+  color: @color-white;
+  background-color: @color-orange-dark;
+  box-shadow: 0 3px 6px -2px hsla(199, 7%, 45%, .5);
+
+  .Content {
+    line-height: 1.3;
+    text-align: center;
+    font-size: 14px;
+    color: @color-white;
+
+    @media (min-width: 760px) {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    p {
+      a {
+        color: @color-white;
+        font-weight: bold;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  &.hightlighted {
+    background-color: @color-blue-surface;
+
+    .Content {
+      color: @color-blue-dark;
+      p {
+        a {
+        color: @color-blue-dark;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.wrapper {
+  max-width: 1250px;
+  padding: 0 20px;
+  margin: 80px auto 40px;
+}
+
+.container {
+  display: grid;
+  grid-gap: 50px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 964px) {
+  .container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

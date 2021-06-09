@@ -1,0 +1,202 @@
+@import '../Layout/vars.less';
+
+.Footer {
+  font-family: @InterFont;
+  background-color: @grey-surface;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 50px;
+  @media (min-width: 1200px) {
+    grid-gap: 60px 150px;
+  }
+
+  .footerContent {
+    max-width: 1250px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  a {
+    transition: color 200ms linear 0ms;
+    transition-property: background-color, border-color, color, fill;
+
+    &:hover {
+      color: @purple;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  grid-gap: 40px;
+}
+
+.menuGroup {
+  font-size: 12px;
+  color: @grey-electric;
+  letter-spacing: 1.2px;
+  a,
+  span {
+    color: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+  }
+  span {
+    color: @black;
+    margin: 0 0 1.25em;
+    font-weight: bold;
+    line-height: 1.075;
+    display: inline-block;
+  }
+  li {
+    margin: 0 0 0.5em;
+    ul {
+      margin-top: 0.1em;
+    }
+    li {
+      margin: 0 0 0.35em;
+      font-size: 0.9em;
+      padding-left: 0.75em;
+      opacity: 0.7;
+      &:last-of-type {
+        margin-bottom: 0.5em;
+      }
+    }
+  }
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.logoWrapper {
+  margin: 10px 0;
+
+  a {
+    color: @grey-electric;
+    font-size: 14px;
+  }
+}
+
+// Here we're trying to overwrite style specificity from other styles applied to the form, that's why we're targeting parent elements, to avoid !importants everywhere
+.socialSection {
+  width: 350px;
+  margin: 0 auto 40px;
+  span {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.5px;
+    margin: 0 0 10px;
+    text-align: left;
+    display: inline-block;
+  }
+  :global(.hubspot-form div) {
+    margin: 0;
+  }
+  :global(.hs-form) {
+    display: flex;
+    align-items: center;
+  }
+  :global(.hs-form .hs_email) {
+    margin: 0 6px 0 0;
+    position: relative;
+  }
+  :global(.hs_email label) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  :global(.input) {
+    margin: 0 !important;
+  }
+  :global(.input .hs-input) {
+    font-size: 14px;
+    background: white;
+    border: 1px solid @black52;
+    color: @black;
+    border-radius: 4px;
+  }
+  :global(.hubspot-form .hs_submit .hs-button) {
+    background: @purple;
+    border-radius: 5px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 1px @purple solid;
+    color: @grey-surface;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 13px 20px;
+    letter-spacing: 1.25px;
+    line-height: 24px;
+    cursor: pointer;
+    transition: background-color 200ms linear 0ms;
+    text-decoration: none;
+    &:hover {
+      background: @purple-dark;
+      border-color: @purple-dark;
+      text-decoration: none;
+    }
+  }
+}
+
+.socialLinks {
+  display: flex;
+  margin-top: 10px;
+
+  a {
+    margin-right: 5px;
+    color: white;
+    background: @turquoise;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    height: 1em;
+    width: 1em;
+    border-radius: 4px;
+    svg {
+      width: 80%;
+      max-height: 50%;
+    }
+    &:hover {
+      background: @blue-light;
+      color: @white;
+    }
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .socialSection {
+    .Footer {
+      grid-template-columns: minmax(300px, 700px) 1fr;
+    }
+  }
+  .logoWrapper {
+    grid-column: span 2;
+  }
+  .socialLinks {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 400px) {
+  .menu {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+}

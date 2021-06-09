@@ -1,0 +1,76 @@
+@import '../../less/_colors.less';
+
+.officeHoursIcon {
+  margin-left: -2px;
+}
+
+.eventCard {
+  box-sizing: border-box;
+  padding: 12px 0;
+  position: relative;
+  width: 100%;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(39, 39, 51, 0.12);
+  }
+}
+
+.content {
+  &_title {
+    display: flex;
+    box-sizing: border-box;
+    font-size: 19px;
+    margin: 0 0 12px;
+    padding-right: 5px;
+
+    a {
+      color: @color-blue-dark;
+      box-sizing: border-box;
+      flex-shrink: 1;
+      padding-right: 9px;
+      width: 100%;
+
+      &:hover {
+        color: @color-blue;
+        text-decoration: none;
+      }
+    }
+
+    &_arrow {
+      align-self: center;
+      fill: @color-blue;
+      flex-grow: 0;
+      justify-self: end;
+    }
+  }
+
+  &_text {
+    margin-top: 12px;
+    word-break: break-word;
+
+    br+br {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .eventCard {
+    padding-bottom: 24px;
+  }
+
+  .content {
+    &_title {
+      a {
+        flex-grow: 0;
+        margin-right: 8px;
+        transition: margin 400ms ease-out;
+        width: fit-content;
+
+        &:hover {
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+}

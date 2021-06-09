@@ -1,0 +1,61 @@
+.Container {
+  > div:not(.Toggle) {
+    padding-top: 15px;
+  }
+
+  ol {
+    margin-top: 35px;
+
+    > li {
+      border-color: transparent !important;
+      padding: 0 0 0 60px !important;
+    }
+  }
+
+  .closed {
+    display: none;
+  }
+
+}
+
+.Toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  outline: none;
+  border: none;
+
+  > p:first-child {
+    font-weight: bold;
+  }
+}
+
+.Chevron {
+  background: none;
+  border: none;
+  appearance: value;
+  height: 9px;
+
+  &:before {
+    border-style: solid;
+    border-width: 3px 3px 0 0;
+    border-color: #5F3EFF;
+    content: '';
+    display: inline-block;
+    height: 15px;
+    left: 0;
+    position: relative;
+    top: 0;
+    transform: rotate(-45deg);
+    vertical-align: top;
+    width: 15px;
+  }
+
+  &.down:before {
+    top: -8px;
+    transform: rotate(135deg);
+  }
+}

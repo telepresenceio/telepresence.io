@@ -1,0 +1,47 @@
+.card {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  padding: 30px 0;
+  margin: 0;
+  border-bottom: 1px solid #fcfcfc;
+  &:first-of-type {
+    padding-top: 0;
+  }
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    svg {
+      transform: translateX(35%);
+    }
+    h3 {
+      color: #111;
+    }
+  }
+  h3 {
+    color: #464646;
+    font-weight: 400;
+    margin: 0 28px;
+    transition: 0.3s;
+    font-size: inherit;
+  }
+  svg {
+    width: 12px;
+    flex: 0 0 12px;
+    transition: 0.3s;
+  }
+}
+
+.date {
+  color: #5f3eff;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+}
+
+.month {
+  display: block;
+  font-weight: 400;
+  font-size: 18px;
+}

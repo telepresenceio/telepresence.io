@@ -1,0 +1,229 @@
+@import '../Layout/vars.less';
+
+.codeBlockWrapper {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  margin: 1em 0;
+  width: 100%;
+  background-color: @grey-surface;
+  border: 1px solid @grey-separator;
+  border-radius: 5px;
+
+  .codeBlockContent {
+    padding: 0 30px;
+    font-family: 'Menlo ', 'Consolas', monospace;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .codeBlocks {
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+}
+
+.codeBlockHeader {
+  width: 100%;
+  background-color: @head-surface;
+  display: flex;
+  flex-direction: row;
+  color: @grey-primary;
+  button {
+    position: relative;
+  }
+  span{
+    color:@grey-primary;
+  }
+}
+
+.codeBlockChoice {
+  color: @grey-primary;
+  cursor: pointer;
+  padding: 8px 0;
+  margin: 0 12px;
+  line-height: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: color 200ms linear 0ms;
+  border-bottom: 2px solid @grey-separator;
+  svg {
+    fill: @grey-primary;
+    fill-rule: evenodd;
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+    transition: fill 200ms linear 0ms;
+  }
+
+  &:hover {
+    color: @blue-dark;
+
+    svg {
+      fill: @blue;
+    }
+  }
+}
+
+.selected {
+  color: @blue-dark;
+  border-bottom: 2px solid @blue;
+  svg {
+    fill: @blue;
+  }
+}
+
+.codeBlockType {
+  flex: 1;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: @grey-primary;
+    margin-right: 10px;
+  }
+}
+
+.codeBlockWrapper() {
+  .codeBlockHeader(){
+    &:first {
+      border-radius: 5px 5px 0 0;
+    }
+    .codeBlockType(){
+      svg {
+        fill: @grey-primary;
+      }
+    }
+    .codeBlockActions {
+      padding: 10px 16px;
+      .codeBlockAction {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: @blue;
+        fill-rule: evenodd;
+        transition: fill 200ms linear 0ms;
+      }
+      path[fill-rule] {
+        fill-rule: evenodd;
+      }
+      &:hover {
+        svg {
+          fill: @blue;
+        }
+      }
+    }
+    .codeBlockContent {
+      padding: 25px 30px;
+      font-family: 'Menlo ', 'Consolas', monospace;
+      white-space: nowrap;
+      background: var(--ambassador-text-color);
+      margin: 0;
+    }
+  }
+  .codeBlockChoices{
+    padding: 0 20px;
+    .codeBlockChoice(){
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &:hover {
+        color: @blue;
+        svg {
+          fill: @blue;
+        }
+      }
+
+    }
+  }
+}
+
+.codeBlockContentWrapper{
+  background: var(--ambassador-text-color);
+  line-height: 20px;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid var(--ambassador-text-color);
+
+  pre {
+    background: var(--ambassador-text-color);
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.codeBlockOutput{
+  padding: 0 30px 0;
+  font-family: 'Menlo ', 'Consolas', monospace;
+}
+
+.codeBlockActionCopySucceeded{
+  .codeBlockActionIconStackMover {
+    animation-duration: 1.5s;
+    animation-name: codeBlockActionMoveIcons;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+@keyframes codeBlockActionMoveIcons {
+  0% {
+      top: 0;
+  }
+  8% {
+      top: -20px;
+  }
+  90% {
+      top: -20px;
+  }
+  99% {
+      top: -40px;
+  }
+  100% {
+      top: 0px;
+  }
+}
+
+.codeBlockActionCopy {
+  .codeBlockActionCopyIndicator {
+    opacity: 0;
+    color: @grey-primary;
+    padding-right: 5px;
+    font-size: 14px;
+  }
+}
+
+.codeBlockActionCopySucceeded {
+  .codeBlockActionCopyIndicator {
+    animation-duration: 1.5s;
+    animation-name: codeBlockActionFlashIndicator;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+@keyframes codeBlockActionFlashIndicator {
+  0% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 1;
+  }
+  90% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+
+

@@ -1,0 +1,96 @@
+.wrapper > div,
+.richText {
+  > p,
+  > ul,
+  > ol,
+  > h1,
+  > h2,
+  > h3,
+  > nav,
+  > blockquote {
+    max-width: 750px;
+    font-size: 1.25rem;
+    margin-bottom: 1.5em;
+    // align it to the rest
+    padding: 0 20px;
+    code {
+      font-size: 0.9em;
+      background: #f5f2f0;
+      color: #222;
+      padding: 0.1em;
+      font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+    }
+  }
+  > :global(.code-block) {
+    max-width: 850px;
+    margin: 1.5em auto;
+  }
+  > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  > p > a {
+    text-decoration: underline;
+  }
+  ol {
+    list-style: decimal;
+  }
+  ul {
+    list-style: disc;
+    ul {
+      list-style: circle;
+      ul {
+        list-style: disc;
+      }
+    }
+  }
+  > ul,
+  > ol {
+    padding-left: 30px;
+    ol,
+    ul {
+      padding-left: 1em;
+    }
+    li {
+      margin: 0 0 1em;
+    }
+  }
+  > h1 {
+    font-size: 3em;
+    margin: 1.5em auto 0.5em;
+  }
+  > h2 {
+    font-size: 1.75em;
+    margin: 2em auto 1rem;
+  }
+  > h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 1.5em auto 0.75rem;
+  }
+  > blockquote {
+    opacity: 0.7;
+    font-size: 1.4em;
+    border-left: 0.15em solid #ff4329;
+    padding: 0.5em 0 0.5em 0.75em;
+    margin: 1.5em auto;
+    background: none;
+  }
+}
+
+.richTextColored {
+  margin-bottom: 0;
+  padding: 4rem 0;
+}
+
+.noPadding > div {
+  margin-bottom: 0;
+}
+
+.contained {
+  max-width: 750px;
+  padding: 0 20px;
+}
+.contained_lg {
+  max-width: 800px;
+}

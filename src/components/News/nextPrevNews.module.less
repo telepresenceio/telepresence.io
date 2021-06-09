@@ -1,0 +1,19 @@
+.wrapper {
+  max-width: 1240px;
+  margin: 150px auto 40px;
+  display: grid;
+  grid-gap: 40px;
+  padding: 0 20px;
+  h2 {
+    font-size: 20px;
+    color: #747474;
+    margin: 0 0 40px;
+    font-weight: normal;
+  }
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}

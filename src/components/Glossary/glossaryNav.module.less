@@ -1,0 +1,42 @@
+@import '../Layout/vars.less';
+
+.nav {
+  background: #f9f9f9;
+  position: sticky;
+  top: 70px;
+  z-index: 5;
+}
+
+.nav .ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  list-style: none;
+  li {
+    margin: 0;
+    flex: 1;
+    > a,
+    > div {
+      color: #000;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 8px;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    > a {
+      cursor: pointer;
+      &:hover {
+        background: @orange;
+        color: white;
+        text-decoration: none;
+      }
+    }
+
+    > div {
+      opacity: 0.3;
+    }
+  }
+}

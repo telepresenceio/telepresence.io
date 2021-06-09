@@ -1,0 +1,72 @@
+// Follows the definitions set by src/utils/colors.js
+@purple: #5f3eff;
+@darkGray: #222;
+@blue: #2d9cdb;
+@red: #ff4329;
+@lightBlue: rgb(150, 205, 237);
+
+.white {
+  background: white;
+  color: @darkGray;
+  --btnColor: @purple;
+  h1 {
+    color: @purple;
+  }
+  h2,
+  h3,
+  h4 {
+    color: @darkGray;
+  }
+}
+
+.lightBlue {
+  background: @lightBlue;
+  color: @darkGray;
+  --btnColor: @blue;
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: @purple;
+  }
+}
+
+.blueToGrayGradient {
+  background: linear-gradient(
+    180deg,
+    rgba(45, 156, 219, 0.5) -210.26%,
+    hsla(0, 0%, 100%, 0.5)
+  );
+  color: @darkGray;
+  --btnColor: @blue;
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: @purple;
+  }
+}
+
+.lightPurple {
+  background: rgba(95, 62, 255, 0.25);
+  color: @darkGray;
+  --btnColor: @purple;
+}
+
+.purple {
+  background: @purple;
+  color: white;
+  --btnColor: white;
+}
+
+.blue {
+  background: @blue;
+  color: @darkGray;
+  --btnColor: @red;
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: white;
+  }
+}

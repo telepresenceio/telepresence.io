@@ -1,0 +1,38 @@
+@import '../Layout/vars.less';
+
+.wrapper {
+  margin: 3rem auto 1rem;
+  a:last-of-type::after {
+    content: none;
+  }
+  a {
+    color: @gray700;
+    &:hover {
+      text-decoration: none;
+      color: @purple;
+    }
+  }
+  a::after,
+  span::before {
+    content: ' › ';
+    margin: 0 0.5em;
+    color: @gray700;
+    font-weight: normal;
+  }
+  span {
+    color: @gray900;
+    font-weight: bold;
+  }
+  // If followed by an h1, remove its top marging for better visualization
+  & + h1 {
+    margin-top: 0 !important;
+  }
+}
+
+.wrapper.size_lg {
+  max-width: 1350px;
+}
+
+.wrapper.size_sm {
+  max-width: 750px;
+}

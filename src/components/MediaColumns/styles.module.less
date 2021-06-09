@@ -1,0 +1,129 @@
+.wrapper {
+  padding: 90px 20px;
+}
+
+.container {
+  max-width: 1048px;
+  margin: 0 auto;
+  h2 {
+    text-align: center;
+    font-size: 36px;
+    line-height: 45px;
+    margin: 0 0 45px;
+  }
+  // Make the paragraph following the heading closer to it
+  h2 + .body {
+    margin: -35px auto 50px;
+  }
+}
+
+.body {
+  max-width: 35em;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.25em;
+  text-align: center;
+  p {
+    margin-bottom: 0.75em;
+  }
+}
+
+.bodySm {
+  font-size: 1.05em;
+  max-width: 45em;
+}
+
+.items {
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+  // Paragraph containing the section CTA under .items
+  + p {
+    margin-top: 40px;
+    text-align: center;
+  }
+}
+
+.item {
+  p {
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  h3 {
+    margin: 0.75rem 0 0.5rem;
+    font-size: 1.2em;
+  }
+
+  a {
+    margin-top: 0.75em;
+    font-size: inherit;
+  }
+}
+
+.itemSize_sm {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-gap: 25px 30px;
+}
+
+.itemSize_md {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 30px 50px;
+}
+
+.itemSize_lg {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 35px 50px;
+  font-size: 1.25rem;
+}
+
+.itemSize_sideImg {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 50px;
+  align-items: flex-start;
+  font-size: 1.05rem;
+  .item {
+    display: flex;
+    align-items: center;
+  }
+  h3 {
+    margin: 0 0 0.35em;
+  }
+  .imageWrapper {
+    flex: 0 0 70px;
+    width: 70px;
+    min-height: none;
+    margin-right: 1em;
+  }
+}
+
+@media (max-width: 400px) {
+  .itemSize_lg,
+  .itemSize_md {
+    grid-template-columns: 1fr;
+  }
+  .imageWrapper {
+    // Avoid having large images (320px wide) overflow the html container
+    max-width: calc(100vw - 50px);
+  }
+}
+
+// Center the item image vertically
+.imageWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.itemCenter {
+  text-align: center;
+  .imageWrapper {
+    margin: 0 auto;
+  }
+  p {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}

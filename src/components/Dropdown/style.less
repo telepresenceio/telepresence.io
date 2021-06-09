@@ -1,0 +1,40 @@
+@import '../Layout/vars.less';
+
+.custom-dropdown {
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    label {
+        color: @grey-primary;
+        border: none;
+        display: flex;
+        font-weight: 600;
+        background: transparent;
+        z-index: 5;
+    }
+
+    select {
+        color: rgba(255,255,255,0);
+        z-index: 100;
+        width: 100%;
+        background: transparent;
+        border: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        position: absolute;
+        left: 0;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__chevdown {
+        margin-top: 2px;
+        fill: @grey-primary;
+        width: 24px;
+        height: 24px;
+     }
+}

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import AnnouncementBar from '../AnnouncementBar';
-import Footer from '../Footer';
-import Header from '../Header';
 import isDocLink from '../../utils/isDocLink';
 import Link from '../Link';
 import { useMigrationPopup, MigrationPopup } from './MigrationPopup';
@@ -26,7 +24,6 @@ const Layout = ({ children, location, customAnnouncement }) => {
         <html lang="en" />
       </Helmet>
       {popupVisible && <MigrationPopup />}
-      <Header location={location} />
       <div
         className={`layout ${
           isDocLink((location || {}).pathname) && `layout__scroll-body`
@@ -51,7 +48,6 @@ const Layout = ({ children, location, customAnnouncement }) => {
           />
         )}
         <div className="main-body">{children}</div>
-        <Footer location={location} />
       </div>
     </LocationContext.Provider>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { useInView } from 'react-intersection-observer';
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 // components
 import { PORTAL_ID } from '../../utils/hubspot';
 // styles

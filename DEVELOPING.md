@@ -23,6 +23,7 @@ Commands of interest:
 
    # Other
    yarn run gatsby clean    # Clean ./.cache/, which sometimes becomes corrupt.
+   make pull-docs           # Update ./docs/ from ambassador-docs.git
    ```
 
 You may wish to say `PATH=$PWD/node_modules/.bin:$PATH` instead of

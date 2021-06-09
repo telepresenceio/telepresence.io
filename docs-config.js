@@ -14,9 +14,10 @@ module.exports = {
   // web page (with a trailing slash, since Gatsby is opinionated).
   urlpath: function(node) {
     return '/docs/' + (node.relativePath.
-                      replaceAll(path.sep, path.posix.sep).
-                      replace(/\/index\.md$/, '/').
-                      replace(/\.md$/, '/'));
+                       replaceAll(path.sep, path.posix.sep).
+                       replace(/\/index\.md$/, '/').
+                       replace(/\.md$/, '/').
+                       replace(/releaseNotes\.yml$/, 'release-notes/'));
   },
 
   docrootURL: function(node) {

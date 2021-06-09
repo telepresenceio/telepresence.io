@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 const docsConfig = require('./docs-config');
 
@@ -49,14 +50,24 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
   // List all the markdown files...
   const result = await graphql(`
     query($sourceInstanceName: String!) {
-      allFile(filter: {
+      pageFiles: allFile(filter: {
         sourceInstanceName: { eq: $sourceInstanceName },
-        ext: {eq: ".md"},
+        base: { regex: "/^(.*[.]md|releaseNotes[.]yml)$/" },
       }) {
         edges {
           node {
             id
             relativePath
+          }
+        }
+      }
+      staticFiles: allFile(filter: {
+            extension: { in: [ "jpg", "png" ] }
+      }) {
+        edges {
+          node {
+            relativePath
+            absolutePath
           }
         }
       }
@@ -67,14 +78,14 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
 
   // ...create a list of all HTML pages that we are going to for them...
   let allURLPaths = new Set();
-  for (const { node } of result.data.allFile.edges) {
+  for (const { node } of result.data.pageFiles.edges) {
     allURLPaths.add(docsConfig.urlpath(node));
   }
 
   // ...and finally generate HTML pages for them.
   let variablesCache = {};
   let sidebarCache = {};
-  for (const { node } of result.data.allFile.edges) {
+  for (const { node } of result.data.pageFiles.edges) {
 
     const variablesFilepath = docsConfig.variablesFilepath(node);
     if (!(variablesFilepath in variablesCache)) {
@@ -95,7 +106,7 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
       component: path.resolve('./src/templates/doc-page.js'),
       // Arguments to pass to that component's `query`
       context: {
-        markdownFileNodeID:  node.id,
+        contentFileNodeID:   node.id,
         variablesFileNodeID: variablesCache[variablesFilepath],
         sidebarFileNodeID:   sidebarCache[sidebarFilepath],
         docinfo: {
@@ -109,5 +120,14 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
         },
       },
     });
+  }
+
+  // This part makes me super uncomfortable, and I'm sure there's a better way
+  // to do it that we should find.
+  for (const { node } of result.data.staticFiles.edges) {
+    const src = node.absolutePath;
+    const dst = path.join('public', docsConfig.urlpath(node).replaceAll(path.posix.sep, path.sep));
+    fs.mkdirSync(path.dirname(dst), { recursive: true });
+    fs.copyFileSync(src, dst);
   }
 };

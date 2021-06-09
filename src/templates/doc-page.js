@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, navigate } from 'gatsby';
+import { Link, graphql, navigate } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -8,6 +8,7 @@ import url from 'url';
 
 import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
+import Release from '../components/ReleaseNotes/Release';
 
 import './doc-page.less';
 
@@ -42,13 +43,12 @@ const LinkList = ({ rooturl, items, className }) => {
   )
 }
 
-const handleVersionChange = (event) => {
-  if (event.target.value) {
-    navigate(event.target.value);
-  }
-};
-
-export default function DocPage({ data, pageContext }) {
+const MarkdownContent = ({
+  mdxNode,
+  variables,
+  siteTitle,
+  maybeShowReadingTime,
+}) => {
   const components = {
     // Override default markdown output.
     'pre': CodeBlock,
@@ -57,26 +57,75 @@ export default function DocPage({ data, pageContext }) {
     // (none right now)
   };
 
-  const title = data.markdownFile.childMdx.frontmatter.title ||
-        (data.markdownFile.childMdx.headings[0]||{}).value ||
+  const title = mdxNode.frontmatter.title ||
+        (mdxNode.headings[0]||{}).value ||
         "Docs";
-  const description = data.markdownFile.childMdx.frontmatter.description ||
-        data.markdownFile.childMdx.excerpt;
-  const readingTime = data.markdownFile.childMdx.frontmatter.reading_time ||
-        data.markdownFile.childMdx.fields.readingTime.text;
+  const description = mdxNode.frontmatter.description ||
+        mdxNode.excerpt;
+  const readingTime = mdxNode.frontmatter.reading_time ||
+        mdxNode.fields.readingTime.text;
 
-  const showReadingTime = pageContext.docinfo.maybeShowReadingTime &&
-        !data.markdownFile.childMdx.frontmatter.frontmatter.hide_reading_time;
+  const showReadingTime = maybeShowReadingTime &&
+        !mdxNode.frontmatter.frontmatter.hide_reading_time;
 
+  return (
+    <>
+      <Helmet>
+        <title>{title} | {siteTitle}</title>
+        <meta name="og:title" content={title + " | " + siteTitle} />
+        <meta name="description" content={description} />
+      </Helmet>
+      {showReadingTime ? <span className="docs__reading-time">{readingTime}</span> : ''}
+      <MDXProvider components={components}>
+        <MDXRenderer>
+          {template(mdxNode.body, variables)}
+        </MDXRenderer>
+      </MDXProvider>
+    </>
+  );
+};
+
+const ReleaseNotesContent = ({
+  fileNode,
+  variables,
+  siteTitle,
+}) => {
+  const content = jsYAML.safeLoad(template(fileNode.internal.content, variables))
+
+  return (
+    <>
+      <Helmet>
+        <title>{content.docTitle} | {siteTitle}</title>
+        <meta name="og:title" content={content.docTitle + " | " + siteTitle} />
+        <meta name="description" content={content.docDescription} />
+      </Helmet>
+      <h1>{content.docTitle}</h1>
+      { content.changelog &&
+        <p>For a detailed list of all the changes in past releases, please
+           consult the <Link to={content.changelog}>CHANGELOG</Link>.</p> }
+      {
+        content.items.map((release) => (
+          <Release key={release.version}
+                   release={release} />
+        ))
+      }
+    </>
+  );
+};
+
+const handleVersionChange = (event) => {
+  if (event.target.value) {
+    navigate(event.target.value);
+  }
+};
+
+export default function DocPage({ data, pageContext }) {
   const variables = jsYAML.safeLoad(data.variablesFile.internal.content);
 
   return (
     <Layout>
       <Helmet>
         <link rel="canonical" href={pageContext.docinfo.canonicalURL} />
-        <title>{title} | {data.site.siteMetadata.title}</title>
-        <meta name="og:title" content={title + " | " + data.site.siteMetadata.title} />
-        <meta name="description" content={description} />
         <meta name="og:type" content="article" />
       </Helmet>
       <div className="docs">
@@ -96,12 +145,16 @@ export default function DocPage({ data, pageContext }) {
                     items={jsYAML.safeLoad(template(data.sidebarFile.internal.content, variables))} />
         </nav>
         <main className="docs__main">
-          {showReadingTime ? <span className="docs__reading-time">{readingTime}</span> : ''}
-          <MDXProvider components={components}>
-            <MDXRenderer>
-              {template(data.markdownFile.childMdx.body, variables)}
-            </MDXRenderer>
-          </MDXProvider>
+          {
+            data.contentFile.childMdx
+              ? <MarkdownContent mdxNode={data.contentFile.childMdx}
+                                 variables={variables}
+                                 siteTitle={data.site.siteMetadata.title}
+                                 maybeShowReadingTime={pageContext.docinfo.maybeShowReadingTime} />
+              : <ReleaseNotesContent fileNode={data.contentFile}
+                                     variables={variables}
+                                     siteTitle={data.site.siteMetadata.title} />
+          }
         </main>
         <footer className="docs__footer">
           <a href={pageContext.docinfo.githubURL} target="_blank" rel="noreferrer">Edit this page on GitHub</a>
@@ -112,17 +165,17 @@ export default function DocPage({ data, pageContext }) {
 }
 
 export const query = graphql`
-  query($markdownFileNodeID: String!, $variablesFileNodeID: String!, $sidebarFileNodeID: String!) {
+  query($contentFileNodeID: String!, $variablesFileNodeID: String!, $sidebarFileNodeID: String!) {
     site {
       siteMetadata {
         title
       }
     }
 
-    markdownFile: file(id: { eq: $markdownFileNodeID }) {
-      # We need the markdown file's relativePath for the "edit on GitHub" link.
+    contentFile: file(id: { eq: $contentFileNodeID }) {
+      # We need the content file's relativePath for the "edit on GitHub" link.
       relativePath
-      # But mostly we care about the MDX parse of the markdown file.
+      # But mostly we care about the MDX parse of the file.
       childMdx {
         # Use "body" instead of "html" so that we can apply $variable$ expansion
         #  before rendering.
@@ -144,6 +197,10 @@ export const query = graphql`
           }
         }
 
+      }
+      # But in some cases (namely: release-notes.yml) it's not actually a markdown file.
+      internal {
+        content
       }
     }
 

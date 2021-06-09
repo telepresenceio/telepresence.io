@@ -1,4 +1,5 @@
 const path = require('path');
+const semver = require('semver');
 
 module.exports = {
   // The gatsby-source-filesystem's options.name from gatsby-config.js
@@ -57,4 +58,71 @@ module.exports = {
   maybeShowReadingTime: function(node) {
     return false;
   },
+
+  // Given an URL path, and a Set of all docs URL paths, return an Array of
+  // [$version, $urlpath] pairs where $urlpath is where the user should be taken
+  // to view "this page, but for $version"; using a falsey value to indicate
+  // "don't go anywhere (i.e. you are already on $version)".
+  peerVersions: function(thisURLPath, allURLPaths) {
+    const getVersion = (urlpath) => {
+      let raw = urlpath.split(path.posix.sep)[2];
+      if (raw.startsWith("v")) {
+        return raw.slice(1);
+      } else if (raw === "latest") {
+        return "Latest";
+      } else if (raw === "pre-release") {
+        return "Pre-release";
+      } else {
+        return raw;
+      }
+    };
+    const sortVersions = (versions) => {
+      return [...versions].sort((a, b) => {
+        // Return the sign of `a - b`
+        const aSem = semver.valid(semver.coerce(a));
+        const bSem = semver.valid(semver.coerce(b));
+        if (aSem && bSem) {
+          return semver.compare(aSem, bSem);
+        } else {
+          // One of them isn't a number.  JS string lt/gt is based on byte-wise
+          // comparison when encoded as UTF-16.  That happens to do what we want
+          // with "Pre-Release", "Latest", and values that start with a digit.
+          if (a < b) {
+            return -1;
+          } else if (a > b) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }
+      });
+    };
+
+    const thisSuffix = thisURLPath.split(path.posix.sep).slice(3).join(path.posix.sep);
+    const thisVersion = getVersion(thisURLPath);
+
+    let peers = {};
+    peers[thisVersion] = null;
+    // This page in other versions.
+    for (const otherURLPath of allURLPaths) {
+      const otherSuffix = otherURLPath.split(path.posix.sep).slice(3).join(path.posix.sep);
+	    const otherVersion = getVersion(otherURLPath);
+      if (otherURLPath !== thisURLPath && otherSuffix === thisSuffix) {
+        peers[otherVersion] = otherURLPath;
+      }
+    }
+    // Some versions might not have this page, for those versions, go to the
+    // version's home page.
+    for (const otherURLPath of allURLPaths) {
+	    const otherVersion = getVersion(otherURLPath);
+      if (!(otherVersion in peers)) {
+        peers[otherVersion] = `/docs/${otherVersion}/`;
+      }
+    }
+
+    // Return the sorted result.
+    let ret = sortVersions(Object.keys(peers)).map((version) => ([version, peers[version]]));
+    return ret;
+  },
+
 };

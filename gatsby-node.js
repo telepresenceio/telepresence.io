@@ -65,7 +65,13 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
     sourceInstanceName: docsConfig.sourceInstanceName,
   });
 
-  // ...and generate HTML pages for them
+  // ...create a list of all HTML pages that we are going to for them...
+  let allURLPaths = new Set();
+  for (const { node } of result.data.allFile.edges) {
+    allURLPaths.add(docsConfig.urlpath(node));
+  }
+
+  // ...and finally generate HTML pages for them.
   let variablesCache = {};
   let sidebarCache = {};
   for (const { node } of result.data.allFile.edges) {
@@ -80,9 +86,11 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
       sidebarCache[sidebarFilepath] = await resolvePathToID({ graphql }, docsConfig.sourceInstanceName, sidebarFilepath);
     }
 
+    const urlpath = docsConfig.urlpath(node);
+
     actions.createPage({
       // URL-path to create the page at
-      path: docsConfig.urlpath(node),
+      path: urlpath,
       // Absolute filepath of the component to render the page with
       component: path.resolve('./src/templates/doc-page.js'),
       // Arguments to pass to that component's `query`
@@ -96,6 +104,8 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
           githubURL:    docsConfig.githubURL(node),
 
           maybeShowReadingTime: docsConfig.maybeShowReadingTime(node),
+
+          peerVersions: docsConfig.peerVersions(urlpath, allURLPaths),
         },
       },
     });

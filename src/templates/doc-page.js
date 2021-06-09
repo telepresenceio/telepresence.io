@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -42,6 +42,12 @@ const LinkList = ({ rooturl, items, className }) => {
   )
 }
 
+const handleVersionChange = (event) => {
+  if (event.target.value) {
+    navigate(event.target.value);
+  }
+};
+
 export default function DocPage({ data, pageContext }) {
   const components = {
     // Override default markdown output.
@@ -75,6 +81,16 @@ export default function DocPage({ data, pageContext }) {
       </Helmet>
       <div className="docs">
         <nav className="docs__sidebar">
+          <label className="docs__sidebar_version">
+            Version:
+            <select defaultValue="" onChange={handleVersionChange}>{ /* eslint-disable-line jsx-a11y/no-onchange */ }
+            {
+              pageContext.docinfo.peerVersions.reverse().map(([version, urlpath]) => (
+                <option key={version} value={urlpath || ""}>{version}</option>
+              ))
+            }
+            </select>
+          </label>
           <LinkList className="docs__sidebar_toc"
                     rooturl={pageContext.docinfo.docrootURL}
                     items={jsYAML.safeLoad(template(data.sidebarFile.internal.content, variables))} />

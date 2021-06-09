@@ -73,7 +73,7 @@ export default function DocPage({ data, pageContext }) {
   return (
     <Layout>
       <Helmet>
-        <link rel="canonical" href={pageContext.canonicalURL} />
+        <link rel="canonical" href={pageContext.docinfo.canonicalURL} />
         <title>{title} | {data.site.siteMetadata.title}</title>
         <meta name="og:title" content={title + " | " + data.site.siteMetadata.title} />
         <meta name="description" content={description} />

@@ -25,8 +25,6 @@
     &__main {
 	grid-column: 2;
 	grid-row: 1;
-    font-family: @InterFont;
-    -moz-osz-font-smoothing: grayscale;
     margin: 50px 0 0 20px;
     display: flex;
     flex-direction: column;
@@ -598,36 +596,45 @@
 	grid-row: 2;
     border-top: 1px solid @grey-separator;
     font-size: 14px;
-    text-decoration: underline;
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
     padding-right: 40px;
 
-    a {
-        color: @grey-primary;
-        transition: color 200ms linear;
-        text-decoration: underline;
+      a {
+          color: @grey-primary;
+          transition: color 200ms linear;
+          text-decoration: underline;
+          display: flex;
+
+          svg {
+              margin-right: 6px;
+              width: 24px;
+              height: 24px;
+              display: inline-block;
+              fill: @grey-primary;
+              transition: fill 200ms linear;
+              vertical-align: middle;
+          }
+
+          &:hover {
+              color: @black;
+              text-decoration: none;
+
+              svg {
+                  fill: @black
+              }
+          }
+      }
+    
+    /* This is special CSS to make the .github + .contact-block
+       elements look correct.  Eventually we should just have their styling
+       match what comes from our other docs, but for now this works */
+    .github {
         display: flex;
-
-        svg {
-            margin-right: 6px;
-            width: 24px;
-            height: 24px;
-            display: inline-block;
-            fill: @grey-primary;
-            transition: fill 200ms linear;
-            vertical-align: middle;
-        }
-
-        &:hover {
-            color: @black;
-            text-decoration: none;
-
-            svg {
-                fill: @black
-            }
-        }
+        justify-content: flex-end;
+        text-decoration: underline;
+    }
+    .contact-block {
+        padding-left: 20px;
     }
     }
     &__sidebar_version {

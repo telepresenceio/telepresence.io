@@ -8,8 +8,10 @@ import url from 'url';
 
 import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
+import ContactBlock from '../components/ContactBlock';
 import Release from '../components/ReleaseNotes/Release';
 import GithubIcon from '../images/github-icon.inline.svg';
+import "@fontsource/inter"
 
 import './doc-page.less';
 
@@ -157,8 +159,9 @@ export default function DocPage({ data, pageContext }) {
                                      siteTitle={data.site.siteMetadata.title} />
           }
         </main>
-        <footer className="docs__footer">
-            <a href={pageContext.docinfo.githubURL} target="_blank" rel="noreferrer">
+            <footer className="docs__footer">
+            <ContactBlock className="contact-block" />
+            <a href={pageContext.docinfo.githubURL} className="github" target="_blank" rel="noreferrer">
                 <GithubIcon />
                 Edit this page on GitHub
             </a>

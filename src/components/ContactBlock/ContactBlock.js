@@ -16,12 +16,15 @@ const ContactBlock = () => (
               Join our Slack
           </a>
       </li>
+      {/* I don't think we have a contact page for the telepresence.io page
+          so let's comment it out for now
       <li>
         <Link to={goToContactUs}>
           <Icon name="mail-icon" className="contact-block__list--icon" />
               Contact Us
           </Link>
       </li>
+      */}
     </ul>
   </div>
 );

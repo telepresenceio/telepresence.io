@@ -9,6 +9,7 @@ import url from 'url';
 import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
 import Release from '../components/ReleaseNotes/Release';
+import GithubIcon from '../images/github-icon.inline.svg';
 
 import './doc-page.less';
 
@@ -157,7 +158,10 @@ export default function DocPage({ data, pageContext }) {
           }
         </main>
         <footer className="docs__footer">
-          <a href={pageContext.docinfo.githubURL} target="_blank" rel="noreferrer">Edit this page on GitHub</a>
+            <a href={pageContext.docinfo.githubURL} target="_blank" rel="noreferrer">
+                <GithubIcon />
+                Edit this page on GitHub
+            </a>
         </footer>
       </div>
     </Layout>

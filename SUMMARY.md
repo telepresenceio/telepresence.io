@@ -40,8 +40,8 @@
 ## Community
 
 * [Development Guide](reference/developing.md)
-* [Community](reference/community.md)
-* [Related Projects](reference/related-projects.md)
+* [Community](community.md)
+* [Related Projects](related-projects.md)
 * [Case Studies](https://www.telepresence.io/case-studies)
 * [Changelog](reference/changelog.md)
 

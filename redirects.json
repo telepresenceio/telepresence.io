@@ -39,6 +39,14 @@
     {
       "from": "getting-started/quickstart.html",
       "to": "tutorials/kubernetes.html"
+    },
+    {
+      "from": "reference/community.html",
+      "to": "community.html"
+    },
+    {
+      "from": "reference/related-projects.html",
+      "to": "related-projects.html"
     }
   ]
 }

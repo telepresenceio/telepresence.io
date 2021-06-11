@@ -6,7 +6,7 @@
 
 ##### Note: this is heavily influenced by the awesome [Local Java development](https://www.telepresence.io/tutorials/java) doc by Cesar Tron-Lozai ([@CesarTronLozai](https://twitter.com/cesarTronLozai))
 
-## PHP 
+## PHP
 
 `Telepresence` can help you speed up your development process for any technology, as long as you deploy your service as a Docker image into a Kubernetes container.
 
@@ -41,7 +41,7 @@ Let's build the command step by step.
 * `--new-deployment bar` Create a new deployment called `bar` - you could also use ``-swap-deployment bar` if you want to test against an existing configured cluster.
 * `--docker-run` Tells `Telepresence` to run a Docker containers
 * `--rm` Tells Docker to discard our image when it terminates (no need to clutter your computer)
-* `-v$(pwd):/var/www/html` Mounts the current directory (result of the `pwd` command) into a `/var/www/html` folder inside the Docker container. This is where your source code will be; and mounted in the container where Apache is configured to look for php/html files to serve. 
+* `-v$(pwd):/var/www/html` Mounts the current directory (result of the `pwd` command) into a `/var/www/html` folder inside the Docker container. This is where your source code will be; and mounted in the container where Apache is configured to look for php/html files to serve.
   * you could also specify the fully qualified path to your code repo if you don't want to execute this command in your code directory.
 * `-p 8080:80` Forward Apache on `80` to http://localhost:8080 so you can hit your web service with your browser on your local computer.
 * `myapp:01` The container that you are wanting to execute with the Telepresence command.
@@ -63,7 +63,7 @@ This creates a reverse connection from the container that your code is executing
 Create an `index.php` with the following content:
 
 ```php
-<html>  
+<html>
  <head>
   <title>PHP Telepresence Demo</title>
  </head>
@@ -77,16 +77,16 @@ Create an `index.php` with the following content:
 Next, create a Dockerfile with the following contents:
 
 ```dockerfile
-FROM php:7.2-apache  
-RUN pecl install xdebug-2.6.0  
-RUN docker-php-ext-enable xdebug  
-RUN echo "xdebug.remote_enable=1" >> /usr/local/etc/php/php.ini && \  
+FROM php:7.2-apache
+RUN pecl install xdebug-2.6.0
+RUN docker-php-ext-enable xdebug
+RUN echo "xdebug.remote_enable=1" >> /usr/local/etc/php/php.ini && \
     echo "xdebug.remote_host=localhost" >> /usr/local/etc/php/php.ini && \
-    echo "xdebug.remote_port=9000" >> /usr/local/etc/php/php.ini && \ 
-    echo "xdebug.remote_log=/var/log/xdebug.log" >> /usr/local/etc/php/php.ini 
+    echo "xdebug.remote_port=9000" >> /usr/local/etc/php/php.ini && \
+    echo "xdebug.remote_log=/var/log/xdebug.log" >> /usr/local/etc/php/php.ini
 
 
-COPY ./index.php /var/www/html  
+COPY ./index.php /var/www/html
 WORKDIR /var/www/html
 ```
 This is taking the base PHP:7.2-apache docker container and inserting our xdebug configuration so xdebug will run when we execute our `myapp` container.
@@ -106,26 +106,26 @@ telepresence --container-to-host 9000 --new-deployment bar --docker-run --rm -v$
 And here is what example output should be (Using Telepresence build 0.102 in Oct of 2019 )
 
 ```
-telepresence --container-to-host 9000 --verbose --new-deployment tele-test --docker-run -p 8080:80 -v $(pwd):/var/www/html myapp:01  
-T: How Telepresence uses sudo: https://www.telepresence.io/reference/install#dependencies  
-T: Invoking sudo. Please enter your sudo password.  
-Password:  
-T: Volumes are rooted at $TELEPRESENCE_ROOT. See https://telepresence.io/howto/volumes.html for details.  
+telepresence --container-to-host 9000 --verbose --new-deployment tele-test --docker-run -p 8080:80 -v $(pwd):/var/www/html myapp:01
+T: How Telepresence uses sudo: https://www.telepresence.io/reference/install#dependencies
+T: Invoking sudo. Please enter your sudo password.
+Password:
+T: Volumes are rooted at $TELEPRESENCE_ROOT. See https://telepresence.io/howto/volumes.html for details.
 T: Starting network proxy to cluster using new Deployment tele-test
 
 T: No traffic is being forwarded from the remote Deployment to your local machine. You can use the --expose option to specify which ports you want to forward.
 
-T: Forwarding container port 9000 to host port 9000.  
-T: Setup complete. Launching your container.  
-AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message  
-AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message  
+T: Forwarding container port 9000 to host port 9000.
+T: Setup complete. Launching your container.
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
 [Thu Oct 03 17:04:35.421678 2019] [mpm_prefork:notice] [pid 7] AH00163: Apache/2.4.38 (Debian) PHP/7.2.23 configured -- resuming normal operations
 [Thu Oct 03 17:04:35.422032 2019] [core:notice] [pid 7] AH00094: Command line: 'apache2 -D FOREGROUND'
 ```
 
-We can see that the container port 9000 is forwarded to our host port 9000, and Apache launches. 
+We can see that the container port 9000 is forwarded to our host port 9000, and Apache launches.
 
-I use PHPSTorm for PHP development, so I used the [PHPStorm xdebug guide](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html) to configure my browser (with the xdebug extension) and debugger in PHPStorm. We've also set up IntelliJ IDEA to debug with the same steps. 
+I use PHPSTorm for PHP development, so I used the [PHPStorm xdebug guide](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html) to configure my browser (with the xdebug extension) and debugger in PHPStorm. We've also set up IntelliJ IDEA to debug with the same steps.
 
 You should then be able to turn on your debug listener in your IDE, set a breakpoint, and navigate to `http://localhost` in your browser to load the code and hit your breakpoint!
 

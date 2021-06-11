@@ -115,8 +115,8 @@
 
     <section class="banner">
       <div class="banner__text">
-          Telepresence 2 is open source and available to preview now! 
-          <a href="https://www.getambassador.io/docs/latest/telepresence/quick-start" target="_blank" class="banner__link">Learn more</a> 
+          Telepresence 2 is open source and available to preview now!
+          <a href="https://www.getambassador.io/docs/latest/telepresence/quick-start" target="_blank" class="banner__link">Learn more</a>
           <img alt="" class="banner__icon" src="/images/arrow.inline.svg">
       </div>
     </section>
@@ -209,11 +209,11 @@
             <p>
               Ambassador supports Telepresence for fast, efficent development of Kubernetes
               services for development teams. In addition to the features of Telepresence for
-              local development, Ambassador includes a cloud dashboard and automatically 
-              generates preview URLs for easily sharing development environments with 
+              local development, Ambassador includes a cloud dashboard and automatically
+              generates preview URLs for easily sharing development environments with
               teammates. Ambassador makes it easy for developers to collaborate on Kubernetes
-              microservices without disturbing production. 
-             </p>  
+              microservices without disturbing production.
+             </p>
             <a
               class="btn btn-red"
               href="https://www.getambassador.io/products/telepresence/"

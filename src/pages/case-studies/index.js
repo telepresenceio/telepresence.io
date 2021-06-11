@@ -76,8 +76,8 @@
 
 <section class="banner">
     <div class="banner__text">
-        Telepresence 2 is open source and available to preview now! 
-        <a href="https://www.getambassador.io/docs/latest/telepresence/quick-start" target="_blank" class="banner__link">Learn more</a> 
+        Telepresence 2 is open source and available to preview now!
+        <a href="https://www.getambassador.io/docs/latest/telepresence/quick-start" target="_blank" class="banner__link">Learn more</a>
         <img alt="" class="banner__icon" src="/images/arrow.inline.svg">
     </div>
 </section>

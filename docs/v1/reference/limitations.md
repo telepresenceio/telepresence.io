@@ -42,7 +42,7 @@ spec:
 
 #### Fedora 18+/CentOS 7+/RHEL 7+ and `--docker-run`
 
-Fedora 18+/CentOS 7+/RHEL 7+ ship with firewalld enabled and running by default. In its default configuration this will drop traffic on unknown ports originating from Docker's default bridge network - usually `172.17.0.0/16`. 
+Fedora 18+/CentOS 7+/RHEL 7+ ship with firewalld enabled and running by default. In its default configuration this will drop traffic on unknown ports originating from Docker's default bridge network - usually `172.17.0.0/16`.
 
 To resolve this issue, instruct firewalld to trust traffic from `172.17.0.0/16`:
 

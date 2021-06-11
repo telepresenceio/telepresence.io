@@ -24,7 +24,7 @@ $ kubectl expose deployment hello-world --type=LoadBalancer --port=8000
 > In this case the `Service` is exposed at `http://104.197.103.123:8000/`.
 
 > **On `minikube` you should instead** do this to find the URL:
-> 
+>
 > ```console
 > $ minikube service --url hello-world
 > http://192.168.99.100:12345/

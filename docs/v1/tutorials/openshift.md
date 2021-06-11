@@ -13,7 +13,7 @@
    ```
 
    It may take a minute or two for the pod running the server to be up and running, depending on how fast your cluster is.
-   
+
 3. You can now run a local process using Telepresence that can access that service, even though the process is local but the service is running in the OpenShift cluster:
 
    ```console

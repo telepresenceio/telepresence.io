@@ -22,8 +22,8 @@ Run the following to upgrade Telepresence:
 sudo dnf upgrade telepresence
 ```
 
-### Telepresence 2 for Teams 
-Telepresence 2 is open source and available to [preview now](https://www.getambassador.io/docs/latest/telepresence/quick-start/). Rewritten in Go to be faster and more resilient, Telepresence 2 has a [new architecture](https://www.getambassador.io/docs/latest/telepresence/reference/architecture/) to better serve Kubernetes development teams with multiple users. [Preview it today](https://www.getambassador.io/docs/latest/telepresence/quick-start/) and [share your feedback](https://a8r.io/slack) with the team. 
+### Telepresence 2 for Teams
+Telepresence 2 is open source and available to [preview now](https://www.getambassador.io/docs/latest/telepresence/quick-start/). Rewritten in Go to be faster and more resilient, Telepresence 2 has a [new architecture](https://www.getambassador.io/docs/latest/telepresence/reference/architecture/) to better serve Kubernetes development teams with multiple users. [Preview it today](https://www.getambassador.io/docs/latest/telepresence/quick-start/) and [share your feedback](https://a8r.io/slack) with the team.
 
 ### More
 

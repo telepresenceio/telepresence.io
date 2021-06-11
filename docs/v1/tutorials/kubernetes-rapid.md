@@ -59,7 +59,7 @@ Now, switch back to the other terminal, kill `helloworld.py` and edit it so it r
 For example:
 
 ```console
-python3 helloworld.py
+localhost$ python3 helloworld.py
 ^C
 localhost$ sed s/Hello/Goodbye/g -i helloworld.py
 localhost$ grep Goodbye helloworld.py

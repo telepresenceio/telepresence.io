@@ -1,6 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
+import './globalHelpers.less';
+import './layout.less';
+import './docs-layout.less';
+
 export default function Layout({ children }) {
   return (
     <>

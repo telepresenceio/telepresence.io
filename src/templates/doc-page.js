@@ -11,6 +11,7 @@ import CodeBlock from '../components/CodeBlock';
 import ContactBlock from '../components/ContactBlock';
 import Release from '../components/ReleaseNotes/Release';
 import GithubIcon from '../images/github-icon.inline.svg';
+import logo from '../images/telepresence-logo.png';
 import "@fontsource/inter"
 
 import './doc-page.less';
@@ -131,6 +132,9 @@ export default function DocPage({ data, pageContext }) {
         <link rel="canonical" href={pageContext.docinfo.canonicalURL} />
         <meta name="og:type" content="article" />
       </Helmet>
+        <header className="telepresence__header">
+            <img src={logo} />
+        </header>
       <div className="docs">
         <nav className="docs__sidebar">
           <label className="docs__sidebar_version">

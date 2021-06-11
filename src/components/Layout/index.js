@@ -4,6 +4,9 @@ import { Helmet } from 'react-helmet';
 import './globalHelpers.less';
 import './layout.less';
 import './docs-layout.less';
+import './home.css';
+
+import Logo from '../../assets/images/telepresence-logo.png';
 
 export default function Layout({ children }) {
   return (
@@ -16,7 +19,7 @@ export default function Layout({ children }) {
       <header class="white-bg">
         <div class="navigation-left">
           <a class="datawire-link" href="/">
-            <img alt="Telepresence" src="/images/telepresence-logo.png"/>
+            <img alt="Telepresence" src={Logo}/>
           </a>
           <ul class="main-navigation">
             <li>

@@ -21,3 +21,11 @@ max_line_length = 80
 indent_style = space
 indent_size = 2
 max_line_length = 80
+
+[*.less]
+indent_style = space
+indent_size = 4
+
+[*.css]
+indent_style = space
+indent_size = 4

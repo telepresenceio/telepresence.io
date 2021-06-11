@@ -10,7 +10,6 @@ import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
 import Release from '../components/ReleaseNotes/Release';
 import GithubIcon from '../images/github-icon.inline.svg';
-import logo from '../images/telepresence-logo.png';
 import "@fontsource/inter"
 
 import './doc-page.less';
@@ -36,7 +35,7 @@ const LinkList = ({ rooturl, items, className }) => {
     <ul className={className}>
       {
         items.map((item, i) => (
-          <li className="docs__topic-item" key={i}>
+          <li key={i}>
             { item.link ? <a href={url.resolve(rooturl, item.link)}>{item.title}</a> : item.title }
             <LinkList rooturl={rooturl} items={item.items} />
           </li>
@@ -131,9 +130,6 @@ export default function DocPage({ data, pageContext }) {
         <link rel="canonical" href={pageContext.docinfo.canonicalURL} />
         <meta name="og:type" content="article" />
       </Helmet>
-        <header className="telepresence__header">
-            <img src={logo} />
-        </header>
       <div className="docs">
         <nav className="docs__sidebar">
           <label className="docs__sidebar_version">

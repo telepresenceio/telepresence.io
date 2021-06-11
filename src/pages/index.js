@@ -20,14 +20,6 @@ export default function HomePage({ location, data }) {
   return (
     <EasyLayout title="Home" location={location}
                 description="Telepresence: a local development environment for a remote Kubernetes cluster">
-      <section class="banner">
-        <div class="banner__text">
-          Telepresence 2 is open source and available to preview now!
-          <a href="https://www.getambassador.io/docs/latest/telepresence/quick-start" target="_blank" rel="noreferrer" class="banner__link">Learn more</a>
-          <img alt="" class="banner__icon" src={ImgArrow} />
-        </div>
-      </section>
-
       <section id="hero" class="bg-white text-center">
         <h1 class="text-uppercase text-xl">Telepresence</h1>
         <p class="font-light text-uppercase text-md">

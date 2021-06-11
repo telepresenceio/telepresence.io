@@ -9,14 +9,6 @@ export default function CommunityPage({ location }) {
   return (
     <EasyLayout title="Community" location={location}
                 description="Get involved and collaborate with our outstanding community of adopters and contributors on the Telepresence project">
-      <section class="banner">
-        <div class="banner__text">
-          Telepresence 2 is open source and available to preview now!
-          <a href="https://www.getambassador.io/docs/latest/telepresence/quick-start" target="_blank" rel="noreferrer" class="banner__link">Learn more</a>
-          <img alt="" class="banner__icon" src={ImgArrow}/>
-        </div>
-      </section>
-
       <section class="bg-white text-center padding-bottom-75 padding-top-60">
         <h1 class="text-uppercase text-xl">Join The Telepresence Community</h1>
         <p class="font-light text-md">

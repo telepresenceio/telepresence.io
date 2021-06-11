@@ -1,73 +1,73 @@
  - title: Getting started
    items:
     - title: Introduction to Telepresence
-      link: discussion/overview.md
+      link: discussion/overview
     - title: Why Telepresence?
-      link: discussion/why-telepresence.md
+      link: discussion/why-telepresence
     - title: Installing Telepresence
-      link: reference/install.md
+      link: reference/install
     - title: Fast dev workflow with Docker/K8S
-      link: tutorials/docker.md
+      link: tutorials/docker
 
  - title: Tutorials
    items:
     - title: Debug a Kubernetes service locally
-      link: tutorials/kubernetes.md
+      link: tutorials/kubernetes
     - title: Connect to a remote Kubernetes cluster
-      link: tutorials/kubernetes-client.md
+      link: tutorials/kubernetes-client
     - title: Rapid development with Kubernetes
-      link: tutorials/kubernetes-rapid.md
+      link: tutorials/kubernetes-rapid
     - title: Get started with OpenShift
-      link: tutorials/openshift.md
+      link: tutorials/openshift
     - title: Minikube VPN access
-      link: tutorials/minikube-vpn.md
+      link: tutorials/minikube-vpn
     - title: Using a Kubernetes Client Library
-      link: tutorials/kubernetes-client-libs.md
+      link: tutorials/kubernetes-client-libs
     - title: Using Telepresence with Golang
-      link: howto/golang.md
+      link: howto/golang
     - title: Local Java development
-      link: tutorials/java.md
+      link: tutorials/java
     - title: Using Telepresence with IntelliJ
-      link: tutorials/intellij.md
+      link: tutorials/intellij
     - title: Using Telepresence with PHP
-      link: tutorials/php.md
+      link: tutorials/php
 
  - title: Reference
    items:
     - title: Connecting to the cluster
-      link: reference/connecting.md
+      link: reference/connecting
     - title: Proxying methods
-      link: reference/methods.md
+      link: reference/methods
       items:
        - title: What gets proxied
-         link: reference/proxying.md
+         link: reference/proxying
        - title: Volume access
-         link: howto/volumes.md
+         link: howto/volumes
     - title: Running local processes
-      link: reference/running.md
+      link: reference/running
     - title: Generic limitations & workarounds
-      link: reference/limitations.md
+      link: reference/limitations
     - title: Windows support
-      link: reference/windows.md
+      link: reference/windows
     - title: Usage Reporting
-      link: reference/usage_reporting.md
+      link: reference/usage_reporting
     - title: How it works
-      link: discussion/how-it-works.md
+      link: discussion/how-it-works
     - title: Upgrading Telepresence
-      link: reference/upgrade.md
+      link: reference/upgrade
 
  - title: Community
    items:
     - title: Development Guide
-      link: reference/developing.md
+      link: reference/developing
     - title: Community
-      link: community.md
+      link: community
     - title: Related Projects
-      link: related-projects.md
+      link: related-projects
     - title: Case Studies
       link: https://www.telepresence.io/case-studies
     - title: Changelog
-      link: reference/changelog.md
+      link: reference/changelog
 
  - title: Need Help?
    items:

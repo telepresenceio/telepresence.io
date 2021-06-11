@@ -23,10 +23,7 @@ export default function Layout({ children }) {
           </a>
           <ul class="main-navigation">
             <li>
-              <a href="/tutorials/docker">Get Started</a>
-            </li>
-            <li>
-              <a href="/discussion/overview">Docs</a>
+              <a href="/docs/latest/">Docs</a>
             </li>
             <li>
               <a href="/case-studies">Case Studies</a>
@@ -61,10 +58,7 @@ export default function Layout({ children }) {
       <footer class="white-bg">
         <ul class="main-navigation flex-center">
           <li>
-            <a href="/tutorials/kubernetes">Get Started</a>
-          </li>
-          <li>
-            <a href="/discussion/overview">Docs</a>
+            <a href="/docs/latest">Docs</a>
           </li>
           <li>
             <a href="/case-studies">Case Studies</a>

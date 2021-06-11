@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
-
-const docsConfig = require('./docs-config');
+const jsYAML = require('js-yaml');
+const url = require('url');
 
 // Some of the files in the docs subtrees want to import site-global
 // things from the 'src/' directory.  Let them do this with the
@@ -22,6 +22,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 };
 
 exports.onCreateNode = async ({ node, loadNodeContent, actions }) => {
+  const docsConfig = require('./docs-config');
+
   if (node.internal.type === 'File' && node.sourceInstanceName === docsConfig.sourceInstanceName && node.ext === ".yml") {
     // Call loadNodeContent to force-populate node.internal.content, because
     // gatsby-source-filesystem is just a little too lazy about populating it,
@@ -50,7 +52,9 @@ async function resolvePathToID(helpers, sourceInstanceName, relativePath) {
 }
 
 // Tell Gatsby to create web pages for each of the docs markdown files.
-exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
+  const docsConfig = require('./docs-config');
+
   // List all the markdown files...
   const result = await graphql(`
     query($sourceInstanceName: String!) {
@@ -62,6 +66,19 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
           node {
             id
             relativePath
+          }
+        }
+      }
+      redirectFiles: allFile(filter: {
+        sourceInstanceName: { eq: $sourceInstanceName },
+        base: { eq: "redirects.yml" },
+      }) {
+        edges {
+          node {
+            relativePath
+            internal {
+              content
+            }
           }
         }
       }
@@ -126,6 +143,18 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
     });
   }
 
+  // Create up redirects
+  for (const { node } of result.data.redirectFiles.edges) {
+    const basepath = path.posix.dirname(docsConfig.urlpath(node)) + path.posix.sep;
+    for (const { from, to } of jsYAML.safeLoad(node.internal.content)) {
+      actions.createRedirect({
+        fromPath: path.posix.normalize(url.resolve(basepath, from)+path.posix.sep),
+        toPath:   url.resolve(basepath, to),
+        redirectInBrowser: true,
+      })
+    }
+  }
+
   // This part makes me super uncomfortable, and I'm sure there's a better way
   // to do it that we should find.
   for (const { node } of result.data.staticFiles.edges) {
@@ -133,5 +162,15 @@ exports.createPages = async ({ loadNodeContent, graphql, actions }) => {
     const dst = path.join('public', docsConfig.urlpath(node).replaceAll(path.posix.sep, path.sep));
     fs.mkdirSync(path.dirname(dst), { recursive: true });
     fs.copyFileSync(src, dst);
+  }
+
+  // Side-wide redirects
+  const basepath = path.posix.sep;
+  for (const { from, to } of jsYAML.safeLoad(fs.readFileSync('./redirects.yml'))) {
+      actions.createRedirect({
+        fromPath: url.resolve(basepath, from),
+        toPath:   url.resolve(basepath, to),
+        redirectInBrowser: true,
+      })
   }
 };

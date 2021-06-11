@@ -66,16 +66,16 @@ module.exports = {
   // "don't go anywhere (i.e. you are already on $version)".
   peerVersions: function(thisURLPath, allURLPaths) {
     const getVersion = (urlpath) => {
-      let raw = urlpath.split(path.posix.sep)[2];
-      if (raw.startsWith("v")) {
-        return raw.slice(1);
-      } else if (raw === "latest") {
-        return "Latest";
-      } else if (raw === "pre-release") {
-        return "Pre-release";
-      } else {
-        return raw;
+      const slug = urlpath.split(path.posix.sep)[2];
+      let human = slug
+      if (slug.startsWith("v")) {
+        human = slug.slice(1);
+      } else if (slug === "latest") {
+        human = "Latest";
+      } else if (slug === "pre-release") {
+        human = "Pre-release";
       }
+      return { slug, human };
     };
     const sortVersions = (versions) => {
       return [...versions].sort((a, b) => {
@@ -103,21 +103,21 @@ module.exports = {
     const thisVersion = getVersion(thisURLPath);
 
     let peers = {};
-    peers[thisVersion] = null;
+    peers[thisVersion.human] = null;
     // This page in other versions.
     for (const otherURLPath of allURLPaths) {
       const otherSuffix = otherURLPath.split(path.posix.sep).slice(3).join(path.posix.sep);
 	    const otherVersion = getVersion(otherURLPath);
       if (otherURLPath !== thisURLPath && otherSuffix === thisSuffix) {
-        peers[otherVersion] = otherURLPath;
+        peers[otherVersion.human] = otherURLPath;
       }
     }
     // Some versions might not have this page, for those versions, go to the
     // version's home page.
     for (const otherURLPath of allURLPaths) {
 	    const otherVersion = getVersion(otherURLPath);
-      if (!(otherVersion in peers)) {
-        peers[otherVersion] = `/docs/${otherVersion}/`;
+      if (!(otherVersion.human in peers)) {
+        peers[otherVersion.human] = `/docs/${otherVersion.slug}/`;
       }
     }
 

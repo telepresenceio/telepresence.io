@@ -44,5 +44,14 @@ module.exports = {
       resolve: 'gatsby-remark-reading-time',
     },
 
+    // Gatsby actions.createRedirect does nothing by default; it needs a
+    // server-specific backend to actually work.
+    {
+      // I'm choosing gatsby-plugin-meta-dredirect over gatsby-plugin-netlify
+      // because TBH Netlify is just a little too magical for my taste and I
+      // need to be able to confidently reason about this.
+      resolve: 'gatsby-plugin-meta-redirect',
+      //resolve: `gatsby-plugin-netlify`,
+    },
   ],
 };

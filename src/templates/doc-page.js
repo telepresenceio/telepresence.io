@@ -58,7 +58,7 @@ const MarkdownContent = ({
   };
 
   const title = mdxNode.frontmatter.title ||
-        (mdxNode.headings[0]||{}).value ||
+        mdxNode.headings[0]?.value ||
         "Docs";
   const description = mdxNode.frontmatter.description ||
         mdxNode.excerpt;

@@ -42,7 +42,7 @@ async function resolvePathToID(helpers, sourceInstanceName, relativePath) {
       sourceInstanceName: sourceInstanceName,
       relativePath: relativePath,
     });
-  return result.data.file.id;
+  return result.data.file?.id;
 }
 
 // Tell Gatsby to create web pages for each of the docs markdown files.

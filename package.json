@@ -11,6 +11,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@mdx-js/mdx": "^1.6.4",
     "@mdx-js/react": "^1.6.4",
+    "@mdx-js/runtime": "^1.6.4",
     "gatsby": "^2.24.2",
     "gatsby-plugin-less": "^3.2.2",
     "gatsby-plugin-mdx": "1.2.11",

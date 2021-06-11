@@ -1,8 +1,13 @@
+import * as Macros from "../macros";
+
 # Local Connection to Kubernetes Client Libraries
 *Author: Guray Yildirim ([@gurayyildirim](https://twitter.com/gurayyildirim))*
 
-{% import "../macros.html" as macros %}
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "top") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="top" />
 
 ### Intro
 

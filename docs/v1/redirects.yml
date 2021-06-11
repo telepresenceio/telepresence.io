@@ -1,5 +1,4 @@
-{
-  "redirects": [
+[
     {
       "from": "user-guide/features-and-functionality.html",
       "to": "reference/connecting.html"
@@ -48,5 +47,4 @@
       "from": "reference/related-projects.html",
       "to": "related-projects.html"
     }
-  ]
-}
+]

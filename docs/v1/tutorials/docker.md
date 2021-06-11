@@ -1,3 +1,5 @@
+import * as Macros from "../macros";
+
 # Fast development workflow with Docker and Kubernetes
 
 Keeping development environments in sync is a constant pain. Containerizing your development environment enables your service to run in the exact same environment everywhere, from your laptop to production (for more details on the benefits of a container native development workflow, see [this post by Matt Butcher](https://open.microsoft.com/2018/04/23/5-reasons-you-should-be-doing-container-native-development/).)
@@ -6,8 +8,11 @@ Telepresence, in conjunction with a containerized development environment, gives
 
 In this HOWTO, we'll walk through how to use Telepresence with a containerized Docker environment to build a fast development workflow.
 
-{% import "../macros.html" as macros %}
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "top") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="top" />
 
 ## Quick example
 
@@ -147,6 +152,10 @@ Volumes and environment variables from the remote `Deployment` are also availabl
 * Press Ctrl-C at your Telepresence terminal. Telepresence will swap the deployment back to its original state.
 * In a real development situation, you would commit your development work and let CI do its thing. Or build and deploy your changes however you normally would.
 
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "bottom") }}
+<Macros.Install
+    location="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="bottom" />
 
-{{ macros.tutorialFooter(page.title, file.path, book['baseUrl']) }}
+<Macros.TutorialFooter/>

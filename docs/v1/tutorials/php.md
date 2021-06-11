@@ -1,8 +1,13 @@
+import * as Macros from "../macros";
+
 # Local development with PHP
 *Author: Solomon Roberts ([@BadgerOps](https://twitter.com/BadgerOps))*
 
-{% import "../macros.html" as macros %}
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "top") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="top" />
 
 ##### Note: this is heavily influenced by the awesome [Local Java development](https://www.telepresence.io/tutorials/java) doc by Cesar Tron-Lozai ([@CesarTronLozai](https://twitter.com/cesarTronLozai))
 

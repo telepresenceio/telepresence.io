@@ -1,9 +1,14 @@
+import * as Macros from "../macros";
+
 # Debug a Kubernetes service locally
 
-{% import "../macros.html" as macros %}
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "top") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="top" />
 
-{{ macros.gettingStartedPart1("Kubernetes")}}
+<Macros.GettingStartedPart1 cluster="Kubernetes" />
 
 You should start a `Deployment` and publicly exposed `Service` like this:
 
@@ -30,7 +35,10 @@ $ kubectl expose deployment hello-world --type=LoadBalancer --port=8000
 > http://192.168.99.100:12345/
 > ```
 
-{{ macros.gettingStartedPart2("Deployment", "kubectl", "Kubernetes") }}
+<Macros.GettingStartedPart2
+    deployment="Deployment"
+    command="kubectl"
+    cluster="Kubernetes" />
 
 ```console
 $ kubectl delete deployment,service hello-world
@@ -38,6 +46,10 @@ $ kubectl delete deployment,service hello-world
 
 Telepresence can do much more than this: see the reference section of the documentation, on the top-left, for details.
 
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "bottom") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="bottom" />
 
-{{ macros.tutorialFooter(page.title, file.path, book['baseUrl']) }}
+<Macros.TutorialFooter/>

@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "Telepresence",
+    siteURL: "https://www.telepresence.io"
   },
   plugins: [
 

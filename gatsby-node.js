@@ -14,6 +14,10 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         "@src": path.resolve(__dirname, "src"),
       },
     },
+    // https://github.com/gatsbyjs/gatsby/issues/564
+    node: {
+      fs: 'empty',
+    },
   });
 };
 

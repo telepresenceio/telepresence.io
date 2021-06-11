@@ -1,7 +1,12 @@
+import * as Macros from "../macros";
+
 # Rapid development with Kubernetes
 
-{% import "../macros.html" as macros %}
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "top") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="top" />
 
 ### Rapid development with Telepresence
 
@@ -72,6 +77,10 @@ kubernetes# exit
 
 And there you have it: you edit your code locally, and changes are reflected immediately to clients inside the Kubernetes cluster without having to redeploy, create Docker images, and so on.
 
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "bottom") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="bottom" />
 
-{{ macros.tutorialFooter(page.title, file.path, book['baseUrl']) }}
+<Macros.TutorialFooter/>

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: servicename
-        image: datawire/telepresence-k8s:{{ book['version'] }}
+        image: datawire/telepresence-k8s:$version$
         env:
         - name: MY_POD_IP
           valueFrom:

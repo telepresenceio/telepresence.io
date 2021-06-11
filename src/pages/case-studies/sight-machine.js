@@ -1,131 +1,37 @@
+import React from 'react';
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+import EasyLayout from '../../components/EasyLayout';
 
-    <title>Sight Machine Case Study - Telepresence</title>
-    <link rel="canonical" href="https://www.telepresence.io/case-studies/sight-machine.html"/>
-    <meta name="description" content="Telepresence: a local development environment for a remote Kubernetes cluster">
-    <meta name="keywords" content="Telepresence, Kubernetes, microservices">
-    <meta name="author" content="Ambassador Labs">
+export default function SightMachinePage({ location }) {
+  return (
+    <EasyLayout title="Sight Machine Case Study" location={location}>
+      <section id="case-study" class="bg-white">
 
-    <link rel="shortcut icon" href="/favicon.ico">
+        <div class="container">
+          <h1 class="title">Sight Machine</h1>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900"
-          type="text/css" media="all" />
-    <link rel="stylesheet" href="/styles/home.css">
+          <h2>Can you tell us about yourself and what your company does?</h2>
 
-    <!--[if lte IE 8]>
-    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2-legacy.js"></script>
-    <![endif]-->
-    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
+          <p><a href="https://sightmachine.com/" target="_blank" rel="noreferrer">Sight Machine</a> started six years ago with the vision to apply AI and digital technology to manufacturing.  Sight Machine is the category leader for manufacturing analytics and used by Global 500 companies to make better, faster decisions about their operations.</p>
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-        var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KMVFH7G');</script>
-    <!-- End Google Tag Manager -->
+          <h2>What was your pre-Telepresence development experience? What challenges did you face?</h2>
 
-</head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMVFH7G"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<header class="white-bg">
-    <div class="navigation-left">
-        <a class="datawire-link" href="/">
-            <img alt="Telepresence" src="/images/telepresence-logo.png">
-        </a>
-        <ul class="main-navigation">
-            <li>
-                <a href="/tutorials/docker">Get Started</a>
-            </li>
-            <li>
-                <a href="/discussion/overview">Docs</a>
-            </li>
-            <li>
-                <a href="/case-studies">Case Studies</a>
-            </li>
-            <li>
-                <a href="/about">About</a>
-            </li>
-            <li>
-                <a target="_blank" href="https://github.com/telepresenceio/telepresence">GitHub</a>
-            </li>
-        </ul>
-    </div>
-    <div class="navigation-right">
-        <ul class="main-navigation right">
-            <li>
-                <div class="dropdown">
-                    <button class="dropbtn">▾ Need Help?</button>
-                    <div class="dropdown-content">
-                        <a target="_blank" href="https://a8r.io/slack">Community Slack</a>
-                        <a target="_blank" href="https://www.getambassador.io/editions/">Enterprise Support</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</header>
-<section id="case-study" class="bg-white">
+          <p>We run a pretty varied stack, including Python, PostgreSQL, and MongoDB. All of our software runs in Kubernetes. We like the affordances that cloud resources provide, but we were having challenges with rapid iteration for remote debugging/development.  Our engineers had a need to attach their IDE (typically PyCharm) to the Kubernetes cluster.</p>
 
-    <div class="container">
-        <h1 class="title">Sight Machine</h1>
+          <h2>What benefits have you seen since choosing Telepresence?</h2>
 
-        <h2>Can you tell us about yourself and what your company does?</h2>
+          <p>Telepresence was really the only tool that addressed this problem. Our engineers and data scientists can now write code in PyCharm, while all the computation happens in the cloud, aligned with the rest of our automation and infrastructure. The entire process of editing code, committing and pushing changes, waiting for the build, deploying has gone away-- allowing for more rapid development.</p>
 
-        <p><a href="https://sightmachine.com/" target="_blank">Sight Machine</a> started six years ago with the vision to apply AI and digital technology to manufacturing.  Sight Machine is the category leader for manufacturing analytics and used by Global 500 companies to make better, faster decisions about their operations.</p>
+          <h2>Do you have any advice for people looking to adopt Telepresence?</h2>
 
-        <h2>What was your pre-Telepresence development experience? What challenges did you face?</h2>
+          <p>For companies looking to align the benefits of local development (e.g. fast iteration, customizable dev tools) with remote Kubernetes clusters, Telepresence is a great choice. We've extended the Telepresence automation with our own bash script that simplifies the Telepresence command line, so that the data scientists can type a single command and it will do the right thing.</p>
 
-        <p>We run a pretty varied stack, including Python, PostgreSQL, and MongoDB. All of our software runs in Kubernetes. We like the affordances that cloud resources provide, but we were having challenges with rapid iteration for remote debugging/development.  Our engineers had a need to attach their IDE (typically PyCharm) to the Kubernetes cluster.</p>
-
-        <h2>What benefits have you seen since choosing Telepresence?</h2>
-
-        <p>Telepresence was really the only tool that addressed this problem. Our engineers and data scientists can now write code in PyCharm, while all the computation happens in the cloud, aligned with the rest of our automation and infrastructure. The entire process of editing code, committing and pushing changes, waiting for the build, deploying has gone away-- allowing for more rapid development.</p>
-
-        <h2>Do you have any advice for people looking to adopt Telepresence?</h2>
-
-        <p>For companies looking to align the benefits of local development (e.g. fast iteration, customizable dev tools) with remote Kubernetes clusters, Telepresence is a great choice. We've extended the Telepresence automation with our own bash script that simplifies the Telepresence command line, so that the data scientists can type a single command and it will do the right thing.</p>
-
-        <div class="text-center">
+          <div class="text-center">
             <a href="/#get-started" class="btn btn-black">Get Started</a>
+          </div>
         </div>
-    </div>
 
-</section>
-<footer class="white-bg">
-    <ul class="main-navigation flex-center">
-        <li>
-            <a href="/">Home</a>
-        </li>
-        <li>
-            <a href="/tutorials/kubernetes">Get Started</a>
-        </li>
-        <li>
-            <a href="/discussion/overview">Docs</a>
-        </li>
-        <li>
-            <a href="/case-studies">Case Studies</a>
-        </li>
-        <li>
-            <a href="/about">About</a>
-        </li>
-        <li>
-            <a target="_blank" href="https://github.com/telepresenceio/telepresence">GitHub</a>
-        </li>
-        <li>
-            <a target="_blank" href="https://a8r.io/slack">Slack</a>
-        </li>
-    </ul>
-</footer>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="/js/jquery-3.2.1.min.js"></script>
-</body>
-</html>
+      </section>
+    </EasyLayout>
+  );
+}

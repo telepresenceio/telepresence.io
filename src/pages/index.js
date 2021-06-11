@@ -1,184 +1,392 @@
-import * as React from "react"
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
+    <title>Home - Telepresence</title>
+    <link rel="canonical" href="https://www.telepresence.io/"/>
+    <meta name="description" content="Telepresence: a local development environment for a remote Kubernetes cluster">
+    <meta name="keywords" content="Telepresence, Kubernetes, microservices">
+    <meta name="author" content="Ambassador Labs">
 
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
+    <link rel="shortcut icon" href="/favicon.ico">
 
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900"
+          type="text/css" media="all" />
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
+    <!--[if lte IE 8]>
+    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
 
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KMVFH7G');</script>
+    <!-- End Google Tag Manager -->
 
-// data
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMVFH7G"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header class="white-bg">
+    <div class="navigation-left">
+        <a class="datawire-link" href="/">
+            <img alt="Telepresence" src="/images/telepresence-logo.png">
+        </a>
+        <ul class="main-navigation">
+            <li>
+                <a href="/tutorials/docker">Get Started</a>
+            </li>
+            <li>
+                <a href="/discussion/overview">Docs</a>
+            </li>
+            <li>
+                <a href="/case-studies">Case Studies</a>
+            </li>
+            <li>
+                <a href="/community">Community</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://github.com/telepresenceio/telepresence">GitHub</a>
+            </li>
+        </ul>
+    </div>
+    <div class="navigation-right">
+        <ul class="main-navigation right">
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">▾ Need Help?</button>
+                    <div class="dropdown-content">
+                        <a target="_blank" href="https://a8r.io/slack">Community Slack</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
 
-// markup
-const IndexPage = () => {
-  return (
-    <main style={pageStyles}>
-      <title>Home Page</title>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! </span>
-        <span role="img" aria-label="Party popper emojis">
-          🎉🎉🎉
-        </span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time.{" "}
-        <span role="img" aria-label="Sunglasses smiley emoji">
-          😎
-        </span>
-      </p>
-      <ul style={listStyles}>
-        <li style={docLinkStyle}>
-          <a
-            style={linkStyle}
-            href={`${docLink.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-          >
-            {docLink.text}
-          </a>
+<section class="banner">
+    <div class="banner__text">
+        Telepresence 2 is open source and available to preview now! 
+        <a href="https://www.getambassador.io/docs/latest/telepresence/quick-start" target="_blank" class="banner__link">Learn more</a> 
+        <img alt="" class="banner__icon" src="/images/arrow.inline.svg">
+    </div>
+</section>
+
+<section id="hero" class="bg-white text-center">
+    <h1 class="text-uppercase text-xl">Telepresence</h1>
+    <p class="font-light text-uppercase text-md">
+        Fast, local development for Kubernetes and OpenShift microservices
+    </p>
+    <div class="get-started-button">
+        <a href="#get-started" id="get-started-btn" class="btn btn-black">Get Started</a>
+    </div>
+    <div class="github-buttons">
+        <a class="github-button" href="https://github.com/telepresenceio/telepresence"
+           data-icon="octicon-star" data-show-count="true"
+           aria-label="Star telepresenceio/telepresence on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/telepresenceio/telepresence/fork"
+           data-icon="octicon-repo-forked" data-show-count="true"
+           aria-label="Fork telepresenceio/telepresence on GitHub">Fork</a>
+    </div>
+    <div class="text-center text-md text-black">
+        <div class="version-number">
+            {{ VERSION }}
+        </div>
+        <div>
+            <strong class="font-bold ">Telepresence {{ VERSION }} is now available</strong>
+        </div>
+        <a target="_blank" class="font-light text-black" href="https://www.telepresence.io/reference/changelog">Read the CHANGELOG</a>
+    </div>
+    <img src="/images/bird-on-bricks.svg">
+</section>
+<section id="tabs" class="bg-white box-shadow">
+    <div class="container">
+        <ul class="about-tabs">
+            <li class="tab" data-tabId="debug-locally">
+                <img alt="Debug locally" class="svg" src="/images/debug-locally.svg">
+                <span>Debug locally</span>
+            </li>
+            <li class="tab" data-tabId="instant-feedback">
+                <img alt="Instant feedback" class="svg" src="/images/instant-feedback.svg">
+                <span>Instant feedback</span>
+            </li>
+            <li class="tab" data-tabId="realistic-environment">
+                <img alt="Realistic environment" class="svg" src="/images/realistic-environment.svg">
+                <span>Realistic environment</span>
+            </li>
+            <li class="tab" data-tabId="minimal-resources">
+                <img alt="Minimal resource footprint" class="svg" src="/images/minimal-resources.svg">
+                <span>Minimal resource footprint</span>
+            </li>
+            <li class="tab" data-tabId="your-tools">
+                <img alt="Use your own tools" class="svg" src="/images/your-tools.svg">
+                <span>Use your own tools</span>
+            </li>
+        </ul>
+        <div class="tab-content font-light">
+            <div id="debug-locally">
+                <p>Debug your Kubernetes service locally, using your favorite debugging tool.</p>
+                <p><a class="tutorial-link" href="/tutorials/kubernetes">Go to tutorial</a></p>
+            </div>
+            <div id="instant-feedback">
+                <p>Test and iterate on code changes instantly, instead of waiting for your deployment cycle.</p>
+                <p><a class="tutorial-link" href="/tutorials/kubernetes-rapid">Go to tutorial</a></p>
+            </div>
+            <div id="realistic-environment">
+                <p>
+                    With Telepresence, you’re developing on a Kubernetes or OpenShift cluster, which can be configured
+                    to be identical to production. Eliminate bugs due to differences between development and production
+                    environments.
+                </p>
+            </div>
+            <div id="minimal-resources">
+                <p>
+                    Telepresence adds virtually zero overhead to your development environment. It only requires the
+                    memory and CPU necessary to run your actual service. Don’t let your laptop melt from running
+                    minikube!
+                </p>
+            </div>
+            <div id="your-tools">
+                <p>
+                    Use your favorite code editor, debugger, profiler, or other tools. Anything that runs on your
+                    laptop works with Telepresence.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-gray padding-top-75 padding-bottom-60">
+    <div class="container">
+        <div class="quote-container">
+            <div class="quotes bg-white border-gray box-shadow content-box">
+                <div>
+                    <div class="quote">
+                        <img class="logo hidden-xs" src="/images/quote.svg">
+                        <div class="quote-content">
+                            <p>"Telepresence is such a useful tool. I use the swap deployment so I can iterate faster
+                                when I'm working back and forth between my local cluster and cloud clusters."</p>
+                            <p><a href="https://twitter.com/KevinHoffman" class="author">@KevinHoffman</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="quote">
+                        <img class="hidden-xs" src="/images/quote.svg">
+                        <div class="quote-content">
+                            <p>"Going through CI to test 2 lines of changed code seems excessive. Telepresence got it
+                                down to `go run main.go` with an added benefit of getting access to real ConfigMap /
+                                Secrets."</p>
+                            <p><span class="author">Vladimir Pouzanov</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="quote">
+                        <img class="logo hidden-xs" src="/images/vizualai-logo.jpg">
+                        <div class="quote-content">
+                            <p>"Telepresence can be used to drastically improve the development workflow for Spark
+                                applications. It’s the best tool we have found for running integration tests against against systems inside our cluster from our local machines / CICD environments."</p>
+                            <p><span class="author">Nate Buesgens, Vizual.AI</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="get-started" class="bg-gray padding-top-75">
+    <div class="container">
+        <h1 class="text-lg text-uppercase text-center padding-bottom-60">Get started in 3 minutes</h1>
+        <div class="bg-white border-gray box-shadow content-box">
+            <ol class="get-started-steps">
+                <li>
+                    <p class="text-md"><a href="/reference/install" id="install-locally-link">Install locally</a> with Homebrew, apt or dnf</p>
+                </li>
+                <li>
+                    <p class="text-md">Run</p>
+                    <div class="code-box">
+                        <pre><code>telepresence</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <p class="text-md">You now have a shell that proxies network connections to Kubernetes!</p>
+                </li>
+            </ol>
+            <script type="text/javascript" src="https://asciinema.org/a/117761.js" id="asciicast-117761" async></script>
+            <div class="text-center">
+                <a class="btn btn-black" id="read-docs-btn" href="/tutorials/docker">Read the docs</a>
+            </div>
+
+            <div class="padding-top-60">
+                <h2 class="text-red text-uppercase text-md padding-bottom-20">How it works:</h2>
+                <p class="text-md font-light">Telepresence substitutes a two-way network proxy for your normal pod running in the Kubernetes cluster. This pod proxies data from your Kubernetes environment (e.g., TCP connections, environment variables, volumes) to the local process. The local process has its networking transparently overridden so that DNS calls and TCP connections are routed through the proxy to the remote Kubernetes cluster.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-gray padding-top-75 padding-bottom-130">
+    <div class="container text-center">
+        <div class="bg-white border-gray box-shadow content-box text-center">
+            <h1 class="text-lg">Stay Updated</h1>
+            <p class="font-light text-md">Telepresence is under active development. Subscribe to get updates and announcements:</p>
+            <div class="mailing-list-signup">
+                <script type="text/javascript">
+                    hbspt.forms.create({
+                        css: '',
+                        portalId: '485087',
+                        formId: '956287a4-7614-486b-91bd-28c9a91949cb'
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="sponsored-by text-center">
+            <div class="cncf">
+                <img class="cncf-logo" alt="Cloud Native Computing Foundation" src="https://d33wubrfki0l68.cloudfront.net/ea0d91fac8683c38ea9a1fb8a4e9914627ac6aae/8efa9/img/logos/cloud-native-computing.svg">
+                <p class="text-md">
+                    Telepresence is a <a href="https://www.cncf.io">Cloud Native Computing Foundation</a> sandbox project
+                </p>
+            </div>
+            <p class="text-md">
+                Telepresence was originally created by <a href="https://www.getambassador.io" target="_blank">Ambassador Labs</a>
+            </p>
+        </div>
+    </div>
+</section>
+<footer class="white-bg">
+    <ul class="main-navigation flex-center">
+        <li>
+            <a href="/tutorials/kubernetes">Get Started</a>
         </li>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-              >
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
-  )
-}
+        <li>
+            <a href="/discussion/overview">Docs</a>
+        </li>
+        <li>
+            <a href="/case-studies">Case Studies</a>
+        </li>
+        <li>
+            <a href="/about">About</a>
+        </li>
+        <li>
+            <a target="_blank" href="https://github.com/telepresenceio/telepresence">GitHub</a>
+        </li>
+        <li>
+            <a target="_blank" href="https://a8r.io/slack">Slack</a>
+        </li>
+    </ul>
+</footer>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+    $(document).ready(function() {
+        changeTab($('.about-tabs li.tab:first-child').data('tabid'));
 
-export default IndexPage
+        $('.about-tabs li.tab').click(function() {
+            changeTab($(this).data('tabid'));
+        });
+
+        function changeTab(tabId) {
+            $('.about-tabs li.tab').removeClass('active');
+            $('.about-tabs li.tab[data-tabId="'+tabId+'"]').addClass('active');
+            $('.tab-content div').hide();
+            $('#' + tabId).show();
+        }
+
+        $('.quotes').slick();
+
+        $('.alert .close').click(function(e) {
+            $(this).parent().hide();
+        });
+
+        /*
+         Smooth scrolling. Ref: https://css-tricks.com/snippets/jquery/smooth-scrolling/
+         */
+        $('a[href*="#"]')
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function(event) {
+                // On-page links
+                if (
+                    location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                    &&
+                    location.hostname == this.hostname
+                ) {
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000, function() {
+                            // Callback after animation
+                            // Must change focus!
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) { // Checking if the target was focused
+                                return false;
+                            } else {
+                                $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                                $target.focus(); // Set focus again
+                            };
+                        });
+                    }
+                }
+            });
+
+        /*
+         * Replace all SVG images with inline SVG so we can change it's color when active
+         * Ref: https://stackoverflow.com/questions/24933430/img-src-svg-changing-the-fill-color
+         */
+        $('img.svg').each(function(){
+            var $img = $(this);
+            var imgID = $img.attr('id');
+            var imgClass = $img.attr('class');
+            var imgURL = $img.attr('src');
+
+            jQuery.get(imgURL, function(data) {
+                // Get the SVG tag, ignore the rest
+                var $svg = $(data).find('svg');
+
+                // Add replaced image's ID to the new SVG
+                if(typeof imgID !== 'undefined') {
+                    $svg = $svg.attr('id', imgID);
+                }
+                // Add replaced image's classes to the new SVG
+                if(typeof imgClass !== 'undefined') {
+                    $svg = $svg.attr('class', imgClass+' replaced-svg');
+                }
+
+                // Remove any invalid XML tags as per http://validator.w3.org
+                $svg = $svg.removeAttr('xmlns:a');
+
+                // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+                if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+                    $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+                }
+
+                // Replace image with new SVG
+                $img.replaceWith($svg);
+
+            }, 'xml');
+
+        });
+    });
+</script>
+</body>
+</html>

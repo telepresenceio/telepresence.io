@@ -54,17 +54,15 @@ export default function Layout({ location, children }) {
         </div>
       </header>
 
-      { (location.pathname.startsWith('/docs/v2') || location.pathname.startsWith('/docs/latest/') || location.pathname.startsWith('/docs/pre-release/'))
-        ? ''
-        : <section class="banner">
-            <div class="banner__text">
-              <a href="/announcing-telepresence-2/" class="banner__link">
-                Telepresence 2 is now the default version of Telepresence.
-                Learn about the switch from Telepresence v1 to v2
-                <img alt="" class="banner__icon" src={ImgArrow}/>
-              </a>
-            </div>
-          </section> }
+      <section class="banner">
+        <div class="banner__text">
+          <a href="/announcing-telepresence-2/" class="banner__link">
+            Telepresence 2 is now the default version of Telepresence.
+            Learn about the switch from Telepresence v1 to v2
+            <img alt="" class="banner__icon" src={ImgArrow}/>
+          </a>
+        </div>
+      </section>
 
       <div className="main-body">{children}</div>
 

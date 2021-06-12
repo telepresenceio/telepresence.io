@@ -121,11 +121,11 @@ const handleVersionChange = (event) => {
   }
 };
 
-export default function DocPage({ data, pageContext }) {
+export default function DocPage({ location, data, pageContext }) {
   const variables = jsYAML.safeLoad(data.variablesFile.internal.content);
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Helmet>
         <link rel="canonical" href={pageContext.docinfo.canonicalURL} />
         <meta name="og:type" content="article" />

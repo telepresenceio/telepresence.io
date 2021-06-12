@@ -6,9 +6,10 @@ import './layout.less';
 import './docs-layout.less';
 import './home.css';
 
-import Logo from '../../assets/images/telepresence-logo.png';
+import ImgLogo from '../../assets/images/telepresence-logo.png';
+import ImgArrow from '../../assets/images/arrow.svg';
 
-export default function Layout({ children }) {
+export default function Layout({ location, children }) {
   return (
     <>
       <Helmet>
@@ -19,7 +20,7 @@ export default function Layout({ children }) {
       <header class="white-bg">
         <div class="navigation-left">
           <a class="datawire-link" href="/">
-            <img alt="Telepresence" src={Logo}/>
+            <img alt="Telepresence" src={ImgLogo}/>
           </a>
           <ul class="main-navigation">
             <li>
@@ -52,6 +53,18 @@ export default function Layout({ children }) {
           </ul>
         </div>
       </header>
+
+      { (location.pathname.startsWith('/docs/v2') || location.pathname.startsWith('/docs/latest/') || location.pathname.startsWith('/docs/pre-release/'))
+        ? ''
+        : <section class="banner">
+            <div class="banner__text">
+              <a href="/announcing-telepresence-2/" class="banner__link">
+                Telepresence 2 is now the default version of Telepresence.
+                Learn about the switch from Telepresence v1 to v2
+                <img alt="" class="banner__icon" src={ImgArrow}/>
+              </a>
+            </div>
+          </section> }
 
       <div className="main-body">{children}</div>
 

@@ -22,7 +22,7 @@ export default function EasyLayout({
   `);
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Helmet>
         <title>{title} | {data.site.siteMetadata.title}</title>
         <link rel="canonical" href={`${data.site.siteMetadata.siteURL}${location.pathname}`} />

@@ -147,12 +147,12 @@ export default function HomePage({ location, data }) {
           <div class="bg-white border-gray box-shadow content-box">
             <ol class="get-started-steps">
               <li>
-                <p class="text-md"><a href="/reference/install" id="install-locally-link">Install locally</a> with Homebrew, apt or dnf</p>
+                <p class="text-md"><a href="/docs/latest/install/" id="install-locally-link">Install locally</a> {/*with Homebrew, apt or dnf*/}</p>
               </li>
               <li>
                 <p class="text-md">Run</p>
                 <div class="code-box">
-                  <pre><code>telepresence</code></pre>
+                  <pre><code>telepresence connect</code></pre>
                 </div>
               </li>
               <li>
@@ -161,7 +161,7 @@ export default function HomePage({ location, data }) {
             </ol>
             <script type="text/javascript" src="https://asciinema.org/a/117761.js" id="asciicast-117761" async></script>
             <div class="text-center">
-              <a class="btn btn-black" id="read-docs-btn" href="/tutorials/docker">Read the docs</a>
+              <a class="btn btn-black" id="read-docs-btn" href="/docs/latest/">Read the docs</a>
             </div>
 
             <div class="padding-top-60">

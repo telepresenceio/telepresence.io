@@ -17,6 +17,6 @@ subtree-preflight:
 pull-docs: ## Update ./docs from https://github.com/datawire/ambassador-docs
 pull-docs: subtree-preflight
 	git subtree pull --squash --prefix=docs/pre-release https://github.com/datawire/ambassador-docs products/telepresence/master
-	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d -name 'v*'),\
+	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d -name 'v*' -not -name v1),\
           git subtree pull --squash --prefix=$(subdir) https://github.com/datawire/ambassador-docs $(patsubst docs/%,products/telepresence/%,$(subdir))$(nl))
 .PHONY: pull-docs

@@ -4,7 +4,6 @@ import jsYAML from 'js-yaml';
 
 import EasyLayout from '../components/EasyLayout';
 
-import ImgArrow                from '../assets/images/arrow.svg';
 import ImgBirdOnBricks         from '../assets/images/bird-on-bricks.svg';
 import ImgDebugLocally         from '../assets/images/debug-locally.svg';
 import ImgInstantFeedback      from '../assets/images/instant-feedback.svg';

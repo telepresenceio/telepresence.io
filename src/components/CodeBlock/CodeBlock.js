@@ -120,7 +120,7 @@ export default (props) => {
                           tokens.map((line, i) => {
                             const lineProps = getLineProps({ line, key: i });
                             return (
-                              <div key={i} {...lineProps}>{(i == 0) ? ps1match[0] : ""}
+                              <div key={i} {...lineProps}>{(i === 0) ? ps1match[0] : ""}
                                 {line.map((token, key) => (
                                   <span key={key} {...getTokenProps({ token, key })} />
                                 ))}

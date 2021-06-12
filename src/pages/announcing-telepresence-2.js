@@ -7,7 +7,8 @@ export default function Tel2Page({ location }) {
   return (
     <EasyLayout title="Announcing Telepresence 2!" location={location}>
       <section id="about-page" class="bg-white">
-        <div class="container">
+        {/* FIXME: It's stupid to put docs__main here, but reset.css is a pain and breaks everything until you fix it */}
+        <div class="container docs__main">
           <Markdown>{`
 
 # Announcing Telepresence 2!

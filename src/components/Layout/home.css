@@ -816,59 +816,6 @@ footer {
     padding-bottom: 20px;
 }
 
-.video {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 25px;
-    height: 0;
-    width: 100%;
-    border: 6px solid white;
-    background: white;
-    border-radius: 2px;
-    margin: 25px 0;
-}
-
-.video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.transcript {
-    margin-bottom: 35px;
-}
-
-#transcript-content {
-    height: 400px;
-    overflow: hidden;
-    text-overflow: clip;
-    z-index: 1;
-}
-
-#transcript-content.expanded {
-    height: auto;
-}
-
-
-.transcript-fade {
-    z-index: 10;
-    position: relative;
-    background: -webkit-linear-gradient(top, rgba(238, 242, 243, 0), #fff);
-    background: -o-linear-gradient(bottom, rgba(238, 242, 243, 0), #fff);
-    background: -moz-linear-gradient(bottom, rgba(238, 242, 243, 0), #fff);
-    background: linear-gradient(to bottom, rgba(238, 242, 243, 0), #fff);
-    height: 200px;
-    margin-top: -200px;
-}
-
-.slide-embed iframe {
-    max-width: 100%;
-    overflow: hidden;
-}
-
 .banner {
     width: 100%;
     background-color: #f9634e;

@@ -1,11 +1,12 @@
 import React from 'react';
 
 import EasyLayout from '../../components/EasyLayout';
+import './bitnami.less'
 
 export default function BitnamiPage({ location }) {
   return (
     <EasyLayout title="Bitnami Case Study" location={location}>
-      <section id="case-study" class="bg-white">
+      <section id="case-study" class="bg-white case-study-bitnami">
 
         <div class="container">
           <h1 class="title">Bitnami</h1>

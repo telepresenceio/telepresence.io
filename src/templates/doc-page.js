@@ -102,14 +102,16 @@ const ReleaseNotesContent = ({
         <meta name="description" content={content.docDescription} />
       </Helmet>
       <h1>{content.docTitle}</h1>
-      { content.changelog &&
-        <p>For a detailed list of all the changes in past releases, please
-           consult the <Link to={content.changelog}>CHANGELOG</Link>.</p> }
       {
         content.items.map((release) => (
           <Release key={release.version}
                    release={release} />
         ))
+      }
+      {
+        content.changelog &&
+          <p>For a detailed list of all the changes in past releases, please
+          consult the <Link to={content.changelog}>CHANGELOG</Link>.</p>
       }
     </>
   );

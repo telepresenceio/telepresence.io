@@ -27,27 +27,18 @@ const Note = ({ note }) => {
   const title = (titlePrefix[note.type] ? `${titlePrefix[note.type]}: ` : ``) + note.title;
 
   return (
-    <Link to={note.docs && url.resolve('../', note.docs)} className={styles.note}>
-      <div className={styles.note__description}>
-        <h3 className={styles.note__title}>
-          {typeIcon[note.type]}
-          <span>{title}</span>
-        </h3>
-        <div
-          className={styles.note__body}
-          dangerouslySetInnerHTML={{ __html: note.body }}
-        />
-        {note.image && (
-          <div className={styles.note__image_xs}>
-            <img src={note.image} alt={title} height="172" width="207" />
-          </div>
-        )}
-      </div>
-      {note.image && (
-        <div className={styles.note__image}>
-          <img src={note.image} alt={title} height="172" width="207" />
-        </div>
-      )}
+    <Link className={`${styles.note} ${note.image ? styles.note_withimage : styles.note_withoutimage}`}
+          to={note.docs && url.resolve('../', note.docs)}>
+      <h3>{typeIcon[note.type]}{title}</h3>
+      <div
+        className={styles.note__body}
+        dangerouslySetInnerHTML={{ __html: note.body }}
+      />
+      {
+        note.image && (
+            <img src={note.image} alt={title} />
+        )
+      }
     </Link>
   );
 };

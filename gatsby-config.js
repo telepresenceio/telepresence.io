@@ -18,6 +18,17 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: [`.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+          },
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+            },
+          },
+        ],
       },
     },
     {
@@ -47,11 +58,17 @@ module.exports = {
     // Gatsby actions.createRedirect does nothing by default; it needs a
     // server-specific backend to actually work.
     {
-      // I'm choosing gatsby-plugin-meta-dredirect over gatsby-plugin-netlify
-      // because TBH Netlify is just a little too magical for my taste and I
-      // need to be able to confidently reason about this.
-      resolve: 'gatsby-plugin-meta-redirect',
-      //resolve: `gatsby-plugin-netlify`,
+      // gatsby-plugin-netlify is a bummer because it doesn't work with `gatsby
+      // serve` and the `netlify` CLI's server is pretty wildly different than
+      // Netlify's actual server :( But to get redirects working well, we do
+      // need integration with the server, and we do host on Netlify...
+      resolve: `gatsby-plugin-netlify`,
+      // There are a lot of "pros" to gatsby-plugin-meta-redirect, but it
+      // removes URL fragments when following the redirect, which is a
+      // show-stopper because the Telepresence 1 CLI prints out URLs with
+      // fragments.
+      //
+      //resolve: 'gatsby-plugin-meta-redirect',
     },
   ],
 };

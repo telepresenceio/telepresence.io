@@ -150,7 +150,6 @@ exports.createPages = async ({ graphql, actions }) => {
       actions.createRedirect({
         fromPath: path.posix.normalize(url.resolve(basepath, from)+path.posix.sep),
         toPath:   url.resolve(basepath, to),
-        redirectInBrowser: true,
       })
     }
   }
@@ -170,7 +169,6 @@ exports.createPages = async ({ graphql, actions }) => {
       actions.createRedirect({
         fromPath: url.resolve(basepath, from),
         toPath:   url.resolve(basepath, to),
-        redirectInBrowser: true,
       })
   }
 };

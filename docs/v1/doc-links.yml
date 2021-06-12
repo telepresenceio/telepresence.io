@@ -61,11 +61,11 @@
     - title: Development Guide
       link: reference/developing
     - title: Community
-      link: community
+      link: /community
     - title: Related Projects
-      link: related-projects
+      link: /related-projects
     - title: Case Studies
-      link: https://www.telepresence.io/case-studies
+      link: /case-studies
     - title: Changelog
       link: reference/changelog
 

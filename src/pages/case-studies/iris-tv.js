@@ -12,7 +12,7 @@ export default function IrisPage({ location }) {
 
           <h2>Can you tell us about yourself and what your company does?</h2>
           <p>
-            I’m Blake Miller, Platform Architect at <a href="www.iris.tv">IRIS.TV</a>. IRIS.TV is a video personalization and programming platform.
+            I’m Blake Miller, Platform Architect at <a href="https://www.iris.tv">IRIS.TV</a>. IRIS.TV is a video personalization and programming platform.
             Media customers use IRIS.TV to increase their video views and audience engagement, among other things.
             The IRIS.TV platform consists of about 30 services, written in a wide variety of programming languages
             including Ruby, Python, JavaScript, Clojure, R, and Go. In addition, there are a wide variety of stateful

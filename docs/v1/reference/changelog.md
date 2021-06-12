@@ -2,8 +2,8 @@
 
 <!--- towncrier start line -->
 
-#### Announcement: Telepresence 2 is now Available to Preview
-Telepresence 2 is open source and available to [preview now](https://www.getambassador.io/docs/latest/telepresence/quick-start/). Rewritten in Go to be faster and more resilient, Telepresence 2 has a [new architecture](https://www.getambassador.io/docs/latest/telepresence/reference/architecture/) to better serve Kubernetes development teams with multiple users. [Preview it today](https://www.getambassador.io/docs/latest/telepresence/quick-start/) and [share your feedback](https://a8r.io/slack) with the team.
+#### Announcement: Telepresence 2 is now Available
+Telepresence 2 is open source and available to [use now](/docs/latest/). Rewritten in Go to be faster and more resilient, Telepresence 2 has a [new architecture](/docs/latest/reference/architecture/) to better serve Kubernetes development teams with multiple users. [Try it today](/docs/latest/quick-start/) and [share your feedback](https://a8r.io/slack) with the team.
 
 #### 0.109 (January 25, 2021)
 
@@ -153,7 +153,7 @@ Features:
   ([#1022](https://github.com/telepresenceio/telepresence/issues/1022))
 * When using the container method, Telepresence can use a Docker volume to mount remote volumes.
   This makes it possible to use volumes even if you don't have mount privileges or capabilities on your main system, e.g. in a container.
-  See [the documentation](https://www.telepresence.io/howto/volumes#volume-access-via-docker-volume-for-the-container-method) for more about the new `--docker-mount` feature.
+  See [the documentation](../../howto/volumes#volume-access-via-docker-volume-for-the-container-method) for more about the new `--docker-mount` feature.
   This is Linux-only for the moment: [#1135](https://github.com/telepresenceio/telepresence/issues/1135).
   Thanks to Sławomir Kwasiborski for the patch.
 * When using the default `vpn-tcp` method, you can use the `--local-cluster` flag to bypass local cluster heuristics and force Telepresence to use its DNS loop avoidance workaround.
@@ -229,7 +229,7 @@ Misc:
 
 * Additional timeouts around DNS lookups should make Telepresence startup more reliable when using the default vpn-tcp method.
   ([#986](https://github.com/telepresenceio/telepresence/issues/986))
-* When calling `sudo`, Telepresence offers a link to [documentation](https://www.telepresence.io/reference/install#dependencies) about why elevated privileges are required.
+* When calling `sudo`, Telepresence offers a link to [documentation](../install#dependencies) about why elevated privileges are required.
   ([#262](https://github.com/telepresenceio/telepresence/issues/262))
 
 #### 0.98 (April 2, 2019)
@@ -237,7 +237,7 @@ Misc:
 Features:
 
 * The `TELEPRESENCE_MOUNTS` environment variable contains a list of remote mount points.
-  See [the documentation](https://www.telepresence.io/howto/volumes) for more information and example usage.
+  See [the documentation](../../howto/volumes) for more information and example usage.
   Thanks to GitHub user turettn for the patch.
   ([#917](https://github.com/telepresenceio/telepresence/issues/917))
 
@@ -264,7 +264,7 @@ Bug fixes:
 Misc:
 
 * Telepresence has a native package for the soon-to-be-released Ubuntu Dingo.
-* Improved the [Java development documentation](https://www.telepresence.io/tutorials/java#debugging-your-code) with updated Maven debug options for JDK versions 5-8.
+* Improved the [Java development documentation](../../tutorials/java#debugging-your-code) with updated Maven debug options for JDK versions 5-8.
   Thanks to Sanha Lee for the patch.
   ([#955](https://github.com/telepresenceio/telepresence/issues/955))
 
@@ -455,7 +455,7 @@ Misc:
 Features:
 
 * You can set `$TELEPRESENCE_ROOT` to a known path using the `--mount=/known/path` argument.
-  See the [volumes documentation](https://www.telepresence.io/howto/volumes) for example usage.
+  See the [volumes documentation](../../howto/volumes) for example usage.
   ([#454](https://github.com/telepresenceio/telepresence/issues/454))
 * Turn off volume support entirely with `--mount=false`.
   ([#378](https://github.com/telepresenceio/telepresence/issues/378))
@@ -486,7 +486,7 @@ Bug fixes:
 Misc:
 
 * Telepresence requires fewer cluster permissions than before.
-  The required permissions are now [documented](https://www.telepresence.io/reference/connecting#cluster-permissions) for Kubernetes.
+  The required permissions are now [documented](../connecting#cluster-permissions) for Kubernetes.
   ([#568](https://github.com/telepresenceio/telepresence/issues/568))
 
 #### 0.82 (April 11, 2018)
@@ -629,7 +629,7 @@ Bug fixes:
 
 Misc:
 
-* The [anonymous usage information](usage_reporting) reported by Telepresence now includes the operation (e.g., "swap-deployment") and method (e.g., "vpn-tcp") used.
+* The [anonymous usage information](../usage_reporting) reported by Telepresence now includes the operation (e.g., "swap-deployment") and method (e.g., "vpn-tcp") used.
   This will help us focus development resources.
 * Telepresence is no longer packaged for Ubuntu 16.10 (Yakkety Yak) as that release has [reached end of life](http://fridge.ubuntu.com/2017/07/20/ubuntu-16-10-yakkety-yak-end-of-life-reached-on-july-20-2017/).
 
@@ -648,7 +648,7 @@ Bug fixes:
 
 Misc
 
-* [Telepresence documentation](https://www.telepresence.io/discussion/overview) uses GitBook.
+* [Telepresence documentation](../../) uses GitBook.
 
 #### 0.67 (September 21, 2017)
 
@@ -682,7 +682,7 @@ Misc:
 * Documented macOS limitations with `--method inject-tcp` due to System Integrity Protection. Thanks to Dylan Scott for the detailed write-up.
   ([#268](https://github.com/telepresenceio/telepresence/issues/268))
 * The [website](https://www.telepresence.io/) has TLS enabled
-* Telepresence [reports anonymous usage information](usage_reporting) during startup
+* Telepresence [reports anonymous usage information](../usage_reporting) during startup
 
 #### 0.63 (July 31, 2017)
 

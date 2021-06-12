@@ -19,7 +19,7 @@ Commands of interest:
 
    # Production or production-like
    yarn run gatsby build    # Build a production-build, writing it to ./public/
-   yarn run gatsby serve    # Serve ./public/ at http://localhost:9000/
+   ./bin/serve.js           # Serve ./public/ at http://localhost:9000/ (see below for commentary)
 
    # Other
    yarn run gatsby clean    # Clean ./.cache/, which sometimes becomes corrupt.
@@ -87,6 +87,26 @@ spit out an error if you try to run it:
    npm ERR! A complete log of this run can be found in:
    npm ERR!     /home/lukeshu/.npm/_logs/2021-04-05T19_53_06_846Z-debug.log
    ```
+
+## Why use a home-grown `./bin/serve.js` script?
+
+Why not use `yarn run gatsby serve` or `netlify dev`?
+
+One word: redirects.  `gatsby serve` doesn't obey `_redirects`, and we
+rely on those redirects. `netlify dev`'s behavior regarding trailing
+slashes is sufficiently different than the actual Netlify behavior
+that IMO it's worthless.
+
+`./bin/serve.js` is a minimal server that supports just the features
+we care about in a web server:
+ - Setting `Content-Type`
+ - Serving the files
+ - Netlify-like handling of trailing `/` and trailing `.html`
+ - Handling of `_redirects`
+
+It doesn't support range requests or different request methods or
+caching or Content-Length or security headers.  It's good enough for a
+broken-link-checker and for local dev.  And that's it.
 
 ## Don't use doc-version specific web components
 

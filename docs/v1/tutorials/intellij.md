@@ -2,7 +2,7 @@
 
 ## Debugging Locally Against a Remote Kubernetes Cluster using Telepresence
 
-The fundamental benefit of Telepresence is that it provides a [two-way proxy](https://www.telepresence.io/discussion/why-telepresence#a-fast-development-cycle-with-telepresence) between your local machine and the remote cluster. This means that you can run a service locally (and all of your local debug tooling) and have this service interact with all the other services in the remote cluster. This allows you to make a request against a service running (and exposed) in the remote cluster and proxy a call to a downstream dependent service to your local machine. You can then inspect and modify the request before providing the response from your local machine back into the calling remote service.
+The fundamental benefit of Telepresence is that it provides a [two-way proxy](../../discussion/why-telepresence#a-fast-development-cycle-with-telepresence) between your local machine and the remote cluster. This means that you can run a service locally (and all of your local debug tooling) and have this service interact with all the other services in the remote cluster. This allows you to make a request against a service running (and exposed) in the remote cluster and proxy a call to a downstream dependent service to your local machine. You can then inspect and modify the request before providing the response from your local machine back into the calling remote service.
 
 ### A Brief Video Guide
 

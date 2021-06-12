@@ -43,7 +43,7 @@ MYSERVICE_SERVICE_PORT=8000
 
 (This will not work if the hello world pod hasn't started yet... if so, try again.)
 
-Telepresence will also allow services within minikube to [access a process running your host machine](kubernetes-rapid.html).
+Telepresence will also allow services within minikube to [access a process running your host machine](../kubernetes-rapid).
 
 <Macros.Install
     install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"

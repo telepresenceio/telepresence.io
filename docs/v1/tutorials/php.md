@@ -9,7 +9,7 @@ import * as Macros from "../macros";
     cluster="Kubernetes"
     location="top" />
 
-##### Note: this is heavily influenced by the awesome [Local Java development](https://www.telepresence.io/tutorials/java) doc by Cesar Tron-Lozai ([@CesarTronLozai](https://twitter.com/cesarTronLozai))
+##### Note: this is heavily influenced by the awesome [Local Java development](../java) doc by Cesar Tron-Lozai ([@CesarTronLozai](https://twitter.com/cesarTronLozai))
 
 ## PHP
 

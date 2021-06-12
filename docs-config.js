@@ -41,18 +41,20 @@ module.exports = {
 
   canonicalURL: function(node) {
     const urlpath = this.urlpath(node);
+    const version = urlpath.split(path.posix.sep)[2];
+    if (version === "v1") {
+      // v1 docs aren't on getambassador.io
+      return urlpath;
+    }
     const relpath = urlpath.split(path.posix.sep).slice(2).join(path.posix.sep);
     return `https://www.getambassador.io/docs/telepresence/latest/${relpath}`;
   },
 
   githubURL: function(node) {
-    let versionPart = node.relativePath.split(path.sep)[0];
-    if (versionPart === 'pre-release') {
-      versionPart = 'master';
-    }
-    const branch = `products/telepresence/${versionPart}`;
-    const filePart = node.relativePath.split(path.sep).slice(1).join(path.posix.sep);
-    return `https://github.com/datawire/ambassador-docs/blob/${branch}/${filePart}`;
+    const gitpath = 'docs/' + (node.relativePath.
+                               replace(/^latest/,'v2.3').
+                               replaceAll(path.sep, path.posix.sep));
+    return `https://github.com/telepresenceio/telepresence.io/blob/master/${gitpath}`;
   },
 
   // Don't show reading time for Telepresence.

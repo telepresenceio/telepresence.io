@@ -43,7 +43,7 @@ export default function HomePage({ location, data }) {
           <div>
             <strong class="font-bold ">Telepresence { variables.version } is now available</strong>
           </div>
-          <a target="_blank" rel="noreferrer" class="font-light text-black" href="https://www.telepresence.io/reference/changelog">Read the CHANGELOG</a>
+          <a target="_blank" rel="noreferrer" class="font-light text-black" href="/docs/latest/release-notes">Read the Release Notes</a>
         </div>
         <img src={ImgBirdOnBricks} alt="Telepresence mascot"/>
       </section>

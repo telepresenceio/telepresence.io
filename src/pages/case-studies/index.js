@@ -11,7 +11,7 @@ import LogoVerloop      from '../../assets/images/Verloop-Logo-Horizontal-HD.png
 
 export default function CaseStudiesPage({ location }) {
   return (
-    <EasyLayout title="Case Studie" location={location}>
+    <EasyLayout title="Case Studies" location={location}>
       <div class="bg-white page-title">
         <div class="container">
           <h1>Telepresence Case Studies</h1>

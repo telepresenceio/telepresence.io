@@ -100,7 +100,7 @@ Volume support requires a small amount of work on your part.
 The root directory where all the volumes can be found will be set to the `TELEPRESENCE_ROOT` environment variable in the shell or subprocess run by `telepresence`.
 You will then need to use that env variable as the root for volume paths you are opening.
 
-You can see an example of this in the [Volumes Howto](../howto/volumes.html).
+You can see an example of this in the [Volumes Howto](../../howto/volumes.html).
 
 ### The complete list: what Telepresence proxies
 

@@ -19,6 +19,7 @@
     "gatsby-plugin-less": "^3.2.2",
     "gatsby-plugin-mdx": "1.2.11",
     "gatsby-plugin-netlify": "^2.3.11",
+    "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-remark-autolink-headers": "^2.3.11",
     "gatsby-remark-external-links": "0.0.4",

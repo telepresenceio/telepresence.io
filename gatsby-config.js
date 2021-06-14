@@ -54,6 +54,11 @@ module.exports = {
     {
       resolve: 'gatsby-remark-reading-time',
     },
+    // We need this in order to set things in <head> in the HTML.  Otherwise it
+    // gets set by client-side in the DOM after page-load.
+    {
+      resolve: 'gatsby-plugin-react-helmet',
+    },
 
     // Gatsby actions.createRedirect does nothing by default; it needs a
     // server-specific backend to actually work.

@@ -46,7 +46,7 @@ module.exports = {
       // v1 docs aren't on getambassador.io
       return urlpath;
     }
-    const relpath = urlpath.split(path.posix.sep).slice(2).join(path.posix.sep);
+    const relpath = urlpath.split(path.posix.sep).slice(3).join(path.posix.sep);
     return `https://www.getambassador.io/docs/telepresence/latest/${relpath}`;
   },
 

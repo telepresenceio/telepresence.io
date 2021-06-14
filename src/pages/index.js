@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 import jsYAML from 'js-yaml';
 
 import EasyLayout from '../components/EasyLayout';
@@ -19,6 +20,9 @@ export default function HomePage({ location, data }) {
   return (
     <EasyLayout title="Home" location={location}
                 description="Telepresence: a local development environment for a remote Kubernetes cluster">
+      <Helmet>
+        <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
+      </Helmet>
       <section id="hero" class="bg-white text-center">
         <h1 class="text-uppercase text-xl">Telepresence</h1>
         <p class="font-light text-uppercase text-md">
@@ -31,6 +35,7 @@ export default function HomePage({ location, data }) {
           <a class="github-button" href="https://github.com/telepresenceio/telepresence"
              data-icon="octicon-star" data-show-count="true"
              aria-label="Star telepresenceio/telepresence on GitHub">Star</a>
+          {' '}
           <a class="github-button" href="https://github.com/telepresenceio/telepresence/fork"
              data-icon="octicon-repo-forked" data-show-count="true"
              aria-label="Fork telepresenceio/telepresence on GitHub">Fork</a>
@@ -177,13 +182,7 @@ export default function HomePage({ location, data }) {
             <h1 class="text-lg">Stay Updated</h1>
             <p class="font-light text-md">Telepresence is under active development. Subscribe to get updates and announcements:</p>
             <div class="mailing-list-signup">
-              <script type="text/javascript">{`
-                hbspt.forms.create({
-                  css: '',
-                  portalId: '485087',
-                  formId: '956287a4-7614-486b-91bd-28c9a91949cb'
-                });
-              `}</script>
+              <script type="text/javascript" src="/index/hubspot.js"></script>
             </div>
           </div>
           <div class="sponsored-by text-center">
@@ -199,6 +198,7 @@ export default function HomePage({ location, data }) {
           </div>
         </div>
       </section>
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
     </EasyLayout>
   );
 }

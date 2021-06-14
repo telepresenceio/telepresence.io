@@ -29,7 +29,7 @@ export default function HomePage({ location, data }) {
           Fast, local development for Kubernetes and OpenShift microservices
         </p>
         <div class="get-started-button">
-          <a href="#get-started" id="get-started-btn" class="btn btn-black">Get Started</a>
+          <a href="/docs/latest/" id="get-started-btn" class="btn btn-black">Get Started</a>
         </div>
         <div class="github-buttons">
           <a class="github-button" href="https://github.com/telepresenceio/telepresence"
@@ -142,36 +142,6 @@ export default function HomePage({ location, data }) {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="get-started" class="bg-gray padding-top-75">
-        <div class="container">
-          <h1 class="text-lg text-uppercase text-center padding-bottom-60">Get started in 3 minutes</h1>
-          <div class="bg-white border-gray box-shadow content-box">
-            <ol class="get-started-steps">
-              <li>
-                <p class="text-md"><a href="/docs/latest/install/" id="install-locally-link">Install locally</a> {/*with Homebrew, apt or dnf*/}</p>
-              </li>
-              <li>
-                <p class="text-md">Run</p>
-                <div class="code-box">
-                  <pre><code>telepresence connect</code></pre>
-                </div>
-              </li>
-              <li>
-                <p class="text-md">You now have a shell that proxies network connections to Kubernetes!</p>
-              </li>
-            </ol>
-            <script type="text/javascript" src="https://asciinema.org/a/117761.js" id="asciicast-117761" async></script>
-            <div class="text-center">
-              <a class="btn btn-black" id="read-docs-btn" href="/docs/latest/">Read the docs</a>
-            </div>
-
-            <div class="padding-top-60">
-              <h2 class="text-red text-uppercase text-md padding-bottom-20">How it works:</h2>
-              <p class="text-md font-light">Telepresence substitutes a two-way network proxy for your normal pod running in the Kubernetes cluster. This pod proxies data from your Kubernetes environment (e.g., TCP connections, environment variables, volumes) to the local process. The local process has its networking transparently overridden so that DNS calls and TCP connections are routed through the proxy to the remote Kubernetes cluster.</p>
             </div>
           </div>
         </div>

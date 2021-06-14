@@ -1,4 +1,5 @@
 import React from 'react';
+import HubspotForm from 'react-hubspot-form';
 
 import EasyLayout from '../components/EasyLayout';
 import Markdown from '../components/Markdown';
@@ -30,13 +31,10 @@ us](https://www.getambassador.io/editions/) about paid support plans.
             <h1 className="text-lg">Stay Updated</h1>
             <p className="font-light text-md">Telepresence is under active development. Subscribe to get updates and announcements:</p>
             <div className="mailing-list-signup">
-              <script type="text/javascript">{`
-                hbspt.forms.create({
-                  css: '',
-                  portalId: '485087',
-                  formId: '956287a4-7614-486b-91bd-28c9a91949cb'
-                });
-              `}</script>
+              <HubspotForm
+                portalId="485087"
+                formId="956287a4-7614-486b-91bd-28c9a91949cb"
+              />
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Helmet } from 'react-helmet';
+import HubspotForm from 'react-hubspot-form';
 import jsYAML from 'js-yaml';
 
 import EasyLayout from '../components/EasyLayout';
@@ -20,9 +20,6 @@ export default function HomePage({ location, data }) {
   return (
     <EasyLayout title="Home" location={location}
                 description="Telepresence: a local development environment for a remote Kubernetes cluster">
-      <Helmet>
-        <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
-      </Helmet>
       <section id="hero" className="bg-white text-center">
         <h1 className="text-uppercase text-xl">Telepresence</h1>
         <p className="font-light text-uppercase text-md">
@@ -152,7 +149,10 @@ export default function HomePage({ location, data }) {
             <h1 className="text-lg">Stay Updated</h1>
             <p className="font-light text-md">Telepresence is under active development. Subscribe to get updates and announcements:</p>
             <div className="mailing-list-signup">
-              <script type="text/javascript" src="/index/hubspot.js"></script>
+              <HubspotForm
+                portalId="485087"
+                formId="956287a4-7614-486b-91bd-28c9a91949cb"
+              />
             </div>
           </div>
           <div className="sponsored-by text-center">

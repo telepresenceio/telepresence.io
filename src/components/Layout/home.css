@@ -537,29 +537,29 @@ header {
     display: block !important;
 }
 
-.mailing-list-signup .hbspt-form {
+.mailing-list-signup {
     max-width: 680px;
     margin: 30px auto 0;
 }
-.mailing-list-signup .hbspt-form > form {
+.mailing-list-signup form {
     display: flex;
     flex-direction: column;
 }
 @media screen and (min-width: 768px) {
-    .mailing-list-signup .hbspt-form > form {
+    .mailing-list-signup form {
         flex-direction: row;
     }
 }
 
-.mailing-list-signup .hbspt-form > form > div:first-child{
+.mailing-list-signup form > div:first-child{
     width: 100%;
 }
 
-.mailing-list-signup .hbspt-form > form .hs_email {
+.mailing-list-signup form .hs_email {
     flex: 1;
     margin-bottom: 10px;
 }
-.mailing-list-signup .hbspt-form > form .hs_email input {
+.mailing-list-signup form .hs_email input {
     width: 100%;
     border-radius: 0;
     border: 1px solid #F9634E;
@@ -569,10 +569,10 @@ header {
     color: #9B9B9B;
     font-weight: 400;
 }
-.mailing-list-signup .hbspt-form > form .hs_email > label {
+.mailing-list-signup form .hs_email > label {
     display: none;
 }
-.mailing-list-signup .hbspt-form .hs-error-msgs {
+.mailing-list-signup .hs-error-msgs {
     list-style-type: none;
     margin-bottom: 0;
 }

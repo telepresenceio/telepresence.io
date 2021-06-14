@@ -1,6 +1,7 @@
 import React from 'react';
 
 import EasyLayout from '../components/EasyLayout';
+import Markdown from '../components/Markdown';
 
 export default function AboutPage({ location }) {
   return (
@@ -9,25 +10,22 @@ export default function AboutPage({ location }) {
       <section id="about-page" class="bg-white">
         <div class="container">
           <h1 class="text-lg">About</h1>
-          <p>Telepresence is an open source tool that lets you run a single service locally, while connecting that
-          service to a remote Kubernetes cluster.</p>
-          <p>
-            Telepresence was originally built by the team at
-            <a target="_blank" rel="noreferrer" href="https://www.getambassador.io/">Ambassador Labs</a>, which builds open source development tools
-            for Kubernetes, including <a target="_blank" rel="noreferrer" href="https://forge.sh/">Forge</a> and
-            <a target="_blank" rel="noreferrer" href="https://www.getambassador.io">Ambassador</a>. The current list of maintainers of
-            Telepresence are listed in the
-            <a target="_blank" rel="noreferrer" href="https://github.com/telepresenceio/telepresence/blob/master/MAINTAINERS.md">MAINTAINERS.md</a>
-          file.</p>
-          <p>
-            We welcome all community contributions. If you find a bug or a mistake in the documentation, you can help us
-            out by <a target="_blank" rel="noreferrer" href="https://github.com/telepresenceio/telepresence/issues/new">submitting an issue</a>
-            or a pull request with a fix. If you have questions, join our active
-            <a target="_blank" rel="noreferrer" href="https://a8r.io/slack">Slack
-            community</a> or <a target="_blank" rel="noreferrer" href="https://www.getambassador.io/editions/">contact us</a> about paid
-            support plans.
-          </p>
+          <Markdown>{`
 
+Telepresence is an open source tool that lets you run a single service locally, while connecting that service to a
+remote Kubernetes cluster.
+
+Telepresence was originally built by the team at [Ambassador Labs](https://www.getambassador.io/), which builds open
+source development tools for Kubernetes, including [Forge](https://forge.sh/) and
+[Ambassador](https://www.getambassador.io).  The current list of maintainers of Telepresence are listed in the
+[MAINTAINERS.md](https://github.com/telepresenceio/telepresence/blob/master/MAINTAINERS.md) file.
+
+We welcome all community contributions.  If you find a bug or a mistake in the documentation, you can help us out by
+[submitting an issue](https://github.com/telepresenceio/telepresence/issues/new) or a pull request with a fix.  If you
+have questions, join our active [Slack community](https://a8r.io/slack) or [contact
+us](https://www.getambassador.io/editions/) about paid support plans.
+
+`}</Markdown>
           <div class="bg-white content-box text-center">
             <h1 class="text-lg">Stay Updated</h1>
             <p class="font-light text-md">Telepresence is under active development. Subscribe to get updates and announcements:</p>

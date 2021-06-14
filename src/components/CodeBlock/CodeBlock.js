@@ -32,7 +32,7 @@ export default (props) => {
   //
   // MDX spits out
   //
-  //     <pre><code class=language-LANG PROPS>CONTENT</code></pre>
+  //     <pre><code className=language-LANG PROPS>CONTENT</code></pre>
   //
   // except that <pre> is hijacked replaced with <CodeBlock>.  In that
   // case, we actually care about the <code> block's props, not our

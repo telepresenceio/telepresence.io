@@ -5,10 +5,10 @@ import EasyLayout from '../../components/EasyLayout';
 export default function VerloopPage({ location }) {
   return (
     <EasyLayout title="Verloop Case Study" location={location}>
-      <section id="case-study" class="bg-white">
+      <section id="case-study" className="bg-white">
 
-        <div class="container">
-          <h1 class="title">Verloop: Going from 4.5 minute to 0 second build times</h1>
+        <div className="container">
+          <h1 className="title">Verloop: Going from 4.5 minute to 0 second build times</h1>
 
           <h2>Can you tell us about yourself and what your company does?</h2>
 
@@ -30,8 +30,8 @@ export default function VerloopPage({ location }) {
 
           <p>0 wait on build times has been the biggest gain. We have builds from that take as long as 4.5 minutes. With kube-openvpn, it was possible to avoid building every single time, but it was cumbersome and time consuming to set up forwarding from our local to cluster. All of our wait times went to 0 the day we switched to Telepresence.</p>
 
-          <div class="text-center">
-            <a href="/#get-started" class="btn btn-black">Get Started</a>
+          <div className="text-center">
+            <a href="/#get-started" className="btn btn-black">Get Started</a>
           </div>
         </div>
 

@@ -17,12 +17,12 @@ export default function Layout({ location, children }) {
         <link rel="shortcut icon" href="/favicon.ico"/>
       </Helmet>
 
-      <header class="white-bg">
-        <div class="navigation-left">
-          <a class="datawire-link" href="/">
+      <header className="white-bg">
+        <div className="navigation-left">
+          <a className="datawire-link" href="/">
             <img alt="Telepresence" src={ImgLogo}/>
           </a>
-          <ul class="main-navigation">
+          <ul className="main-navigation">
             <li>
               <a href="/docs/latest/">Docs</a>
             </li>
@@ -40,12 +40,12 @@ export default function Layout({ location, children }) {
             </li>
           </ul>
         </div>
-        <div class="navigation-right">
-          <ul class="main-navigation right">
+        <div className="navigation-right">
+          <ul className="main-navigation right">
             <li>
-              <div class="dropdown">
-                <button class="dropbtn">▾ Need Help?</button>
-                <div class="dropdown-content">
+              <div className="dropdown">
+                <button className="dropbtn">▾ Need Help?</button>
+                <div className="dropdown-content">
                   <a target="_blank" rel="noreferrer" href="https://a8r.io/slack">Community Slack</a>
                 </div>
               </div>
@@ -54,20 +54,20 @@ export default function Layout({ location, children }) {
         </div>
       </header>
 
-      <section class="banner">
-        <div class="banner__text">
-          <a href="/announcing-telepresence-2/" class="banner__link">
+      <section className="banner">
+        <div className="banner__text">
+          <a href="/announcing-telepresence-2/" className="banner__link">
             Telepresence 2 is now the default version of Telepresence.
             Learn about the switch from Telepresence v1 to v2
-            <img alt="" class="banner__icon" src={ImgArrow}/>
+            <img alt="" className="banner__icon" src={ImgArrow}/>
           </a>
         </div>
       </section>
 
       <div className="main-body">{children}</div>
 
-      <footer class="white-bg">
-        <ul class="main-navigation flex-center">
+      <footer className="white-bg">
+        <ul className="main-navigation flex-center">
           <li>
             <a href="/docs/latest">Docs</a>
           </li>

@@ -6,17 +6,17 @@ import './bitnami.less'
 export default function BitnamiPage({ location }) {
   return (
     <EasyLayout title="Bitnami Case Study" location={location}>
-      <section id="case-study" class="bg-white case-study-bitnami">
+      <section id="case-study" className="bg-white case-study-bitnami">
 
-        <div class="container">
-          <h1 class="title">Bitnami</h1>
+        <div className="container">
+          <h1 className="title">Bitnami</h1>
 
-          <div class="video">
+          <div className="video">
             <iframe width="560" height="315" src="//www.youtube-nocookie.com/embed/8Dl8U-AbJN0?rel&#x3D;0&amp;amp;showinfo&#x3D;0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
 
-          <div class="row">
-            <div class="col transcript">
+          <div className="row">
+            <div className="col transcript">
               <h2>Transcript</h2>
               <div id="transcript-content">
                 <p><strong>Ara Pulido:</strong> So thanks, thanks a lot for coming. My name is Ara Pulido. I am engineering manager at Bitnami. This is actually my second KubeCon so still pretty new to the community. And for the next few minutes I'm going to be talking about a tool that we discover in the previous KubeCon in Austin. And since then has become a key piece so far in our development process.</p>
@@ -93,13 +93,13 @@ export default function BitnamiPage({ location }) {
                 <p><strong>Richard Lee:</strong> Yeah, I'm not sure either. Was that your situation?</p>
                 <p><strong>Ara Pulido:</strong> I think, yeah, I think we've run out of time. So, if you have any other questions I'll be at the Bitnami booth most of the conference and I know Richard is going to be at the Datawire one most of the conference. So come reach us. Thank you.</p>
               </div>
-              <div class="transcript-fade"></div>
-              <a href="#" id="toggle-transcript" class="btn btn-black">Expand</a>
+              <div className="transcript-fade"></div>
+              <a href="#" id="toggle-transcript" className="btn btn-black">Expand</a>
             </div>
-            <div class="col slides">
+            <div className="col slides">
               <h2>Slides</h2>
-              <div class="slide-embed">
-                <script async class="speakerdeck-embed" data-id="8ed089b6084b4cf3b842c0a3db0d8941" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+              <div className="slide-embed">
+                <script async className="speakerdeck-embed" data-id="8ed089b6084b4cf3b842c0a3db0d8941" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
               </div>
             </div>
           </div>

@@ -5,10 +5,10 @@ import EasyLayout from '../../components/EasyLayout';
 export default function IrisPage({ location }) {
   return (
     <EasyLayout title="IRIS.TV Case Study" location={location}>
-      <section id="case-study" class="bg-white">
+      <section id="case-study" className="bg-white">
 
-        <div class="container">
-          <h1 class="title">IRIS.TV</h1>
+        <div className="container">
+          <h1 className="title">IRIS.TV</h1>
 
           <h2>Can you tell us about yourself and what your company does?</h2>
           <p>
@@ -36,8 +36,8 @@ export default function IrisPage({ location }) {
             set of users, and incrementally rolling it out is a good strategy. Also, <a href="https://a8r.io/slack">talk with the Ambassador Labs team</a> on
             their Slack chat; they can provide good advice and perspective.
           </p>
-          <div class="text-center">
-            <a href="/#get-started" class="btn btn-black">Get Started</a>
+          <div className="text-center">
+            <a href="/#get-started" className="btn btn-black">Get Started</a>
           </div>
         </div>
 

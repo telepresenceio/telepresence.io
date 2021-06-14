@@ -6,9 +6,9 @@ import Markdown from '../components/Markdown';
 export default function Tel2Page({ location }) {
   return (
     <EasyLayout title="Announcing Telepresence 2!" location={location}>
-      <section id="about-page" class="bg-white">
+      <section id="about-page" className="bg-white">
         {/* FIXME: It's stupid to put docs__main here, but reset.css is a pain and breaks everything until you fix it */}
-        <div class="container docs__main">
+        <div className="container docs__main">
           <Markdown>{`
 
 # Announcing Telepresence 2!

@@ -7,11 +7,11 @@ import jsYAML from 'js-yaml';
 import url from 'url';
 
 import Layout from '../components/Layout';
-import CodeBlock from '../components/CodeBlock';
 import Release from '../components/ReleaseNotes/Release';
 import GithubIcon from '../images/github-icon.inline.svg';
-import "@fontsource/inter"
+import { components } from '../components/Markdown';
 
+import '@fontsource/inter';
 import './doc-page.less';
 
 // Given a content string and a dict of variables, expand $variables$ in the string.
@@ -51,14 +51,6 @@ const MarkdownContent = ({
   siteTitle,
   maybeShowReadingTime,
 }) => {
-  const components = {
-    // Override default markdown output.
-    'pre': CodeBlock,
-
-    // Add new custom components.
-    // (none right now)
-  };
-
   const title = mdxNode.frontmatter.title ||
         mdxNode.headings[0]?.value ||
         "Docs";

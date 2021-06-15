@@ -3,14 +3,14 @@ import MDX from '@mdx-js/runtime';
 
 import CodeBlock from '../CodeBlock';
 
+export const components = {
+  // Override default markdown output.
+  'pre': CodeBlock,
+
+  // Add new custom components.
+  // (none right now)
+};
+
 export default function Markdown({ children }) {
-  const components = {
-    // Override default markdown output.
-    'pre': CodeBlock,
-
-    // Add new custom components.
-    // (none right now)
-  };
-
   return <MDX components={components}>{children}</MDX>;
 }

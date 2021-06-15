@@ -5,6 +5,8 @@ import jsYAML from 'js-yaml';
 import $ from 'jquery';
 import GitHubButton from 'react-github-btn';
 
+import 'slick-carousel/slick/slick.less';
+
 import EasyLayout from '../components/EasyLayout';
 
 import ImgBirdOnBricks         from '../assets/images/bird-on-bricks.svg';
@@ -34,6 +36,8 @@ export default function HomePage({ location, data }) {
         $('.tab-content div').hide();
         $('#' + tabId).show();
       }
+
+      import('slick-carousel').then(() => {$('.quotes').slick();});
     });
   }, []);
 

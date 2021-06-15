@@ -14,7 +14,13 @@ export default function BitnamiPage({ location }) {
           <h1 className="title">Bitnami</h1>
 
           <div className="video">
-            <iframe width="560" height="315" src="//www.youtube-nocookie.com/embed/8Dl8U-AbJN0?rel&#x3D;0&amp;amp;showinfo&#x3D;0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe
+              width="560" height="315"
+              src="//www.youtube-nocookie.com/embed/8Dl8U-AbJN0?rel&#x3D;0&amp;amp;showinfo&#x3D;0"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            ></iframe>
           </div>
 
           <div className="row">

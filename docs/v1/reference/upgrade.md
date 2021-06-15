@@ -2,9 +2,9 @@
 
 #### OS X
 On OS X you can upgrade Telepresence by running the following:
-<button data-system="osx" data-location="upgrade" class="button fa-pull-right copy-to-clipboard" data-clipboard-text="brew upgrade datawire/blackbird/telepresence">Copy to clipboard</button>
+<button data-system="osx" data-location="upgrade" class="button fa-pull-right copy-to-clipboard" data-clipboard-text="brew upgrade datawire/blackbird/telepresence-legacy">Copy to clipboard</button>
 ```shell
-brew upgrade datawire/blackbird/telepresence
+brew upgrade datawire/blackbird/telepresence-legacy
 ```
 
 #### Ubuntu

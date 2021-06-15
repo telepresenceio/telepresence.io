@@ -29,7 +29,7 @@ On OS X you can install Telepresence by running the following:
 
 \`\`\`shell
 brew install --cask osxfuse
-brew install datawire/blackbird/telepresence
+brew install datawire/blackbird/telepresence-legacy
 \`\`\`
 
 #### Ubuntu 16.04 or later

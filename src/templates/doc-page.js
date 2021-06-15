@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, graphql, navigate } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -111,7 +111,7 @@ const ReleaseNotesContent = ({
       {
         content.changelog &&
           <p>For a detailed list of all the changes in past releases, please
-          consult the <Link to={content.changelog}>CHANGELOG</Link>.</p>
+          consult the <a href={content.changelog}>CHANGELOG</a>.</p>
       }
     </>
   );

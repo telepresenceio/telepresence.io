@@ -51,23 +51,23 @@ export default function HomePage({ location, data }) {
       <section id="tabs" className="bg-white box-shadow">
         <div className="container">
           <ul className="about-tabs">
-            <li className="tab" data-tabId="debug-locally">
+            <li className="tab" data-tabid="debug-locally">
               <img alt="Debug locally" className="svg" src={ImgDebugLocally}/>
               <span>Debug locally</span>
             </li>
-            <li className="tab" data-tabId="instant-feedback">
+            <li className="tab" data-tabid="instant-feedback">
               <img alt="Instant feedback" className="svg" src={ImgInstantFeedback}/>
               <span>Instant feedback</span>
             </li>
-            <li className="tab" data-tabId="realistic-environment">
+            <li className="tab" data-tabid="realistic-environment">
               <img alt="Realistic environment" className="svg" src={ImgRealisticEnvironment}/>
               <span>Realistic environment</span>
             </li>
-            <li className="tab" data-tabId="minimal-resources">
+            <li className="tab" data-tabid="minimal-resources">
               <img alt="Minimal resource footprint" className="svg" src={ImgMinimalResources}/>
               <span>Minimal resource footprint</span>
             </li>
-            <li className="tab" data-tabId="your-tools">
+            <li className="tab" data-tabid="your-tools">
               <img alt="Use your own tools" className="svg" src={ImgYourTools}/>
               <span>Use your own tools</span>
             </li>

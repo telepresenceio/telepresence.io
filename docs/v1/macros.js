@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
 import Markdown from '@src/components/Markdown';
 
@@ -10,7 +9,7 @@ export function Install({install, command, cluster, location}) {
 
       <p>You will need the following available on your machine:</p>
       <ul>
-        <li><code>{ command }</code> command line tool (here's the <Link to={ install }>installation instructions</Link>).</li>
+        <li><code>{ command }</code> command line tool (here's the <a target="_blank" rel="noopener noreferrer" href={ install }>installation instructions</a>).</li>
         <li>Access to your { cluster } cluster, with local credentials on your machine. You can test this by running <code>{ command } get pod</code> - if this works you're all set.</li>
       </ul>
 
@@ -162,7 +161,7 @@ This does three things:
 As long as you leave the HTTP server running inside \`telepresence\` it will be accessible from inside the ${ cluster } cluster.
 You've gone from this...
 
-<div class="mermaid">
+<div className="mermaid">
 graph RL
 subgraph ${ cluster } in Cloud
 server["datawire/hello-world server on port 8000"]
@@ -171,7 +170,7 @@ end
 
 ...to this:
 
-<div class="mermaid">
+<div className="mermaid">
 graph RL
 subgraph Laptop
 code["python HTTP server on port 8000"]---client[Telepresence client]

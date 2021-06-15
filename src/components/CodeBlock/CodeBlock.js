@@ -96,10 +96,10 @@ export default (props) => {
       return (
         <div className={styles.CodeBlock__light}>
           <div className={styles.CodeBlock__header}>
-            <label>
+            <span>
               <TerminalIcon />
-            Terminal
-          </label>
+              Terminal
+            </span>
           </div>
           <pre className={`language-${language}`}>
             {sections.map((section, index) => {
@@ -157,10 +157,10 @@ export default (props) => {
           {({ tokens, getLineProps, getTokenProps }) => (
             <div className={styles.CodeBlock__light}>
               <div className={styles.CodeBlock__header}>
-                <label>
+                <span>
                   <CodeIcon />
                   {language}
-                </label>
+                </span>
                 <CopyButton
                   fileName={fileName}
                   content={content}

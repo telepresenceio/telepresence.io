@@ -15,6 +15,7 @@ export default function BitnamiPage({ location }) {
 
           <div className="video">
             <iframe
+              title="Video"
               width="560" height="315"
               src="//www.youtube-nocookie.com/embed/8Dl8U-AbJN0?rel&#x3D;0&amp;amp;showinfo&#x3D;0"
               frameborder="0"

@@ -66,7 +66,7 @@ server.on('request', async (request, response) => {
       redirectsFiles: [path.resolve(dir, '_redirects')],
       netlifyConfigPath: cfg,
     });
-  } catch {
+  } catch (err) {
     response.writeHead(500, {
       'Content-Type': 'application/json',
     });
@@ -101,7 +101,7 @@ server.on('request', async (request, response) => {
         'Content-Type': 'text/plain',
       });
       response.end(`Redirecting to ${location}`);
-    } else if (redirect = redirects.find((redirect)=>(matchesRedirect(false, requestURL, redirect)))) {
+    } else if ((redirect = redirects.find((redirect)=>(matchesRedirect(false, requestURL, redirect))))) {
       doRedirect(requestURL, response, redirect);
     } else {
       response.writeHead(404, {

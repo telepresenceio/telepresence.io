@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
 import HubspotForm from 'react-hubspot-form';
 import jsYAML from 'js-yaml';
+import $ from 'jquery';
 import GitHubButton from 'react-github-btn';
 
 import EasyLayout from '../components/EasyLayout';
 
 import ImgBirdOnBricks         from '../assets/images/bird-on-bricks.svg';
-import ImgDebugLocally         from '../assets/images/debug-locally.svg';
-import ImgInstantFeedback      from '../assets/images/instant-feedback.svg';
-import ImgRealisticEnvironment from '../assets/images/realistic-environment.svg';
-import ImgMinimalResources     from '../assets/images/minimal-resources.svg';
-import ImgYourTools            from '../assets/images/your-tools.svg';
 import ImgQuote                from '../assets/images/quote.svg';
 import ImgVizualaiLogo         from '../assets/images/vizualai-logo.jpg';
 
+import SvgDebugLocally         from '../assets/images/debug-locally.inline.svg';
+import SvgInstantFeedback      from '../assets/images/instant-feedback.inline.svg';
+import SvgRealisticEnvironment from '../assets/images/realistic-environment.inline.svg';
+import SvgMinimalResources     from '../assets/images/minimal-resources.inline.svg';
+import SvgYourTools            from '../assets/images/your-tools.inline.svg';
+
 export default function HomePage({ location, data }) {
   const variables = jsYAML.safeLoad(data.file.internal.content);
+
+  useEffect(() => {
+    $(document).ready(function() {
+      changeTab($('.about-tabs li.tab:first-child').data('tabid'));
+
+      $('.about-tabs li.tab').click(function() {
+        changeTab($(this).data('tabid'));
+      });
+
+      function changeTab(tabId) {
+        $('.about-tabs li.tab').removeClass('active');
+        $('.about-tabs li.tab[data-tabId="'+tabId+'"]').addClass('active');
+        $('.tab-content div').hide();
+        $('#' + tabId).show();
+      }
+    });
+  }, []);
 
   return (
     <EasyLayout title="Home" location={location}
@@ -53,34 +72,34 @@ export default function HomePage({ location, data }) {
         <div className="container">
           <ul className="about-tabs">
             <li className="tab" data-tabid="debug-locally">
-              <img alt="Debug locally" className="svg" src={ImgDebugLocally}/>
+              <SvgDebugLocally/>
               <span>Debug locally</span>
             </li>
             <li className="tab" data-tabid="instant-feedback">
-              <img alt="Instant feedback" className="svg" src={ImgInstantFeedback}/>
+              <SvgInstantFeedback/>
               <span>Instant feedback</span>
             </li>
             <li className="tab" data-tabid="realistic-environment">
-              <img alt="Realistic environment" className="svg" src={ImgRealisticEnvironment}/>
+              <SvgRealisticEnvironment/>
               <span>Realistic environment</span>
             </li>
             <li className="tab" data-tabid="minimal-resources">
-              <img alt="Minimal resource footprint" className="svg" src={ImgMinimalResources}/>
+              <SvgMinimalResources/>
               <span>Minimal resource footprint</span>
             </li>
             <li className="tab" data-tabid="your-tools">
-              <img alt="Use your own tools" className="svg" src={ImgYourTools}/>
+              <SvgYourTools/>
               <span>Use your own tools</span>
             </li>
           </ul>
           <div className="tab-content font-light">
             <div id="debug-locally">
               <p>Debug your Kubernetes service locally, using your favorite debugging tool.</p>
-              <p><a className="tutorial-link" href="/tutorials/kubernetes">Go to tutorial</a></p>
+              {/*<p><a className="tutorial-link" href="/tutorials/kubernetes">Go to tutorial</a></p>*/}
             </div>
             <div id="instant-feedback">
               <p>Test and iterate on code changes instantly, instead of waiting for your deployment cycle.</p>
-              <p><a className="tutorial-link" href="/tutorials/kubernetes-rapid">Go to tutorial</a></p>
+              {/*<p><a className="tutorial-link" href="/tutorials/kubernetes-rapid">Go to tutorial</a></p>*/}
             </div>
             <div id="realistic-environment">
               <p>

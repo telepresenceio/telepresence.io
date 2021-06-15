@@ -8,3 +8,6 @@
 
 # gatsby-plugin-extract-schema
 /schema.graphql
+
+# Other
+*.log

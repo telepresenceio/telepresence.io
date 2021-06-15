@@ -1,3 +1,17 @@
+// Many packages in the build process have built-in sanity checking; we want CI
+// to be able to run those checks to catch mistakes.
+//
+// Many of these packages, such as 'react-dom' and 'gatsby-link' only do that
+// sanity checking in NODE_ENV == 'development', or at least NODE_ENV !=
+// 'production'.  This is problematic because `gatsby build` forcefully sets
+// NODE_ENV='production', and ignores whatever the user actually set NODE_ENV
+// to.  And `gatsby develop` doesn't help, because it won't eagerly process
+// every page (and even if it did, a lot of the errors would end up in the
+// browser console when you go to that page, and not in the terminal).
+//
+// So, give the user an escape hatch to undo what `gatsby build` did.
+process.env.NODE_ENV = process.env.OVERRIDE_NODE_ENV || process.env.NODE_ENV;
+
 module.exports = {
   siteMetadata: {
     title: "Telepresence",

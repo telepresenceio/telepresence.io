@@ -9,7 +9,12 @@ jobs:
           node-version: '16'
       - uses: actions/checkout@v2
       - run: yarn install
-      - run: yarn run gatsby build
+      - name: "yarn run gatsby build"
+        run: |
+          # The sed part of this command removes terminal escape codes.
+          OVERRIDE_NODE_ENV=development yarn run gatsby build 2> >(tee /dev/stdout | sed $'s/\e[^a-z]*[a-z]//g' > err.log)
+      - run: |
+          ! grep ^ err.log
       - name: "Dirty check"
         run: |
           git add .

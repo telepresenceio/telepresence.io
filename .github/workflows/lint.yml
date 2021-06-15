@@ -1,0 +1,23 @@
+name: "Quality Assurance"
+on: [push]
+jobs:
+  "Lint":
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - run: yarn run gatsby build
+      - name: "Dirty check"
+        run: |
+          git add .
+          if [[ -n "$(git status --porcelain)" ]]; then
+            PAGER= git diff --cached
+            exit 1
+          fi
+      - name: yarn run eslint .
+        run: |
+          yarn run eslint . |& tee lint.log
+          ! grep problem lint.log

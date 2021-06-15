@@ -15,15 +15,16 @@ Commands of interest:
 
    # Development
    yarn run gatsby develop  # Serve a hot-reloading development-build at http://localhost:8000/
-   yarn run gatsby repl     # Run a Node.js REPL in the Gatsby environment.
+   yarn run gatsby repl     # Run a Node.js REPL in the Gatsby environment
+   yarn run eslint .        # Run the linter
+   make pull-docs           # Update ./docs/ from ambassador-docs.git
 
    # Production or production-like
    yarn run gatsby build    # Build a production-build, writing it to ./public/
    ./bin/serve.js           # Serve ./public/ at http://localhost:9000/ (see below for commentary)
 
    # Other
-   yarn run gatsby clean    # Clean ./.cache/, which sometimes becomes corrupt.
-   make pull-docs           # Update ./docs/ from ambassador-docs.git
+   yarn run gatsby clean    # Clean ./.cache/, which sometimes becomes corrupt
    ```
 
 You may wish to say `PATH=$PWD/node_modules/.bin:$PATH` instead of
@@ -64,6 +65,12 @@ Other:
    trailing whitespace, add trailing newlines, that sort of thing.
    Please ensure that your editor obeys EditorConfig, there are
    plugins for most editors https://editorconfig.org/
+ - `.eslintrc.js`: Configures the ESLint linter, which we use.
+ - `.github/workflows/*.yml`: CI/CD configuration, except for Netlify.
+   Netlify builds and deploys the site from `master`, and also puts
+   preview deploys on PRs; so the configuration here doesn't need to
+   worry about that, and only needs to worry about quality-checks like
+   linting and link-checking.
  - `.gitignore`: Duh.
 
 ## Yarn, not NPM

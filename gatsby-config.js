@@ -75,5 +75,9 @@ module.exports = {
       //
       //resolve: 'gatsby-plugin-meta-redirect',
     },
+    // Dump the GraphQL schema so that ESLint can take advantage of that info.
+    {
+      resolve: 'gatsby-plugin-extract-schema',
+    },
   ],
 };

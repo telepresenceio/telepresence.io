@@ -2050,6 +2050,13 @@ acorn@^8.0.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.2.4.tgz#caba24b08185c3b56e3168e97d15ed17f4d31fd0"
   integrity sha512-Ibt84YwBDDA890eDiDCEqcbwvHlBvzzDkU2cGBBDDI1QWT12jTiXIOn2CIw5KK4i6N5Z2HUxwYjzriDyqaqqZg==
 
+add-filename-increment@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/add-filename-increment/-/add-filename-increment-1.0.0.tgz#106feea10dcda5d2bfe25a5e83d347382f9dd97d"
+  integrity sha512-pFV8VZX8jxuVMIycKvGZkWF/ihnUubu9lbQVnOnZWp7noVxbKQTNj7zG2y9fXdPcuZ6lAN3Drr517HaivGCjdQ==
+  dependencies:
+    strip-filename-increment "^2.0.1"
+
 address@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
@@ -5691,6 +5698,13 @@ gatsby-page-utils@^0.9.1:
     glob "^7.1.6"
     lodash "^4.17.20"
     micromatch "^4.0.2"
+
+gatsby-plugin-extract-schema@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-extract-schema/-/gatsby-plugin-extract-schema-0.2.0.tgz#58ba5227a1e1a377a0b37350e0212fbc617399ce"
+  integrity sha512-43acdmJckePlCgW1pknv2BgzjlUQ4VVlZAjUBdiMMI3GwSHnjSp/i/Ph7VWCdGdaIEKf+N2A+I7dAfW+PiFTaA==
+  dependencies:
+    write "^2.0.0"
 
 gatsby-plugin-less@^3.2.2:
   version "3.2.9"
@@ -12030,6 +12044,11 @@ strip-eof@^1.0.0:
   resolved "https://registry.yarnpkg.com/strip-eof/-/strip-eof-1.0.0.tgz#bb43ff5598a6eb05d89b59fcd129c983313606bf"
   integrity sha1-u0P/VZim6wXYm1n80SnJgzE2Br8=
 
+strip-filename-increment@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/strip-filename-increment/-/strip-filename-increment-2.0.1.tgz#3feca2ebd529d4cdcad0281a9bbb2660b096fcc6"
+  integrity sha512-+v5xsiTTsdYqkPj7qz1zlngIsjZedhHDi3xp/9bMurV8kXe9DAr732gNVqtt4X8sI3hOqS3nlFfps5gyVcux6w==
+
 strip-final-newline@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strip-final-newline/-/strip-final-newline-2.0.0.tgz#89b852fb2fcbe936f6f4b3187afb0a12c1ab58ad"
@@ -13402,6 +13421,13 @@ write@1.0.3:
   integrity sha512-/lg70HAjtkUgWPVZhZcm+T4hkL8Zbtp1nFNOn3lRrxnlv50SRBv7cR7RqR+GMsd3hUXy9hWBo4CHTbFTcOYwig==
   dependencies:
     mkdirp "^0.5.1"
+
+write@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/write/-/write-2.0.0.tgz#d6320a5f764fbd6ee93022f61273d62fa23dbd04"
+  integrity sha512-yam9TAqN8sAZokECAejo9HpT2j2s39OgK8i8yxadrFBVo+iSWLfnipRVFulfAw1d2dz5vSuGmlMHYRKG4fysOA==
+  dependencies:
+    add-filename-increment "^1.0.0"
 
 ws@7.4.5, ws@^7.3.0, ws@~7.4.2:
   version "7.4.5"

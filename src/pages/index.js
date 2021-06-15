@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import HubspotForm from 'react-hubspot-form';
 import jsYAML from 'js-yaml';
+import GitHubButton from 'react-github-btn';
 
 import EasyLayout from '../components/EasyLayout';
 
@@ -29,13 +30,13 @@ export default function HomePage({ location, data }) {
           <a href="/docs/latest/" id="get-started-btn" className="btn btn-black">Get Started</a>
         </div>
         <div className="github-buttons">
-          <a className="github-button" href="https://github.com/telepresenceio/telepresence"
-             data-icon="octicon-star" data-show-count="true"
-             aria-label="Star telepresenceio/telepresence on GitHub">Star</a>
+          <GitHubButton href="https://github.com/telepresenceio/telepresence"
+                        data-icon="octicon-star" data-show-count="true"
+                        aria-label="Star telepresenceio/telepresence on GitHub">Star</GitHubButton>
           {' '}
-          <a className="github-button" href="https://github.com/telepresenceio/telepresence/fork"
-             data-icon="octicon-repo-forked" data-show-count="true"
-             aria-label="Fork telepresenceio/telepresence on GitHub">Fork</a>
+          <GitHubButton href="https://github.com/telepresenceio/telepresence/fork"
+                        data-icon="octicon-repo-forked" data-show-count="true"
+                        aria-label="Fork telepresenceio/telepresence on GitHub">Fork</GitHubButton>
         </div>
         <div className="text-center text-md text-black">
           <div className="version-number">
@@ -168,7 +169,6 @@ export default function HomePage({ location, data }) {
           </div>
         </div>
       </section>
-      <script async defer src="https://buttons.github.io/buttons.js"></script>
     </EasyLayout>
   );
 }

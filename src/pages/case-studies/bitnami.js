@@ -108,7 +108,12 @@ export default function BitnamiPage({ location }) {
             <div className="col slides">
               <h2>Slides</h2>
               <div className="slide-embed">
-                <script async className="speakerdeck-embed" data-id="8ed089b6084b4cf3b842c0a3db0d8941" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+                <iframe
+                  title="Slides"
+                  src="//speakerdeck.com/player/8ed089b6084b4cf3b842c0a3db0d8941"
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </div>

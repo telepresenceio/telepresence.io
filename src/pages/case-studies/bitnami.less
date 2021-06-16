@@ -9,18 +9,18 @@
         background: white;
         border-radius: 2px;
         margin: 25px 0;
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
     }
 
-    .video iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .transcript {
+    .col.transcript {
         margin-bottom: 35px;
 
         #transcript-content {
@@ -50,8 +50,40 @@
         }
     }
 
-    .slide-embed iframe {
-        max-width: 100%;
-        overflow: hidden;
+    .col.slides {
+        // https://fettblog.eu/blog/2013/06/16/preserving-aspect-ratio-for-embedded-iframes/
+        // Recent CSS has a simpler aspect-ratio property, but it's
+        // too new for us to use.
+        .slide-embed {
+            position: relative;
+            width: 100%;
+            // The embed HTML that Speaker Deck gives us tells us that
+            // the aspect ratio is "1.77777777777778"; and math tells
+            // us that "1/1.777…" is "0.5625".
+            padding-bottom: 56.25%;
+            iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 576px) {
+    .case-study-bitnami {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+
+            .col {
+                flex: 1;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
     }
 }

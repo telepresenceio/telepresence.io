@@ -1,6 +1,8 @@
 import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
+import Mermaid from '../Mermaid';
+
 import styles from './styles.module.less';
 
 import CopyButton from './CopyButton';
@@ -144,6 +146,11 @@ export default (props) => {
             })}
           </pre>
         </div>
+      );
+
+    case `mermaid`:
+      return (
+        <Mermaid>{content}</Mermaid>
       );
 
     default:

@@ -5,10 +5,10 @@ import EasyLayout from '../../components/EasyLayout';
 export default function EngelVolkersPage({ location }) {
   return (
     <EasyLayout title="Engel & Völkers Case Study" location={location}>
-      <section id="case-study" class="bg-white">
+      <section id="case-study" className="bg-white">
 
-        <div class="container">
-          <h1 class="title">Engel & Völkers</h1>
+        <div className="container">
+          <h1 className="title">Engel & Völkers</h1>
 
           <h2>Can you tell us about yourself and what your company does?</h2>
 
@@ -30,8 +30,8 @@ export default function EngelVolkersPage({ location }) {
 
           <p>Try to adopt Telepresence for a few weeks, it will be immediately clear how much easier it is to develop (micro)services using Kubernetes and Docker technologies. We were skeptical at the beginning but now more and more developers inside our company are starting to use Telepresence in their daily routine. There are many advantages and the installation is extremely simple and lightweight.</p>
 
-          <div class="text-center">
-            <a href="/#get-started" class="btn btn-black">Get Started</a>
+          <div className="text-center">
+            <a href="/#get-started" className="btn btn-black">Get Started</a>
           </div>
         </div>
 

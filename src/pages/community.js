@@ -8,9 +8,9 @@ export default function CommunityPage({ location }) {
   return (
     <EasyLayout title="Community" location={location}
                 description="Get involved and collaborate with our outstanding community of adopters and contributors on the Telepresence project">
-      <section class="bg-white text-center padding-bottom-75 padding-top-60">
-        <h1 class="text-uppercase text-xl">Join The Telepresence Community</h1>
-        <p class="font-light text-md">
+      <section className="bg-white text-center padding-bottom-75 padding-top-60">
+        <h1 className="text-uppercase text-xl">Join The Telepresence Community</h1>
+        <p className="font-light text-md">
           Get involved and collaborate with our outstanding open source community
         </p>
       </section>
@@ -76,18 +76,18 @@ export default function CommunityPage({ location }) {
           font-size: .9em;
         }
       `}</style>
-      <section class="bg-gray padding-top-75 padding-bottom-75">
-        <div class="container text-center">
-          <h2 class="text-lg text-center text-black">
+      <section className="bg-gray padding-top-75 padding-bottom-75">
+        <div className="container text-center">
+          <h2 className="text-lg text-center text-black">
             Ecosystem Projects Related to Telepresence
           </h2>
-          <p class="text-md font-light">
+          <p className="text-md font-light">
             Developers worldwide are contributing to Telepresence. We’re building
             a vibrant community of contributors and related projects. We welcome
             any and all suggestions, new features, integrations, and
             documentation!
           </p>
-          <div class="side-img">
+          <div className="side-img">
             <div>
               <img src={ImgAmbassadorBird} alt="Ambassador's bird" />
             </div>
@@ -102,7 +102,7 @@ export default function CommunityPage({ location }) {
                 microservices without disturbing production.
               </p>
               <a
-                class="btn btn-red"
+                className="btn btn-red"
                 href="https://www.getambassador.io/products/telepresence/"
               >Learn More</a
               >
@@ -110,12 +110,12 @@ export default function CommunityPage({ location }) {
           </div>
         </div>
       </section>
-      <section class="bg-white padding-top-75 padding-bottom-60">
-        <div class="container text-center">
-          <h2 class="text-lg text-black text-center padding-bottom-20">
+      <section className="bg-white padding-top-75 padding-bottom-60">
+        <div className="container text-center">
+          <h2 className="text-lg text-black text-center padding-bottom-20">
             Explore and Contribute to Our Networks
           </h2>
-          <div class="blurb__section">
+          <div className="blurb__section">
             <div>
               <svg
                 width="100"
@@ -163,7 +163,7 @@ export default function CommunityPage({ location }) {
                 Join our Slack to get answers to your questions and learn how
                 others are using Telepresence at their organizations.
               </p>
-              <a class="btn btn-black" href="/tutorials/docker"
+              <a className="btn btn-black" href="/tutorials/docker"
               >Join the conversation</a
               >
             </div>
@@ -184,17 +184,17 @@ export default function CommunityPage({ location }) {
                 Help with documentation, request a new feature, or submit a bug
                 fix. No contribution is too small!
               </p>
-              <a class="btn btn-black" href="/tutorials/docker">Contribute</a>
+              <a className="btn btn-black" href="/tutorials/docker">Contribute</a>
             </div>
           </div>
         </div>
       </section>
-      <section class="bg-gray padding-top-75 padding-bottom-75">
-        <div class="container text-center">
-          <h2 class="text-lg text-black text-center padding-bottom-60">
+      <section className="bg-gray padding-top-75 padding-bottom-75">
+        <div className="container text-center">
+          <h2 className="text-lg text-black text-center padding-bottom-60">
             What the Community Is Saying About Telepresence
           </h2>
-          <div class="community-posts">
+          <div className="community-posts">
             <article>
               <h3>
                 <a
@@ -204,7 +204,7 @@ export default function CommunityPage({ location }) {
                 >Telepresence for Local Development - Michael Hausenblas</a
                 >
               </h3>
-              <p class="community-posts__author">By Michael Hausenblas</p>
+              <p className="community-posts__author">By Michael Hausenblas</p>
               <p>
                 OpenShift makes it easy to deploy your containers, but it can also
                 impact your development cycle. This post covers how you can use
@@ -218,7 +218,7 @@ export default function CommunityPage({ location }) {
                 >Run a local process in Kubernetes with Telepresence</a
                 >
               </h3>
-              <p class="community-posts__author">By Kentaro
+              <p className="community-posts__author">By Kentaro
               Wakayama</p>
               <p>
                 This post walks through how the engineers at Coder Society use
@@ -235,7 +235,7 @@ export default function CommunityPage({ location }) {
                 Telepresence</a
                 >
               </h3>
-              <p class="community-posts__author">Featured on Stacktical</p>
+              <p className="community-posts__author">Featured on Stacktical</p>
               <p>
                 Installing projects locally as a developer has always been
                 tedious, and microservices make that even more complicated. In
@@ -251,7 +251,7 @@ export default function CommunityPage({ location }) {
                 >5 open source tools for microservices developers on Kubernetes</a
                 >
               </h3>
-              <p class="community-posts__author">By Richard Li</p>
+              <p className="community-posts__author">By Richard Li</p>
               <p>
                 Kubernetes has powerful features for container scheduling, service
                 discovery, and load balancing, but what tools exist for developers
@@ -266,7 +266,7 @@ export default function CommunityPage({ location }) {
                 >Using Telepresence for Kubernetes Development</a
                 >
               </h3>
-              <p class="community-posts__author">By Michael
+              <p className="community-posts__author">By Michael
               Hausenblas & Abhay Saxena</p>
               <p>
                 In this video interview, Michael Hausenblas of Red Hat interviews
@@ -281,7 +281,7 @@ export default function CommunityPage({ location }) {
                 Ops Teams</a
                 >
               </h3>
-              <p class="community-posts__author">By Abhishek Tiwari</p>
+              <p className="community-posts__author">By Abhishek Tiwari</p>
               <p>
                 Abhishek Tiwari, head of engineering at Isentia, reviews 10 open
                 source Kubernetes tools, including Telepresence.
@@ -294,7 +294,7 @@ export default function CommunityPage({ location }) {
                 >Productive Dev Environments for Kubernetes</a
                 >
               </h3>
-              <p class="community-posts__author">By Philip Lombardi</p>
+              <p className="community-posts__author">By Philip Lombardi</p>
               <p>
                 This talk from the NYC Kubernetes meetup covers strategies and
                 trade-offs for setting up productive and realistic development
@@ -303,7 +303,7 @@ export default function CommunityPage({ location }) {
               </p>
             </article>
           </div>
-          <p class="text-center padding-top-60"><a href="/case-studies/" class="btn btn-red">Read case studies</a></p>
+          <p className="text-center padding-top-60"><a href="/case-studies/" className="btn btn-red">Read case studies</a></p>
         </div>
       </section>
     </EasyLayout>

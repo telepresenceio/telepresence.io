@@ -1,6 +1,8 @@
 import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
+import Mermaid from '../Mermaid';
+
 import styles from './styles.module.less';
 
 import CopyButton from './CopyButton';
@@ -32,7 +34,7 @@ export default (props) => {
   //
   // MDX spits out
   //
-  //     <pre><code class=language-LANG PROPS>CONTENT</code></pre>
+  //     <pre><code className=language-LANG PROPS>CONTENT</code></pre>
   //
   // except that <pre> is hijacked replaced with <CodeBlock>.  In that
   // case, we actually care about the <code> block's props, not our
@@ -96,10 +98,10 @@ export default (props) => {
       return (
         <div className={styles.CodeBlock__light}>
           <div className={styles.CodeBlock__header}>
-            <label>
+            <span>
               <TerminalIcon />
-            Terminal
-          </label>
+              Terminal
+            </span>
           </div>
           <pre className={`language-${language}`}>
             {sections.map((section, index) => {
@@ -146,6 +148,11 @@ export default (props) => {
         </div>
       );
 
+    case `mermaid`:
+      return (
+        <Mermaid>{content}</Mermaid>
+      );
+
     default:
       return (
         <Highlight
@@ -157,10 +164,10 @@ export default (props) => {
           {({ tokens, getLineProps, getTokenProps }) => (
             <div className={styles.CodeBlock__light}>
               <div className={styles.CodeBlock__header}>
-                <label>
+                <span>
                   <CodeIcon />
                   {language}
-                </label>
+                </span>
                 <CopyButton
                   fileName={fileName}
                   content={content}

@@ -166,9 +166,9 @@ exports.createPages = async ({ graphql, actions }) => {
   // Side-wide redirects
   const basepath = path.posix.sep;
   for (const { from, to } of jsYAML.safeLoad(fs.readFileSync('./redirects.yml'))) {
-      actions.createRedirect({
-        fromPath: url.resolve(basepath, from),
-        toPath:   url.resolve(basepath, to),
-      })
+    actions.createRedirect({
+      fromPath: url.resolve(basepath, from),
+      toPath:   url.resolve(basepath, to),
+    })
   }
 };

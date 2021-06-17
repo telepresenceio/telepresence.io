@@ -13,11 +13,11 @@ module.exports = {
   // We need to get from that relative filepath to the URL-path of the resulting
   // web page (with a trailing slash, since Gatsby is opinionated).
   urlpath: function(node) {
-    return '/docs/' + (node.relativePath.
-                       replaceAll(path.sep, path.posix.sep).
-                       replace(/\/index\.md$/, '/').
-                       replace(/\.md$/, '/').
-                       replace(/releaseNotes\.yml$/, 'release-notes/'));
+    return '/docs/' + (node.relativePath
+                       .replaceAll(path.sep, path.posix.sep)
+                       .replace(/\/index\.md$/, '/')
+                       .replace(/\.md$/, '/')
+                       .replace(/releaseNotes\.yml$/, 'release-notes/'));
   },
 
   docrootURL: function(node) {
@@ -51,9 +51,9 @@ module.exports = {
   },
 
   githubURL: function(node) {
-    const gitpath = 'docs/' + (node.relativePath.
-                               replace(/^latest/,'v2.3').
-                               replaceAll(path.sep, path.posix.sep));
+    const gitpath = 'docs/' + (node.relativePath
+                               .replace(/^latest/,'v2.3')
+                               .replaceAll(path.sep, path.posix.sep));
     return `https://github.com/telepresenceio/telepresence.io/blob/master/${gitpath}`;
   },
 

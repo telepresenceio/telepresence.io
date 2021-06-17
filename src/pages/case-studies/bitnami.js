@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import EasyLayout from '../../components/EasyLayout';
 import './bitnami.less'
 
 export default function BitnamiPage({ location }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <EasyLayout title="Bitnami Case Study" location={location}>
-      <section id="case-study" class="bg-white case-study-bitnami">
+      <section id="case-study" className="bg-white case-study-bitnami">
 
-        <div class="container">
-          <h1 class="title">Bitnami</h1>
+        <div className="container">
+          <h1 className="title">Bitnami</h1>
 
-          <div class="video">
-            <iframe width="560" height="315" src="//www.youtube-nocookie.com/embed/8Dl8U-AbJN0?rel&#x3D;0&amp;amp;showinfo&#x3D;0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <div className="video">
+            <iframe
+              title="Video"
+              width="560" height="315"
+              src="//www.youtube-nocookie.com/embed/8Dl8U-AbJN0?rel&#x3D;0&amp;amp;showinfo&#x3D;0"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            ></iframe>
           </div>
 
-          <div class="row">
-            <div class="col transcript">
+          <div className="row">
+            <div className="col transcript">
               <h2>Transcript</h2>
-              <div id="transcript-content">
+              <div id="transcript-content" className={expanded ? 'expanded' : ''}>
                 <p><strong>Ara Pulido:</strong> So thanks, thanks a lot for coming. My name is Ara Pulido. I am engineering manager at Bitnami. This is actually my second KubeCon so still pretty new to the community. And for the next few minutes I'm going to be talking about a tool that we discover in the previous KubeCon in Austin. And since then has become a key piece so far in our development process.</p>
                 <p><strong>Ara Pulido:</strong> So, first of all, who we are: so, Bitnami is a leader in application packaging. We have more than 120 applications on the cloud marketplaces, like AWS, Azure, DCP, etc. And that's how a lot of people know us. And a couple of years ago we started investing a lot in containers and Kubernetes. With the application packaging in our DNA, we invested a lot in Helm and we actually continue maintaining more than 20 of the official charts there.</p>
                 <p><strong>Ara Pulido:</strong> We also do a bunch of opensource projects that are always on the application deployment area of Kubernetes, so we have Kubeless, which is a server less framework for Kubernetes, Kubeapps which is an application dashboard for Kubernetes for your cluster, which is actually the application that we use telepresence for. And others like SSLSecrets or Kube CFG that we develop with HEPTIO, SSLSecrets, and others.</p>
@@ -93,13 +102,18 @@ export default function BitnamiPage({ location }) {
                 <p><strong>Richard Lee:</strong> Yeah, I'm not sure either. Was that your situation?</p>
                 <p><strong>Ara Pulido:</strong> I think, yeah, I think we've run out of time. So, if you have any other questions I'll be at the Bitnami booth most of the conference and I know Richard is going to be at the Datawire one most of the conference. So come reach us. Thank you.</p>
               </div>
-              <div class="transcript-fade"></div>
-              <a href="#" id="toggle-transcript" class="btn btn-black">Expand</a>
+              <div className="transcript-fade"></div>
+              <button onClick={() => setExpanded(!expanded)} className="btn btn-black">{expanded ? 'Collapse' : 'Expand'}</button>
             </div>
-            <div class="col slides">
+            <div className="col slides">
               <h2>Slides</h2>
-              <div class="slide-embed">
-                <script async class="speakerdeck-embed" data-id="8ed089b6084b4cf3b842c0a3db0d8941" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+              <div className="slide-embed">
+                <iframe
+                  title="Slides"
+                  src="//speakerdeck.com/player/8ed089b6084b4cf3b842c0a3db0d8941"
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </div>

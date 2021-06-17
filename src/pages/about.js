@@ -1,4 +1,5 @@
 import React from 'react';
+import HubspotForm from 'react-hubspot-form';
 
 import EasyLayout from '../components/EasyLayout';
 import Markdown from '../components/Markdown';
@@ -7,9 +8,9 @@ export default function AboutPage({ location }) {
   return (
     <EasyLayout title="About" location={location}
                 description="Telepresence: a local development environment for a remote Kubernetes cluster">
-      <section id="about-page" class="bg-white">
-        <div class="container">
-          <h1 class="text-lg">About</h1>
+      <section id="about-page" className="bg-white">
+        <div className="container">
+          <h1 className="text-lg">About</h1>
           <Markdown>{`
 
 Telepresence is an open source tool that lets you run a single service locally, while connecting that service to a
@@ -26,17 +27,14 @@ have questions, join our active [Slack community](https://a8r.io/slack) or [cont
 us](https://www.getambassador.io/editions/) about paid support plans.
 
 `}</Markdown>
-          <div class="bg-white content-box text-center">
-            <h1 class="text-lg">Stay Updated</h1>
-            <p class="font-light text-md">Telepresence is under active development. Subscribe to get updates and announcements:</p>
-            <div class="mailing-list-signup">
-              <script type="text/javascript">{`
-                hbspt.forms.create({
-                  css: '',
-                  portalId: '485087',
-                  formId: '956287a4-7614-486b-91bd-28c9a91949cb'
-                });
-              `}</script>
+          <div className="bg-white content-box text-center">
+            <h1 className="text-lg">Stay Updated</h1>
+            <p className="font-light text-md">Telepresence is under active development. Subscribe to get updates and announcements:</p>
+            <div className="mailing-list-signup">
+              <HubspotForm
+                portalId="485087"
+                formId="956287a4-7614-486b-91bd-28c9a91949cb"
+              />
             </div>
           </div>
         </div>

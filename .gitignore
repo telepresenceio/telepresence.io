@@ -5,3 +5,9 @@
 # Gatsby
 /.cache/
 /public/
+
+# gatsby-plugin-extract-schema
+/schema.graphql
+
+# Other
+*.log

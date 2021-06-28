@@ -1,7 +1,12 @@
+import * as Macros from "../macros";
+
 # Connect to a remote Kubernetes cluster
 
-{% import "../macros.html" as macros %}
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "top") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="top" />
 
 ### Connecting to a remote cluster
 
@@ -38,6 +43,10 @@ What's going on:
 
 To learn more about what Telepresence proxies you can read the relevant [reference documentation](/reference/proxying.html).
 
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "bottom") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="bottom" />
 
-{{ macros.tutorialFooter(page.title, file.path, book['baseUrl']) }}
+<Macros.TutorialFooter/>

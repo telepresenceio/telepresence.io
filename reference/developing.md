@@ -245,7 +245,7 @@ $ make format
 
 #### Overview
 
-Every commit to the master branch results in CI building a set of deployable artifacts: Docker images, Linux packages, a JSON blob for [Scout](https://www.telepresence.io/reference/usage_reporting), and a markdown blob for announcing a release on Slack et al.
+Every commit to the master branch results in CI building a set of deployable artifacts: Docker images, Linux packages, a JSON blob for [Scout](../usage_reporting), and a markdown blob for announcing a release on Slack et al.
 The artifacts are available for download as a tarball `telepresence-dist.tbz` from the CircleCI artifacts tab on the `deploy` job page.
 The release process pushes a set of those artifacts into production.
 
@@ -254,30 +254,30 @@ At the moment, the Linux packages are not tested, other than a minor smoke test.
 #### Theory of operation
 
 0. Recreate your Python virtual environment from scratch and re-run the linters.
-   This avoids the frustration of having your release fail in the lint stage in CI, which rebuilds its virtualenv every time.  
+   This avoids the frustration of having your release fail in the lint stage in CI, which rebuilds its virtualenv every time.
    `rm -r virtualenv && make lint`
 1. Make sure `docs/reference/changelog.md` has changelog entries for the next release, and today's release date.
    If changelog entries are in the `newsfragments` directory, use [towncrier](https://pypi.org/project/towncrier/) to construct the changelog update.
    towncrier's version management is incompatible with the rest of the universe; specify the new version explicitly.
-   Make sure to commit your changes.  
-   `virtualenv/bin/towncrier --version 0.xx`  
-   `# Edit the change log`  
-   `git add docs/reference/changelog.md`  
+   Make sure to commit your changes.
+   `virtualenv/bin/towncrier --version 0.xx`
+   `# Edit the change log`
+   `git add docs/reference/changelog.md`
    `git commit -m "Prep changelog for release 0.xx"`
-2. Mark the new version number for Telepresence by tagging in Git.  
+2. Mark the new version number for Telepresence by tagging in Git.
    `git tag -a 0.xx -m "Release 0.xx"`
-3. Push the new commit and tag to GitHub.  
+3. Push the new commit and tag to GitHub.
    `git push origin master --tags`
 4. Wait for [CircleCI](https://circleci.com/gh/telepresenceio/workflows/telepresence/tree/master) to finish.
    Make sure all the test pass.
-5. Download the tarball of deployable artifacts and unarchive into container in your project directory. It will populate the `dist` subdirectory.  
+5. Download the tarball of deployable artifacts and unarchive into container in your project directory. It will populate the `dist` subdirectory.
    `curl -s https://.../telepresence-dist.tbz | tar xjf -`
-6. Set up release credentials in the environment:  
+6. Set up release credentials in the environment:
    `. /keybase/team/datawireio/tel-release-secrets.sh`
    * `HOMEBREW_KEY` to push to GitHub
    * `PACKAGECLOUD_TOKEN` to push Linux packages
    * `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` for AWS S3 access
-7. Run the release script.  
+7. Run the release script.
    `ci/release.sh`
 8. Log in to [Netlify](https://app.netlify.com/teams/telepresence/sites) and rebuild the Telepresence website.
    Select "Deploys" then "Trigger Deploy" then "Clear cache and deploy site" to get a clean build.

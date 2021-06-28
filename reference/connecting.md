@@ -13,7 +13,7 @@ This is the default if no deployment option is specified.
 
 For example, this creates a `Deployment` called `myserver`:
 
-```console
+```shell
 telepresence --new-deployment myserver --run-shell
 ```
 
@@ -21,7 +21,7 @@ This will create two Kubernetes objects, a `Deployment` and a `Service`, both na
 (On OpenShift a `DeploymentConfig` will be used instead of `Deployment`.)
 Or, if you don't care what your new `Deployment` is called, you can do:
 
-```console
+```shell
 telepresence --run-shell
 ```
 
@@ -32,13 +32,13 @@ If `telepresence` crashes badly enough (e.g. you used `kill -9`) you will need t
 If you already have your code running in the cluster you can use the `--swap-deployment` option to replace the existing deployment with the Telepresence proxy.
 When the `telepresence` process exits it restores the earlier state of the `Deployment` (or `DeploymentConfig` on OpenShift).
 
-```console
+```shell
 telepresence --swap-deployment myserver --run-shell
 ```
 
 If you have more than one container in the pods created by the deployment you can also specify the container name:
 
-```console
+```shell
 telepresence --swap-deployment myserver:containername --run-shell
 ```
 
@@ -64,18 +64,18 @@ spec:
     spec:
       containers:
       - name: myservice
-        image: datawire/telepresence-k8s:{{ book['version'] }}  # new image
+        image: datawire/telepresence-k8s:$version$  # new image
 </code></pre>
 
 You should apply this file to your cluster:
 
-```console
+```shell
 kubectl apply -f telepresence-deployment.yaml
 ```
 
 Next, you need to run the local Telepresence client on your machine, using `--deployment` to indicate the name of the `Deployment` object whose pod is running `telepresence/datawire-k8s`:
 
-```console
+```shell
 telepresence --deployment myservice --run-shell
 ```
 
@@ -90,7 +90,7 @@ By default Telepresence uses whatever the current context is for `kubectl`.
 If you want to choose a specific context you can use the `--context` option to `telepresence`.
 For example:
 
-```console
+```shell
 telepresence --context minikube --run-shell
 ```
 
@@ -102,7 +102,7 @@ If you've [set a namespace for the context](https://kubernetes.io/docs/concepts/
 
 If you want to proxy to a Deployment in a non-default namespace you can pass the `--namespace` argument to Telepresence:
 
-```console
+```shell
 telepresence --namespace yournamespace --swap-deployment yourservice --run-shell
 ```
 

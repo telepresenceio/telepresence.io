@@ -11,7 +11,7 @@ $ telepresence --run ruby myserver.rb
 ```
 
 This process will have access to the environment variables, outgoing proxying and volumes proxied by Telepresence.
-(Volumes aren't as transparent, sadly: see the [relevant docs](proxying.html).
+(Volumes aren't as transparent, sadly: see the [relevant docs](../proxying).
 
 ### `--run-shell`
 

@@ -100,7 +100,7 @@ Volume support requires a small amount of work on your part.
 The root directory where all the volumes can be found will be set to the `TELEPRESENCE_ROOT` environment variable in the shell or subprocess run by `telepresence`.
 You will then need to use that env variable as the root for volume paths you are opening.
 
-You can see an example of this in the [Volumes Howto](../howto/volumes.html).
+You can see an example of this in the [Volumes Howto](../../howto/volumes.html).
 
 ### The complete list: what Telepresence proxies
 
@@ -133,7 +133,7 @@ When using `--method vpn-tcp`, Telepresence currently proxies the following:
 * The [special environment variables](https://kubernetes.io/docs/user-guide/services/#environment-variables) that expose the addresses of `Service` instances.
   E.g. `REDIS_MASTER_SERVICE_HOST`.
 * The standard [DNS entries for services](https://kubernetes.io/docs/user-guide/services/#dns).
-  E.g. `redis-master` and `redis-master.default`, but not those ending with `.local`. 
+  E.g. `redis-master` and `redis-master.default`, but not those ending with `.local`.
 * Any environment variables that the `Deployment` explicitly configured for the pod.
 * TCP connections to any `Service` in the cluster regardless of when they were started, as well as to any hosts or ranges explicitly listed with `--also-proxy`. It is possible to specify multiple hosts to `--also-proxy` like so: `--also-proxy example1.com --also-proxy example2.com --also-proxy example3.com`.
 * TCP connections *from* Kubernetes to your local machine, for ports specified on the command line using `--expose`.

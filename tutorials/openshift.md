@@ -1,3 +1,5 @@
+import * as Macros from "../macros";
+
 # Get started with OpenShift
 
 ## A short introduction: accessing the cluster
@@ -13,7 +15,7 @@
    ```
 
    It may take a minute or two for the pod running the server to be up and running, depending on how fast your cluster is.
-   
+
 3. You can now run a local process using Telepresence that can access that service, even though the process is local but the service is running in the OpenShift cluster:
 
    ```console
@@ -28,10 +30,13 @@ In the more extended tutorial that follows you'll see how you can also route tra
 
 ## A longer introduction: exposing a service to the cluster
 
-{% import "../macros.html" as macros %}
-{{ macros.install("https://docs.openshift.org/latest/cli_reference/get_started_cli.html", "oc", "OpenShift", "top") }}
+<Macros.Install
+    install="https://docs.openshift.org/latest/cli_reference/get_started_cli.html"
+    command="oc"
+    cluster="OpenShift"
+    location="top" />
 
-{{ macros.gettingStartedPart1("OpenShift")}}
+<Macros.GettingStartedPart1 cluster="OpenShift" />
 
 You should start a new application and publicly expose it:
 
@@ -67,7 +72,10 @@ In the above output the address is `http://example.openshiftsapps.com`, but you 
 It may take a few minutes before this route will be live; in the interim you will get an error page.
 If you do wait a minute and try again.
 
-{{ macros.gettingStartedPart2("DeploymentConfig", "oc", "OpenShift") }}
+<Macros.GettingStartedPart2
+    deployment="DeploymentConfig"
+    command="oc"
+    cluster="OpenShift" />
 
 ```console
 $ oc delete dc,service,route,imagestream hello-world
@@ -75,6 +83,10 @@ $ oc delete dc,service,route,imagestream hello-world
 
 Telepresence can do much more than this: see the reference section of the documentation, on the top-left, for details.
 
-{{ macros.install("https://docs.openshift.org/latest/cli_reference/get_started_cli.html", "oc", "OpenShift", "bottom") }}
+<Macros.Install
+    install="https://docs.openshift.org/latest/cli_reference/get_started_cli.html"
+    command="oc"
+    cluster="OpenShift"
+    location="bottom" />
 
-{{ macros.tutorialFooter(page.title, file.path, book['baseUrl']) }}
+<Macros.TutorialFooter/>

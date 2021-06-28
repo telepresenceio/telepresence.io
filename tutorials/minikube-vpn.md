@@ -1,7 +1,12 @@
+import * as Macros from "../macros";
+
 # Minikube VPN access
 
-{% import "../macros.html" as macros %}
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "top") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="top" />
 
 ### Transparently connecting to Minikube
 
@@ -38,8 +43,12 @@ MYSERVICE_SERVICE_PORT=8000
 
 (This will not work if the hello world pod hasn't started yet... if so, try again.)
 
-Telepresence will also allow services within minikube to [access a process running your host machine](kubernetes-rapid.html).
+Telepresence will also allow services within minikube to [access a process running your host machine](../kubernetes-rapid).
 
-{{ macros.install("https://kubernetes.io/docs/tasks/tools/install-kubectl/", "kubectl", "Kubernetes", "bottom") }}
+<Macros.Install
+    install="https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    command="kubectl"
+    cluster="Kubernetes"
+    location="bottom" />
 
-{{ macros.tutorialFooter(page.title, file.path, book['baseUrl']) }}
+<Macros.TutorialFooter/>

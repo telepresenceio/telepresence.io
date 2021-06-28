@@ -60,6 +60,14 @@ items:
           on a per-cluster basis.
         # image: TODO
         docs: reference/config
+      - type: feature
+        title: traffic-manager in multiple namespaces
+        body: >-
+          We now support installing multiple traffic managers in the same cluster.
+          This will allow operators to install deployments of telepresence that are
+          limited to certain namespaces.
+        # image: TODO
+        docs: reference/config
   - version: 2.3.2
     date: '2021-06-18'
     notes:

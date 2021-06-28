@@ -117,7 +117,7 @@ metadata:
 
 **NOTE** This happens automatically in kubernetes >= 1.21.
 
-### Installing RBAC only
+## Install RBAC only
 
 Telepresence Traffic Manager does require some [RBAC](../../refrence/rbac/) for the traffic-manager itself, as well as for users.
 To make it easier for operators to introspect / manage RBAC separately, you can use `rbac.only=true` to

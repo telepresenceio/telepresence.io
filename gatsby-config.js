@@ -36,12 +36,6 @@ module.exports = {
           {
             resolve: 'gatsby-remark-autolink-headers',
           },
-          {
-            resolve: 'gatsby-remark-external-links',
-            options: {
-              target: '_blank',
-            },
-          },
         ],
       },
     },

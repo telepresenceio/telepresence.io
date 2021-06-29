@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import url from 'url';
+
+import Link from '../Link';
 
 import BugIcon      from '@src/assets/icons/bug.inline.svg';
 import ChangeIcon   from '@src/assets/icons/change.inline.svg';

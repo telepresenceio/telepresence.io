@@ -5,7 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import HubspotForm from 'react-hubspot-form';
 import CodeBlock from '@src/components/CodeBlock';
 import LinuxIcon from '@src/assets/icons/linux.inline.svg';
 import AppleIcon from '@src/assets/icons/apple.inline.svg';
@@ -101,20 +100,17 @@ export default function SimpleTabs() {
         </CodeBlock>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <div className="docs-hubspot-formwrapper">
-          <p>
-            Telepresence for Windows is coming soon! Sign up here to notified when it is available. Until then, Telepresence will work with WSL 2.
-          </p>
-          <div className="docs-hubspot-form">
-            <HubspotForm
-              portalId='485087'
-              formId='2f542f1b-3da8-4319-8057-96fed78e4c26'
-              onSubmit={() => console.log('Submit!')}
-              onReady={(form) => console.log('Form ready!')}
-              loading={<div>Loading...</div>}
-            />
-          </div>
-        </div>
+        <CodeBlock>
+        {
+          '# 1. Download the latest binary (~50 MB):' +
+          '\n' +
+          'sudo curl -fL https://app.getambassador.io/download/tel2/windows/amd64/latest/telepresence.msi -o C:\\Temp\\telepresence.msi' +
+          '\n \n' +
+          '# 2. Run the installer in PowerShell' +
+          '\n' +
+          'Start-Process C:\\Temp\\telepresence.msi'
+        }
+        </CodeBlock>
       </TabPanel>
     </div >
   );

@@ -49,6 +49,16 @@ items:
           limited to certain namespaces.
         # image: TODO
         docs: reference/config
+      - type: feature
+        title: Agent image now configurable
+        body: >-
+          We now support configuring which agent image + registry to use in the
+          config. This enables users whose laptop is an air-gapped environment to
+          create selective intercepts without requiring a login. It also makes it easier
+          for those who are developing on Telepresence to specify which agent image should
+          be used.
+        # image: TODO
+        docs: reference/config
   - version: 2.3.4
     date: '2021-07-09'
     notes:

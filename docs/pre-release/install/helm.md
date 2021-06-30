@@ -124,7 +124,7 @@ This is required because the mutating webhook will use the name label to find na
 
 **NOTE** This labelling happens automatically in kubernetes >= 1.21.
 
-## Install RBAC only
+### Installing RBAC only
 
 Telepresence Traffic Manager does require some [RBAC](../../refrence/rbac/) for the traffic-manager deployment itself, as well as for users.
 To make it easier for operators to introspect / manage RBAC separately, you can use `rbac.only=true` to

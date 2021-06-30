@@ -118,7 +118,14 @@ run this command to generate the Cluster ID:
   ```
 
 3. Save the output as a YAML file and apply it to your
-cluster with `kubectl`.  Once applied, you will be able to use selective intercepts with the
+cluster with `kubectl`.
+
+4. Ensure that you have the docker image for the Smart Agent (datawire/ambassador-telepresence-agent:1.8.0)
+pulled and in a registry your cluster can pull from.
+
+5. Have users use the `images` [config key](../config.md#) (or environment variables) so telepresence uses the aforementioned image for their agent.
+
+Users will now be able to use selective intercepts with the
 `--preview-url=false` flag (since use of preview URLs requires a connection to Ambassador Cloud).
 
 ## Mutating Webhook

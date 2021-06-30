@@ -10,7 +10,7 @@ For Linux, the above paths are for a user-level configuration. For system-level 
 
 ### Values
 
-The config file currently supports values for the `timeouts` and `logLevels` keys.
+The config file currently supports values for the `timeouts`, `logLevels`, `images` keys.
 
 Here is an example configuration:
 
@@ -20,6 +20,9 @@ timeouts:
   intercept: 10s
 logLevels:
   userDaemon: debug
+images:
+  registry: privateRepo
+  agentImage: ambassador-telepresence-agent:1.8.0
 ```
 
 #### Timeouts
@@ -37,6 +40,15 @@ These are the valid fields for the `timeouts` key:
 |`trafficManagerConnect`|Waiting for the Traffic Manager API to connect for port fowards|20 seconds|
 |`trafficManagerAPI`|Waiting for connection to the gPRC API after `trafficManagerConnect` is successful|15 seconds|
 
+#### Images
+Values for `images` are strings.
+These are the valid fields for the `images` key:
+
+|Field|Description|Default|
+|---|---|---|
+|`registry`|Docker registry to be used for installing the Traffic Manager and/or Traffic Agent|docker.io/datawire|
+|`agentImage`|$imageName:$imageTag to use when installing the Traffic Agent||
+
 #### Log Levels
 Values for `logLevels` are one of the following strings: `trace`, `debug`, `info`, `warning`, `error`, `fatal` and `panic`.
 These are the valid fields for the `logLevels` key:
@@ -45,6 +57,16 @@ These are the valid fields for the `logLevels` key:
 |---|---|---|
 |`userDaemon`|Logging level to be used by the User Daemon (logs to connector.log)|debug|
 |`rootDaemon`|Logging level to be used for the Root Daemon (logs to daemon.log)|info|
+
+## Environment Variables
+Telepresence also can use Environment Variables to configure behavior.  Below is a chart listing
+the Environment Variables and which config key they map to (if applicable).  If both a config are
+specified, the Environment Variable will take precedence.
+
+|Environment Variable|Config Key|
+|---|---|
+|`TELEPRESENCE_REGISTRY`|`images.registry`|
+|`TELEPRESENCE_AGENT_IMAGE`|`images.agentImage`|
 
 ## Per-Cluster Configuration
 Some configuration is not global to Telepresence and is actually specific to a cluster.  Thus, we store that config information in your kubeconfig file, so that it is easier to maintain per-cluster configuration.

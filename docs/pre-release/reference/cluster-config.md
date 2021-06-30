@@ -128,6 +128,8 @@ pulled and in a registry your cluster can pull from.
 Users will now be able to use selective intercepts with the
 `--preview-url=false` flag (since use of preview URLs requires a connection to Ambassador Cloud).
 
+If using Helm to install the server-side components, see the chart's [README](https://github.com/telepresenceio/telepresence/tree/release/v2/charts/telepresence) to learn how to configure the image registry and license secret.
+
 ## Mutating Webhook
 
 By default, Telepresence updates the intercepted workload (Deployment, StatefulSet, ReplicaSet)

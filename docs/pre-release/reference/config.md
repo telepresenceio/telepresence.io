@@ -58,16 +58,6 @@ These are the valid fields for the `logLevels` key:
 |`userDaemon`|Logging level to be used by the User Daemon (logs to connector.log)|debug|
 |`rootDaemon`|Logging level to be used for the Root Daemon (logs to daemon.log)|info|
 
-## Environment Variables
-Telepresence also can use Environment Variables to configure behavior.  Below is a chart listing
-the Environment Variables and which config key they map to (if applicable).  If both a config are
-specified, the Environment Variable will take precedence.
-
-|Environment Variable|Config Key|
-|---|---|
-|`TELEPRESENCE_REGISTRY`|`images.registry`|
-|`TELEPRESENCE_AGENT_IMAGE`|`images.agentImage`|
-
 ## Per-Cluster Configuration
 Some configuration is not global to Telepresence and is actually specific to a cluster.  Thus, we store that config information in your kubeconfig file, so that it is easier to maintain per-cluster configuration.
 

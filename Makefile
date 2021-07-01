@@ -20,3 +20,10 @@ pull-docs: subtree-preflight
 	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d -name 'v*' -not -name v1),\
           git subtree pull --squash --prefix=$(subdir) https://github.com/datawire/ambassador-docs $(patsubst docs/%,products/telepresence/%,$(subdir))$(nl))
 .PHONY: pull-docs
+
+PUSH_BRANCH ?= $(USER)/from-telepresence.io-$(shell date +%Y-%m-%d)
+push-docs: ## Publish ./ambassador to https://github.com/datawire/ambassador-docs
+push-docs: subtree-preflight
+	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d),\
+          git subtree push --rejoin --squash --prefix=$(subdir) git@github.com:datawire/ambassador-docs $(patsubst docs/%,$(PUSH_BRANCH)/products/telepresence/%,$(subdir))$(nl))
+.PHONY: push-docs

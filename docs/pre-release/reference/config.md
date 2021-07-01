@@ -10,7 +10,7 @@ For Linux, the above paths are for a user-level configuration. For system-level 
 
 ### Values
 
-The config file currently supports values for the `timeouts` and `logLevels` keys.
+The config file currently supports values for the `timeouts`, `logLevels`, `images` keys.
 
 Here is an example configuration:
 
@@ -20,6 +20,9 @@ timeouts:
   intercept: 10s
 logLevels:
   userDaemon: debug
+images:
+  registry: privateRepo
+  agentImage: ambassador-telepresence-agent:1.8.0
 ```
 
 #### Timeouts
@@ -36,6 +39,15 @@ These are the valid fields for the `timeouts` key:
 |`proxyDial`|Waiting for an outbound connection to be established|5 seconds|
 |`trafficManagerConnect`|Waiting for the Traffic Manager API to connect for port fowards|20 seconds|
 |`trafficManagerAPI`|Waiting for connection to the gPRC API after `trafficManagerConnect` is successful|15 seconds|
+
+#### Images
+Values for `images` are strings.
+These are the valid fields for the `images` key:
+
+|Field|Description|Default|
+|---|---|---|
+|`registry`|Docker registry to be used for installing the Traffic Manager and/or Traffic Agent|docker.io/datawire|
+|`agentImage`|$imageName:$imageTag to use when installing the Traffic Agent||
 
 #### Log Levels
 Values for `logLevels` are one of the following strings: `trace`, `debug`, `info`, `warning`, `error`, `fatal` and `panic`.

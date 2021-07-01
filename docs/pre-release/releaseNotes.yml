@@ -33,6 +33,7 @@ items:
   - version: 2.y.z
     date: 'TBD'
     notes:
+      # Headliners
       - type: feature
         title: No more dependence on <code>kubectl</code>
         body: >-
@@ -40,6 +41,33 @@ items:
           <code>kubectl</code> binary, which might not be present for
           OpenShift users (who have <code>oc</code> instead of
           <code>kubectl</code>).
+      - type: feature
+        title: Traffic-manager Helm Chart
+        body: >-
+          We now support installing the traffic-manager via helm.
+          This will make it easier for operators to see what the
+          traffic-manager needs to install so that telepresence works
+          correctly, as well as providing a more direct route to customizing
+          installation.
+        image: ./telepresence-2.3.3-helm.png
+        docs: install/helm/
+      - type: feature
+        title: Traffic-manager in custom namespace
+        body: >-
+          As the traffic manager can now be installed in any namespace via helm,
+          telepresence can now be configured to look for the traffic manager in
+          a namespace other than <code>ambassador</code>. This can be configured
+          on a per-cluster basis.
+        # image: TODO
+        docs: reference/config
+      - type: feature
+        title: traffic-manager in multiple namespaces
+        body: >-
+          We now support installing multiple traffic managers in the same cluster.
+          This will allow operators to install deployments of telepresence that are
+          limited to certain namespaces.
+        # image: TODO
+        docs: reference/config
   - version: 2.3.2
     date: '2021-06-18'
     notes:

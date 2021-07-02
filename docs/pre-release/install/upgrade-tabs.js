@@ -104,7 +104,7 @@ export default function SimpleTabs() {
         {
           '# 1. Download the latest binary (~50 MB):' +
           '\n' +
-                'sudo curl -fL https://app.getambassador.io/download/tel2/windows/amd64/latest/telepresence.msi -o C:\\Temp\\telepresence.msi' +
+          'curl -fL https://app.getambassador.io/download/tel2/windows/amd64/latest/telepresence.msi -o C:\\Temp\\telepresence.msi' +
           '\n \n' +
           '# 2. Run the installer in PowerShell' +
           '\n' +

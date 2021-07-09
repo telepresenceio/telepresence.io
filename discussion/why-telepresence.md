@@ -5,7 +5,7 @@ Your service depends on other Kubernetes `Service` instances (`thing1` and `thin
 
 The Kubernetes staging environment looks like this:
 
-<div class="mermaid">
+```mermaid
 graph LR
   subgraph Kubernetes in Cloud
     code["k8s.Pod: servicename"]
@@ -14,7 +14,7 @@ graph LR
     code---s3["k8s.Service: thing2"]
     code---c1>"Cloud Database (AWS RDS)"]
   end
-</div>
+```
 
 ### The slow status quo
 
@@ -28,7 +28,7 @@ If you need that cloud database and those two services to directly test your sof
 
 This is slow.
 
-<div class="mermaid">
+```mermaid
 graph TD
   subgraph Laptop
     code["Source code for servicename"]==>local["Docker image"]
@@ -43,13 +43,13 @@ graph TD
     deployment---s3["k8s.Service: thing2"]
     deployment---c1>"Cloud Database (AWS RDS)"]
   end
-</div>
+```
 
 ### A fast development cycle with Telepresence
 
 Telepresence works by running your code *locally*, as a normal local process, and then forwarding requests to/from the Kubernetes cluster.
 
-<div class="mermaid">
+```mermaid
 graph TD
   subgraph Laptop
     code["Source code for servicename"]==>local["local process"]
@@ -62,7 +62,7 @@ graph TD
     proxy---s3["k8s.Service: thing2"]
     proxy---c1>"Cloud Database (AWS RDS)"]
   end
-</div>
+```
 
 This means development is fast: you only have to change your code and restart your process.
 Many web frameworks also do automatic code reload, in which case you won't even need to restart.

@@ -1,12 +1,12 @@
-# Debugging a Java Rate Limiter Service using Telepresence and IntelliJ IDEA 
+# Debugging a Java Rate Limiter Service using Telepresence and IntelliJ IDEA
 
-## Debugging Locally Against a Remote Kubernetes Cluster using Telepresence 
+## Debugging Locally Against a Remote Kubernetes Cluster using Telepresence
 
-The fundamental benefit of Telepresence is that it provides a [two-way proxy](https://www.telepresence.io/discussion/why-telepresence#a-fast-development-cycle-with-telepresence) between your local machine and the remote cluster. This means that you can run a service locally (and all of your local debug tooling) and have this service interact with all the other services in the remote cluster. This allows you to make a request against a service running (and exposed) in the remote cluster and proxy a call to a downstream dependent service to your local machine. You can then inspect and modify the request before providing the response from your local machine back into the calling remote service.
+The fundamental benefit of Telepresence is that it provides a [two-way proxy](../../discussion/why-telepresence#a-fast-development-cycle-with-telepresence) between your local machine and the remote cluster. This means that you can run a service locally (and all of your local debug tooling) and have this service interact with all the other services in the remote cluster. This allows you to make a request against a service running (and exposed) in the remote cluster and proxy a call to a downstream dependent service to your local machine. You can then inspect and modify the request before providing the response from your local machine back into the calling remote service.
 
-### A Brief Video Guide 
+### A Brief Video Guide
 
-The video below provides more information, and also demonstrates how to debug a locally run Rate Limiter service (that is integrated with a remotely deployed Ambassador API Gateway) via Telepresence and IntelliJ IDEA. All of the example code can be found in my [Docker Java Shopping](https://github.com/danielbryantuk/oreilly-docker-java-shopping) sample microservices-based application on GitHub. 
+The video below provides more information, and also demonstrates how to debug a locally run Rate Limiter service (that is integrated with a remotely deployed Ambassador API Gateway) via Telepresence and IntelliJ IDEA. All of the example code can be found in my [Docker Java Shopping](https://github.com/danielbryantuk/oreilly-docker-java-shopping) sample microservices-based application on GitHub.
 
 https://youtu.be/74ZJ1GKoZiU
 
@@ -30,9 +30,9 @@ When all of the services have been deployed successfully, you can use Telepresen
 $ telepresence --swap-deployment ratelimiter --env-json ratelimit_env.json
 ```
 
-You’ll notice that I have specified the `env-json` argument with a filename, which generates a `ratelimit_env.json` file that contains all the relevant Kubernetes cluster environment variables you will need for local debugging. 
+You’ll notice that I have specified the `env-json` argument with a filename, which generates a `ratelimit_env.json` file that contains all the relevant Kubernetes cluster environment variables you will need for local debugging.
 
-## Configuring IntelliJ with Telepresence 
+## Configuring IntelliJ with Telepresence
 
 In order to load the generated Env File into IntelliJ, you will need to install the [Env File plugin](https://plugins.jetbrains.com/plugin/7861-env-file). This can be downloaded and installed via the JetBrains website, or you can also install it via the “Preferences -> Plugins” configuration of the IDE itself.
 
@@ -42,6 +42,6 @@ With the plugin installed, you can now clone the [Ambassador Java Rate Limiter](
 
 With the configuration updated, you can now start the local instance of the `RateLimiter` service in debug mode, and make a request against the remote Kubernetes cluster Shopfront endpoint. Once the request is made then the first breakpoint you have set should be triggered! From here you can debug the locally running service as if it was running within the remote Kubernetes cluster.
 
-## Looking for More Info on Rate Limiting with Ambassador and Kubernetes? 
+## Looking for More Info on Rate Limiting with Ambassador and Kubernetes?
 
-Check out our [series on rate limiting](https://blog.getambassador.io/tagged/rate-limit-series) with the [Ambassador API Gateway](https://www.getambassador.io/). 
+Check out our [series on rate limiting](https://blog.getambassador.io/tagged/rate-limit-series) with the [Ambassador API Gateway](https://www.getambassador.io/).

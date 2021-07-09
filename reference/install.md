@@ -1,7 +1,8 @@
+import * as Macros from "../macros";
+
 # Installing Telepresence
 
-{% import "../macros.html" as macros %}
-{{ macros.installSpecific("reference-page") }}
+<Macros.InstallSpecific location="reference-page" />
 
 ### Dependencies
 

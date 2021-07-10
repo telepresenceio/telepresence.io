@@ -40,15 +40,6 @@ These are the valid fields for the `timeouts` key:
 |`trafficManagerConnect`|Waiting for the Traffic Manager API to connect for port fowards|20 seconds|
 |`trafficManagerAPI`|Waiting for connection to the gPRC API after `trafficManagerConnect` is successful|15 seconds|
 
-#### Images
-Values for `images` are strings.
-These are the valid fields for the `images` key:
-
-|Field|Description|Default|
-|---|---|---|
-|`registry`|Docker registry to be used for installing the Traffic Manager and/or Traffic Agent|docker.io/datawire|
-|`agentImage`|$imageName:$imageTag to use when installing the Traffic Agent||
-
 #### Log Levels
 Values for `logLevels` are one of the following strings: `trace`, `debug`, `info`, `warning`, `error`, `fatal` and `panic`.
 These are the valid fields for the `logLevels` key:
@@ -57,6 +48,25 @@ These are the valid fields for the `logLevels` key:
 |---|---|---|
 |`userDaemon`|Logging level to be used by the User Daemon (logs to connector.log)|debug|
 |`rootDaemon`|Logging level to be used for the Root Daemon (logs to daemon.log)|info|
+
+#### Images
+Values for `images` are strings.
+These are the valid fields for the `images` key:
+
+|Field|Description|Default|
+|---|---|---|
+|`registry`|Docker registry to be used for installing the Traffic Manager and/or Traffic Agent|docker.io/datawire|
+|`agentImage`|$registry/$imageName:$imageTag to use when installing the Traffic Agent||
+|`webhookAgentImage`|The container image $registry/$imageName:$imageTag that the [Traffic Agent](../cluster-config/#mutating-webhook) will use when installing the Traffic Agent in annotated pods||
+
+#### Cloud
+These fields control how the client interacts with the Cloud service.
+Currently there is only one key and it accepts bools: `1`, `t`, `T`, `TRUE`, `true`, `True`, `0`, `f`, `F,` `FALSE`
+
+|Field|Description|Default|
+|---|---|---|
+|`skipLogin`|Whether the cli should skipping login to Ambassador Cloud. If you set to true, you must have a [license](../cluster-config/#air-gapped-cluster) installed in the cluster to perform selective intercepts |false|
+
 
 ## Per-Cluster Configuration
 Some configuration is not global to Telepresence and is actually specific to a cluster.  Thus, we store that config information in your kubeconfig file, so that it is easier to maintain per-cluster configuration.

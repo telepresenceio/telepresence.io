@@ -55,9 +55,10 @@ These are the valid fields for the `images` key:
 
 |Field|Description|Default|
 |---|---|---|
-|`registry`|Docker registry to be used for installing the Traffic Manager and/or Traffic Agent|docker.io/datawire|
+|`registry`|Docker registry to be used for installing the Traffic Manager and default Traffic Agent|docker.io/datawire|
 |`agentImage`|$registry/$imageName:$imageTag to use when installing the Traffic Agent||
-|`webhookAgentImage`|The container image $registry/$imageName:$imageTag that the [Traffic Agent](../cluster-config/#mutating-webhook) will use when installing the Traffic Agent in annotated pods||
+|`webhookRegistry`|The container $registry that the [Traffic Agent](../cluster-config/#mutating-webhook) will use with the `webhookAgentImage` *only used if a new traffic-manager is deployed*||
+|`webhookAgentImage`|The container image that the [Traffic Agent](../cluster-config/#mutating-webhook) will use when installing the Traffic Agent in annotated pods *only used if a new traffic-manager is deployed*||
 
 #### Cloud
 These fields control how the client interacts with the Cloud service.

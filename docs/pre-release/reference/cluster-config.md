@@ -130,6 +130,23 @@ Users will now be able to use selective intercepts with the
 
 If using Helm to install the server-side components, see the chart's [README](https://github.com/telepresenceio/telepresence/tree/release/v2/charts/telepresence) to learn how to configure the image registry and license secret.
 
+### Have users of the cli add the following to their config.yml
+Telepresence attempts to auto-detect if the cluster is air-gapped,
+but you can add this to your config.yml to ensure the client behaves
+as if it was in an air-gapped environment.
+  ```
+  cloud:
+    skipLogin: true
+  ```
+
+Reminder: To use selective intercepts, which normally require a login, you
+must have a license in your cluster and specify which agentImage should be installed,
+by also adding the following to your config.yml:
+  ```
+  images:
+    agentImage: <privateRegistry>/<agentImage>
+  ```
+
 ## Mutating Webhook
 
 By default, Telepresence updates the intercepted workload (Deployment, StatefulSet, ReplicaSet)

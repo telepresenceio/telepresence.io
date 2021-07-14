@@ -10,7 +10,7 @@ For Linux, the above paths are for a user-level configuration. For system-level 
 
 ### Values
 
-The config file currently supports values for the `timeouts` and `logLevels` keys.
+The config file currently supports values for the `timeouts`, `logLevels`, `images` keys.
 
 Here is an example configuration:
 
@@ -20,6 +20,9 @@ timeouts:
   intercept: 10s
 logLevels:
   userDaemon: debug
+images:
+  registry: privateRepo
+  agentImage: ambassador-telepresence-agent:1.8.0
 ```
 
 #### Timeouts
@@ -45,6 +48,42 @@ These are the valid fields for the `logLevels` key:
 |---|---|---|
 |`userDaemon`|Logging level to be used by the User Daemon (logs to connector.log)|debug|
 |`rootDaemon`|Logging level to be used for the Root Daemon (logs to daemon.log)|info|
+
+#### Images
+Values for `images` are strings. These values affect the objects that are deployed in the cluster,
+so it's important to ensure users have the same configuration.
+
+Additionally, you can deploy the server-side components with [Helm](../../install/helm), to prevent them
+from being overridden by a client's config and use the [mutating-webhook](../clusterpconfig/#mutating-webhook)
+to handle installation of the `traffic-agents`.
+
+These are the valid fields for the `images` key:
+
+|Field|Description|Default|
+|---|---|---|
+|`registry`|Docker registry to be used for installing the Traffic Manager and default Traffic Agent. If not using a helm chart to deploy server-side objects, changing this value will create a new traffic-manager deployment when using Telepresence commands. Additionally, changing this value will update installed default `traffic-agents` to use the new registry when creating a new intercept.|docker.io/datawire|
+|`agentImage`|$registry/$imageName:$imageTag to use when installing the Traffic Agent. Changing this value will update pre-existing `traffic-agents` to use this new image. * the `registry` value is not used for the `traffic-agent` if you have this value set *||
+|`webhookRegistry`|The container $registry that the [Traffic Manager](../cluster-config/#mutating-webhook) will use with the `webhookAgentImage` *This value is only used if a new traffic-manager is deployed*||
+|`webhookAgentImage`|The container image that the [Traffic Manager](../cluster-config/#mutating-webhook) will use when installing the Traffic Agent in annotated pods *This value is only used if a new traffic-manager is deployed*||
+
+#### Cloud
+These fields control how the client interacts with the Cloud service.
+Currently there is only one key and it accepts bools: `1`, `t`, `T`, `TRUE`, `true`, `True`, `0`, `f`, `F,` `FALSE`
+
+|Field|Description|Default|
+|---|---|---|
+|`skipLogin`|Whether the cli should skipping login to Ambassador Cloud. If you set to true, you must have a [license](../cluster-config/#air-gapped-cluster) installed in the cluster to perform selective intercepts |false|
+
+Telepresence attempts to auto-detect if the cluster is air-gapped,
+be sure to set the `skipLogin` value to `true`
+
+Reminder: To use selective intercepts, which normally require a login, you
+must have a license in your cluster and specify which agentImage should be installed,
+by also adding the following to your config.yml:
+  ```
+  images:
+    agentImage: <privateRegistry>/<agentImage>
+  ```
 
 ## Per-Cluster Configuration
 Some configuration is not global to Telepresence and is actually specific to a cluster.  Thus, we store that config information in your kubeconfig file, so that it is easier to maintain per-cluster configuration.

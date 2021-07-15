@@ -30,6 +30,50 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.3.5
+    date: 'TBD'
+    notes:
+      - type: feature
+        title: traffic-manager in multiple namespaces
+        body: >-
+          We now support installing multiple traffic managers in the same cluster.
+          This will allow operators to install deployments of telepresence that are
+          limited to certain namespaces.
+        image: ./telepresence-2.3.5-traffic-manager-namespaces.png
+        docs: install/helm
+      - type: feature
+        title: No more dependence on kubectl
+        body: >-
+          Telepresence no longer depends on having an external
+          <code>kubectl</code> binary, which might not be present for
+          OpenShift users (who have <code>oc</code> instead of
+          <code>kubectl</code>).
+      - type: feature
+        title: Agent image now configurable
+        body: >-
+          We now support configuring which agent image + registry to use in the
+          config. This enables users whose laptop is an air-gapped environment to
+          create selective intercepts without requiring a login. It also makes it easier
+          for those who are developing on Telepresence to specify which agent image should
+          be used. Env vars TELEPRESENCE_AGENT_IMAGE and TELEPRESENCE_REGISTRY are no longer
+          used.
+        image: ./telepresence-2.3.5-agent-config.png
+        docs: reference/config/#images
+      - type: feature
+        title: Max gRPC receive size now configurable
+        body: >-
+          The default max size of messages received through gRPC (4 MB) is sometimes insufficient. It can now be configured.
+        image: ./telepresence-2.3.5-grpc-max-receive-size.png
+        docs: reference/config/#grpc
+      - type: feature
+        title: CLI can be used in air-gapped environments
+        body: >-
+          While Telepresence will auto-detect if your cluster is in an air-gapped environment,
+          we've added an option users can add to their config.yml to ensure the cli acts like it
+          is in an air-gapped environment. Air-gapped environments require a manually installed
+          licence.
+        docs: reference/cluster-config/#air-gapped-cluster
+        image: ./telepresence-2.3.5-skipLogin.png
   - version: 2.3.4
     date: '2021-07-09'
     notes:

@@ -24,6 +24,12 @@ pull-docs: subtree-preflight
 PUSH_BRANCH ?= $(USER)/from-telepresence.io-$(shell date +%Y-%m-%d)
 push-docs: ## Publish ./ambassador to https://github.com/datawire/ambassador-docs
 push-docs: subtree-preflight
+	@PS4=; set -x; { \
+	  git remote add --no-tags remote-adocs https://github.com/datawire/ambassador-docs && \
+	  git remote set-url --push remote-adocs git@github.com:datawire/ambassador-docs && \
+	  git remote set-branches remote-adocs 'products/telepresence/*' && \
+	:; } || true
+	git fetch --prune remote-adocs
 	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d),\
-          git subtree push --rejoin --squash --prefix=$(subdir) git@github.com:datawire/ambassador-docs $(patsubst docs/%,$(PUSH_BRANCH)/products/telepresence/%,$(subdir))$(nl))
+          git subtree push --rejoin --squash --prefix=$(subdir) remote-adocs $(patsubst docs/%,$(PUSH_BRANCH)/products/telepresence/%,$(subdir))$(nl))
 .PHONY: push-docs

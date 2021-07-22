@@ -20,9 +20,6 @@ timeouts:
   intercept: 10s
 logLevels:
   userDaemon: debug
-images:
-  registry: privateRepo
-  agentImage: ambassador-telepresence-agent:1.8.0
 grpc:
   maxReceiveSize: 10Mi
 ```

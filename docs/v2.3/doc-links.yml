@@ -36,6 +36,9 @@
        link: reference/architecture
      - title: Client reference
        link: reference/client
+       items:
+         - title: login
+           link: reference/client/login
      - title: Laptop-side configuration
        link: reference/config
      - title: Cluster-side configuration

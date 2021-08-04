@@ -28,7 +28,7 @@ const Note = ({ note }) => {
   const title = (titlePrefix[note.type] ? `${titlePrefix[note.type]}: ` : ``) + note.title;
 
   return (
-    <Link className={`${styles.note} ${note.image ? styles.note_withimage : styles.note_withoutimage}`}
+    <Link className={`${styles.note} ${note.docs ? styles.note_withlink : styles.note_withoutlink} ${note.image ? styles.note_withimage : styles.note_withoutimage}`}
           to={note.docs && url.resolve('../', note.docs)}>
       <h3>{typeIcon[note.type]}{title}</h3>
       <div

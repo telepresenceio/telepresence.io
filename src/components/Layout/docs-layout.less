@@ -624,6 +624,55 @@
         h6 .anchor:focus svg {
             visibility: visible;
         }
+
+        /* Having to repeat the .btn stuff from layout.less/home.css is a
+         * hack, but I don't have time to address the real issue.  */
+        .btn {
+            padding: 15px 30px;
+            text-transform: uppercase;
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover {
+            text-decoration: none;
+            opacity: 0.9;
+            color: #fff; /* also a hack: repeat this from the non-:hover */
+        }
+        .btn-black {
+            background-color: #2b2f3e;
+        }
+        .btn-blue {
+            background-color: #68c2d6;
+        }
+        .btn-red {
+            background-color: #f9634e;
+        }
+        .btn-outline {
+            border: 1px solid #2b2f3e;
+            background: transparent;
+            color: #2b2f3e;
+        }
+        /* Not having a generic tab component is also a hack that I intend to
+         * get around to.  */
+        .TabGroup {
+            flex-grow: 1;
+            background-color: transparent;
+
+            .TabBar {
+                background: transparent;
+                color: black;
+                border-bottom: 1px solid #e8e8e8;
+
+                .TabHead {
+                    min-width: 10%;
+                    text-transform: none;
+                }
+            }
+        }
     }
     &__footer {
         border-top: 1px solid @grey-separator;

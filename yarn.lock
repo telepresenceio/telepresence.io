@@ -5996,6 +5996,13 @@ gatsby-plugin-extract-schema@^0.2.0:
   dependencies:
     write "^2.0.0"
 
+gatsby-plugin-google-tagmanager@^2.3.12:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-2.11.0.tgz#e6fc5e662cc2e11451e8e4c5d762c73ee94b5916"
+  integrity sha512-TElfBrcitk3bYphBpfFv7rI+tYQ/SwKhQMNKj3J31yoVUh/GUu2/FnRwEpvNbfGkTql87DffxR/83mN4vUCWOA==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 gatsby-plugin-less@^3.2.2:
   version "3.2.9"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-less/-/gatsby-plugin-less-3.2.9.tgz#bce554256a722ae201720e0595a6aea49b2677a6"

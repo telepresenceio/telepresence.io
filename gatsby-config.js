@@ -87,5 +87,15 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-extract-schema',
     },
+    // This adds the Google Analytics pixel
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: 'GTM-KMVFH7G',
+
+        // We only want to load it in production
+        includeInDevelopment: false,
+      },
+    },
   ],
 };

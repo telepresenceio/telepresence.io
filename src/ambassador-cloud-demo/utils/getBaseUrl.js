@@ -11,7 +11,7 @@ const getBaseUrl = () => {
     if (window?.location?.hostname === 'localhost') {
       return MOCK_SERVER_URL;
     }
-    return PROD_DOCS_DOMAIN[window?.location.host] || BETA_API_URL;
+    return PROD_DOCS_DOMAIN[window?.location.host] || API_URL;
   } else {
     return BETA_API_URL;
   }
@@ -19,7 +19,7 @@ const getBaseUrl = () => {
 
 const getBaseUIUrl = ()=> {
   if ( typeof window !== "undefined")
-    return PROD_DOCS_DOMAIN_UI[window?.location.host] || BETA_UI_URL;
+    return PROD_DOCS_DOMAIN_UI[window?.location.host] || UI_URL;
   else
     return UI_URL;
 }

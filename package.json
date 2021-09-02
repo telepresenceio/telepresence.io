@@ -17,6 +17,7 @@
     "classnames": "^2.3.1",
     "gatsby": "^2.24.2",
     "gatsby-plugin-extract-schema": "^0.2.0",
+    "gatsby-plugin-google-tagmanager": "^2.3.12",
     "gatsby-plugin-less": "^3.2.2",
     "gatsby-plugin-mdx": "1.2.11",
     "gatsby-plugin-netlify": "^2.3.11",

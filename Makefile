@@ -14,22 +14,25 @@ subtree-preflight:
 	git gc
 .PHONY: subtree-preflight
 
-pull-docs: ## Update ./docs from https://github.com/datawire/ambassador-docs
+PULL_PREFIX ?=
+PUSH_PREFIX ?= $(USER)/from-telepresence.io-$(shell date +%Y-%m-%d)/
+
+dir2branch = $(patsubst docs/%,release/%,$(subst pre-release,v2,$1))
+
+pull-docs: ## Update ./docs from https://github.com/telepresenceio/docs
 pull-docs: subtree-preflight
-	git subtree pull --squash --prefix=docs/pre-release https://github.com/datawire/ambassador-docs products/telepresence/master
-	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d -name 'v*' -not -name v1),\
-          git subtree pull --squash --prefix=$(subdir) https://github.com/datawire/ambassador-docs $(patsubst docs/%,products/telepresence/%,$(subdir))$(nl))
+	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d|sort -V),\
+          git subtree pull --squash --prefix=$(subdir) https://github.com/telepresenceio/docs $(PULL_PREFIX)$(call dir2branch,$(subdir))$(nl))
 .PHONY: pull-docs
 
 PUSH_BRANCH ?= $(USER)/from-telepresence.io-$(shell date +%Y-%m-%d)
-push-docs: ## Publish ./ambassador to https://github.com/datawire/ambassador-docs
+push-docs: ## Publish ./ambassador to https://github.com/telepresenceio/docs
 push-docs: subtree-preflight
 	@PS4=; set -x; { \
-	  git remote add --no-tags remote-adocs https://github.com/datawire/ambassador-docs && \
-	  git remote set-url --push remote-adocs git@github.com:datawire/ambassador-docs && \
-	  git remote set-branches remote-adocs 'products/telepresence/*' && \
+	  git remote add --no-tags remote-docs https://github.com/telepresenceio/docs && \
+	  git remote set-url --push remote-docs git@github.com:telepresenceio/docs && \
 	:; } || true
-	git fetch --prune remote-adocs
-	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d),\
-          git subtree push --rejoin --squash --prefix=$(subdir) remote-adocs $(patsubst docs/%,$(PUSH_BRANCH)/products/telepresence/%,$(subdir))$(nl))
+	git fetch --prune remote-docs
+	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d|sort -V),\
+          git subtree push --rejoin --squash --prefix=$(subdir) remote-docs $(PUSH_PREFIX)$(call dir2branch,$(subdir))$(nl))
 .PHONY: push-docs

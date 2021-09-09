@@ -35,6 +35,9 @@ module.exports = {
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              enableCustomId: true,
+            },
           },
         ],
       },

@@ -54,6 +54,30 @@ items:
         docs: reference/client
         image: telepresence-2.4.4-gather-logs.png
 
+      - type: feature
+        title: Pod CIDR strategy is configurable in Helm chart
+        body: >-
+          Telepresence now enables you to directly configure how to get
+          pod CIDRs when deploying Telepresence with the Helm chart.
+          The default behavior remains the same. We've also introduced
+          the ability to explicitly set what the pod CIDRs should be.
+        docs: install/helm
+
+      - type: bugfix
+        title: Compute pod CIDRs more efficiently
+        body: >-
+          When computing subnets using the pod CIDRs, the traffic-manager
+          now uses less CPU-cycles.
+        docs: reference/routing/#subnets
+
+      - type: bugfix
+        title: Prevent busy loop in traffic-manager
+        body: >-
+          In some circumstances, the <code>traffic-manager</code>'s CPU
+          would max out and get pinned at its limit. This then required a
+          shutdown or pod restart to fix. We've added some fixes
+          to prevent the traffic-manager from getting into this state.
+
   - version: 2.4.3
     date: '2021-09-15'
     notes:

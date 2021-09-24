@@ -253,4 +253,6 @@ Next, we’ll create an intercept. An intercept is a rule that tells Telepresenc
 
 ## <img class="os-logo" src="../../images/logo.png"/> What's Next?
 
+See the [Intercept a service in your own environment](https://www.getambassador.io/docs/telepresence/latest/howtos/intercepts/) documentation for more information on how to implement intercepts.
+
 <QSCards/>

@@ -246,9 +246,7 @@ Next, we’ll create an intercept. An intercept is a rule that tells Telepresenc
 <Alert severity="success">
   We’ve just shown how we can edit code locally, and <strong>immediately</strong> see these changes in the cluster.
   <br />
-  Normally, this process would require a container build, push to registry, and deploy.
-  <br />
-  With Telepresence, these changes happen instantly.
+  Normally, this process would require a container build, push to registry, and deploy.  With Telepresence, these changes happen instantly.
 </Alert>
 
 ## <img class="os-logo" src="../../images/logo.png"/> What's Next?

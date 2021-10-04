@@ -26,5 +26,5 @@ jobs:
       - name: Run checker
         run: |
           set -o pipefail
-          TARGET=../site PRODUCT=telepresenceio make -C . | tee blc.log
+          (TARGET=../site PRODUCT=telepresenceio make -C . > blc.log) || ! (grep 'has a broken' blc.log)
         working-directory: blc

@@ -52,7 +52,7 @@ module.exports = {
 
   githubURL: function(node) {
     const gitpath = 'docs/' + (node.relativePath
-                               .replace(/^latest/,'v2.3')
+                               .replace(/^latest/,'v2.4')
                                .replaceAll(path.sep, path.posix.sep));
     return `https://github.com/telepresenceio/telepresence.io/blob/master/${gitpath}`;
   },

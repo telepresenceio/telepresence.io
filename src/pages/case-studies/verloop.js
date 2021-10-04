@@ -31,7 +31,7 @@ export default function VerloopPage({ location }) {
           <p>0 wait on build times has been the biggest gain. We have builds from that take as long as 4.5 minutes. With kube-openvpn, it was possible to avoid building every single time, but it was cumbersome and time consuming to set up forwarding from our local to cluster. All of our wait times went to 0 the day we switched to Telepresence.</p>
 
           <div className="text-center">
-            <a href="/#get-started" className="btn btn-black">Get Started</a>
+            <a href="/docs/latest/quick-start/" className="btn btn-black">Get Started</a>
           </div>
         </div>
 

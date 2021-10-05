@@ -28,3 +28,8 @@ jobs:
           set -o pipefail
           (TARGET=../site PRODUCT=telepresenceio make -C . > blc.log) || ! (grep 'has a broken' blc.log)
         working-directory: blc
+      - uses: actions/upload-artifact@v2
+        with:
+          name: blc.log
+          path: blc/blc.log
+        if: always()

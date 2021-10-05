@@ -1,0 +1,5 @@
+# Default reviewers
+* @telepresenceio/telepresence
+
+# Review JavaScript content
+*.js @telepresenceio/web

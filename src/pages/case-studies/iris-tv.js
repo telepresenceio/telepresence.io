@@ -37,7 +37,7 @@ export default function IrisPage({ location }) {
             their Slack chat; they can provide good advice and perspective.
           </p>
           <div className="text-center">
-            <a href="/#get-started" className="btn btn-black">Get Started</a>
+            <a href="/docs/latest/quick-start/" className="btn btn-black">Get Started</a>
           </div>
         </div>
 

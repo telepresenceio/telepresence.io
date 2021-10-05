@@ -31,7 +31,7 @@ export default function EngelVolkersPage({ location }) {
           <p>Try to adopt Telepresence for a few weeks, it will be immediately clear how much easier it is to develop (micro)services using Kubernetes and Docker technologies. We were skeptical at the beginning but now more and more developers inside our company are starting to use Telepresence in their daily routine. There are many advantages and the installation is extremely simple and lightweight.</p>
 
           <div className="text-center">
-            <a href="/#get-started" className="btn btn-black">Get Started</a>
+            <a href="/docs/latest/quick-start/" className="btn btn-black">Get Started</a>
           </div>
         </div>
 

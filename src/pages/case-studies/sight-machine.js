@@ -27,7 +27,7 @@ export default function SightMachinePage({ location }) {
           <p>For companies looking to align the benefits of local development (e.g. fast iteration, customizable dev tools) with remote Kubernetes clusters, Telepresence is a great choice. We've extended the Telepresence automation with our own bash script that simplifies the Telepresence command line, so that the data scientists can type a single command and it will do the right thing.</p>
 
           <div className="text-center">
-            <a href="/#get-started" className="btn btn-black">Get Started</a>
+            <a href="/docs/latest/quick-start/" className="btn btn-black">Get Started</a>
           </div>
         </div>
 

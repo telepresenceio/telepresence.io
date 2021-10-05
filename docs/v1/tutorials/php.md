@@ -134,4 +134,4 @@ I use PHPSTorm for PHP development, so I used the [PHPStorm xdebug guide](https:
 
 You should then be able to turn on your debug listener in your IDE, set a breakpoint, and navigate to `http://localhost` in your browser to load the code and hit your breakpoint!
 
-This tutorial adapted from a very basic example in [this blog post](https://blog.badgerops.net/2019/10/03/debugging-a-php-app-in-kubernetes-using-telepresence-io/) - if you have any problems or questions, feel free to join the telepresence slack or reach out to [@BadgerOps](https://twitter.com/BadgerOps) on twitter.
+This tutorial adapted from a very basic example in [this blog post](https://blog.badgerops.net/debugging-a-php-app-in-kubernetes-using-telepresence-io/) - if you have any problems or questions, feel free to join the telepresence slack or reach out to [@BadgerOps](https://twitter.com/BadgerOps) on twitter.

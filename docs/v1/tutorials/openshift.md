@@ -31,7 +31,7 @@ In the more extended tutorial that follows you'll see how you can also route tra
 ## A longer introduction: exposing a service to the cluster
 
 <Macros.Install
-    install="https://docs.openshift.org/latest/cli_reference/get_started_cli.html"
+    install="https://docs.okd.io/latest/cli_reference/openshift_cli/getting-started-cli.html"
     command="oc"
     cluster="OpenShift"
     location="top" />
@@ -84,7 +84,7 @@ $ oc delete dc,service,route,imagestream hello-world
 Telepresence can do much more than this: see the reference section of the documentation, on the top-left, for details.
 
 <Macros.Install
-    install="https://docs.openshift.org/latest/cli_reference/get_started_cli.html"
+    install="https://docs.okd.io/latest/cli_reference/openshift_cli/getting-started-cli.html"
     command="oc"
     cluster="OpenShift"
     location="bottom" />

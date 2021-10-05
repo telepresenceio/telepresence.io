@@ -1,0 +1,35 @@
+name: "Broken Link Checker"
+on: [push]
+jobs:
+  "Check":
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '^3.9'
+      - uses: actions/checkout@v2
+        with:
+          path: site
+      - uses: actions/checkout@master
+        with:
+          repository: datawire/getambassador.io-blc2
+          path: blc
+      - run: yarn install
+        working-directory: site
+      - run: yarn run gatsby build
+        working-directory: site
+      - run: npm install
+        working-directory: blc
+      - name: Run checker
+        run: |
+          set -o pipefail
+          (TARGET=../site PRODUCT=telepresenceio make -C . > blc.log) || ! (grep 'has a broken' blc.log)
+        working-directory: blc
+      - uses: actions/upload-artifact@v2
+        with:
+          name: blc.log
+          path: blc/blc.log
+        if: always()

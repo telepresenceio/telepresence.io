@@ -6,7 +6,7 @@ Some older versions of Windows also had WSL, but those were based off Ubuntu 14.
 
 To run Telepresence inside WSL:
 
-1. Install [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
+1. Install [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install).
 2. Start the BASH.exe program.
 3. Install Telepresence by following the Ubuntu instructions above.
 

@@ -1,4 +1,5 @@
 import Alert from '@material-ui/lab/Alert';
+import { ClusterConfig } from '../../../../../src/components/Docs/Telepresence';
 
 # Cluster-side configuration
 
@@ -81,8 +82,7 @@ intercepts.
 
 ### Create a license
 
-1. Go to [the teams setting page in Ambassador Cloud](https://auth.datawire.io/redirects/settings/teams) and
-select *Licenses* for the team you want to create the license for.
+1. <ClusterConfig /> 
 
 2. Generate a new license (if one doesn't already exist) by clicking *Generate New License*.
 
@@ -98,11 +98,17 @@ run this command to generate the Cluster ID:
 
 4. Click *Generate API Key* to finish generating the license.
 
+5. On the licenses page, download the license file associated with your cluster.
+
 ### Add license to cluster
+There are two separate ways you can add the license to your cluster: manually creating and deploying
+the license secret or having the helm chart manage the secret
 
-1. On the licenses page, download the license file associated with your cluster.
+You only need to do one of the two options.
 
-2. Use this command to generate a Kubernetes Secret config using the license file:
+#### Manual deploy of license secret
+
+1. Use this command to generate a Kubernetes Secret config using the license file:
 
   ```
   $ telepresence license -f <downloaded-license-file>
@@ -118,13 +124,60 @@ run this command to generate the Cluster ID:
       namespace: ambassador
   ```
 
-3. Save the output as a YAML file and apply it to your
+2. Save the output as a YAML file and apply it to your
 cluster with `kubectl`.
 
-4. Ensure that you have the docker image for the Smart Agent (datawire/ambassador-telepresence-agent:1.8.0)
+3. When deploying the `traffic-manager` chart, you must add the additional values when running `helm install` by putting
+the following into a file (for the example we'll assume it's called license-values.yaml)
+
+  ```
+  licenseKey:
+    # This mounts the secret into the traffic-manager
+    create: true
+    secret:
+      # This tells the helm chart not to create the secret since you've created it yourself
+      create: false
+  ```
+
+4. Install the helm chart into the cluster
+
+  ```
+  helm install traffic-manager -n ambassador datawire/telepresence --create-namespace -f license-values.yaml
+  ```
+
+5. Ensure that you have the docker image for the Smart Agent (datawire/ambassador-telepresence-agent:1.11.0)
 pulled and in a registry your cluster can pull from.
 
-5. Have users use the `images` [config key](../config/#images) keys so telepresence uses the aforementioned image for their agent.
+6. Have users use the `images` [config key](../config/#images) keys so telepresence uses the aforementioned image for their agent.
+
+#### Helm chart manages the secret
+
+1. Get the jwt token from the downloaded license file
+
+  ```
+  $ cat ~/Downloads/ambassador.License_for_yourcluster
+  eyJhbGnotarealtoken.butanexample
+  ```
+
+2. Create the following values file, substituting your real jwt token in for the one used in the example below.
+(for this example we'll assume the following is placed in a file called license-values.yaml)
+
+  ```
+  licenseKey:
+    # This mounts the secret into the traffic-manager
+    create: true
+    # This is the value from the license file you download. this value is an example and will not work
+    value: eyJhbGnotarealtoken.butanexample
+    secret:
+      # This tells the helm chart to create the secret
+      create: true
+  ```
+
+3. Install the helm chart into the cluster
+
+  ```
+  helm install traffic-manager charts/telepresence -n ambassador --create-namespace -f license-values.yaml
+  ```
 
 Users will now be able to use preview intercepts with the
 `--preview-url=false` flag.  Even with the license key, preview URLs
@@ -147,11 +200,6 @@ your workload out of sync with that external desired state.
 To solve this issue, you can use Telepresence's Mutating Webhook alternative mechanism. Intercepted
 workloads will then stay untouched and only the underlying pods will be modified to inject the Traffic
 Agent sidecar container and update the port definitions.
-
-<Alert severity="info">
-A current limitation of the Mutating Webhook mechanism is that the <code>targetPort</code> of your intercepted
-Service needs to point to the <strong>name</strong> of a port on your container, not the port number itself.
-</Alert>
 
 Simply add the `telepresence.getambassador.io/inject-traffic-agent: enabled` annotation to your
 workload template's annotations:
@@ -184,4 +232,54 @@ in the service. This is necessary when the service has multiple ports.
 +        telepresence.getambassador.io/inject-service-port: https
      spec:
        containers:
+```
+
+### Note on Numeric Ports
+
+If the <code>targetPort</code> of your intercepted service is pointing at a port number, in addition to
+injecting the Traffic Agent sidecar, Telepresence will also inject an <code>initContainer</code> that will
+reconfigure the pod's firewall rules to redirect traffic to the Traffic Agent.
+
+<Alert severity="info">
+Note that this <code>initContainer</code> requires `NET_ADMIN` capabilities.
+If your cluster administrator has disabled them, you will be unable to use numeric ports with the agent injector.
+</Alert>
+
+For example, the following service is using a numeric port, so Telepresence would inject an initContainer into it:
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: your-service
+spec:
+  type: ClusterIP
+  selector:
+    service: your-service
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-service
+  labels:
+    service: your-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: your-service
+  template:
+    metadata:
+      annotations:
+        telepresence.getambassador.io/inject-traffic-agent: enabled
+      labels:
+        service: your-service
+    spec:
+      containers:
+        - name: your-container
+          image: jmalloc/echo-server
+          ports:
+            - containerPort: 8080
 ```

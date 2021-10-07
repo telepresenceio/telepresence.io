@@ -12,12 +12,20 @@
 #     - version: The (optional) version number of the release, if applicable.
 #     - date: The date of the release in the format YYYY-MM-DD.
 #     - notes: An array of noteworthy changes included in the release, each having the following attributes:
-#         - title: A short title of the noteworthy change.
-#         - body: Two or three sentences describing the change and why it is noteworthy. This is in rich text format and may contain HTML elements.
-#         - image: The URL of an image that visually represents the noteworthy change.
-#         - docs: The path to the documentation page where additional information can be found.
 #         - type: The type of change, one of `bugfix`, `feature`, `security` or `change`.
-#
+#         - title: A short title of the noteworthy change.
+#         - body: >-
+#             Two or three sentences describing the change and why it
+#             is noteworthy.  This is HTML, not plain text or
+#             markdown.  It is handy to use YAML's ">-" feature to
+#             allow line-wrapping.
+#         - image: >-
+#             The URL of an image that visually represents the
+#             noteworthy change.  This path is relative to the
+#             `release-notes` directory; if this file is
+#             `FOO/releaseNotes.yml`, then the image paths are
+#             relative to `FOO/release-notes/`.
+#         - docs: The path to the documentation page where additional information can be found.
 
 docTitle: Telepresence Release Notes
 docDescription: >-
@@ -30,6 +38,207 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.4.4
+    date: '2021-09-27'
+    notes:
+      - type: feature
+        title: Numeric ports in agent injector
+        body: >-
+          The agent injector now supports injecting Traffic Agents into pods that have unnamed ports.
+        docs: reference/cluster-config/#note-on-numeric-ports
+
+      - type: feature
+        title: New subcommand to gather logs and export into zip file
+        body: >-
+          Telepresence has logs for various components (the <code>
+          traffic-manager</code>, <code>traffic-agents</code>, the root and
+          user daemons), which are integral for understanding and debugging
+          Telepresence behavior.  We have added the <code>telepresence
+          gather-logs</code> command to make it simple to compile logs for
+          all Telepresence components and export them in a zip file that can
+          be shared to others and/or included in a github issue. For more
+          information on usage, run <code>telepresence gather-logs --help
+          </code>.
+        docs: reference/client
+        image: telepresence-2.4.4-gather-logs.png
+
+      - type: feature
+        title: Pod CIDR strategy is configurable in Helm chart
+        body: >-
+          Telepresence now enables you to directly configure how to get
+          pod CIDRs when deploying Telepresence with the Helm chart.
+          The default behavior remains the same. We've also introduced
+          the ability to explicitly set what the pod CIDRs should be.
+        docs: install/helm
+
+      - type: bugfix
+        title: Compute pod CIDRs more efficiently
+        body: >-
+          When computing subnets using the pod CIDRs, the traffic-manager
+          now uses less CPU cycles.
+        docs: reference/routing/#subnets
+
+      - type: bugfix
+        title: Prevent busy loop in traffic-manager
+        body: >-
+          In some circumstances, the <code>traffic-manager</code>'s CPU
+          would max out and get pinned at its limit. This required a
+          shutdown or pod restart to fix. We've added some fixes
+          to prevent the traffic-manager from getting into this state.
+
+      - type: bugfix
+        title: Added a fixed buffer size to TUN-device
+        body: >-
+          The TUN-device now has a max buffer size of 64K. This prevents the
+          buffer from growing limitlessly until it receies a PSH, which could
+          be a blocking operation when receiving lots of TCP-packets.
+        docs: reference/tun-device
+
+      - type: bugfix
+        title: Fix hanging user daemon
+        body: >-
+          When Telepresence encountered an issue connecting to the cluster or
+          the root daemon, it could hang indefintely. It now will error correctly
+          when it encounters that situation.
+
+      - type: bugfix
+        title: Improved proprietary agent connectivity
+        body: >-
+          To determine whether the environment cluster is air-gapped, the
+          proprietary agent attempts to connect to the cloud during startup.
+          To deal with a possible initial failure, the agent backs off
+          and retries the connection with an increasing backoff duration.
+
+      - type: bugfix
+        title: Telepresence correctly reports intercept port conflict
+        body: >-
+          When creating a second intercept targetting the same local port,
+          it now gives the user an informative error message. Additionally,
+          it tells them which intercept is currently using that port to make
+          it easier to remedy.
+
+  - version: 2.4.3
+    date: '2021-09-15'
+    notes:
+      - type: feature
+        title: Environment variable TELEPRESENCE_INTERCEPT_ID available in interceptor's environment
+        body: >-
+          When you perform an intercept, we now include a <code>TELEPRESENCE_INTERCEPT_ID</code> environment
+          variable in the environment.
+        docs: reference/environment/#telepresence-environment-variables
+
+      - type: bugfix
+        title: Improved daemon stability
+        body: >-
+          Fixed a timing bug that sometimes caused a "daemon did not start" failure.
+
+      - type: bugfix
+        title: Complete logs for Windows
+        body: >-
+          Crash stack traces and other errors were incorrectly not written to log files. This has
+          been fixed so logs for Windows should be at parity with the ones in MacOS and Linux.
+
+      - type: bugfix
+        title: Log rotation fix for Linux kernel 4.11+
+        body: >-
+          On Linux kernel 4.11 and above, the log file rotation now properly reads the
+          <code>birth-time</code> of the log file. Older kernels continue to use the old behavior
+          of using the <code>change-time</code> in place of the <code>birth-time</code>.
+
+      - type: bugfix
+        title: Improved error messaging
+        body: >-
+          When Telepresence encounters an error, it tells the user where they should look for
+          logs related to the error. We have refined this so that it only tells users to look
+          for errors in the daemon logs for issues that are logged there.
+
+      - type: bugfix
+        title: Stop resolving localhost
+        body: >-
+          When using the overriding DNS resolver, it will no longer apply search paths when
+          resolving <code>localhost</code>, since that should be resolved on the user's machine
+          instead of the cluster.
+        docs: reference/routing#linux-systemd-resolved-resolver
+
+      - type: bugfix
+        title: Variable cluster domain
+        body: >-
+          Previously, the cluster domain was hardcoded to <code>cluster.local</code>.  While this
+          is true for many kubernetes clusters, it is not for all of them. Now this value is
+          retrieved from the <code>traffic-manager</code>.
+
+      - type: bugfix
+        title: Improved cleanup of traffic-agents
+        body: >-
+          Telepresence now uninstalls <code>traffic-agents</code> installed via mutating webhook
+          when using <code>telepresence uninstall --everything</code>.
+
+      - type: bugfix
+        title: More large file transfer fixes
+        body: >-
+          Downloading large files during an intercept will no longer cause timeouts and hanging
+          <code>traffic-agents</code>.
+
+      - type: bugfix
+        title: Setting --mount to false when intercepting works as expected
+        body: >-
+          When using <code>--mount=false</code> while performing an intercept, the file system
+          was still mounted.  This has been remedied so the intercept behavior respects the
+          flag.
+        docs: reference/volume
+
+      - type: bugfix
+        title: Traffic-manager establishes outbound connections in parallel
+        body: >-
+          Previously, the <code>traffic-manager</code> established outbound connections
+          sequentially. This resulted in slow (and failing) <code>Dial</code> calls would
+          block all outbound traffic from the workstation (for up to 30 seconds). We now
+          establish these connections in parallel so that won't occur.
+        docs: reference/routing/#outbound
+
+      - type: bugfix
+        title: Status command reports correct DNS settings
+        body: >-
+          <code>Telepresence status</code> now correctly reports DNS settings for all operating
+          systems, instead of <code>Local IP:nil, Remote IP:nil</code> when they don't exist.
+
+  - version: 2.4.2
+    date: '2021-09-01'
+    notes:
+      - type: feature
+        title: New subcommand to temporarily change log-level
+        body: >-
+          We have added a new <code>telepresence loglevel <level></code> subcommand that enables users
+          to temporarily change the log-level for the local demons, the <code>traffic-manager</code> and
+          the <code>traffic-agents</code>. While the <code>logLevels</code> settings from the config will
+          still be used by default, this can be helpful if you are currently experiencing an issue and
+          want to have higher fidelity logs, without doing a <code>telepresence quit</code> and
+          <code>telepresence connect</code>. You can use <code>telepresence loglevel --help</code> to get
+          more information on options for the command.
+        docs: reference/config
+
+      - type: change
+        title: All components have info as the default log-level
+        body: >-
+          We've now set the default for all components of Telepresence (traffic-agent,
+          traffic-manager, local daemons) to use <code>info</code> as the default log-level.
+
+      - type: bugfix
+        title: Updating RBAC in helm chart to fix cluster-id regression
+        body: >-
+          In 2.4.1, we enabled the <code>traffic-manager</code> to get the cluster ID by getting the UID
+          of the default namespace. The helm chart was not updated to give the <code>traffic-manager</code>
+          those permissions, which has since been fixed.  This impacted users who use licensed features of
+          the Telepresence extension in an air-gapped environment.
+        docs: reference/cluster-config/#air-gapped-cluster
+
+      - type: bugfix
+        title: Timeouts for Helm actions are now respected
+        body: >-
+          The user-defined timeout for Helm actions wasn't always respected, causing the daemon to hang
+          indefinitely when failing to install the <code>traffic-manager</code>.
+        docs: reference/config#timeouts
+
   - version: 2.4.1
     date: '2021-08-30'
     notes:

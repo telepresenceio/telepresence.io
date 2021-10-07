@@ -4,8 +4,8 @@ description: "Install Telepresence and learn to use it to intercept services run
 
 import Alert from '@material-ui/lab/Alert';
 import QSCards from './qs-cards';
-import { DownloadDemo } from '../../../../../src/components/Docs/DownloadDemo';
-import { UserInterceptCommand } from '../../../../../src/components/Docs/Telepresence';
+import { DownloadDemo } from '@src/components/Docs/DownloadDemo';
+import { UserInterceptCommand } from '@src/components/Docs/Telepresence';
 
 # Telepresence Quick Start - React
 

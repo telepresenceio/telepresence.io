@@ -3,7 +3,7 @@ description: "Start using Telepresence in your own environment. Follow these ste
 ---
 
 import Alert from '@material-ui/lab/Alert';
-import QSTabs from '../quick-start/qs-tabs'
+import Platform from '@src/components/Platform';
 import QSCards from '../quick-start/qs-cards'
 
 # Intercept a service in your own environment
@@ -24,7 +24,7 @@ import QSCards from '../quick-start/qs-cards'
 <Alert severity="info">
 
   For a detailed walk-though on creating intercepts using our sample
-  app, follow the [quick start guide](../../quick-start/qs-node/).
+  app, follow the [quick start guide](../../quick-start/demo-node/).
 
 </Alert>
 
@@ -48,7 +48,59 @@ copy of that service on your laptop.
 
 ## 1. Install the Telepresence CLI {#1-install}
 
-<QSTabs/>
+<Platform.TabGroup>
+<Platform.MacOSTab>
+
+```shell
+# Install via brew:
+brew install datawire/blackbird/telepresence
+
+# OR install manually:
+# 1. Download the latest binary (~60 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2/darwin/amd64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
+
+# 2. Make the binary executable:
+sudo chmod a+x /usr/local/bin/telepresence
+```
+
+</Platform.MacOSTab>
+<Platform.GNULinuxTab>
+
+```shell
+# 1. Download the latest binary (~50 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2/linux/amd64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
+
+# 2. Make the binary executable:
+sudo chmod a+x /usr/local/bin/telepresence
+```
+
+</Platform.GNULinuxTab>
+<Platform.WindowsTab>
+
+```powershell
+# Windows is in Developer Preview, here is how you can install it:
+# Make sure you run the following from Powershell as Administrator
+# 1. Download the latest windows zip containing telepresence.exe and its dependencies (~50 MB):
+curl -fL https://app.getambassador.io/download/tel2/windows/amd64/$dlVersion$/telepresence.zip -o telepresence.zip
+
+# 2. Unzip the zip file to a suitable directory + cleanup zip
+Expand-Archive -Path telepresence.zip
+Remove-Item 'telepresence.zip'
+cd telepresence
+
+# 3. Run the install-telepresence.ps1 to install telepresence's dependencies. It will install telepresence to
+# C:\telepresence by default, but you can specify a custom path $path with -Path $path
+Set-ExecutionPolicy Bypass -Scope Process
+.\install-telepresence.ps1
+
+# 4. Remove the unzipped directory
+cd ..
+Remove-Item telepresence
+# 5. Close your current Powershell and open a new one. Telepresence should now be usable as telepresence.exe
+```
+
+</Platform.WindowsTab>
+</Platform.TabGroup>
 
 ## 2. Test Telepresence {#2-test}
 
@@ -116,7 +168,7 @@ cluster.
 ## 3. Intercept your service with a global intercept {#3-global-intercept}
 
 In this section, we will go through the steps required for you to
-create a [global intercept](../../concepts/intercepts/?intercept=global) that
+create a [global intercept](../../concepts/intercepts/#global-intercept) that
 intercepts all traffic going to a service in your cluster and route it
 to your local environment instead.  In the [next
 section](#4-personal-intercept), we will instead create a personal
@@ -218,7 +270,7 @@ When working on a development environment with multiple engineers, you
 don't want your intercepts to impact your teammates.  Telepresence
 offers a solution to this: instead of creating a global intercept, you
 can create a [personal
-intercept](../../concepts/intercepts/?intercept=personal) that only
+intercept](../../concepts/intercepts/#personal-intercept) that only
 interepts a subset of the traffic going to the service.  This is the
 default if you are [logged in to Ambassador Cloud with
 Telepresence](../../reference/client/login/).  Additionally if you are

@@ -36,24 +36,12 @@ export function Animation(props) {
 };
 
 export function TabsContainer({ children, ...props }) {
-    const [state, setState] = React.useState({curTab: "personal"});
-    React.useEffect(() => {
-        const query = new URLSearchParams(window.location.search);
-        var interceptType = query.get('intercept') || "personal";
-        if (state.curTab != interceptType) {
-            setState({curTab: interceptType});
-        }
-    }, [state, setState])
-    var setURL = function(newTab) {
-        history.replaceState(null,null,
-            `?intercept=${newTab}${window.location.hash}`,
-        );
-    };
+    const [state, setState] = React.useState({curTab: "personal"})
     return (
         <div class="TabGroup">
             <TabContext value={state.curTab}>
                 <AppBar class="TabBar" elevation={0} position="static">
-                    <TabList onChange={(ev, newTab) => {setState({curTab: newTab}); setURL(newTab)}} aria-label="intercept types">
+                    <TabList onChange={(ev, newTab) => {setState({curTab: newTab})}} aria-label="intercept types">
                         <Tab class="TabHead" value="regular" label="No intercept"/>
                         <Tab class="TabHead" value="global" label="Global intercept"/>
                         <Tab class="TabHead" value="personal" label="Personal intercept"/>
@@ -170,9 +158,9 @@ while sharing the rest of the development environment.
 
     Need a browser extension to modify or remove an HTTP-request-headers?
 
-    <a class="btn btn-black" href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj">Chrome</a>
+    <a class="btn-sm-bluedark" href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj">Chrome</a>
     {' '}
-    <a class="btn btn-black" href="https://addons.mozilla.org/firefox/addon/modheader-firefox/">Firefox</a>
+    <a class="btn-sm-bluedark" href="https://addons.mozilla.org/firefox/addon/modheader-firefox/">Firefox</a>
 
     </Alert>
 

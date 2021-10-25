@@ -52,7 +52,10 @@
      - title: Environment variables
        link: reference/environment
      - title: Intercepts
-       link: reference/intercepts
+       link: reference/intercepts/
+       items:
+         - title: Manually injecting the Traffic Agent
+           link: reference/intercepts/manual-agent
      - title: Volume mounts
        link: reference/volume
      - title: DNS resolution

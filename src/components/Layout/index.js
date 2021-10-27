@@ -1,6 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
+import Platform from '@src/components/Platform';
+
 import './globalHelpers.less';
 import './layout.less';
 import './docs-layout.less';
@@ -11,7 +13,7 @@ import ImgArrow from '../../assets/images/arrow.svg';
 
 export default function Layout({ location, children }) {
   return (
-    <>
+    <Platform.Provider>
       <Helmet>
         <meta name="keywords" content="Telepresence, Kubernetes, microservices"/>
         <link rel="shortcut icon" href="/favicon.ico"/>
@@ -85,6 +87,6 @@ export default function Layout({ location, children }) {
           </li>
         </ul>
       </footer>
-    </>
+    </Platform.Provider>
   );
 };

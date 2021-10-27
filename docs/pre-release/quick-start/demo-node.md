@@ -1,5 +1,5 @@
 ---
-description: "Install Telepresence and learn to use it to intercept services running in your Kubernetes cluster, speeding up local development and debugging."
+description: "Claim a remote demo cluster and learn to use Telepresence to intercept services running in a Kubernetes Cluster, speeding up local development and debugging."
 ---
 
 # Telepresence Quick Start

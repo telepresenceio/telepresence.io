@@ -105,7 +105,7 @@ telepresence intercept hello --namespace myns --port 9000
 
 This will intercept a workload named `hello` and name the intercept
 `hello-myns`.  In order to remove the intercept, you will need to run
-`telepresence leave hello-mydns` instead of just `telepresence leave
+`telepresence leave hello-myns` instead of just `telepresence leave
 hello`.
 
 The name of the intercept will be left unchanged if the workload is specified.

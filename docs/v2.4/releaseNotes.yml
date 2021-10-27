@@ -32,7 +32,13 @@ changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELO
 items:
   - version: 2.4.6
     date: 'TBD'
-    notes: []
+    notes:
+      - type: feature
+        title: Manually injecting Traffic Agent
+        body: >-
+          Telepresence now supports manually injecting the traffic-agent YAML into workload manifests.
+          Use the <code>genyaml</code> command to create the sidecar YAML, then add the <code>telepresence.getambassador.io/manually-injected: "true"</code> annotation to your pods to allow Telepresence to intercept them.
+        docs: reference/intercepts/manual-agent
 
   - version: 2.4.5
     date: '2021-10-15'

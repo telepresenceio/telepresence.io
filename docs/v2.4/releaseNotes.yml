@@ -48,6 +48,18 @@ items:
           Use the <code>genyaml</code> command to create the sidecar YAML, then add the <code>telepresence.getambassador.io/manually-injected: "true"</code> annotation to your pods to allow Telepresence to intercept them.
         docs: reference/intercepts/manual-agent
 
+      - type: feature
+        title: Telepresence CLI released for Apple silicon
+        body: >-
+          Telepresence is now built and released for Apple silicon.
+        docs: install/?os=macos
+      
+      - type: change
+        title: Telepresence help text now links to telepresence.io
+        body: >-
+          We now include a link to our documentation when you run <code>telepresence --help</code>. This will make it easier
+          for users to find this page whether they acquire Telepresece through brew or some other mechanim.
+
   - version: 2.4.5
     date: '2021-10-15'
     notes:

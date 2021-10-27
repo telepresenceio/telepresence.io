@@ -110,6 +110,13 @@ https://app.getambassador.io/download/tel2/linux/amd64/nightly/telepresence
 ```
 
 </Platform.GNULinuxTab>
+<Platform.WindowsTab>
+
+```
+https://app.getambassador.io/download/tel2/windows/amd64/nightly/telepresence.zip
+```
+
+</Platform.WindowsTab>
 </Platform.TabGroup>
 
 ## Installing older versions of Telepresence

@@ -51,12 +51,23 @@ copy of that service on your laptop.
 <Platform.MacOSTab>
 
 ```shell
+# Intel Macs
+
 # Install via brew:
 brew install datawire/blackbird/telepresence
 
 # OR install manually:
 # 1. Download the latest binary (~60 MB):
 sudo curl -fL https://app.getambassador.io/download/tel2/darwin/amd64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
+
+# 2. Make the binary executable:
+sudo chmod a+x /usr/local/bin/telepresence
+
+# Apple silicon Macs
+
+# Install manually:
+# 1. Download the latest binary (~60 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2/darwin/arm64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
 
 # 2. Make the binary executable:
 sudo chmod a+x /usr/local/bin/telepresence

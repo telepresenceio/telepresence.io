@@ -55,10 +55,10 @@ spec:
 ```
 
 <Alert severity="info">
-It is also possible to do this with StatefulSets or ReplicaSets
+This example uses a Deployment but you can also manually inject the agent into StatefulSets or ReplicaSets
 </Alert>
 
-### Generating the yaml.
+### 1. Generating the yaml
 
 The first thing to do is generate YAML for the traffic-agent container:
 
@@ -119,7 +119,7 @@ name: traffic-annotations
 Try telepresence genyaml container --help or telepresence genyaml volume --help for the meaning of these flags.
 </Alert>
 
-### Injecting the YAML into the Deployment
+### 2. Injecting the YAML into the Deployment
 
 Now, the `Deployment` YAML needs to be modified to include the container and volume; these will be placed as elements of `spec.template.spec.containers` and `spec.template.spec.volumes` respectively.
 In addition, `spec.template.metadata.annotations` will have to be modified to add a new annotation, `telepresence.getambassador.io/manually-injected: "true"`
@@ -196,7 +196,7 @@ spec:
 +         name: traffic-annotations
 ```
 
-### Modifying the service.
+### 3. Modifying the service
 
 Lastly, once the modified deployment has been applied, you will have to modify the Service to route traffic to the Traffic Agent.
 You can do this by changing the exposed `targetPort` to `9900`. The resulting service should look like:

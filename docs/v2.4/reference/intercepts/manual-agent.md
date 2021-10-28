@@ -6,7 +6,7 @@ It is possible to directly modify your workload's YAML configuration to add the 
 
 <Alert severity="warning">
 This is not the recommended approach for making a workload interceptable, but is sometimes the only possible approach.
-Before you manually add the traffic agent into your workloads, it is suggested that you try the <a href="../cluster-config#mutating-webhook">mutating webhook</a>
+Before you manually add the traffic agent into your workloads, it is suggested that you try the <a href="../../cluster-config#mutating-webhook">mutating webhook</a>
 </Alert>
 
 ## Procedure

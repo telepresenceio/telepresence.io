@@ -2,7 +2,7 @@ import Alert from '@material-ui/lab/Alert';
 
 # Manually injecting the Traffic Agent
 
-It is possible to directly modify your workload's YAML configuration to add the Telepresence Traffic Agent and enable it to be intercepted.
+You can directly modify your workload's YAML configuration to add the Telepresence Traffic Agent and enable it to be intercepted.
 
 <Alert severity="warning">
 This is not the recommended approach for making a workload interceptable, but is sometimes the only possible approach.
@@ -11,7 +11,9 @@ Before you manually add the traffic agent into your workloads, it is suggested t
 
 ## Procedure
 
-For this example we will use the following deployment:
+You can manually inject the agent into Deployments, StatefulSets, or ReplicaSets. The example on this page
+uses the following Deployment:
+
 
 ```yaml
 apiVersion: apps/v1
@@ -38,7 +40,7 @@ spec:
           resources: {}
 ```
 
-That is being exposed by the following service:
+The deployment is being exposed by the following service:
 
 ```yaml
 apiVersion: v1
@@ -54,13 +56,9 @@ spec:
       targetPort: 8080
 ```
 
-<Alert severity="info">
-This example uses a Deployment but you can also manually inject the agent into StatefulSets or ReplicaSets
-</Alert>
+### 1. Generating the YAML
 
-### 1. Generating the yaml
-
-The first thing to do is generate YAML for the traffic-agent container:
+First, generate the YAML for the traffic-agent container:
 
 ```console
 $ telepresence genyaml container --container-name echo-container --port 8080 --output - --input deployment.yaml
@@ -103,7 +101,7 @@ volumeMounts:
   name: traffic-annotations
 ```
 
-And for the volume:
+Next, generate the YAML for the volume:
 
 ```console
 $ telepresence genyaml volume --output - --input deployment.yaml
@@ -116,14 +114,14 @@ name: traffic-annotations
 ```
 
 <Alert severity="info">
-Try telepresence genyaml container --help or telepresence genyaml volume --help for the meaning of these flags.
+Enter `telepresence genyaml container --help` or `telepresence genyaml volume --help` for more information about these flags.
 </Alert>
 
 ### 2. Injecting the YAML into the Deployment
 
-Now, the `Deployment` YAML needs to be modified to include the container and volume; these will be placed as elements of `spec.template.spec.containers` and `spec.template.spec.volumes` respectively.
-In addition, `spec.template.metadata.annotations` will have to be modified to add a new annotation, `telepresence.getambassador.io/manually-injected: "true"`
-For our example, the end result will look like the following:
+You need to add the `Deployment` YAML you genereated to include the container and the volume. These are placed as elements of `spec.template.spec.containers` and `spec.template.spec.volumes` respectively.
+You also need to modify `spec.template.metadata.annotations` and add the annotation `telepresence.getambassador.io/manually-injected: "true"`.
+These changes should look like the following:
 
 ```diff
 apiVersion: apps/v1
@@ -198,7 +196,7 @@ spec:
 
 ### 3. Modifying the service
 
-Lastly, once the modified deployment has been applied, you will have to modify the Service to route traffic to the Traffic Agent.
+Once the modified deployment YAML has been applied to the cluster, you need to modify the Service to route traffic to the Traffic Agent.
 You can do this by changing the exposed `targetPort` to `9900`. The resulting service should look like:
 
 ```diff

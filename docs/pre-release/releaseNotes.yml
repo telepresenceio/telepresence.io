@@ -58,7 +58,7 @@ items:
         title: Telepresence help text now links to telepresence.io
         body: >-
           We now include a link to our documentation when you run <code>telepresence --help</code>. This will make it easier
-          for users to find this page whether they acquire Telepresece through brew or some other mechanim.
+          for users to find this page whether they acquire Telepresence through Brew or some other mechanism.
         image: telepresence-2.4.6-help-text.png
 
       - type: bugfix

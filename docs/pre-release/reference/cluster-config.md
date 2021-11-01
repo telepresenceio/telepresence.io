@@ -252,6 +252,8 @@ To enable running as GID <code>7777</code> on a specific openshift namespace, ru
 <code>oc adm policy add-scc-to-group anyuid system:serviceaccounts:$NAMESPACE</code>
 </Alert>
 
+If you need to use numeric ports without the aforementioned capabilities, you can [manually install the agent](../intercepts/manual-agent)
+
 For example, the following service is using a numeric port, so Telepresence would inject an initContainer into it:
 ```yaml
 apiVersion: v1

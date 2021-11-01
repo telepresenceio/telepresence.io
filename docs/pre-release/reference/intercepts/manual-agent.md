@@ -4,9 +4,15 @@ import Alert from '@material-ui/lab/Alert';
 
 You can directly modify your workload's YAML configuration to add the Telepresence Traffic Agent and enable it to be intercepted.
 
+When you use a Telepresence intercept, Telepresence automatically edits the workload and services when you use
+`telepresence uninstall --agent <your_agent_name>`. In some GitOps workflows, you may need to use the
+[Telepresence Mutating Webhook](../../cluster-config/#mutating-webhook) to keep intercepted workloads unmodified
+while you target changes on specific pods.
+
 <Alert severity="warning">
-This is not the recommended approach for making a workload interceptable, but is sometimes the only possible approach.
-Before you manually add the traffic agent into your workloads, it is suggested that you try the <a href="../cluster-config#mutating-webhook">mutating webhook</a>
+In situations where you don't have access to the proper permissions for numeric ports, as noted in the Note on numeric ports
+section of the documentation, it is possible to manually inject the Traffic Agent. Because this is not the recommended approach
+to making a workload interceptable, try the Mutating Webhook before proceeding."
 </Alert>
 
 ## Procedure

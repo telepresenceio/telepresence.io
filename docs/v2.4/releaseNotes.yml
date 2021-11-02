@@ -39,7 +39,7 @@ changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELO
 
 items:
   - version: 2.4.6
-    date: 'TBD'
+    date: '2021-11-02'
     notes:
       - type: feature
         title: Manually injecting Traffic Agent

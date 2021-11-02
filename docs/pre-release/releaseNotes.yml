@@ -38,6 +38,37 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.4.6
+    date: 'TBD'
+    notes:
+      - type: feature
+        title: Manually injecting Traffic Agent
+        body: >-
+          Telepresence now supports manually injecting the traffic-agent YAML into workload manifests.
+          Use the <code>genyaml</code> command to create the sidecar YAML, then add the <code>telepresence.getambassador.io/manually-injected: "true"</code> annotation to your pods to allow Telepresence to intercept them.
+        docs: reference/intercepts/manual-agent
+
+      - type: feature
+        title: Telepresence CLI released for Apple silicon
+        body: >-
+          Telepresence is now built and released for Apple silicon.
+        docs: install/?os=macos
+
+      - type: change
+        title: Telepresence help text now links to telepresence.io
+        body: >-
+          We now include a link to our documentation when you run <code>telepresence --help</code>. This will make it easier
+          for users to find this page whether they acquire Telepresence through Brew or some other mechanism.
+        image: telepresence-2.4.6-help-text.png
+
+      - type: bugfix
+        title: Fixed bug when API server is inside CIDR range of pods/services
+        body: >-
+          If the API server for your kubernetes cluster had an IP that fell within the
+          subnet generated from pods/services in a kubernetes cluster, it would proxy traffic
+          to the API server which would result in hanging or a failed connection. We now ensure
+          that the API server is explicitly not proxied.
+
   - version: 2.4.5
     date: '2021-10-15'
     notes:
@@ -748,7 +779,7 @@ items:
       - type: change
         title: Traffic Manager needs new RBAC permissions
         body: >-
-          The Traffic Manager requires <a href="reference/rbac">RBAC
+          The Traffic Manager requires <a href="../reference/rbac">RBAC
           permissions</a> to list Nodes, Pods, and to create a dummy
           Service in the manager's namespace.
         docs: reference/routing/#subnets
@@ -756,7 +787,7 @@ items:
         title: Reduced developer RBAC requirements
         body: >-
           The on-laptop client no longer requires <a
-          href="reference/rbac">RBAC permissions</a> to list the Nodes
+          href="../reference/rbac">RBAC permissions</a> to list the Nodes
           in the cluster or to create Services, as that functionality
           has been moved to the Traffic Manager.
 
@@ -796,7 +827,7 @@ items:
           <code>/etc/resolver/</code> as the result of using
           <code>include-suffixes</code> in the cluster config are now
           properly removed on quit.
-        docs: reference/routing/#mac-os-resolver
+        docs: reference/routing/#macos-resolver
 
       - type: bugfix
         title: Large file transfers

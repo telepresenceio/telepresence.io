@@ -26,7 +26,7 @@ cluster.
 
 In addition to the default open-source traffic-agent, Telepresence
 already knows about the Ambassador Cloud
-[traffic-agent](ambassador-agent), which supports the `http`
+[traffic-agent][ambassador-agent], which supports the `http`
 mechanism.  The `http` mechanism operates at higher layer, working
 with layer 7 HTTP, and may intercept specific HTTP requests, allowing
 other HTTP requests through to the regular service.  This allows for
@@ -213,7 +213,7 @@ Oftentimes, there's a 1-to-1 relationship between a service and a
 workload, so telepresence is able to auto-detect which service it
 should intercept based on the workload you are trying to intercept.
 But if you use something like
-[Argo](https://www.getambassador.io/docs/argo/latest/), there may be
+[Argo](https://www.getambassador.io/docs/argo/latest/quick-start/), there may be
 two services (that use the same labels) to manage traffic between a
 canary and a stable service.
 

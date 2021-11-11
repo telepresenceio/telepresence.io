@@ -64,6 +64,8 @@
        link: reference/dns
      - title: RBAC
        link: reference/rbac
+     - title: Telepresence and VPNs
+       link: reference/vpn
      - title: Networking through Virtual Network Interface
        link: reference/tun-device
      - title: Connection Routing

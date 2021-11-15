@@ -235,24 +235,6 @@ in the service. This is necessary when the service has multiple ports.
        containers:
 ```
 
-### Service Name Annotation
-
-A service name annotation can be added to the workload to make the Mutating Webhook select a specific Kubernetes service.
-This is necessary when the workload is exposed by multiple services.
-
-```diff
- spec:
-   template:
-     metadata:
-       labels:
-         service: your-service
-       annotations:
-         telepresence.getambassador.io/inject-traffic-agent: enabled
-+        telepresence.getambassador.io/inject-service-name: my-service
-     spec:
-       containers:
-```
-
 ### Note on Numeric Ports
 
 If the <code>targetPort</code> of your intercepted service is pointing at a port number, in addition to

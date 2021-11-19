@@ -140,7 +140,7 @@ export default function DocPage({ location, data, pageContext }) {
                     rooturl={pageContext.docinfo.docrootURL}
                     items={jsYAML.safeLoad(template(data.sidebarFile.internal.content, variables))} />
         </nav>
-        <main className="docs__main">
+        <main className="docs__main container">
           {
             data.contentFile.childMdx
               ? <MarkdownContent mdxNode={data.contentFile.childMdx}

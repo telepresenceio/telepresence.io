@@ -47,6 +47,13 @@ items:
           The agent injector now supports a new annotation, <code>telepresence.getambassador.io/inject-service-name</code>, that can be used to set the name of the service to be intercepted.
           This will help disambiguate which service to intercept for when a workload is exposed by multiple services, such as can happen with Argo Rollouts
         docs: reference/cluster-config#service-name-annotation
+      - type: feature
+        title: Never proxy subnets
+        body: >-
+          The kubeconfig extensions now support a <code>never-proxy</code> argument,
+          analogous to <code>also-proxy</code>, that defines a set of subnets that
+          will never be proxied via telepresence.
+        docs: reference/config#neverproxy
   - version: 2.4.6
     date: '2021-11-02'
     notes:

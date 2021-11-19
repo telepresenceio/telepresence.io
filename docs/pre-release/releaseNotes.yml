@@ -52,6 +52,13 @@ items:
         body: >-
           You can now skip the ingress dialogue by setting the ingress parameters in the corresponding flags.
         docs: reference/intercepts#skipping-the-ingress-dialogue
+      - type: feature
+        title: Never proxy subnets
+        body: >-
+          The kubeconfig extensions now support a <code>never-proxy</code> argument,
+          analogous to <code>also-proxy</code>, that defines a set of subnets that
+          will never be proxied via telepresence.
+        docs: reference/config#neverproxy
       - type: change
         title: Daemon versions check
         body: >-

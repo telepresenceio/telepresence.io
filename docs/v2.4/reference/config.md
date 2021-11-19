@@ -177,7 +177,9 @@ clusters:
 
 
 #### AlsoProxy
-When using `also-proxy`, you provide a list of subnets after the key in your kubeconfig file to be added to the TUN device. All connections to addresses that the subnet spans will be dispatched to the cluster
+
+When using `also-proxy`, you provide a list of subnets after the key in your kubeconfig file to be added to the TUN device.
+All connections to addresses that the subnet spans will be dispatched to the cluster
 
 Here is an example kubeconfig for the subnet `1.2.3.4/32`:
 ```
@@ -192,6 +194,50 @@ clusters:
         - 1.2.3.4/32
   name: example-cluster
 ```
+
+#### NeverProxy
+
+When using `never-proxy` you provide a list of subnets after the key in your kubeconfig file. These will never be routed via the
+TUN device, even if they fall within the subnets (pod or service) for the cluster. Instead, whatever route they have before
+telepresence connects is the route they will keep.
+
+Here is an example kubeconfig for the subnet `1.2.3.4/32`:
+
+```yaml
+apiVersion: v1
+clusters:
+- cluster:
+    server: https://127.0.0.1
+    extensions:
+    - name: telepresence.io
+      extension:
+        never-proxy:
+        - 1.2.3.4/32
+  name: example-cluster
+```
+
+##### Using AlsoProxy together with NeverProxy
+
+Never proxy and also proxy are implemented as routing rules, meaning that when the two conflict, regular routing routes apply.
+Usually this means that the most specific route will win.
+
+So, for example, if an `also-proxy` subnet falls within a broader `never-proxy` subnet:
+
+```yaml
+never-proxy: [10.0.0.0/16]
+also-proxy: [10.0.5.0/24]
+```
+
+Then the specific `also-proxy` of `10.0.5.0/24` will be proxied by the TUN device, whereas the rest of `10.0.0.0/16` will not.
+
+Conversely if a `never-proxy` subnet is inside a larger `also-proxy` subnet:
+
+```yaml
+also-proxy: [10.0.0.0/16]
+never-proxy: [10.0.5.0/24]
+```
+
+Then all of the also-proxy of `10.0.0.0/16` will be proxied, with the exception of the specific `never-proxy` of `10.0.5.0/24`
 
 #### Manager
 

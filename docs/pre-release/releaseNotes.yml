@@ -81,7 +81,7 @@ items:
         body: >-
           The Traffic Manager no longer runs a risk of entering a deadlock when a new Traffic agent arrives.
       - type: bugfix
-        tite: webhookRegistry config propagation
+        title: webhookRegistry config propagation
         body: >-
           The configured <code>webhookRegistry</code> is now propagated to the webhook installer even if no <code>webhookAgentImage</code> has been set.
         docs: reference/config#images

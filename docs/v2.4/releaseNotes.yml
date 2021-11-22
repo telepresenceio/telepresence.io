@@ -54,6 +54,44 @@ items:
           analogous to <code>also-proxy</code>, that defines a set of subnets that
           will never be proxied via telepresence.
         docs: reference/config#neverproxy
+      - type: bugfix
+        title: Legacy flags now work with global flags
+        body: >-
+          Legacy flags such as `--swap-deployment` can now be used together with global flags.
+      - type: change
+        title: Daemon versions check
+        body: >-
+          Telepresence now checks the versions of the client and the daemons and asks the user to quit and restart if they don't match.
+      - type: bugfix
+        title: Outbound connection closing
+        body: >-
+          Outbound connections are now properly closed when the peer closes.
+        docs: reference/tun-device
+      - type: bugfix
+        title: Prevent DNS recursion
+        body: >-
+          The DNS-resolver will trap recursive resolution attempts (may happen when the cluster runs in a docker-container on the client).
+        docs: reference/dns
+      - type: bugfix
+        title: Prevent network recursion
+        body: >-
+          The TUN-device will trap failed connection attempts that results in recursive calls back into the TUN-device (may happen when the 
+          cluster runs in a docker-container on the client).
+        docs: reference/tun-device
+      - type: change
+        title: No explicit DNS flushes
+        body: >-
+          Telepresence DNS now uses a very short TTL instead of explicitly flushing DNS by killing the <code>mDNSResponder</code> or doing <code>resolvectl flush-caches</code>
+        docs: reference/dns
+      - type: bugfix
+        title: Traffic Manager deadlock fix
+        body: >-
+          The Traffic Manager no longer runs a risk of entering a deadlock when a new Traffic agent arrives.
+      - type: bugfix
+        tite: webhookRegistry config propagation
+        body: >-
+          The configured <code>webhookRegistry</code> is now propagated to the webhook installer even if no <code>webhookAgentImage</code> has been set.
+        docs: reference/config#images
   - version: 2.4.6
     date: '2021-11-02'
     notes:

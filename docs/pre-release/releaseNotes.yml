@@ -38,6 +38,15 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.4.7
+    date: 'TBD'
+    notes:
+      - type: feature
+        title: Injector service-name annotation
+        body: >-
+          The agent injector now supports a new annotation, <code>telepresence.getambassador.io/inject-service-name</code>, that can be used to set the name of the service to be intercepted.
+          This will help disambiguate which service to intercept for when a workload is exposed by multiple services, such as can happen with Argo Rollouts
+        docs: reference/cluster-config#service-name-annotation
   - version: 2.4.6
     date: '2021-11-02'
     notes:
@@ -68,7 +77,6 @@ items:
           subnet generated from pods/services in a kubernetes cluster, it would proxy traffic
           to the API server which would result in hanging or a failed connection. We now ensure
           that the API server is explicitly not proxied.
-
   - version: 2.4.5
     date: '2021-10-15'
     notes:

@@ -39,7 +39,7 @@ changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELO
 
 items:
   - version: 2.4.7
-    date: 'TBD'
+    date: "TBD"
     notes:
       - type: feature
         title: Injector service-name annotation
@@ -85,8 +85,13 @@ items:
         body: >-
           The configured <code>webhookRegistry</code> is now propagated to the webhook installer even if no <code>webhookAgentImage</code> has been set.
         docs: reference/config#images
+      - type: feature
+        title: Skip the Ingress Dialogue
+        body: >-
+          You can now skip the ingress dialogue by setting the ingress parameters in the corresponding flags.
+        docs: reference/intercepts#skipping-the-ingress-dialogue
   - version: 2.4.6
-    date: '2021-11-02'
+    date: "2021-11-02"
     notes:
       - type: feature
         title: Manually injecting Traffic Agent
@@ -116,7 +121,7 @@ items:
           to the API server which would result in hanging or a failed connection. We now ensure
           that the API server is explicitly not proxied.
   - version: 2.4.5
-    date: '2021-10-15'
+    date: "2021-10-15"
     notes:
       - type: feature
         title: Get pod yaml with gather-logs command
@@ -183,7 +188,7 @@ items:
           openshift's security policies banning arbitrary GIDs.
 
   - version: 2.4.4
-    date: '2021-09-27'
+    date: "2021-09-27"
     notes:
       - type: feature
         title: Numeric ports in agent injector
@@ -262,7 +267,7 @@ items:
           it easier to remedy.
 
   - version: 2.4.3
-    date: '2021-09-15'
+    date: "2021-09-15"
     notes:
       - type: feature
         title: Environment variable TELEPRESENCE_INTERCEPT_ID available in interceptor's environment
@@ -347,7 +352,7 @@ items:
           systems, instead of <code>Local IP:nil, Remote IP:nil</code> when they don't exist.
 
   - version: 2.4.2
-    date: '2021-09-01'
+    date: "2021-09-01"
     notes:
       - type: feature
         title: New subcommand to temporarily change log-level
@@ -384,7 +389,7 @@ items:
         docs: reference/config#timeouts
 
   - version: 2.4.1
-    date: '2021-08-30'
+    date: "2021-08-30"
     notes:
       - type: feature
         title: External cloud variables are now configurable
@@ -480,7 +485,7 @@ items:
         docs: reference/config/#images
 
   - version: 2.4.0
-    date: '2021-08-04'
+    date: "2021-08-04"
     notes:
       - type: feature
         title: Windows Client Developer Preview
@@ -550,9 +555,8 @@ items:
         docs: reference/routing/#subnets
 
   - version: 2.3.7
-    date: '2021-07-23'
+    date: "2021-07-23"
     notes:
-
       - type: feature
         title: Also-proxy in telepresence status
         body: >-
@@ -611,7 +615,8 @@ items:
 
       - type: bugfix
         title: Improved DNS resolver for systemd-resolved
-        body: Telepresence's <code>systemd-resolved</code>-based DNS resolver is now more
+        body:
+          Telepresence's <code>systemd-resolved</code>-based DNS resolver is now more
           stable and in case it fails to initialize, the <code>overriding resolver</code>
           will no longer cause general DNS lookup failures when telepresence defaults to
           using it.
@@ -619,14 +624,14 @@ items:
 
       - type: bugfix
         title: Faster telepresence list command
-        body: The performance of <code>telepresence list</code> has been increased
+        body:
+          The performance of <code>telepresence list</code> has been increased
           significantly by reducing the number of calls the command makes to the cluster.
         docs: reference/client
 
   - version: 2.3.6
-    date: '2021-07-20'
+    date: "2021-07-20"
     notes:
-
       - type: bugfix
         title: Fix preview URLs
         body: >-
@@ -659,7 +664,7 @@ items:
           already be closed.
 
   - version: 2.3.5
-    date: '2021-07-15'
+    date: "2021-07-15"
     notes:
       - type: feature
         title: traffic-manager in multiple namespaces
@@ -703,7 +708,7 @@ items:
         docs: reference/cluster-config/#air-gapped-cluster
         image: ./telepresence-2.3.5-skipLogin.png
   - version: 2.3.4
-    date: '2021-07-09'
+    date: "2021-07-09"
     notes:
       - type: bugfix
         title: Improved IP log statements
@@ -739,7 +744,7 @@ items:
           The Telepresence Helm chart no longer fails when installing with <code>--set clientRbac.namespaced=true</code>.
         docs: install/helm
   - version: 2.3.3
-    date: '2021-07-07'
+    date: "2021-07-07"
     notes:
       - type: feature
         title: Traffic Manager Helm Chart
@@ -788,7 +793,7 @@ items:
           An intercept will survive deletion of the intercepted pod provided
           that another pod is created (or already exists) that can take over.
   - version: 2.3.2
-    date: '2021-06-18'
+    date: "2021-06-18"
     notes:
       # Headliners
       - type: feature
@@ -891,7 +896,7 @@ items:
           returned that all of the side-effects on the laptop have
           been cleaned up.
   - version: 2.3.1
-    date: '2021-06-14'
+    date: "2021-06-14"
     notes:
       - title: DNS Resolver Configuration
         body: "Telepresence now supports per-cluster configuration for custom dns behavior, which will enable users to determine which local + remote resolver to use and which suffixes should be ignored + included. These can be configured on a per-cluster basis."
@@ -924,7 +929,7 @@ items:
         docs: install/
         type: change
   - version: 2.3.0
-    date: '2021-06-01'
+    date: "2021-06-01"
     notes:
       - title: Brew install Telepresence
         body: "Telepresence can now be installed via brew on macOS, which makes it easier for users to stay up-to-date with the latest telepresence version. To install via brew, you can use the following command: <code>brew install datawire/blackbird/telepresence2</code>."
@@ -952,7 +957,7 @@ items:
         docs: reference/config/#log-levels
         type: feature
   - version: 2.2.2
-    date: '2021-05-17'
+    date: "2021-05-17"
     notes:
       - title: Legacy Telepresence subcommands
         body: Telepresence is now able to translate common legacy Telepresence commands into native Telepresence commands. So if you want to get started quickly, you can just use the same legacy Telepresence commands you are used to with the new Telepresence binary.

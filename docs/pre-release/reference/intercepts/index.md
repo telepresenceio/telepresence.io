@@ -182,10 +182,10 @@ You can skip the ingress dialogue by setting the relevant parameters using flags
 
 | Flag           | Description | Required |
 | -------------- | ------------------------------ | --- |
-| --ingress-host | The ip address for the ingress | yes |
-| --ingress-port | The port for the ingress       | yes |
-| --ingress-tls  | Whether tls should be used     | no  |
-| --ingress-l5   | Whether a different ip address should be used in requrest headers | no |
+| `--ingress-host` | The ip address for the ingress | yes |
+| `--ingress-port` | The port for the ingress       | yes |
+| `--ingress-tls`  | Whether tls should be used     | no  |
+| `--ingress-l5`   | Whether a different ip address should be used in request headers | no |
 
 ## Creating an intercept when a service has multiple ports
 

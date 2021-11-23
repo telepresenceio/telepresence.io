@@ -38,6 +38,16 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.4.8
+    date: "TBD"
+    notes:
+      - type: feature
+        title: RESTful API service
+        body: >-
+          A RESTful service was added to Telepresence, both locally to the client and to the <code>traffic-agent</code> to
+          help determine if messages with a set of headers should be consumed or not from a message queue where the
+          intercept headers are added to the messages.
+        docs: reference/restapi
   - version: 2.4.7
     date: "2021-11-24"
     notes:

@@ -18,12 +18,12 @@ You may need to configure this on both the client and server sides.
 Client-side, taking the Tunnelblick client as an example, you must ensure that
 the `Route all IPv4 traffic through the VPN` tickbox is not enabled:
 
-// TODO: Screenshot
+<img src="../images/tunnelblick.png" />
 
 Server-side, taking AWS' ClientVPN as an example, you simply have to enable
 split-tunnel mode:
 
-// TODO: Screenshot
+<img src="../images/split-tunnel.png" />
 
 This setting can usually be toggled without having to reprovision the VPN.
 
@@ -108,7 +108,7 @@ hosts from being masked.
 This might be particularly important for DNS resolution. In an AWS ClientVPN VPN it is often
 customary to set the `.2` host as a DNS server (e.g. `10.0.0.2` in this case):
 
-// TODO Screenshot
+<img src="../images/vpn-dns.png" />
 
 If this is the case for your VPN, you should place the DNS server in the never-proxy list for your
 cluster. In your kubeconfig file, simply add a `telepresence` extension like so:

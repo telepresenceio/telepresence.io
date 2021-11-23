@@ -60,7 +60,7 @@ items:
         title: No explicit DNS flushes
         body: >-
           Telepresence DNS now uses a very short TTL instead of explicitly flushing DNS by killing the <code>mDNSResponder</code> or doing <code>resolvectl flush-caches</code>
-        docs: reference/dns
+        docs: reference/routing#dns-caching
       - type: bugfix
         title: Legacy flags now work with global flags
         body: >-
@@ -69,18 +69,17 @@ items:
         title: Outbound connection closing
         body: >-
           Outbound connections are now properly closed when the peer closes.
-        docs: reference/tun-device
       - type: bugfix
         title: Prevent DNS recursion
         body: >-
           The DNS-resolver will trap recursive resolution attempts (may happen when the cluster runs in a docker-container on the client).
-        docs: reference/dns
+        docs: reference/routing#dns-recursion
       - type: bugfix
         title: Prevent network recursion
         body: >-
           The TUN-device will trap failed connection attempts that results in recursive calls back into the TUN-device (may happen when the 
           cluster runs in a docker-container on the client).
-        docs: reference/tun-device
+        docs: reference/routing#connect-recursion
       - type: bugfix
         title: Traffic Manager deadlock fix
         body: >-

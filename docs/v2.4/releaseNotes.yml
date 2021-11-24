@@ -96,6 +96,14 @@ items:
         body: >-
           The configured <code>webhookRegistry</code> is now propagated to the webhook installer even if no <code>webhookAgentImage</code> has been set.
         docs: reference/config#images
+      - type: bugfix
+        title: Login refreshes expired tokens
+        body: >-
+          When a user's token has expired, <code> telepresence login </code>
+          will prompt the user to log in again to get a new token. Previously,
+          the user had to <code> telepresence quit </code> and <code> telepresence logout </code>
+          to get a new token.
+        docs: https://github.com/telepresenceio/telepresence/issues/2062
   - version: 2.4.6
     date: "2021-11-02"
     notes:

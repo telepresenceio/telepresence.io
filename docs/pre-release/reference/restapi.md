@@ -65,7 +65,7 @@ $ curl -v localhost:9980/consume-here -H 'x-telepresence-caller-intercept-id: 43
 true%
 ```
 
-If you can run curl from the pod, uou can try the exact same URL. The result should be "false" when there's an ongoing intercept. The `x-telepresence-caller-intercept-id` is not needed when the call is made from the pod.
+If you can run curl from the pod, you can try the exact same URL. The result should be "false" when there's an ongoing intercept. The `x-telepresence-caller-intercept-id` is not needed when the call is made from the pod.
 #### Example code:
 
 Here's an example filter written in Go. It divides the actual URL creation (only needs to run once) from the filter function to make the filter more performant:

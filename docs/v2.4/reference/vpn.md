@@ -75,7 +75,7 @@ Please see https://www.telepresence.io/docs/latest/reference/vpn for more info o
 
 Still having issues? Please create a new github issue at https://github.com/telepresenceio/telepresence/issues/new?template=Bug_report.md
  Please make sure to add the following to your issue:
- * Attach the zipfile resulting from running `telepresence gather_logs`
+ * Run `telepresence loglevel debug`, try to connect, then run `telepresence gather_logs`. It will produce a zipfile that you should attach to the issue.
  * Which VPN client are you using?
  * Which VPN server are you using?
  * How is your VPN pushing DNS configuration? It may be useful to add the contents of /etc/resolv.conf

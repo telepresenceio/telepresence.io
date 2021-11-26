@@ -75,7 +75,7 @@ Please see https://www.telepresence.io/docs/latest/reference/vpn for more info o
 
 Still having issues? Please create a new github issue at https://github.com/telepresenceio/telepresence/issues/new?template=Bug_report.md
  Please make sure to add the following to your issue:
- * Attach the zipfile resulting from running `telepresence gather_logs`
+ * Run `telepresence loglevel debug`, try to connect, then run `telepresence gather_logs`. It will produce a zipfile that you should attach to the issue.
  * Which VPN client are you using?
  * Which VPN server are you using?
  * How is your VPN pushing DNS configuration? It may be useful to add the contents of /etc/resolv.conf
@@ -103,7 +103,7 @@ In this case configuring the pods to be located in `10.1.0.0/19` would clear the
 to reach hosts inside the VPC's `10.0.0.0/19`
 
 However, it is not always easy, or possible, to move the pods to a different subnet.
-In these cases, you should use the [never-proxy](/) (// LINK TBD) configuration to prevent certain
+In these cases, you should use the [never-proxy](./config#neverproxy) configuration to prevent certain
 hosts from being masked.
 This might be particularly important for DNS resolution. In an AWS ClientVPN VPN it is often
 customary to set the `.2` host as a DNS server (e.g. `10.0.0.2` in this case):

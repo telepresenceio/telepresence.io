@@ -42,6 +42,12 @@ items:
     date: "TBD"
     notes:
       - type: feature
+        title: VPN diagnostics tool
+        body: >-
+          There is a new subcommand, <code>test-vpn</code>, that can be used to diagnose connectivity issues with a VPN.
+          See the VPN docs for more information on how to use it.
+        docs: reference/vpn
+      - type: feature
         title: RESTful API service
         body: >-
           A RESTful service was added to Telepresence, both locally to the client and to the <code>traffic-agent</code> to

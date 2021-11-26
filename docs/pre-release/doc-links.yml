@@ -58,6 +58,8 @@
            link: reference/intercepts/manual-agent
      - title: Volume mounts
        link: reference/volume
+     - title: RESTful API service
+       link: reference/restapi
      - title: DNS resolution
        link: reference/dns
      - title: RBAC

@@ -130,9 +130,8 @@ The size is measured in bytes. You can express it as a plain integer or as a fix
 ```
 
 #### RESTful API server
-The `telepresenceAPI` controls the behavior of Telepresence's RESTful API server that can be queried for additional information about ongoing intercepts. T
-When present, and the `port` is set to a valid port number, it's propagated to the auto-installer so that application containers that can be intercepted gets the `TELEPRESENCE_API_PORT` environment set. The server can then be queried at `localhost:<TELEPRESENCE_API_PORT>`. In addition, the `traffic-agent` and the `user-daemon` on the workstation that performs an intercept, will start the server on that port.
-If the `traffic-manager` is auto-installed, it's webhook agent injector will be configured to add the `TELEPRESENCE_API_PORT` environment to the app container when the `traffic-agent` is injected.
+The `telepresenceAPI` controls the behavior of Telepresence's RESTful API server that can be queried for additional information about ongoing intercepts. When present, and the `port` is set to a valid port number, it's propagated to the auto-installer so that application containers that can be intercepted gets the `TELEPRESENCE_API_PORT` environment set. The server can then be queried at `localhost:<TELEPRESENCE_API_PORT>`. In addition, the `traffic-agent` and the `user-daemon` on the workstation that performs an intercept will start the server on that port.
+If the `traffic-manager` is auto-installed, its webhook agent injector will be configured to add the `TELEPRESENCE_API_PORT` environment to the app container when the `traffic-agent` is injected.
 See [RESTful API server](../restapi) for more info.
 
 ## Per-Cluster Configuration

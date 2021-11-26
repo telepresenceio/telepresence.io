@@ -13,11 +13,59 @@ On the cluster's side, it's the `traffic-agent` of potentially intercepted pods 
 ### healthz
 The `http://localhost:<TELEPRESENCE_API_PORT>/healthz` endpoint should respond with status code 200 OK. If it doesn't then something isn't configured correctly. Check that the `traffic-agent` container is present and that the `TELEPRESENCE_API_PORT` has been added to the environment of the application container and/or in the environment that is propagated to the interceptor that runs on the local workstation.
 
+#### test endpoint using curl
+A `curl -v` call can be used to test the endpoint when an intercept is active. This example assumes that the API port is configured to be 9980.
+```console
+$ curl -v localhost:9980/healthz
+*   Trying ::1:9980...
+* Connected to localhost (::1) port 9980 (#0)
+> GET /healthz HTTP/1.1
+> Host: localhost:9980
+> User-Agent: curl/7.76.1
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Date: Fri, 26 Nov 2021 07:06:18 GMT
+< Content-Length: 0
+< 
+* Connection #0 to host localhost left intact
+```
+
 ### consume-here
-`http://localhost:<TELEPRESENCE_API_PORT>/consume-here` is intended to be queried with a set of headers, typically obtained from a Kafka message or similar, and will respond with "true" (consume the message) or "false" (leave the message on the queue). When running in the cluster, this endpoint will respond with `false` if the headers match an ongoing intercept for the same workload because it's assumed that it's up ot the intercept to consume the message. When running locally, the response is inverted. Matching headers means that the message should be consumed.
+`http://localhost:<TELEPRESENCE_API_PORT>/consume-here` is intended to be queried with a set of headers, typically obtained from a Kafka message or similar, and will respond with "true" (consume the message) or "false" (leave the message on the queue). When running in the cluster, this endpoint will respond with `false` if the headers match an ongoing intercept for the same workload because it's assumed that it's up to the intercept to consume the message. When running locally, the response is inverted. Matching headers means that the message should be consumed.
 
-The `x-caller-intercept-id: = <TELEPRESENCE_INTERCEPT_ID>` header must always be provided when the call originates from the local workstation. Telepresence needs this to identify the caller correctly. The `<TELEPRESENCE_INTERCEPT_ID>` will be empty when running in the cluster, and it is harmless to provide it there too, so there's no need for conditional code.
+Telepresence provides the ID of the intercept in the environment variable [TELEPRESENCE_INTERCEPT_ID](../environment/#telepresence_intercept_id) during an intercept. This ID must be provided in a `x-caller-intercept-id: = <ID>` header. Telepresence needs this to identify the caller correctly. The `<TELEPRESENCE_INTERCEPT_ID>` will be empty when running in the cluster, but it's harmless to provide it there too, so there's no need for conditional code.
 
+#### test endpoint using curl
+There are three prerequisites to fulfill before testing this endpoint using `curl -v` on the workstation.
+1. An intercept must be active
+2. The "/healtz" endpoint must respond with OK
+3. The ID of the intercept must be known. It will be visible as `x-telepresence-intercept-id` in the output of the `telepresence intercept` and `telepresence list` commands unless the intercept was started with `--http-match` flags. If it was, the `--env-file <file>` or `--env-json <file>` flag must be also be used so that the environment can be examined. The variable to look for in the file is `TELEPRESENCE_INTERCEPT_ID`.
+
+Assuming that the API-server runs on port 9980, that the intercept was started with `-H 'foo: bar`, we can now check that the "/consume-here" returns "true" for the given headers.
+```console
+$ curl -v localhost:9980/consume-here -H 'x-telepresence-caller-intercept-id: 4392d394-100e-4f15-a89b-426012f10e05:apitest' -H 'foo: bar'
+*   Trying ::1:9980...
+* Connected to localhost (::1) port 9980 (#0)
+> GET /consume-here HTTP/1.1
+> Host: localhost:9980
+> User-Agent: curl/7.76.1
+> Accept: */*
+> x-telepresence-caller-intercept-id: 4392d394-100e-4f15-a89b-426012f10e05:apitest
+> foo: bar
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Content-Type: text/plain
+< Date: Fri, 26 Nov 2021 06:43:28 GMT
+< Content-Length: 4
+< 
+* Connection #0 to host localhost left intact
+true%
+```
+
+If you can run curl from the pod, uou can try the exact same URL. The result should be "false" when there's an ongoing intercept. The `x-telepresence-caller-intercept-id` is not needed when the call is made from the pod.
 #### Example code:
 
 Here's an example filter written in Go. It divides the actual URL creation (only needs to run once) from the filter function to make the filter more performant:
@@ -64,6 +112,6 @@ func consumeHere(url string, hm map[string]string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	return strconv.ParseBool(strings.TrimSpace(string(b)))
+	return strconv.ParseBool(string(b))
 }
 ```

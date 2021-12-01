@@ -48,6 +48,19 @@ items:
           help determine if messages with a set of headers should be consumed or not from a message queue where the
           intercept headers are added to the messages.
         docs: reference/restapi
+
+      - type: change
+        title: TELEPRESENCE_LOGIN_CLIENT_ID env variable no longer used
+        body: >-
+          This value was configurable but there was no real reason to set it to be something different,
+          so that value is no longer used.
+
+      - type: bugfix
+        title: Tunneled network connections behave more like ordinary TCP connections.
+        body: >-
+          When using Telepresence with an external cloud provider for extensions, those tunneled
+          connections now behave more like TCP connections, especially when it comes to timeouts.
+          We've also added increased testing around these types of connections.
   - version: 2.4.7
     date: "2021-11-24"
     notes:

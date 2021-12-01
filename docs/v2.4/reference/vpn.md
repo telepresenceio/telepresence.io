@@ -1,3 +1,6 @@
+<!-- TODO: We should figure out a way to make this site-wide without affecting the release notes page -->
+<div class="container">
+
 # Telepresence and VPNs
 
 ## The test-vpn command
@@ -151,3 +154,4 @@ to use never-proxy rules to whitelist hosts in the VPN:
         * Move pod subnet 10.0.0.0/8 to a subnet not mapped by the VPN
                 * If this is not possible, ensure that any hosts in CIDR 0.0.0.0/1 are placed in the never-proxy list
 ```
+</div>

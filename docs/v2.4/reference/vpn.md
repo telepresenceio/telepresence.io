@@ -28,7 +28,7 @@ split-tunnel mode:
 
 <img src="../../images/split-tunnel.png" />
 
-This setting can usually be toggled without having to reprovision the VPN.
+In AWS, this setting can be toggled without reprovisioning the VPN. Other cloud providers may work differently.
 
 ### Testing the VPN configuration
 
@@ -97,7 +97,7 @@ routes:
                 * If this is not possible, ensure that any hosts in CIDR 10.0.0.0/16 are placed in the never-proxy list
 ```
 
-Typically, this means that all VPN hosts within `10.0.0.0/19` will be rendered inaccessible while
+This means that all VPN hosts within `10.0.0.0/19` will be rendered inaccessible while
 telepresence is connected.
 
 The ideal resolution in this case is to move the pods to a different subnet. This is possible,
@@ -142,7 +142,7 @@ connected.
 
 As with the first case, the ideal resolution is to move the pods away, but this may not always
 be possible. In that case, your best bet is to attempt to shrink the VPN's CIDR
-(i.e. make it route more hosts) to make Telepresence's routes win by virtue of specificity.
+(that is, make it route more hosts) to make Telepresence's routes win by virtue of specificity.
 One easy way to do this may be by disabling split tunneling (see the [prerequisites](#prerequisites)
 section for more on split-tunneling).
 

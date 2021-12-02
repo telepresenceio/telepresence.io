@@ -58,8 +58,8 @@ items:
       - type: change
         title: TELEPRESENCE_LOGIN_CLIENT_ID env variable no longer used
         body: >-
-          This value was configurable but there was no real reason to set it to be something different,
-          so that value is no longer used.
+          You could previously configure this value, but there was no reason to change it, so the value
+          was removed.
 
       - type: bugfix
         title: Tunneled network connections behave more like ordinary TCP connections.

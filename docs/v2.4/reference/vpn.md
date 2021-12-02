@@ -7,7 +7,7 @@
 
 You can make use of the `telepresence test-vpn` command to diagnose issues
 with your VPN setup.
-It will guide you through a series of steps to figure out if there are
+This guides you through a series of steps to figure out if there are
 conflicts between your VPN configuration and telepresence.
 
 ### Prerequisites
@@ -32,13 +32,13 @@ This setting can usually be toggled without having to reprovision the VPN.
 
 ### Testing the VPN configuration
 
-To run it, simply:
+To run it, enter:
 
 ```console
 $ telepresence test-vpn
 ```
 
-The tool will begin by asking you to disconnect from your VPN; ensure you are disconnected then
+The test-vpn tool begins by asking you to disconnect from your VPN; ensure you are disconnected then
 press enter:
 
 ```
@@ -88,7 +88,7 @@ Still having issues? Please create a new github issue at https://github.com/tele
 
 ##### Case 1: VPN masked by cluster
 
-In this case, the tool will inform you that a pod or service subnet is masking a CIDR that the VPN
+In an instance where the VPN is masked by the cluster, the test-vpn tool informs you that a pod or service subnet is masking a CIDR that the VPN
 routes:
 
 ```
@@ -100,12 +100,12 @@ routes:
 Typically, this means that all VPN hosts within `10.0.0.0/19` will be rendered inaccessible while
 telepresence is connected.
 
-The ideal resolution in this case is to simply move the pods to a different subnet. This is possible,
-for example, in EKS by configuring a [new CIDR range](https://aws.amazon.com/premiumsupport/knowledge-center/eks-multiple-cidr-ranges/) for the pods.
-In this case configuring the pods to be located in `10.1.0.0/19` would clear the VPN and allow you
+The ideal resolution in this case is to move the pods to a different subnet. This is possible,
+for example, in Amazon EKS by configuring a [new CIDR range](https://aws.amazon.com/premiumsupport/knowledge-center/eks-multiple-cidr-ranges/) for the pods.
+In this case, configuring the pods to be located in `10.1.0.0/19` clears the VPN and allows you
 to reach hosts inside the VPC's `10.0.0.0/19`
 
-However, it is not always easy, or possible, to move the pods to a different subnet.
+However, it is not always possible to move the pods to a different subnet.
 In these cases, you should use the [never-proxy](./config#neverproxy) configuration to prevent certain
 hosts from being masked.
 This might be particularly important for DNS resolution. In an AWS ClientVPN VPN it is often
@@ -114,7 +114,7 @@ customary to set the `.2` host as a DNS server (e.g. `10.0.0.2` in this case):
 <img src="../../images/vpn-dns.png" />
 
 If this is the case for your VPN, you should place the DNS server in the never-proxy list for your
-cluster. In your kubeconfig file, simply add a `telepresence` extension like so:
+cluster. In your kubeconfig file, add a `telepresence` extension like so:
 
 ```yaml
 - cluster:
@@ -128,7 +128,7 @@ cluster. In your kubeconfig file, simply add a `telepresence` extension like so:
 
 ##### Case 2: Cluster masked by VPN
 
-In this case, the tool will inform you that a pod or service subnet is being masked by a CIDR
+In an instance where the Cluster is masked by the VPN, the test-vpn tool informs you that a pod or service subnet is being masked by a CIDR
 that the VPN routes:
 
 ```
@@ -137,7 +137,7 @@ that the VPN routes:
                 * If this is not possible, consider shrinking the mask of the 10.0.0.0/16 CIDR (e.g. from /16 to /8), or disabling split-tunneling
 ```
 
-Typically this means that pods within `10.0.0.0/8` will not be accessible while the VPN is
+Typically this means that pods within `10.0.0.0/8` are not accessible while the VPN is
 connected.
 
 As with the first case, the ideal resolution is to move the pods away, but this may not always

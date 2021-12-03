@@ -39,8 +39,16 @@ changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELO
 
 items:
   - version: 2.4.8
-    date: "TBD"
+    date: "2021-12-03"
     notes:
+      - type: feature
+        title: VPN diagnostics tool
+        body: >-
+          There is a new subcommand, <code>test-vpn</code>, that can be used to diagnose connectivity issues with a VPN.
+          See the VPN docs for more information on how to use it.
+        docs: reference/vpn
+        image: telepresence-2.4.8-vpn.png
+
       - type: feature
         title: RESTful API service
         body: >-
@@ -48,6 +56,20 @@ items:
           help determine if messages with a set of headers should be consumed or not from a message queue where the
           intercept headers are added to the messages.
         docs: reference/restapi
+        image: telepresence-2.4.8-health-check.png
+
+      - type: change
+        title: TELEPRESENCE_LOGIN_CLIENT_ID env variable no longer used
+        body: >-
+          You could previously configure this value, but there was no reason to change it, so the value
+          was removed.
+
+      - type: bugfix
+        title: Tunneled network connections behave more like ordinary TCP connections.
+        body: >-
+          When using Telepresence with an external cloud provider for extensions, those tunneled
+          connections now behave more like TCP connections, especially when it comes to timeouts.
+          We've also added increased testing around these types of connections.
   - version: 2.4.7
     date: "2021-11-24"
     notes:

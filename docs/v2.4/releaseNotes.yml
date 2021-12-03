@@ -47,6 +47,8 @@ items:
           There is a new subcommand, <code>test-vpn</code>, that can be used to diagnose connectivity issues with a VPN.
           See the VPN docs for more information on how to use it.
         docs: reference/vpn
+        image: telepresence-2.4.8-vpn.png
+
       - type: feature
         title: RESTful API service
         body: >-
@@ -54,6 +56,7 @@ items:
           help determine if messages with a set of headers should be consumed or not from a message queue where the
           intercept headers are added to the messages.
         docs: reference/restapi
+        image: telepresence-2.4.8-health-check.png
 
       - type: change
         title: TELEPRESENCE_LOGIN_CLIENT_ID env variable no longer used

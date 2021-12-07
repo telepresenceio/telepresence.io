@@ -7,7 +7,7 @@ telepresence release), please make those changes in the
 [telepresence repository](https://github.com/telepresenceio/telepresence).
 
 If you are making changes to more than the `docs/` and those changes are
-for a future release. Merge those changes into a branch `rel/x.y.z`.
+for a future release, merge those changes into a branch `rel/x.y.z`.
 
 When it is time to do a telepresence release, the docs will be pushed to
 the [docs repo](https://github.com/telepresenceio/docs). From there, you can

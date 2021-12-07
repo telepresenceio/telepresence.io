@@ -1,5 +1,20 @@
 # How to hack on this
 
+## Releasing Docs for new Telepresence Versions
+If you are only making changes to the `docs/` directory and those changes
+aren't ready to go out immediately (for example, if they are for a future
+telepresence release), please make those changes in the
+[telepresence repository](https://github.com/telepresenceio/telepresence).
+
+If you are making changes to more than the `docs/` and those changes are
+for a future release. Merge those changes into a branch `rel/x.y.z`.
+
+When it is time to do a telepresence release, the docs will be pushed to
+the [docs repo](https://github.com/telepresenceio/docs). From there, you can
+create (or checkout if it already exists) a `rel/x.y.z` branch on this repo
+and run `make pull-docs`.  Once you merge that PR, the website will update
+with the docs for the new release.
+
 ## Local development quickstart
 
 Prerequisites programs:

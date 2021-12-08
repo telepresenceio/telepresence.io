@@ -47,12 +47,6 @@ items:
           A helm upgrade using the <code>--reuse-values</code> flag no longer fails on a "nil pointer" error caused by a nil
           <code>telpresenceAPI</code> value.
         docs: install/helm#upgrading-the-traffic-manager
-      - type: bugfix
-        title: Refresh tokens are now used for telepresence login.
-        body: >-
-          When using <code>telepresence login</code>, there was a bug preventing refresh tokens from being used so users would
-          have to login every hour. Refresh tokens are now used so users do not have to login as frequently.
-        docs: https://github.com/telepresenceio/telepresence/issues/2062
   - version: 2.4.8
     date: "2021-12-03"
     notes:

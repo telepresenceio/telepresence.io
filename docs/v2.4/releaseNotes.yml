@@ -38,6 +38,10 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.4.9
+    date: "2021-12-08"
+    notes: []
+
   - version: 2.4.8
     date: "2021-12-03"
     notes:

@@ -46,7 +46,7 @@ items:
         body: >-
           A helm upgrade using the <code>--reuse-values</code> flag no longer fails on a "nil pointer" error caused by a nil
           <code>telpresenceAPI</code> value.
-        docs: install/helm
+        docs: install/helm#upgrading-the-traffic-manager
       - type: bugfix
         title: Refresh tokens are now used for telepresence login.
         body: >-

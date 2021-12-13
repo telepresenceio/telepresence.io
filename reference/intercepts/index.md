@@ -26,7 +26,7 @@ cluster.
 
 In addition to the default open-source traffic-agent, Telepresence
 already knows about the Ambassador Cloud
-[traffic-agent](ambassador-agent), which supports the `http`
+[traffic-agent][ambassador-agent], which supports the `http`
 mechanism.  The `http` mechanism operates at higher layer, working
 with layer 7 HTTP, and may intercept specific HTTP requests, allowing
 other HTTP requests through to the regular service.  This allows for
@@ -176,6 +176,17 @@ User Daemon: Running
 
 Finally, run `telepresence leave <name of intercept>` to stop the intercept.
 
+## Skipping the ingress dialogue
+
+You can skip the ingress dialogue by setting the relevant parameters using flags. If any of the following flags are set, the dialogue will be skipped and the flag values will be used instead. If any of the required flags are missing, an error will be thrown.
+
+| Flag           | Description | Required |
+| -------------- | ------------------------------ | --- |
+| `--ingress-host` | The ip address for the ingress | yes |
+| `--ingress-port` | The port for the ingress       | yes |
+| `--ingress-tls`  | Whether tls should be used     | no  |
+| `--ingress-l5`   | Whether a different ip address should be used in request headers | no |
+
 ## Creating an intercept when a service has multiple ports
 
 If you are trying to intercept a service that has multiple ports, you
@@ -213,7 +224,7 @@ Oftentimes, there's a 1-to-1 relationship between a service and a
 workload, so telepresence is able to auto-detect which service it
 should intercept based on the workload you are trying to intercept.
 But if you use something like
-[Argo](https://www.getambassador.io/docs/argo/latest/), there may be
+[Argo](https://www.getambassador.io/docs/argo/latest/quick-start/), there may be
 two services (that use the same labels) to manage traffic between a
 canary and a stable service.
 
@@ -265,3 +276,79 @@ intercepted
 
 If there are multiple ports that you need forwarded, simply repeat the
 flag (`--to-pod=<sidecarPort0> --to-pod=<sidecarPort1>`).
+
+## Intercepting headless services
+
+Kubernetes supports creating [services without a ClusterIP](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services),
+which, when they have a pod selector, serve to provide a DNS record that will directly point to the service's backing pods.
+Telepresence supports intercepting these `headless` services as it would a regular service with a ClusterIP.
+So, for example, if you have the following service:
+
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-headless
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    service: my-headless
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-headless
+  labels:
+    service: my-headless
+spec:
+  replicas: 1
+  serviceName: my-headless
+  selector:
+    matchLabels:
+      service: my-headless
+  template:
+    metadata:
+      labels:
+        service: my-headless
+    spec:
+      containers:
+        - name: my-headless
+          image: jmalloc/echo-server
+          ports:
+            - containerPort: 8080
+          resources: {}
+```
+
+You can intercept it like any other:
+
+```console
+$ telepresence intercept my-headless --port 8080
+Using StatefulSet my-headless
+intercepted
+    Intercept name    : my-headless
+    State             : ACTIVE
+    Workload kind     : StatefulSet
+    Destination       : 127.0.0.1:8080
+    Volume Mount Point: /var/folders/j8/kzkn41mx2wsd_ny9hrgd66fc0000gp/T/telfs-524189712
+    Intercepting      : all TCP connections
+```
+
+<Alert severity="info">
+This utilizes an <code>initContainer</code> that requires `NET_ADMIN` capabilities.
+If your cluster administrator has disabled them, you will be unable to use numeric ports with the agent injector.
+</Alert>
+
+<Alert severity="info">
+This requires the Traffic Agent to run as GID <code>7777</code>. By default, this is disabled on openshift clusters.
+To enable running as GID <code>7777</code> on a specific openshift namespace, run:
+<code>oc adm policy add-scc-to-group anyuid system:serviceaccounts:$NAMESPACE</code>
+</Alert>
+
+<Alert severity="info">
+Intercepting headless services without a selector is not supported.
+</Alert>

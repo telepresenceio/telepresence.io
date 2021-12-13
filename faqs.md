@@ -18,7 +18,7 @@ By using the preview URL functionality you can share access with additional deve
 
 ** What operating systems does Telepresence work on?**
 
-Telepresence currently works natively on macOS, Linux, and WSL 2. Starting with v2.4.0, we are also releasing a native Windows version of Telepresence that we are considering a Developer Preview.
+Telepresence currently works natively on macOS (Intel and Apple silicon), Linux, and WSL 2. Starting with v2.4.0, we are also releasing a native Windows version of Telepresence that we are considering a Developer Preview.
 
 ** What protocols can be intercepted by Telepresence?**
 
@@ -67,7 +67,7 @@ Telepresence will discover/prompt during first use for this info and make its be
 
 ** Why is my intercept associated with an "Unreported" cluster?**
 
-  Intercepts tagged with "Unreported" clusters simply mean Ambassador Cloud was unable to associate a service instance with a known detailed service from an Edge Stack or API Gateway cluster. [Connecting your cluster to the Service Catalog](../../service-catalog/quick-start/) will properly match your services from multiple data sources.
+  Intercepts tagged with "Unreported" clusters simply mean Ambassador Cloud was unable to associate a service instance with a known detailed service from an Edge Stack or API Gateway cluster. [Connecting your cluster to the Service Catalog](https://www.getambassador.io/docs/cloud/latest/service-catalog/quick-start/) will properly match your services from multiple data sources.
 
 ** Will Telepresence be able to intercept workloads running on a private cluster or cluster running within a virtual private cloud (VPC)?**
 

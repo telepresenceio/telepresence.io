@@ -10,7 +10,7 @@ This tutorial shows you how to use Ambassador Cloud to create an effective Kuber
 
 To begin, you need a set of services that you can deploy to a Kubernetes cluster. These services must be:
 
-* [Containerized](../../../../../../learn/kubernetes-glossary/container/).
+* [Containerized](https://www.getambassador.io/learn/kubernetes-glossary/container/).
  	- Best practices for [writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 	- Many modern code editors, such as [VS Code](https://code.visualstudio.com/docs/containers/overview) and [IntelliJ IDEA](https://code.visualstudio.com/docs/containers/overview), can automatically generate Dockerfiles.
 * Have a Kubernetes manifest that can be used to successfully deploy your application to a Kubernetes cluster. This includes YAML config files, or Helm charts, or whatever method you prefer.
@@ -124,4 +124,4 @@ Once you have your local development environment configured for fast feedback, y
 
 ## <img class="os-logo" src="../../images/logo.png"/> What's Next?
 
-Now that you've created a complete Kubernetes development environment, learn more about how to [manage your environment in Ambassador Cloud](/docs/cloud/latest/service-catalog/howtos/cells) or how to [create Preview URLs in Telepresence](/docs/telepresence/latest/howtos/preview-urls/).
+Now that you've created a complete Kubernetes development environment, learn more about how to [manage your environment in Ambassador Cloud](https://www.getambassador.io/docs/cloud/latest/service-catalog/howtos/cells) or how to [create Preview URLs in Telepresence](https://www.getambassador.io/docs/telepresence/latest/howtos/preview-urls/).

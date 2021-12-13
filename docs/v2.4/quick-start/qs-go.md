@@ -57,12 +57,26 @@ If you have used Telepresence previously, please first reset your Telepresence d
 <Platform.MacOSTab>
 
 ```shell
+# Intel Macs
+
 # Install via brew:
 brew install datawire/blackbird/telepresence
 
 # OR install manually:
 # 1. Download the latest binary (~60 MB):
 sudo curl -fL https://app.getambassador.io/download/tel2/darwin/amd64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
+
+# 2. Make the binary executable:
+sudo chmod a+x /usr/local/bin/telepresence
+
+# Apple silicon Macs
+
+# Install via brew:
+brew install datawire/blackbird/telepresence-arm64
+
+# OR Install manually:
+# 1. Download the latest binary (~60 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2/darwin/arm64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
 
 # 2. Make the binary executable:
 sudo chmod a+x /usr/local/bin/telepresence
@@ -375,6 +389,10 @@ Normal traffic coming to your app gets the <strong style="color:green">green</st
 <Alert severity="success">
   The <strong>Preview URL</strong> now shows exactly what is running on your local laptop -- in a way that can be securely shared with anyone you work with.
 </Alert>
+
+## Create a complete development environment using this demo application
+
+Apply what you've learned from this guide and employ the Emojivoto application in your own local development environment. See the [Creating a local Kubernetes development environment](../../install/qs-go-advanced/) page to learn more.
 
 ## <img class="os-logo" src="../../images/logo.png"/> What's Next?
 

@@ -12,7 +12,7 @@ export default function EngelVolkersPage({ location }) {
 
           <h2>Can you tell us about yourself and what your company does?</h2>
 
-          <p>I am Christian Roggia, a DevOps Backend Engineer for the company <a href="https://evusa.com/en/">Engel & Völkers</a>., one of the largest real estate company in the world and the most active in Europe. We are currently undergoing a migration process from legacy infrastructure to Google Cloud Platform and we are using Google Kubernetes Engine (GKE) heavily. This is where Telepresence has been a great help.</p>
+          <p>I am Christian Roggia, a DevOps Backend Engineer for the company <a href="https://evrealestate.com">Engel & Völkers</a>., one of the largest real estate company in the world and the most active in Europe. We are currently undergoing a migration process from legacy infrastructure to Google Cloud Platform and we are using Google Kubernetes Engine (GKE) heavily. This is where Telepresence has been a great help.</p>
 
           <h2>What was your pre-Telepresence development experience? What challenges did you face?</h2>
 

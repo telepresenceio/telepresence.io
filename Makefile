@@ -25,6 +25,14 @@ pull-docs: subtree-preflight
           git subtree pull --squash --prefix=$(subdir) https://github.com/telepresenceio/docs $(PULL_PREFIX)$(call dir2branch,$(subdir))$(nl))
 .PHONY: pull-docs
 
+## need to fix later, just want to make sure this works
+## we don't have a v1 branch when pulling docs that come from
+## our subtree'd repo
+pull-docs-v2-only: subtree-preflight
+	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d -not -name v1|sort -V),\
+          git subtree pull --squash --prefix=$(subdir) https://github.com/telepresenceio/docs $(PULL_PREFIX)$(call dir2branch,$(subdir))$(nl))
+.PHONY: pull-docs
+
 PUSH_BRANCH ?= $(USER)/from-telepresence.io-$(shell date +%Y-%m-%d)
 push-docs: ## Publish ./ambassador to https://github.com/telepresenceio/docs
 push-docs: subtree-preflight

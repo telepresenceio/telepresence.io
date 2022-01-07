@@ -3,8 +3,6 @@ description: "Create your complete Kubernetes development environment and use Te
 ---
 
 import Alert from '@material-ui/lab/Alert';
-import { DownloadDemo } from '../../../../../src/components/Docs/DownloadDemo';
-import { UserInterceptCommand } from '../../../../../src/components/Docs/Telepresence';
 
 # Creating a local Go Kubernetes development environment
 
@@ -16,7 +14,7 @@ For the hands-on part of this guide, you will build upon [this tutorial with the
 
 To begin, you need a set of services that you can deploy to a Kubernetes cluster. These services must be:
 
-* [Containerized](../../../../../../learn/kubernetes-glossary/container/).
+* [Containerized](https://www.getambassador.io/learn/kubernetes-glossary/container/).
  	- Best practices for [writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 	- Many modern code editors, such as [VS Code](https://code.visualstudio.com/docs/containers/overview) and [IntelliJ IDEA](https://code.visualstudio.com/docs/containers/overview), can automatically generate Dockerfiles.
 * Have a Kubernetes manifest that can be used to successfully deploy your application to a Kubernetes cluster. This includes YAML config files, or Helm charts, or whatever method you prefer.

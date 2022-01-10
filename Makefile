@@ -21,16 +21,11 @@ dir2branch = $(patsubst docs/%,release/%,$(subst pre-release,v2,$1))
 
 # Used when syncing from telepresenceio since that repo doesn't
 # have docs for v1.
-EXCLUDE_DIR ?=
+EXCLUDE_DIR ?= ""
 pull-docs: ## Update ./docs from https://github.com/telepresenceio/docs
 pull-docs: subtree-preflight
-ifneq ($(EXCLUDE_DIR),)
 	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d -not -name $(EXCLUDE_DIR)|sort -V),\
           git subtree pull --squash --prefix=$(subdir) https://github.com/telepresenceio/docs $(PULL_PREFIX)$(call dir2branch,$(subdir))$(nl))
-else
-	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d|sort -V),\
-          git subtree pull --squash --prefix=$(subdir) https://github.com/telepresenceio/docs $(PULL_PREFIX)$(call dir2branch,$(subdir))$(nl))
-endif
 .PHONY: pull-docs
 
 PUSH_BRANCH ?= $(USER)/from-telepresence.io-$(shell date +%Y-%m-%d)

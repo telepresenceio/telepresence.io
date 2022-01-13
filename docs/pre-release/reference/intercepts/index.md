@@ -68,14 +68,26 @@ your cluster; if it detects it correctly, may simply press "enter" and
 accept the default, otherwise you must tell Telepresence the correct
 value.
 
-When creating an intercept with the `http` mechanism, the
-traffic-agent sends a `GET /telepresence-http2-check` request to your
-service and to the process running on your local machine at the port
-specified in your intercept, in order to determine if they support
-HTTP/2.  This is required for the intercepts to behave correctly.  If
-you do not have a service running locally when the intercept is
-created, the traffic-agent will use the result it got from checking
-the in-cluster service.
+When you create an intercept with the `http` mechanism, Telepresence
+determines whether the application protocol uses HTTP/1.1 or HTTP/2. If the
+service's `ports.appProtocol` field is set, Telepresence uses that. If not,
+then Telepresence uses the configured application protocol strategy to determine
+the protocol. The default behavior (`http2Probe` strategy) sends a
+`GET /telepresence-http2-check` request to your service to determine if it supports
+HTTP/2. This is required for the intercepts to behave correctly.
+
+### TLS
+
+If the intercepted service has been set up for `--mechanism=http`, Telepresence
+needs to terminate the TLS connection for the `http` mechanism to function in your
+intercepts. Additionally, you need to ensure the
+[TLS annotations](../cluster-config/#tls) are properly entered in your workload’s
+Pod template to designate that requests leaving your service still speak TLS
+outside of the service as expected.
+
+Use the `--http-plaintext` flag when doing an intercept when the service in the
+cluster is using TLS in case you want to use plaintext for the communication with the
+process on your local workstation. 
 
 ## Supported workloads
 
@@ -224,7 +236,7 @@ Oftentimes, there's a 1-to-1 relationship between a service and a
 workload, so telepresence is able to auto-detect which service it
 should intercept based on the workload you are trying to intercept.
 But if you use something like
-[Argo](https://www.getambassador.io/docs/argo/latest/), there may be
+[Argo](https://www.getambassador.io/docs/argo/latest/quick-start/), there may be
 two services (that use the same labels) to manage traffic between a
 canary and a stable service.
 

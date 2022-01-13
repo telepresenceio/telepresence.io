@@ -39,7 +39,7 @@ changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELO
 
 items:
   - version: 2.4.10
-    date: "(TBD)"
+    date: "2022-01-13"
     notes:
       - type: feature
         title: Application Protocol Strategy

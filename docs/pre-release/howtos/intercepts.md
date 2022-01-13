@@ -44,20 +44,7 @@ With Telepresence, you can create [global intercepts](../../concepts/intercepts/
    If you have difficulties connecting, make sure you are using Telepresence 2.0.3 or a later version. Check your version by entering `telepresence version` and [upgrade if needed](../../install/upgrade/).
 
 
-In this section, we will go through the steps required for you to
-create a [global intercept](../../concepts/intercepts/?intercept=global) that
-intercepts all traffic going to a service in your cluster and route it
-to your local environment instead.  In the [next
-section](#4-personal-intercept), we will instead create a personal
-intercept that is often more useful than a global intercept.
-
-1. List the services that you can intercept with `telepresence list`
-   and make sure the one you want to intercept is listed.
-
-   For example, this would confirm that `example-service` can be intercepted by Telepresence:
-=======
 2. Enter `telepresence list` and make sure the service you want to intercept is listed. For example:
->>>>>>> c4452984c8ffbc6086fdc6177dc6eb998fc5ddb9
 
    ```console
    $ telepresence list
@@ -119,87 +106,3 @@ You can now:
     **Didn't work?** Make sure the port you're listening on matches the one you specified when you created your intercept.
 
    </Alert>
-
-   For the example below, you will create a preview URL that will send
-   traffic to the `ambassador` service in the `ambassador` namespace
-   on port `443` using TLS encryption and setting the `Host` HTTP
-   header to `dev-environment.edgestack.me`:
-
-   ```console
-   $ telepresence intercept example-service --port 8080:http --env-file ~/example-service-intercept.env
-      To create a preview URL, telepresence needs to know how requests enter 
-	    your cluster. Please Select the ingress to use.
-
-      1/4: What's your ingress' IP address?
-           You may use an IP address or a DNS name (this is usually a
-           "service.namespace" DNS name).
-
-             [default: example-service.default]: ambassador.ambassador
-
-      2/4: What's your ingress' TCP port number?
-
-             [default: 80]: 443
-
-      3/4: Does that TCP port on your ingress use TLS (as opposed to cleartext)?
-
-             [default: n]: y
-
-      4/4: If required by your ingress, specify a different hostname
-           (TLS-SNI, HTTP "Host" header) to be used in requests.
-
-             [default: ambassador.ambassador]: dev-environment.edgestack.me
-
-      Using Deployment example-service
-      intercepted
-         Intercept name         : example-service
-         State                  : ACTIVE
-         Workload kind          : Deployment
-         Destination            : 127.0.0.1:8080
-         Service Port Identifier: http
-         Intercepting           : HTTP requests that match all of:
-            header("x-telepresence-intercept-id") ~= regexp("<intercept id>:example-service")
-         Preview URL            : https://<random domain name>.preview.edgestack.me
-         Layer 5 Hostname       : dev-environment.edgestack.me
-   ```
-
-4. Start your local service as [in the previous
-   step](#start-local-instance).
-
-5. Go to the preview URL printed after doing the intercept and see
-   that your local service is processing the request.
-
-   <Alert severity="info">
-
-    **Didn't work?** It might be because you have services in between
-    your ingress controller and the service you are intercepting that
-    do not propagate the `x-telepresence-intercept-id` HTTP Header.
-    Read more on [context propagation](../../concepts/context-prop).
-
-   </Alert>
-
-6. Make a request on the URL you would usually query for that
-   environment.  The request should not be routed to your laptop.
-
-   Normal traffic coming into the cluster through the Ingress
-   (i.e. not coming from the preview URL) will route to services in
-   the cluster like normal.
-
-<Alert severity="success">
-
-  **Congratulations!** You have now only intercepted traffic coming
-  from your preview URL, without impacting your teammates.
-
-</Alert>
-
-You can now:
-- Make changes on the fly and see them reflected when interacting with
-  your Kubernetes environment.
-- Query services only exposed in your cluster's network.
-- Set breakpoints in your IDE to investigate bugs.
-
-...and all of this **without impacting your teammates!**
-## <img class="os-logo" src="../../images/logo.png"/> What's Next? {#whats-next}
-
-<QSCards/>
-=======
->>>>>>> c4452984c8ffbc6086fdc6177dc6eb998fc5ddb9

@@ -123,8 +123,19 @@ module.exports = {
       }
     }
 
-    // Return the sorted result.
-    let ret = sortVersions(Object.keys(peers)).map((version) => ([version, peers[version]]));
+    // Sort the results
+    let sortedVersions = sortVersions(Object.keys(peers)).map((version) => ([version, peers[version]]));
+
+    // Mark versions older than v2.4.0 as deprecated
+    var updateDeprecated = function(element){
+        const version = semver.coerce(element[0]);
+        const isSem = semver.valid(version);
+        if (isSem && semver.lt(version, "2.4.0")) {
+            element[0] = element[0] + " (deprecated)"
+        }
+        return element
+    };
+    let ret = sortedVersions.map(updateDeprecated)
     return ret;
   },
 

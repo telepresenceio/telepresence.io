@@ -33,7 +33,7 @@ Use your existing `kubectl apply`, `helm install`, or continuous deployment syst
 
 ## Create a local development container to modify a service
 
-After you finish your deployment, you need to configure a copy of a single service and run it locally. This example shows you how to do this in a development container with a sam[;e repository. Unlike a production container, a development container contains the full development toolchain and dependencies required to build and run your application.
+After you finish your deployment, you need to configure a copy of a single service and run it locally. This example shows you how to do this in a development container with a sample repository. Unlike a production container, a development container contains the full development toolchain and dependencies required to build and run your application.
 
 
 1. Clone your code in your repository with `git clone <your-source-code>`.

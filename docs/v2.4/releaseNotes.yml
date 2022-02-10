@@ -42,7 +42,7 @@ items:
     date: "2022-02-10"
     notes:
       - type: change
-        title: Include GOARCH metadata to distinguish between Intel and Apple Silicon Macs
+        title: Additional Logging
         body: >-
           Added additional logging to troubleshoot intermittent issues with intercepts.
   - version: 2.4.10

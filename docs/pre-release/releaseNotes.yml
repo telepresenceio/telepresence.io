@@ -44,9 +44,7 @@ items:
       - type: change
         title: Include GOARCH metadata to distinguish between Intel and Apple Silicon Macs
         body: >-
-          We didn't previously have any metadata around which GOARCH was being used in the
-          telepresence CLI. This has been remedied which will make it easier to detect if
-          issues are architecture-based.
+          Added additional logging to troubleshoot intermittent issues with intercepts.
   - version: 2.4.10
     date: "2022-01-13"
     notes:

@@ -37,5 +37,5 @@ push-docs: subtree-preflight
 	:; } || true
 	git fetch --prune remote-docs
 	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d|sort -V),\
-          git subtree push --rejoin --squash --prefix=$(subdir) remote-docs $(PUSH_PREFIX)$(call dir2branch,$(subdir))$(nl))
+          git subtree push --rejoin --prefix=$(subdir) remote-docs $(PUSH_PREFIX)$(call dir2branch,$(subdir))$(nl))
 .PHONY: push-docs

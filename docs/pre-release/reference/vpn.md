@@ -146,7 +146,7 @@ be possible. In that case, your best bet is to attempt to shrink the VPN's CIDR
 One easy way to do this may be by disabling split tunneling (see the [prerequisites](#prerequisites)
 section for more on split-tunneling).
 
-Note that once you fix this, you may find yourself landing again in [Case 1](#case-1), and may need
+Note that once you fix this, you may find yourself landing again in [Case 1](#case-1-vpn-masked-by-cluster), and may need
 to use never-proxy rules to whitelist hosts in the VPN:
 
 ```

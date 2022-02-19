@@ -70,7 +70,7 @@ export function TabsContainer({ children, ...props }) {
 <TabsContainer>
 <TabPanel class="TabBody" value="regular">
 
-## No intercept
+# No intercept
 
 <Paper style="padding: 1em">
 <Animation class="mode-regular" />
@@ -81,7 +81,7 @@ This is the normal operation of your cluster without Telepresence.
 </TabPanel>
 <TabPanel class="TabBody" value="global">
 
-## Global intercept
+# Global intercept
 
 <Paper style="padding: 1em">
 <Animation class="mode-global" />
@@ -117,7 +117,7 @@ with all your dev tools.
 </TabPanel>
 <TabPanel class="TabBody" value="personal">
 
-## Personal intercept
+# Personal intercept
 
 **Personal intercepts** allow you to be selective and intercept only
 some of the traffic to a service while not interfering with the rest
@@ -182,6 +182,21 @@ while sharing the rest of the development environment.
     Requests without the header will be sent to the version of your
     service that is running in the cluster.  This enables you to share
     the cluster with a team!
+
+### Intercepting a specific endpoint
+
+It's not uncommon to have one service serving several endpoints. Telepresence is capable of limiting an
+intercept to only affect the endpoints you want to work with by using one of the `--http-path-xxx`
+flags below in addition to using `--http-match` flags. Only one such flag can be used in an intercept
+and, contrary to the `--http-match` flag, it cannot be repeated.
+
+The following flags are available:
+
+| Flag                          | Meaning                                                          |
+|-------------------------------|------------------------------------------------------------------|
+| `--http-path-equal <path>`    | Only intercept the endpoint for this exact path                  |
+| `--http-path-prefix <prefix>` | Only intercept endpoints with a matching path prefix             |
+| `--http-path-regex <regex>`   | Only intercept endpoints that match the given regular expression |
 
 </TabPanel>
 </TabsContainer>

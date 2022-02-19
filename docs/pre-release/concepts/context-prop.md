@@ -31,6 +31,7 @@ used for is a little unorthodox, but the mechanisms for their use are
 already widely deployed because of the prevalence of tracing.  The
 headers facilitate the smart routing of requests either to live
 services in the cluster or services running locally on a developer’s
-machine.
+machine. The intercepted traffic can be further limited by using path
+based routing.
 
 Preview URLs, when created, generate an ingress request containing a custom header with a token (the context). Telepresence sends this token to [Ambassador Cloud](https://app.getambassador.io) with other information about the preview. Visiting the preview URL directs the user to Ambassador Cloud, which proxies the user to the cluster ingress with the token header injected into the request. The request carrying the header is routed in the cluster to the appropriate pod (the propagation). The Traffic Agent on the service pod sees the header and intercepts the request, redirecting it to the local developer machine that ran the intercept.

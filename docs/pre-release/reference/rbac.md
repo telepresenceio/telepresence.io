@@ -149,7 +149,7 @@ rules:
 - apiGroups:
   - ""
   resources: ["services"]
-  verbs: ["get", "list", "update"]
+  verbs: ["get", "list", "update", "watch"]
 - apiGroups:
   - ""
   resources: ["pods/portforward"]
@@ -157,7 +157,7 @@ rules:
 - apiGroups:
   - "apps"
   resources: ["deployments", "replicasets", "statefulsets"]
-  verbs: ["get", "list", "update", "patch"]
+  verbs: ["get", "list", "update", "patch", "watch"]
 - apiGroups:
   - "getambassador.io"
   resources: ["hosts", "mappings"]
@@ -223,7 +223,7 @@ rules:
 - apiGroups:
   - "apps"
   resources: ["deployments", "replicasets", "statefulsets"]
-  verbs: ["get", "list", "update"]
+  verbs: ["get", "list", "update", "watch"]
 - apiGroups:
   - "getambassador.io"
   resources: ["hosts", "mappings"]

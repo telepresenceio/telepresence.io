@@ -26,6 +26,7 @@
 #             `FOO/releaseNotes.yml`, then the image paths are
 #             relative to `FOO/release-notes/`.
 #         - docs: The path to the documentation page where additional information can be found.
+#         - href: A path from the root to a resource on the getambassador website, takes precedence over a docs link.
 
 docTitle: Telepresence Release Notes
 docDescription: >-
@@ -38,6 +39,64 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.5.0
+    date: "2022-02-18"
+    notes:
+      - type: feature
+        title: Telepresence Pro Daemon
+        body: >-
+          Telepresence now supports a Telepresence Pro Daemon extension which
+          enables users to start intercepts via Ambassador Cloud.
+        docs: install/telepresence-pro
+        image: telepresence-2.5.0-pro-daemon.png
+      - type: feature
+        title: Intercept specific endpoints
+        body: >-
+          The flags <code>--http-path-equal</code>, <code>--http-path-prefix</code>, and <code>--http-path-regex</code> can can be used in
+          addition to the <code>--http-match</code> flag to filter personal intercepts by the request URL path
+        docs: concepts/intercepts#intercepting-a-specific-endpoint
+      - type: feature
+        title: Intercept metadata
+        body: >-
+          The flag <code>--http-meta</code> can be used to declare metadata key value pairs that will be returned by the Telepresence rest
+          API endpoint <code>/intercept-info</code>
+        docs: reference/restapi#intercept-info
+      - type: change
+        title: Client RBAC watch
+        body: >-
+          The verb "watch" was added to the set of required verbs when accessing services and workloads for the client RBAC
+          <code>ClusterRole</code>
+        docs: reference/rbac
+      - type: change
+        title: Dropped backward compatibility with versions <=2.4.4
+        body: >-
+          Telepresence is no longer backward compatible with versions 2.4.4 or older because the deprecated multiplexing tunnel
+          functionality was removed.
+      - type: change
+        title: No global networking flags
+        body: >-
+          The global networking flags are no longer used and using them will render a deprecation warning unless they are supported by the
+          command. The subcommands that support networking flags are <code>connect</code>, <code>current-cluster-id</code>,
+          and <code>genyaml</code>.
+      - type: bugfix
+        title: Output of status command
+        body: >-
+          The <code>also-proxy</code> and <code>never-proxy</code> subnets are now displayed correctly when using the
+          <code>telepresence status</code> command.
+      - type: bugfix
+        title: SETENV sudo privilege no longer needed
+        body: >-
+          Telepresence longer requires <code>SETENV</code> privileges when starting the root daemon.
+      - type: bugfix
+        title: Network device names containing dash
+        body: >-
+          Telepresence will now parse device names containing dashes correctly when determining routes that it should never block.
+      - type: bugfix
+        title: Linux uses cluster.local as domain instead of search
+        body: >-
+          The cluster domain (typically "cluster.local") is no longer added to the DNS <code>search</code> on Linux using
+          <code>systemd-resolved</code>. Instead, it is added as a <code>domain</code> so that names ending with it are routed
+          to the DNS server.
   - version: 2.4.11
     date: "2022-02-10"
     notes:
@@ -85,7 +144,7 @@ items:
       - type: bugfix
         title: Check conditions before asking questions
         body: >-
-          User will not be asked to log in or add ingress information when creating an intercept until a check has been 
+          User will not be asked to log in or add ingress information when creating an intercept until a check has been
           made that the intercept is possible.
         docs: reference/intercepts/
       - type: bugfix
@@ -189,7 +248,7 @@ items:
       - type: bugfix
         title: Prevent network recursion
         body: >-
-          The TUN-device will trap failed connection attempts that results in recursive calls back into the TUN-device (may happen when the 
+          The TUN-device will trap failed connection attempts that results in recursive calls back into the TUN-device (may happen when the
           cluster runs in a docker-container on the client).
         docs: reference/routing#connect-recursion
       - type: bugfix

@@ -8,21 +8,21 @@ import QSCards from '../quick-start/qs-cards'
 
 # Intercept a service in your own environment
 
-Telepresence enables you to create intercepts to a target Kubernetes workload. Once you have created and intercept, you can code and debug your associated service locally. 
+Telepresence enables you to create intercepts to a target Kubernetes workload. Once you have created and intercept, you can code and debug your associated service locally.
 
 For a detailed walk-though on creating intercepts using our sample app, follow the [quick start guide](../../quick-start/demo-node/).
 
 
 ## Prerequisites
 
-Before you begin, you need to have [Telepresence installed](<../../install/), and either the Kubernetes command-line tool, [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/), or the OpenShift Container Platform command-line interface, [`oc`](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). This document uses kubectl in all example commands. OpenShift users can substitute oc [commands instead](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html).
+Before you begin, you need to have [Telepresence installed](../../install/), and either the Kubernetes command-line tool, [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/), or the OpenShift Container Platform command-line interface, [`oc`](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). This document uses kubectl in all example commands. OpenShift users can substitute oc [commands instead](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html).
 
 This guide assumes you have a Kubernetes deployment and service accessible publicly by an ingress controller, and that you can run a copy of that service on your laptop.
 
 
 ## Intercept your service with a global intercept
 
-With Telepresence, you can create [global intercepts](../../concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your cluster and route it to your local environment instead. 
+With Telepresence, you can create [global intercepts](../../concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your cluster and route it to your local environment instead.
 
 1. Connect to your cluster with `telepresence connect` and connect to the Kubernetes API server:
 
@@ -55,7 +55,7 @@ With Telepresence, you can create [global intercepts](../../concepts/intercepts/
 
 3. Get the name of the port you want to intercept on your service:
    `kubectl get service <service name> --output yaml`.
-  
+
    For example:
 
    ```console
@@ -72,7 +72,7 @@ With Telepresence, you can create [global intercepts](../../concepts/intercepts/
 4. Intercept all traffic going to the service in your cluster:
     `telepresence intercept <service-name> --port <local-port>[:<remote-port>] --env-file <path-to-env-file>`.
       * For `--port`: specify the port the local instance of your service is running on. If the intercepted service exposes multiple ports, specify the port you want to intercept after a colon.
-      * For `--env-file`: specify a file path for Telepresence to write the environment variables that are set in the pod. 
+      * For `--env-file`: specify a file path for Telepresence to write the environment variables that are set in the pod.
        The example below shows Telepresence intercepting traffic going to service `example-service`. Requests now reach the service on port `http` in the cluster get routed to `8080` on the workstation and write the environment variables of the service to `~/example-service-intercept.env`.
        ```console
        $ telepresence intercept example-service --port 8080:http --env-file ~/example-service-intercept.env

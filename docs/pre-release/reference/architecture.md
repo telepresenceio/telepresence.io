@@ -21,6 +21,11 @@ another.
 The Telepresence Daemon runs on a developer's workstation and is its main point of communication with the cluster's
 network. All requests from and to the cluster go through the Daemon, which communicates with the Traffic Manager.
 
+## Telepresence Pro Daemon
+When you `telepresence login`, Telepresence recommends downloading the Telepresence Pro Daemon.
+This replaces the open source User Daemon and provides additional features including:
+* Creating intercepts on your local machine from Ambassador Cloud.
+
 ## Traffic Manager
 
 The Traffic Manager is the central point of communication between Traffic Agents in the cluster and Telepresence Daemons

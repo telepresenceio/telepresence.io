@@ -1,5 +1,5 @@
 import Alert from '@material-ui/lab/Alert';
-import { ClusterConfig } from '../../../../../src/components/Docs/Telepresence';
+import { ClusterConfig } from '@src/components/Docs/Telepresence';
 
 # Cluster-side configuration
 
@@ -83,7 +83,7 @@ intercepts.
 
 ### Create a license
 
-1. <ClusterConfig /> 
+1. <ClusterConfig />
 
 2. Generate a new license (if one doesn't already exist) by clicking *Generate New License*.
 

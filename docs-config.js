@@ -52,7 +52,7 @@ module.exports = {
 
   githubURL: function(node) {
     const gitpath = 'docs/' + (node.relativePath
-                               .replace(/^latest/,'v2.4')
+                               .replace(/^latest/,'v2.5')
                                .replaceAll(path.sep, path.posix.sep));
     return `https://github.com/telepresenceio/telepresence.io/blob/master/${gitpath}`;
   },
@@ -130,7 +130,7 @@ module.exports = {
     var updateDeprecated = function(element){
         const version = semver.coerce(element[0]);
         const isSem = semver.valid(version);
-        if (isSem && semver.lt(version, "2.4.0")) {
+        if (isSem && semver.lt(version, "2.5.0")) {
             element[0] = element[0] + " (deprecated)"
         }
         return element

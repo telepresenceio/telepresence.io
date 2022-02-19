@@ -74,7 +74,7 @@ And show you the results of the test:
                 * If this is not possible, ensure that any hosts in CIDR 10.0.0.0/16 are placed in the never-proxy list
 ✅ svc subnet 10.19.0.0/16 is clear of VPN
 
-Please see https://www.telepresence.io/docs/v2.4/reference/vpn for more info on these corrective actions, as well as examples
+Please see https://www.telepresence.io/docs/latest/reference/vpn for more info on these corrective actions, as well as examples
 
 Still having issues? Please create a new github issue at https://github.com/telepresenceio/telepresence/issues/new?template=Bug_report.md
  Please make sure to add the following to your issue:
@@ -146,7 +146,7 @@ be possible. In that case, your best bet is to attempt to shrink the VPN's CIDR
 One easy way to do this may be by disabling split tunneling (see the [prerequisites](#prerequisites)
 section for more on split-tunneling).
 
-Note that once you fix this, you may find yourself landing again in [Case 1](#case-1), and may need
+Note that once you fix this, you may find yourself landing again in [Case 1](#case-1-vpn-masked-by-cluster), and may need
 to use never-proxy rules to whitelist hosts in the VPN:
 
 ```

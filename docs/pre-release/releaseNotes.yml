@@ -46,10 +46,6 @@ items:
         title: DNS server bugfix
         body: >-
           Fixed a bug where Telepresence would use the last server in resolv.conf
-      - type: change
-        title: Remove user prompt
-        body: >-
-          Removed the user prompt before downloading the enhanced daemon
   - version: 2.5.1
     date: "2022-02-19"
     notes:

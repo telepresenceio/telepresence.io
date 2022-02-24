@@ -106,3 +106,11 @@ You can now:
     **Didn't work?** Make sure the port you're listening on matches the one you specified when you created your intercept.
 
    </Alert>
+   
+## Leaving the interception
+
+You can leave the interception with 
+```console
+$ telepresence leave example-service
+```
+

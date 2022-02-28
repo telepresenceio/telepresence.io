@@ -163,7 +163,7 @@ export default function CommunityPage({ location }) {
                 Join our Slack to get answers to your questions and learn how
                 others are using Telepresence at their organizations.
               </p>
-              <a className="btn btn-black" href="/tutorials/docker"
+              <a className="btn btn-black" href="http://a8r.io/slack"
               >Join the conversation</a
               >
             </div>
@@ -184,7 +184,7 @@ export default function CommunityPage({ location }) {
                 Help with documentation, request a new feature, or submit a bug
                 fix. No contribution is too small!
               </p>
-              <a className="btn btn-black" href="/tutorials/docker">Contribute</a>
+              <a className="btn btn-black" href="https://github.com/telepresenceio/telepresence/issues/new/choose">Contribute</a>
             </div>
           </div>
         </div>

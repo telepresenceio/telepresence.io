@@ -43,7 +43,7 @@ login`](../client/login/)) changes the Telepresence defaults in two
 ways.
 
 First, being logged in to Ambassador Cloud causes Telepresence to
-default to `--mechanism=http --http-match=auto --http-path-prefix=/` (
+default to `--mechanism=http --http-header=auto --http-path-prefix=/` (
 `--mechanism=http` is redundant. It is implied by other `--http-xxx` flags).
 If you hadn't been logged in it would have defaulted to
 `--mechanism=tcp`.  This tells Telepresence to use the Ambassador
@@ -52,7 +52,7 @@ intercept a subset of HTTP requests, rather than just intercepting the
 entirety of all TCP connections.  This is important for working in a
 shared cluster with teammates, and is important for the preview URL
 functionality below.  See `telepresence intercept --help` for
-information on using the `--http-match` and `--http-path-xxx` flags to
+information on using the `--http-header` and `--http-path-xxx` flags to
 customize which requests that are intercepted.
 
 Secondly, being logged in causes Telepresence to default to
@@ -68,14 +68,26 @@ your cluster; if it detects it correctly, may simply press "enter" and
 accept the default, otherwise you must tell Telepresence the correct
 value.
 
-When creating an intercept with the `http` mechanism, the
-traffic-agent sends a `GET /telepresence-http2-check` request to your
-service and to the process running on your local machine at the port
-specified in your intercept, in order to determine if they support
-HTTP/2.  This is required for the intercepts to behave correctly.  If
-you do not have a service running locally when the intercept is
-created, the traffic-agent will use the result it got from checking
-the in-cluster service.
+When you create an intercept with the `http` mechanism, Telepresence
+determines whether the application protocol uses HTTP/1.1 or HTTP/2. If the
+service's `ports.appProtocol` field is set, Telepresence uses that. If not,
+then Telepresence uses the configured application protocol strategy to determine
+the protocol. The default behavior (`http2Probe` strategy) sends a
+`GET /telepresence-http2-check` request to your service to determine if it supports
+HTTP/2. This is required for the intercepts to behave correctly.
+
+### TLS
+
+If the intercepted service has been set up for `--mechanism=http`, Telepresence
+needs to terminate the TLS connection for the `http` mechanism to function in your
+intercepts. Additionally, you need to ensure the
+[TLS annotations](../cluster-config/#tls) are properly entered in your workload’s
+Pod template to designate that requests leaving your service still speak TLS
+outside of the service as expected.
+
+Use the `--http-plaintext` flag when doing an intercept when the service in the
+cluster is using TLS in case you want to use plaintext for the communication with the
+process on your local workstation.
 
 ## Supported workloads
 
@@ -180,12 +192,12 @@ Finally, run `telepresence leave <name of intercept>` to stop the intercept.
 
 You can skip the ingress dialogue by setting the relevant parameters using flags. If any of the following flags are set, the dialogue will be skipped and the flag values will be used instead. If any of the required flags are missing, an error will be thrown.
 
-| Flag             | Description                                                      | Required   |
-|------------------|------------------------------------------------------------------|------------|
-| `--ingress-host` | The ip address for the ingress                                   | yes        |
-| `--ingress-port` | The port for the ingress                                         | yes        |
-| `--ingress-tls`  | Whether tls should be used                                       | no         |
-| `--ingress-l5`   | Whether a different ip address should be used in request headers | no         |
+| Flag             | Description                                                      | Required |
+|------------------|------------------------------------------------------------------|----------|
+| `--ingress-host` | The ip address for the ingress                                   | yes      |
+| `--ingress-port` | The port for the ingress                                         | yes      |
+| `--ingress-tls`  | Whether tls should be used                                       | no       |
+| `--ingress-l5`   | Whether a different ip address should be used in request headers | no       |
 
 ## Creating an intercept when a service has multiple ports
 
@@ -224,7 +236,7 @@ Oftentimes, there's a 1-to-1 relationship between a service and a
 workload, so telepresence is able to auto-detect which service it
 should intercept based on the workload you are trying to intercept.
 But if you use something like
-[Argo](https://www.getambassador.io/docs/argo/latest/), there may be
+[Argo](https://www.getambassador.io/docs/argo/latest/quick-start/), there may be
 two services (that use the same labels) to manage traffic between a
 canary and a stable service.
 

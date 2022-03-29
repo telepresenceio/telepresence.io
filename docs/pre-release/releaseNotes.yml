@@ -39,6 +39,53 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.5.4
+    date: "2022-03-29"
+    notes:
+      - type: bugfix
+        title: Linux DNS Concurrency Bugfix
+        body: >-
+          The DNS fallback resolver on Linux now correctly handles concurrent requests without timing them out
+      - type: bugfix
+        title: Non-Functional Flag Fix
+        body: >-
+          The ingress-l5 flag will no longer be forcefully set to equal the --ingress-host flag
+      - type: bugfix
+        title: Automatically Remove Failed Intercepts
+        body: >-
+          Intercepts that fail to create are now consistently removed to prevent non-working dangling intercepts from sticking around.
+      - type: bugfix
+        title: Agent UID Fix
+        body: >-
+          Agent container is no longer sensitive to a random UID or an UID imposed by a SecurityContext.
+      - type: bugfix
+        title: Gather-Logs Output Filepath Fix
+        body: >-
+          Removed a bad concatenation that corrupted the output path of `telepresence gather-logs`.
+      - type: change
+        title: Remove Unnecessary Error Advice
+        body: >-
+          An advice to "see logs for details" is no longer printed when the argument count is incorrect in a CLI command.
+      - type: bugfix
+        title: Garbage Collection
+        body: >-
+          Client and agent sessions no longer leaves dangling waiters in the traffic-manager when they depart. 
+      - type: bugfix
+        title: Limit Gathered Logs
+        body: >-
+          The client's gather logs command and agent watcher will now respect the configured grpc.maxReceiveSize
+      - type: change
+        title: In-Cluster Checks
+        body: >-
+          The TUN device will no longer route pod or service subnets if it is running in a machine that's already connected to the cluster
+      - type: change
+        title: Expanded Status Command
+        body: >-
+          The status command includes the install id, user id, account id, and user email in its result, and can print output as JSON
+      - type: change
+        title: List Command Shows All Intercepts
+        body: >-
+          The list command, when used with the `--intercepts` flag, will list the users intercepts from all namespaces
   - version: 2.5.3
     date: "2022-02-25"
     notes:

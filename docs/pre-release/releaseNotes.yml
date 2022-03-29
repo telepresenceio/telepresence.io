@@ -43,11 +43,11 @@ items:
     date: "2022-03-29"
     notes:
       - type: bugfix
-        title: Linux DNS Concurrency Bugfix
+        title: Linux DNS Concurrency
         body: >-
           The DNS fallback resolver on Linux now correctly handles concurrent requests without timing them out
       - type: bugfix
-        title: Non-Functional Flag Fix
+        title: Non-Functional Flag
         body: >-
           The ingress-l5 flag will no longer be forcefully set to equal the --ingress-host flag
       - type: bugfix
@@ -55,11 +55,11 @@ items:
         body: >-
           Intercepts that fail to create are now consistently removed to prevent non-working dangling intercepts from sticking around.
       - type: bugfix
-        title: Agent UID Fix
+        title: Agent UID
         body: >-
           Agent container is no longer sensitive to a random UID or an UID imposed by a SecurityContext.
       - type: bugfix
-        title: Gather-Logs Output Filepath Fix
+        title: Gather-Logs Output Filepath
         body: >-
           Removed a bad concatenation that corrupted the output path of `telepresence gather-logs`.
       - type: change

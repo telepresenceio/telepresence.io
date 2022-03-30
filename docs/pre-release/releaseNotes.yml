@@ -90,11 +90,11 @@ items:
     date: "2022-02-25"
     notes:
       - type: bugfix
-        title: Connectivity Fix
+        title: TCP Connectivity
         body: >-
           Fixed bug in the TCP stack causing timeouts after repeated connects to the same address
-      - type: Feature
-        title: Connectivity Fix
+      - type: feature
+        title: Linux Binaries
         body: >-
           Client-side binaries for the arm64 architecture are now available for linux
   - version: 2.5.2

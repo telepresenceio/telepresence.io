@@ -39,6 +39,17 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.5.6
+    date: "2022-04-18"
+    notes:
+      - type: change
+        title: Less Watchers
+        body: >-
+          Telepresence agents watcher will now only watch namespaces that the user has accessed since the last `connect`.
+      - type: bugfix
+        title: More Efficient `gather-logs`
+        body: >-
+          The `gather-logs` command will no longer send any logs through `gRPC`.
   - version: 2.5.5
     date: "2022-04-08"
     notes:

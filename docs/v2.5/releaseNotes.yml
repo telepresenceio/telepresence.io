@@ -39,6 +39,21 @@ docDescription: >-
 changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELOG.md
 
 items:
+  - version: 2.5.7
+    date: "2022-04-25"
+    notes:
+      - type: change
+        title: RBAC requirements
+        body: >-
+          A namespaced traffic-manager will no longer require cluster wide RBAC. Only Roles and RoleBindings are now used.
+      - type: bugfix
+        title: Windows DNS
+        body: >-
+          The DNS recursion detector didn't work correctly on Windows, resulting in sporadic failures to resolve names that were resolved correctly at other times.
+      - type: bugfix
+        title: Session TTL and Reconnect
+        body: >-
+          A telepresence session will now last for 24 hours after the user's last connectivity. If a session expires, the connector will automatically try to reconnect.
   - version: 2.5.6
     date: "2022-04-18"
     notes:

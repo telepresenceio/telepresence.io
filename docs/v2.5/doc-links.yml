@@ -32,6 +32,16 @@
       link: howtos/outbound
     - title: Send requests to an intercepted service
       link: howtos/request
+- title: Telepresence for Docker
+  items:
+    - title: What is Telepresence for Docker
+      link: extension/intro
+    - title: Install into Docker-Desktop
+      link: extension/install
+    - title: Intercept into a Docker Container 
+      link: extension/intercept
+    - title: Not Working?
+      link: extension/troubleshooting
 - title: Technical reference
   items:
     - title: Architecture

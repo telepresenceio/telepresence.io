@@ -15,7 +15,7 @@ With the Telepresence for Docker extension, you can create [personal intercepts]
    Telepresence for Docker routes traffic to and from a local docker container. We need to setup a docker container to recieve this traffic. To do this, run
 
    ```console
-   $ docker run --rm -it --network host --device /dev/net/tun:/dev/net/tun <your image>
+   $ docker run --rm -it --network host <your image>
    ```
 
    Telepresence for Docker requires the target service to be on the host network. This allows Telepresence to share a network with your container. The mounted network device redirects cluster-related traffic back into the cluster.

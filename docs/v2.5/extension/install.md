@@ -4,12 +4,10 @@
 
 ## Install Docker
 
-Telepresence for Docker is avaliable within the Docker Dashboard. [Install Docker](https://www.docker.com/get-started) version X.X.X or later.
+Telepresence for Docker is available within the Docker Dashboard. [Install Docker](https://www.docker.com/get-started).
 
 ## Install Telepresence For Docker
 
-Start up the Docker engine, and open the Docker Dashboard. In the left pannel, click `Add Extension`.
+Start up the Docker engine, and open the Docker Dashboard. In the left panel, click `Add Extension`.
 
-TODO SCREENSHOT OR GIF
-
-You will be given a screen of avaliable extensions. Find Telepresence, and click `Install`. Telepresence should appear as a tab in the left panel.
+You will be given a screen of available extensions. Find Telepresence, and click `Install`. Telepresence should appear as a tab in the left panel.

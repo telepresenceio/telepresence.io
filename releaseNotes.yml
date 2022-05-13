@@ -40,32 +40,32 @@ changelog: https://github.com/telepresenceio/telepresence/blob/$branch$/CHANGELO
 
 items:
   - version: 2.6.0
-    date: (TBD)
+    date: "2022-05-13"
     notes:
       - type: feature
         title: Intercept multiple containers in a pod, and multiple ports per container
         body: >-
           Telepresence can now intercept multiple services and/or service-ports that connects to the same pod.
-        docs: ../new-in-2.6#intercept-multiple-containers-and-ports
+        docs: new-in-2.6#intercept-multiple-containers-and-ports
       - type: feature
         title: The Traffic Agent sidecar is always injectied by the Traffic Manager's mutating webhook.
         body: >-
           The client will no longer modify <code>deployments</code>, <code>replicasets</code>, or <code>statefulsets</code> in order to
           inject a Traffic Agent into an intercepted pod. Instead, all injection is now performed by a mutating webhook. As a result,
           the client now needs less permissions in the cluster.
-        docs: ../install/upgrade#important-note-about-upgrading-to-2.6.0
+        docs: install/upgrade#important-note-about-upgrading-to-2.6.0
       - type: change
         title: Autmatic upgrade of Traffic Agents
         body: >-
           When upgrading, all workloads with injected agents will have their agent "uninstalled" automatically.
           The mutating webhook will then ensure that their pods will receive an updated Traffic Agent.
-        docs: ../new-in-2.6no-more-workload-modifications
+        docs: new-in-2.6#no-more-workload-modifications
       - type: change
         title: No default image in the Helm chart
         body: >-
           The helm-chart no longer has a default set for the <code>agentInjector.image.name</code>, and unless its set, the
           traffic-manager will ask Ambassador Could for the preferred image.
-        docs: ../new-in-2.6#smarter-agent
+        docs: new-in-2.6#smarter-agent
       - type: change
         title: Upgrade to Helm version 3.8.1.
         body: The telepresence client now uses Helm version 3.8.1 when auto-installing the Traffic Manager.

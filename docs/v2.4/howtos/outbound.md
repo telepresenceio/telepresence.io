@@ -84,6 +84,6 @@ To control outbound connectivity to specific namespaces, add the `--local-only` 
 The resources in the given namespace can now be accessed using unqualified names as long as the intercept is active. 
 You can deactivate the intercept with `telepresence leave <deployment name>`. This removes unqualified name access.
 
-### Proxy outcound connectivity for laptops
+### Proxy outbound connectivity for laptops
 
 To specify additional hosts or subnets that should be resolved inside of the cluster, see [AlsoProxy](../../reference/config/#alsoproxy) for more details.

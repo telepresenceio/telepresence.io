@@ -64,7 +64,7 @@ If you terminate the client with `telepresence quit` and try to access the servi
     Telepresence Daemon quitting...done
   ```  
 
-<Alert severity="info">When using Telepresence in this way, you need to access services with the namespace qualified DNS name (<code>&lt;service name&gt;.&lt;namespace&gt;</code>) before you start an intercept. After you start an intercept, only  <code>&lt;service name&gt;</code> is required. Read more about these differences in the  <a href="../../quick-start/demo-node/">DNS resolution reference guide</a>.</Alert>
+<Alert severity="info">When using Telepresence in this way, you need to access services with the namespace qualified DNS name (<code>&lt;service name&gt;.&lt;namespace&gt;</code>) before you start an intercept. After you start an intercept, only  <code>&lt;service name&gt;</code> is required. Read more about these differences in the  <a href="../../reference/dns/">DNS resolution reference guide</a>.</Alert>
 
 ## Controlling outbound connectivity
 

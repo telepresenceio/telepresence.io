@@ -10,4 +10,4 @@ Telepresence for Docker is isolated from the user's machine; it operates entirel
 
 ## How does Telepresence for Docker work?
 
-Telepresence for Docker is configured to use Docker's host network (VM network for Windows and Mac, host network on Linux). Normally, docker containers are isolated from echother, however, containers can be configured to share a network, if they are both configured to use Docker's host network.
+Telepresence for Docker is configured to use Docker's host network (VM network for Windows and Mac, host network on Linux). Normally, docker containers are isolated from eachother, however, containers can be configured to share a network, if they are both configured to use Docker's host network.

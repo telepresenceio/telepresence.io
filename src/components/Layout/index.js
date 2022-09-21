@@ -9,7 +9,7 @@ import './docs-layout.less';
 import './home.css';
 
 import ImgLogo from '../../assets/images/telepresence-logo.png';
-import ImgArrow from '../../assets/images/arrow.svg';
+// import ImgArrow from '../../assets/images/arrow.svg';
 
 export default function Layout({ location, children }) {
 	return (

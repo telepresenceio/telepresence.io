@@ -2,7 +2,6 @@ import React from 'react';
 import HubspotForm from 'react-hubspot-form';
 
 import EasyLayout from '../components/EasyLayout';
-import Markdown from '../components/Markdown';
 import TelepresenceIcon from '../assets/images/telepresence-edgy.svg';
 
 export default function AboutPage({ location }) {

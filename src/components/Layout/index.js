@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'gatsby';
 
 import Platform from '@src/components/Platform';
 
@@ -26,16 +27,19 @@ export default function Layout({ location, children }) {
           </a>
           <ul className="main-navigation">
             <li>
-              <a href="/docs/latest/">Docs</a>
+              <a href="https://www.getambassador.io/docs/telepresence/">Docs</a>
             </li>
             <li>
-              <a href="/case-studies">Case Studies</a>
+              <Link to="/docs/latest/quick-start/">Quick start</Link>
             </li>
             <li>
-              <a href="/community">Community</a>
+              <Link to="/case-studies">Case Studies</Link>
             </li>
             <li>
-              <a href="/about">About</a>
+              <Link to="/community">Community</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
             </li>
             <li>
               <a target="_blank" rel="noreferrer" href="https://github.com/telepresenceio/telepresence">GitHub</a>
@@ -71,13 +75,13 @@ export default function Layout({ location, children }) {
       <footer className="white-bg">
         <ul className="main-navigation flex-center">
           <li>
-            <a href="/docs/latest">Docs</a>
+            <a href="https://www.getambassador.io/docs/telepresence/">Docs</a>
           </li>
           <li>
-            <a href="/case-studies">Case Studies</a>
+            <Link to="/case-studies">Case Studies</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link to="/about">About</Link>
           </li>
           <li>
             <a target="_blank" rel="noreferrer" href="https://github.com/telepresenceio/telepresence">GitHub</a>

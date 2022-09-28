@@ -1,5 +1,6 @@
 @import './reset.less';
 @import './vars.less';
+// @import './interFont.css';
 
 /* source-sans-pro-300 - latin */
 @font-face {
@@ -104,6 +105,22 @@
 		/* Safari, Android, iOS */
 			url('/fonts/source-sans-pro-v13-latin-900.svg#SourceSansPro')
 			format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+	font-family: 'Inter var';
+	font-weight: 800;
+	font-display: swap;
+	font-style: normal;
+	src: url('/fonts/inter-roman.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-weight: 800;
+	font-display: swap;
+	font-style: normal;
+	src: url('/fonts/inter-roman.woff2') format('woff2');
 }
 
 .container {
@@ -1188,6 +1205,7 @@ footer {
 		text-align: center;
 
 		h4 {
+			font-family: @InterFont2;
 			font-size: 2.063rem;
 			font-weight: 800;
 			line-height: 2.75rem;
@@ -1214,4 +1232,8 @@ footer {
 			max-width: 1052px;
 		}
 	}
+}
+
+.caseStudyTemplateSection {
+	#sectionContainer();
 }

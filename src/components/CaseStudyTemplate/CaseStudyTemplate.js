@@ -4,6 +4,9 @@ import LogoEngelVolkers from '../../assets/images/case-study/engel-and-voelkers.
 import LogoIrisTV from '../../assets/images/case-study/iris-tv.png';
 import Sightmachine from '../../assets/images/case-study/sightmachine.png';
 import Verloop from '../../assets/images/case-study/Verloop-Logo-Horizontal-HD.png';
+
+import Breadcrumbs from '../Breadcrumbs';
+
 import './style.less';
 
 const CASE_STUDIES = {
@@ -42,7 +45,13 @@ const CaseStudyTemplate = ({ caseStudy, children }) => {
 				</div>
 			</section>
 			<section className="caseStudyContent">
-				<div className="caseStudyContent-text">{children}</div>
+				<div className="caseStudyContent-text">
+					<Breadcrumbs
+						preview={{ link: '/case-studies/', label: 'Case Studies' }}
+						current={PAGE.name}
+					/>
+					{children}
+				</div>
 			</section>
 			<section className={classnames('purpleBackground', 'caseStudyFooter')}>
 				<h4>Questions?</h4>

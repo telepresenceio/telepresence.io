@@ -4,6 +4,7 @@ import LogoEngelVolkers from '../../assets/images/case-study/engel-and-voelkers.
 import LogoIrisTV from '../../assets/images/case-study/iris-tv.png';
 import Sightmachine from '../../assets/images/case-study/sightmachine.png';
 import Verloop from '../../assets/images/case-study/Verloop-Logo-Horizontal-HD.png';
+import Bitnami from '../../assets/images/case-study/bitnami.svg';
 
 import Breadcrumbs from '../Breadcrumbs';
 
@@ -26,6 +27,10 @@ const CASE_STUDIES = {
 		name: 'Verloop',
 		image: Verloop,
 	},
+	Bitnami: {
+		name: 'Bitnami',
+		image: Bitnami,
+	},
 };
 
 const CaseStudyTemplate = ({ caseStudy, children }) => {
@@ -45,7 +50,11 @@ const CaseStudyTemplate = ({ caseStudy, children }) => {
 				</div>
 			</section>
 			<section className="caseStudyContent">
-				<div className="caseStudyContent-text">
+				<div
+					className={classnames('caseStudyContent-text', {
+						bitnami: PAGE.name === CASE_STUDIES.Bitnami.name,
+					})}
+				>
 					<Breadcrumbs
 						preview={{ link: '/case-studies/', label: 'Case Studies' }}
 						current={PAGE.name}

@@ -332,6 +332,10 @@ img {
 	overflow: auto;
 }
 
+.main-body {
+	margin-top: 80px;
+}
+
 .layout__scroll-body {
 	.main-body {
 		flex-grow: 1;
@@ -1243,4 +1247,264 @@ footer {
 
 .caseStudyTemplateSection {
 	#sectionContainer();
+}
+
+.header {
+	background: white;
+	width: 100%;
+	z-index: 10000;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 80px;
+	border-bottom: 1px solid rgb(237, 231, 243);
+}
+
+.headerContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1060px;
+	padding: 10px 10px;
+	height: inherit;
+}
+
+.MobileTop {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	align-items: center;
+	z-index: 1;
+	background: white;
+
+	@media (min-width: 1200px) {
+		padding: 0;
+		width: auto;
+		flex-direction: column;
+		justify-content: center;
+		border: none;
+		background: transparent;
+		max-width: 140px;
+	}
+}
+
+.LogoLink {
+	display: flex;
+	align-items: center;
+	max-width: 140px;
+	margin: 0;
+
+	img {
+		width: 32px;
+		height: 32px;
+	}
+
+	p {
+		color: @purple-20;
+		font-family: @InterFont2;
+		font-size: 1rem;
+		font-weight: 800;
+		line-height: 1rem;
+		margin-left: 12px;
+	}
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.Burger {
+	border: none;
+	background: transparent;
+	color: #222;
+	width: 20px;
+	height: 16px;
+	position: relative;
+	-webkit-transform: rotate(0);
+	transform: rotate(0);
+	transition: 0.5s ease-in-out;
+	cursor: pointer;
+	display: block;
+	outline: none;
+
+	span {
+		display: block;
+		position: absolute;
+		height: 2px;
+		width: 100%;
+		background: @purple-64;
+		border-radius: 9px;
+		opacity: 1;
+		left: 0;
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		transition: 0.25s ease-in-out;
+	}
+
+	span:nth-child(1) {
+		top: 0;
+	}
+
+	span:nth-child(2),
+	span:nth-child(3) {
+		top: 6px;
+	}
+
+	span:nth-child(4) {
+		top: 12px;
+	}
+
+	@media (min-width: 1200px) {
+		display: none;
+	}
+}
+
+.Burger.open span:nth-child(1),
+.Burger.open span:nth-child(4) {
+	top: 16px;
+	width: 0;
+	left: 50%;
+}
+
+.Burger.open span:nth-child(2) {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.Burger.open span:nth-child(3) {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+#itemHover {
+	background: @purple-98 !important;
+	border-color: @purple-98 !important;
+	color: @purple-64 !important;
+}
+
+.nav {
+	background: @white;
+	box-shadow: 0px -12px 24px rgba(39, 39, 51, 0.02),
+		0px 12px 24px rgba(39, 39, 51, 0.06);
+	display: flex;
+	flex-direction: column;
+	font-family: @InterFont;
+	max-height: calc(100vh - 80px);
+	overflow: scroll;
+
+	ul {
+		width: 100%;
+
+		li {
+			align-items: center;
+			border: 1px solid @grey-separator;
+			color: #000000;
+			display: flex;
+			font-size: 0.875rem;
+			font-weight: 600;
+			justify-content: space-between;
+			line-height: 1.25rem;
+			padding: 2rem 1.5rem;
+
+			transition: color 100ms linear 0ms;
+			transition-property: color, border-color, background-color, fill;
+
+			a {
+				color: #000000;
+				font-size: 0.875rem;
+				font-weight: 600;
+				justify-content: space-between;
+				line-height: 1.25rem;
+				width: 100%;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+
+			svg {
+				height: 0.964rem;
+				fill: @grey-primary;
+				width: 0.75rem;
+			}
+
+			&:hover {
+				#itemHover();
+				cursor: pointer;
+
+				a {
+					color: @purple-64;
+				}
+
+				svg {
+					fill: @purple-64;
+				}
+			}
+		}
+	}
+
+	@media only screen and (min-width: 768px) {
+		ul li {
+			padding: 2rem 2.5rem;
+		}
+	}
+
+	@media only screen and (min-width: 1200px) {
+		display: none;
+	}
+}
+
+.needHelpButton {
+	align-self: center;
+	margin-top: 24px;
+	margin-bottom: 24px;
+}
+
+.desktopNav {
+	align-items: center;
+	color: @black;
+	display: none;
+	font-family: @InterFont2;
+	font-size: 0.875rem;
+	font-weight: 600;
+	flex: 1;
+	flex-direction: row;
+	justify-content: flex-end;
+	line-height: 1.25rem;
+
+	ul {
+		display: flex;
+		flex-direction: row;
+		gap: 1.625rem;
+
+		a {
+			color: @black;
+
+			&:hover {
+				color: #4527bd;
+				text-decoration: none;
+				background: linear-gradient(
+					0deg,
+					rgba(201, 139, 255, 0.4) 30%,
+					rgba(255, 255, 255, 1) 30%
+				);
+			}
+		}
+	}
+
+	.btn-purple-light {
+		font-size: 0.688rem;
+		font-weight: 600;
+		line-height: 0.75rem;
+		margin-left: 2rem;
+		padding: 0.625rem 0.5rem;
+	}
+
+	@media screen and (min-width: 1200px) {
+		display: flex;
+	}
 }

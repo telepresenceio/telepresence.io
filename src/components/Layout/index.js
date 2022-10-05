@@ -78,34 +78,6 @@ export default function Layout({ location, children }) {
 			</header>
 
 			<div className="main-body">{children}</div>
-
-			<footer className="white-bg">
-				<ul className="main-navigation flex-center">
-					<li>
-						<a href="/docs/latest">Docs</a>
-					</li>
-					<li>
-						<a href="/case-studies">Case Studies</a>
-					</li>
-					<li>
-						<a href="/about">About</a>
-					</li>
-					<li>
-						<a
-							target="_blank"
-							rel="noreferrer"
-							href="https://github.com/telepresenceio/telepresence"
-						>
-							GitHub
-						</a>
-					</li>
-					<li>
-						<a target="_blank" rel="noreferrer" href="https://a8r.io/slack">
-							Slack
-						</a>
-					</li>
-				</ul>
-			</footer>
 		</Platform.Provider>
 	);
 }

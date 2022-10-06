@@ -23,7 +23,9 @@ const Box = ({ children, color = 'blue', withConnector = false }) => (
   </>
 );
 
-const TelepresenceQuickStartLanding = () => (
+const TelepresenceQuickStartLanding = () => {
+  debugger
+  return (
   <div className="telepresence-quickstart-landing">
     <h1>
       <Icon name="telepresence-icon" /> Telepresence
@@ -51,7 +53,7 @@ const TelepresenceQuickStartLanding = () => (
             See how changes to a single service impact your entire application
             without having to run your entire app locally.
           </p>
-          <a className="get-started blue" href="demo-node/">
+          <a className="get-started blue" href="https://www.getambassador.io/docs/telepresence/latest/quick-start/">
             GET STARTED{' '}
             <RightArrow width={20} height={20} fill="currentColor" />
           </a>
@@ -63,7 +65,7 @@ const TelepresenceQuickStartLanding = () => (
             Make changes to your service locally and see the results instantly,
             without waiting for containers to build.
           </p>
-          <a className="get-started blue" href="go/">
+          <a className="get-started blue" href="https://www.getambassador.io/docs/code/latest/quick-start/qs-go/">
             GET STARTED{' '}
             <RightArrow width={20} height={20} fill="currentColor" />
           </a>
@@ -86,7 +88,7 @@ const TelepresenceQuickStartLanding = () => (
             Query services only exposed in your cluster's network. Make changes
             and see them instantly in your K8s environment.
           </p>
-          <a className="get-started green" href="../howtos/intercepts/">
+          <a className="get-started green" href="https://www.getambassador.io/docs/telepresence/latest/reference/intercepts/">
             GET STARTED{' '}
             <RightArrow width={20} height={20} fill="currentColor" />
           </a>
@@ -121,6 +123,6 @@ const TelepresenceQuickStartLanding = () => (
       </div>
     </div>
   </div>
-);
+)};
 
 export default TelepresenceQuickStartLanding;

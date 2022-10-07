@@ -86,7 +86,7 @@ const TelepresenceQuickStartLanding = () => (
             Query services only exposed in your cluster's network. Make changes
             and see them instantly in your K8s environment.
           </p>
-          <a className="get-started green" href="https://www.getambassador.io/docs/telepresence/latest/reference/intercepts/">
+          <a className="get-started green" href="https://www.getambassador.io/docs/telepresence/latest/howtos/intercepts/">
             GET STARTED{' '}
             <RightArrow width={20} height={20} fill="currentColor" />
           </a>

@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import EasyLayout from '../components/EasyLayout';
 
 import TelepresenceIcon from '../assets/images/telepresence-edgy.svg';
-import CNCF_LOGO from '../assets/images/home/CNCF_LOGO.svg';
+import CNCF_LOGO from '../assets/images/home/CNCF_logo.svg';
 import LoopIcon from '../assets/images/home/Loop.svg';
 import LeftArrowIcon from '../assets/images/home/Left_Arrow.svg';
 import WrenchIcon from '../assets/images/home/Wrench.svg';

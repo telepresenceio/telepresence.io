@@ -1,210 +1,207 @@
-import React, { useEffect } from 'react';
-import { graphql } from 'gatsby';
+import React from 'react';
 import HubspotForm from 'react-hubspot-form';
-import jsYAML from 'js-yaml';
-import $ from 'jquery';
-import GitHubButton from 'react-github-btn';
-
-import 'slick-carousel/slick/slick.less';
+import classnames from 'classnames';
 
 import EasyLayout from '../components/EasyLayout';
 
-import ImgBirdOnBricks         from '../assets/images/bird-on-bricks.svg';
-import ImgQuote                from '../assets/images/quote.svg';
-import ImgVizualaiLogo         from '../assets/images/vizualai-logo.jpg';
+import TelepresenceIcon from '../assets/images/telepresence-edgy.svg';
+import CNCF_LOGO from '../assets/images/home/CNCF_logo.svg';
+import LoopIcon from '../assets/images/home/Loop.svg';
+import LeftArrowIcon from '../assets/images/home/Left_Arrow.svg';
+import WrenchIcon from '../assets/images/home/Wrench.svg';
+import EngelIcon from '../assets/images/case-study/engel-and-voelkers.png';
+import PoshLogo from '../assets/images/home/Posh_logo.svg';
+import PtcLogo from '../assets/images/home/ptc.svg';
+import SaltLogo from '../assets/images/home/Salt_logo.svg';
+import ManhattanLogo from '../assets/images/home/Manhattan_logo.svg';
+import TPArchitectureLogo from '../assets/images/home/TP_Architecture.svg';
 
-import SvgDebugLocally         from '../assets/images/debug-locally.inline.svg';
-import SvgInstantFeedback      from '../assets/images/instant-feedback.inline.svg';
-import SvgRealisticEnvironment from '../assets/images/realistic-environment.inline.svg';
-import SvgMinimalResources     from '../assets/images/minimal-resources.inline.svg';
-import SvgYourTools            from '../assets/images/your-tools.inline.svg';
-
-export default function HomePage({ location, data }) {
-  const variables = jsYAML.safeLoad(data.file.internal.content);
-
-  useEffect(() => {
-    $(document).ready(function() {
-      changeTab($('.about-tabs li.tab:first-child').data('tabid'));
-
-      $('.about-tabs li.tab').click(function() {
-        changeTab($(this).data('tabid'));
-      });
-
-      function changeTab(tabId) {
-        $('.about-tabs li.tab').removeClass('active');
-        $('.about-tabs li.tab[data-tabId="'+tabId+'"]').addClass('active');
-        $('.tab-content div').hide();
-        $('#' + tabId).show();
-      }
-
-      import('slick-carousel').then(() => {$('.quotes').slick();});
-    });
-  }, []);
-
-  return (
-    <EasyLayout title="Home" location={location}
-                description="Telepresence: a local development environment for a remote Kubernetes cluster">
-      <section id="hero" className="bg-white text-center">
-        <h1 className="text-uppercase text-xl">Telepresence</h1>
-        <p className="font-light text-uppercase text-md">
-          Fast, local development for Kubernetes and OpenShift microservices
-        </p>
-        <div className="get-started-button">
-          <a href="/docs/latest/" id="get-started-btn" className="btn btn-black">Get Started</a>
-        </div>
-        <div className="github-buttons">
-          <GitHubButton href="https://github.com/telepresenceio/telepresence"
-                        data-icon="octicon-star" data-show-count="true"
-                        aria-label="Star telepresenceio/telepresence on GitHub">Star</GitHubButton>
-          {' '}
-          <GitHubButton href="https://github.com/telepresenceio/telepresence/fork"
-                        data-icon="octicon-repo-forked" data-show-count="true"
-                        aria-label="Fork telepresenceio/telepresence on GitHub">Fork</GitHubButton>
-        </div>
-        <div className="text-center text-md text-black">
-          <div className="version-number">
-            { variables.version }
-          </div>
-          <div>
-            <strong className="font-bold ">Telepresence { variables.version } is now available</strong>
-          </div>
-          <a target="_blank" rel="noreferrer" className="font-light text-black" href="/docs/latest/release-notes">Read the Release Notes</a>
-        </div>
-        <img src={ImgBirdOnBricks} alt="Telepresence mascot"/>
-      </section>
-      <section id="tabs" className="bg-white box-shadow">
-        <div className="container">
-          <ul className="about-tabs">
-            <li className="tab" data-tabid="debug-locally">
-              <SvgDebugLocally/>
-              <span>Debug locally</span>
-            </li>
-            <li className="tab" data-tabid="instant-feedback">
-              <SvgInstantFeedback/>
-              <span>Instant feedback</span>
-            </li>
-            <li className="tab" data-tabid="realistic-environment">
-              <SvgRealisticEnvironment/>
-              <span>Realistic environment</span>
-            </li>
-            <li className="tab" data-tabid="minimal-resources">
-              <SvgMinimalResources/>
-              <span>Minimal resource footprint</span>
-            </li>
-            <li className="tab" data-tabid="your-tools">
-              <SvgYourTools/>
-              <span>Use your own tools</span>
-            </li>
-          </ul>
-          <div className="tab-content font-light">
-            <div id="debug-locally">
-              <p>Debug your Kubernetes service locally, using your favorite debugging tool.</p>
-              {/*<p><a className="tutorial-link" href="/tutorials/kubernetes">Go to tutorial</a></p>*/}
-            </div>
-            <div id="instant-feedback">
-              <p>Test and iterate on code changes instantly, instead of waiting for your deployment cycle.</p>
-              {/*<p><a className="tutorial-link" href="/tutorials/kubernetes-rapid">Go to tutorial</a></p>*/}
-            </div>
-            <div id="realistic-environment">
-              <p>
-                With Telepresence, you’re developing on a Kubernetes or OpenShift cluster, which can be configured
-                to be identical to production. Eliminate bugs due to differences between development and production
-                environments.
-              </p>
-            </div>
-            <div id="minimal-resources">
-              <p>
-                Telepresence adds virtually zero overhead to your development environment. It only requires the
-                memory and CPU necessary to run your actual service. Don’t let your laptop melt from running
-                minikube!
-              </p>
-            </div>
-            <div id="your-tools">
-              <p>
-                Use your favorite code editor, debugger, profiler, or other tools. Anything that runs on your
-                laptop works with Telepresence.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="bg-gray padding-top-75 padding-bottom-60">
-        <div className="container">
-          <div className="quote-container">
-            <div className="quotes bg-white border-gray box-shadow content-box">
-              <div>
-                <div className="quote">
-                  <img className="logo hidden-xs" src={ImgQuote} alt="blockquote symbol"/>
-                  <div className="quote-content">
-                    <p>"Telepresence is such a useful tool. I use the swap deployment so I can iterate faster
-                    when I'm working back and forth between my local cluster and cloud clusters."</p>
-                    <p><a href="https://twitter.com/KevinHoffman" className="author">@KevinHoffman</a></p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="quote">
-                  <img className="hidden-xs" src={ImgQuote} alt="blockquote symbol"/>
-                  <div className="quote-content">
-                    <p>"Going through CI to test 2 lines of changed code seems excessive. Telepresence got it
-                      down to `go run main.go` with an added benefit of getting access to real ConfigMap /
-                    Secrets."</p>
-                    <p><span className="author">Vladimir Pouzanov</span></p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="quote">
-                  <img className="logo hidden-xs" src={ImgVizualaiLogo} alt="vizual.ai logo"/>
-                  <div className="quote-content">
-                    <p>"Telepresence can be used to drastically improve the development workflow for Spark
-                    applications. It’s the best tool we have found for running integration tests against against systems inside our cluster from our local machines / CICD environments."</p>
-                    <p><span className="author">Nate Buesgens, Vizual.AI</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="bg-gray padding-top-75 padding-bottom-130">
-        <div className="container text-center">
-          <div className="bg-white border-gray box-shadow content-box text-center">
-            <h1 className="text-lg">Stay Updated</h1>
-            <p className="font-light text-md">Telepresence is under active development. Subscribe to get updates and announcements:</p>
-            <div className="mailing-list-signup">
-              <HubspotForm
-                portalId="485087"
-                formId="956287a4-7614-486b-91bd-28c9a91949cb"
-              />
-            </div>
-          </div>
-          <div className="sponsored-by text-center">
-            <div className="cncf">
-              <img className="cncf-logo" alt="Cloud Native Computing Foundation" src="https://d33wubrfki0l68.cloudfront.net/ea0d91fac8683c38ea9a1fb8a4e9914627ac6aae/8efa9/img/logos/cloud-native-computing.svg"/>
-              <p className="text-md">
-                Telepresence is a <a href="https://www.cncf.io">Cloud Native Computing Foundation</a> sandbox project
-              </p>
-            </div>
-            <p className="text-md">
-              Telepresence was originally created by <a href="https://www.getambassador.io" target="_blank" rel="noreferrer">Ambassador Labs</a>
-            </p>
-          </div>
-        </div>
-      </section>
-    </EasyLayout>
-  );
+export default function HomePage({ location }) {
+	return (
+		<EasyLayout
+			title="Home"
+			location={location}
+			description="Telepresence: a local development environment for a remote Kubernetes cluster"
+		>
+			<section className={classnames('homeSection', 'purpleLight')}>
+				<div className="homeSection_header">
+					<h1>Telepresence</h1>
+					<p>
+						Fast, local development for Kubernetes and OpenShift Microservices
+					</p>
+					<div className="homeSection_buttons">
+						<a href="/docs/latest/quick-start/" className="btn-purple-light">
+							get started
+						</a>
+					</div>
+					<div className="homeSection_foundation">
+						<img
+							className="cncf-logo"
+							alt="Cloud Native Computing Foundation"
+							src={CNCF_LOGO}
+						/>
+						<p>
+							Telepresence is a{' '}
+							<a href="https://www.cncf.io/">
+								Cloud Native Computing Foundation
+							</a>{' '}
+							Sandbox project created by the team at{' '}
+							<a
+								href="https://www.getambassador.io/"
+								target="_blank"
+								rel="noreferrer"
+							>
+								Ambassador Labs
+							</a>
+						</p>
+					</div>
+				</div>
+				<div className="homeSection_image">
+					<img
+						src={TelepresenceIcon}
+						alt="Telepresence Edgy icon"
+						width="300"
+						height="300"
+					/>
+				</div>
+			</section>
+			<section className="homeSectionWhy">
+				<h2>Why Telepresence?</h2>
+				<div className="homeSectionWhy_cardContainer">
+					<div className="homeSectionWhy_cardContainer_card">
+						<img src={LoopIcon} alt="Loop icon" width="50" height="50" />
+						<h3>Accelerate Inner Dev Loop</h3>
+						<p>
+							Kubernetes was supposed to make your team faster, but now
+							everytime you make a code change you have to wait for containers
+							to build, be pushed to registry, and deployed. With Telepresence,
+							you can make changes to your service as if you're developing
+							locally, without having to run all the dependencies on your local
+							machine.
+						</p>
+					</div>
+					<div className="homeSectionWhy_cardContainer_card">
+						<img src={LeftArrowIcon} alt="Loop icon" width="50" height="50" />
+						<h3>Shift Testing Left</h3>
+						<p>
+							You want to catch errors before they get shipped to production,
+							but to do that you need a realistic development environment and
+							with Kubernetes, those can be expensive. Telepresence lets you
+							connect the copy of your service locally to your remote
+							dependencies, so you can test like your laptop is in your cluster.
+						</p>
+					</div>
+					<div className="homeSectionWhy_cardContainer_card">
+						<img src={WrenchIcon} alt="Loop icon" width="50" height="50" />
+						<h3>Use Your Existing Workflow</h3>
+						<p>
+							Missing your favorite code editor, debugger, or profiler? Anything
+							that runs on your laptop works with Telepresence - even when
+							you're working on a service running in Kubernetes.
+						</p>
+					</div>
+				</div>
+			</section>
+			<section className={classnames('purpleLight', 'homeSectionUsedBy')}>
+				<h2>Used by</h2>
+				<div className="homeSectionUsedBy_logosContainer">
+					<div className="homeSectionUsedBy_logosContainer_logo">
+						<img
+							src={EngelIcon}
+							alt="Engel and voelkers logo"
+							width={140}
+							height={36}
+						/>
+					</div>
+					<div className="homeSectionUsedBy_logosContainer_logo">
+						<img src={PoshLogo} alt="Posh logo" width={83} height={40} />
+					</div>
+					<div className="homeSectionUsedBy_logosContainer_logo">
+						<img src={PtcLogo} alt="PTC logo" width={102} height={40} />
+					</div>
+					<div className="homeSectionUsedBy_logosContainer_logo">
+						<img src={SaltLogo} alt="Salt logo" width={125} height={40} />
+					</div>
+					<div className="homeSectionUsedBy_logosContainer_logo">
+						<img
+							src={ManhattanLogo}
+							alt="Manhattan logo"
+							width={140}
+							height={27}
+						/>
+					</div>
+				</div>
+			</section>
+			<section className="homeSectionHowWork">
+				<h2>How does it work?</h2>
+				<p className="homeSectionHowWork_subheader">
+					Telepresence consists of two core architecture components: the
+					client-side telepresence binary (CLI on your workstation) and the
+					cluster-side traffic-manager and traffic-agent (on the remote
+					Kubernetes cluster).
+				</p>
+				<div className="homeSectionHowWork_container">
+					<img
+						src={TPArchitectureLogo}
+						alt="TP Architecture Logo"
+						width={300}
+						height={218}
+					/>
+					<div className="homeSectionHowWork_container_content">
+						<p>
+							Telepresence consists of two core architecture components: the
+							client-side (CLI) telepresence binary and (Kubernetes)
+							cluster-side traffic-manager and traffic-agent.
+						</p>
+						<div className="homeSectionHowWork_container_content_items">
+							<div>
+								<div className="circle">1</div>
+								<p>
+									The `telepresence connect` command utilizes the
+									traffic-manager to establish a two-way (proxied) tunnel
+									between your local development machine and the cluster. Now
+									you can access remote K8s Service as if they were running
+									locally.
+								</p>
+							</div>
+							<div>
+								<div className="circle">2</div>
+								<p>
+									Running `telepresence intercept service-name` triggers the
+									traffic-manager to install a traffic-agent proxy container
+									that runs within the Pods associated with the target Services.
+									This can route remote traffic to your local dev machine for
+									dev and test.
+								</p>
+							</div>
+						</div>
+						<p>
+							To find out more about the Telepresence Architecture, check out
+							the{' '}
+							<a href="https://www.getambassador.io/docs/telepresence/latest/reference/architecture/">
+								docs
+							</a>{' '}
+							or join us in <a href="http://a8r.io/slack">Slack</a>.
+						</p>
+						<a href="/docs/latest/quick-start/" className="btn-purple-light">
+							get started
+						</a>
+					</div>
+				</div>
+			</section>
+			<section className="aboutPageStayUpdated">
+				<h4>Stay Updated</h4>
+				<p>
+					Telepresence is under active development. Subscribe to get updates and
+					announcements:
+				</p>
+				<div className="aboutPageHubspotForm">
+					<HubspotForm
+						portalId="485087"
+						formId="956287a4-7614-486b-91bd-28c9a91949cb"
+					/>
+				</div>
+			</section>
+		</EasyLayout>
+	);
 }
-
-export const query = graphql`
-  query {
-    file(
-      sourceInstanceName: { eq: "docs" },
-      relativePath: {eq: "latest/versions.yml" },
-    ) {
-      internal {
-        content
-      }
-    }
-  }
-`

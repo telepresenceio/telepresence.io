@@ -1,0 +1,47 @@
+@import '../Layout/vars.less';
+
+.card-case-study {
+	background: @white;
+	box-shadow: 0px 0px 15px rgba(190, 190, 190, 0.25);
+	border: 2px solid transparent;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	height: 204px;
+	padding: 3rem 75px;
+	text-align: center;
+	transition: all 0.2s linear 0ms;
+	width: 300px;
+
+	&-descr {
+		align-items: center;
+		color: @blue-38;
+		display: flex;
+		font-size: 0.875rem;
+		font-weight: 700;
+		flex-direction: row;
+		gap: 0.5rem;
+		justify-content: center;
+		text-transform: uppercase;
+
+		p::after {
+			content: '\2192';
+			position: absolute;
+			margin-left: 8px;
+		}
+	}
+
+	&:hover {
+		border: 2px solid #008cc3;
+		text-decoration: none;
+
+		p {
+			text-decoration: underline;
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 340px;
+	}
+}

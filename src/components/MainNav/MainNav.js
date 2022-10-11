@@ -46,7 +46,11 @@ const MainNav = () => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default MainNav;
 =======
 export default MainNav;
 >>>>>>> 335547e (rebase)
+=======
+export default MainNav;
+>>>>>>> fd91698 (resolve conflicts)

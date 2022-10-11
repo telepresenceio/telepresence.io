@@ -1,8 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> 335547e (rebase)
+=======
+
+
+>>>>>>> 7cdcf20 (rebase)
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -310,6 +315,13 @@ export default function Layout({ location, children }) {
 >>>>>>> 85802f2 (Remove footer)
 		</Platform.Provider>
 	);
+<<<<<<< HEAD
 }
 >>>>>>> 6651e0a (Remove banner)
+<<<<<<< HEAD
 >>>>>>> 83dbe4c (rebase)
+=======
+=======
+}
+>>>>>>> be6cd0d (Last version of index, and mainnav link for docs)
+>>>>>>> 7cdcf20 (rebase)

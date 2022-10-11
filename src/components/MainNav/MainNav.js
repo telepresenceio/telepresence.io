@@ -3,24 +3,12 @@ import '../Layout/layout.less';
 
 const LINKS = [
 	{ label: 'Quick Start', link: '/docs/latest/quick-start/' },
-<<<<<<< HEAD
-<<<<<<< HEAD
 	{ label: 'Docs', link: 'https://www.getambassador.io/docs/telepresence/' },
-=======
-	{ label: 'Docs', link: '/docs/latest/' },
->>>>>>> 335547e (rebase)
-=======
-	{ label: 'Docs', link: 'https://www.getambassador.io/docs/telepresence/' },
->>>>>>> 7cdcf20 (rebase)
 	{ label: 'Case Studies', link: '/case-studies' },
 	{ label: 'Community', link: '/community' },
 	{ label: 'About', link: '/about' },
 	{
-<<<<<<< HEAD
 		label: 'GitHub',
-=======
-		label: 'Github',
->>>>>>> 335547e (rebase)
 		link: 'https://github.com/telepresenceio/telepresence',
 		isExternal: true,
 	},
@@ -49,12 +37,5 @@ const MainNav = () => {
 	);
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 export default MainNav;
-=======
-export default MainNav;
->>>>>>> 335547e (rebase)
-=======
-export default MainNav;
->>>>>>> fd91698 (resolve conflicts)
+Footer

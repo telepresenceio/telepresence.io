@@ -251,6 +251,7 @@ export default function Layout({ location, children }) {
 >>>>>>> 6651e0a (Remove banner)
 
 			<div className="main-body">{children}</div>
+<<<<<<< HEAD
 
 <<<<<<< HEAD
       <div className="main-body">{children}</div>
@@ -305,6 +306,8 @@ export default function Layout({ location, children }) {
 					</li>
 				</ul>
 			</footer>
+=======
+>>>>>>> 85802f2 (Remove footer)
 		</Platform.Provider>
 	);
 }

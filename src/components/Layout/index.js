@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 335547e (rebase)
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -12,6 +15,7 @@ import './layout.less';
 import './docs-layout.less';
 import './home.css';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 import TelepresenceLogo from '../../assets/images/telepresence-edgy.svg';
 
@@ -86,8 +90,15 @@ export default function Layout({ location, children }) {
 }
 =======
 import ImgLogo from '../../assets/images/telepresence-logo.png';
+=======
+import TelepresenceLogo from '../../assets/images/telepresence-edgy.svg';
+>>>>>>> 335547e (rebase)
 
 export default function Layout({ location, children }) {
+	const [open, setOpen] = useState(false);
+
+	const toggleNav = () => setOpen(!open);
+
 	return (
 		<Platform.Provider>
 			<Helmet>
@@ -98,6 +109,7 @@ export default function Layout({ location, children }) {
 				<link rel="shortcut icon" href="/favicon.ico" />
 			</Helmet>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       <header className="white-bg">
         <div className="navigation-left">
@@ -185,7 +197,56 @@ export default function Layout({ location, children }) {
 							</div>
 						</li>
 					</ul>
+=======
+			<header className="header">
+				<div className="headerContainer">
+					<div className="MobileTop">
+						<a href="/" className="LogoLink">
+							<img
+								src={TelepresenceLogo}
+								alt="Telepresence Logo"
+								width="32"
+								height="32"
+							/>
+							<p>Telepresence</p>
+						</a>
+						<button
+							onClick={toggleNav}
+							className={classnames('Burger', { open: open })}
+							aria-label="Open and close menu"
+						>
+							<span />
+							<span />
+							<span />
+							<span />
+						</button>
+					</div>
+					<nav className="desktopNav">
+						<MainNav />
+						<a
+							className={classnames('btn-purple-light')}
+							target="_blank"
+							rel="noreferrer"
+							href="https://a8r.io/slack"
+						>
+							need help?
+						</a>
+					</nav>
+>>>>>>> d31e862 (Add new main menu design)
 				</div>
+				{open && (
+					<nav className="nav">
+						<MainNav />
+						<a
+							className={classnames('btn-purple-light', 'needHelpButton')}
+							target="_blank"
+							rel="noreferrer"
+							href="https://a8r.io/slack"
+						>
+							need help?
+						</a>
+					</nav>
+				)}
 			</header>
 >>>>>>> 6651e0a (Remove banner)
 

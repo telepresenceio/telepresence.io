@@ -8,7 +8,7 @@ const LINKS = [
 	{ label: 'Community', link: '/community' },
 	{ label: 'About', link: '/about' },
 	{
-		label: 'Github',
+		label: 'GitHub',
 		link: 'https://github.com/telepresenceio/telepresence',
 		isExternal: true,
 	},

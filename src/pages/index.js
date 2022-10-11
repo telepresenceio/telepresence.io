@@ -27,14 +27,11 @@ export default function HomePage({ location }) {
 				<div className="homeSection_header">
 					<h1>Telepresence</h1>
 					<p>
-						Fast, local development for Kubernetes and Openshift Microservices
+						Fast, local development for Kubernetes and OpenShift Microservices
 					</p>
 					<div className="homeSection_buttons">
 						<a href="/docs/latest/quick-start/" className="btn-purple-light">
 							get started
-						</a>
-						<a href="/docs/latest/quick-start/" className="btn-purple-light">
-							quickstart page
 						</a>
 					</div>
 					<div className="homeSection_foundation">
@@ -78,7 +75,7 @@ export default function HomePage({ location }) {
 							Kubernetes was supposed to make your team faster, but now
 							everytime you make a code change you have to wait for containers
 							to build, be pushed to registry, and deployed. With Telepresence,
-							you can make changes to your service as if your developing
+							you can make changes to your service as if you're developing
 							locally, without having to run all the dependencies on your local
 							machine.
 						</p>
@@ -100,7 +97,7 @@ export default function HomePage({ location }) {
 						<p>
 							Missing your favorite code editor, debugger, or profiler? Anything
 							that runs on your laptop works with Telepresence - even when
-							you’re working on a service running in Kubernetes.
+							you're working on a service running in Kubernetes.
 						</p>
 					</div>
 				</div>
@@ -180,7 +177,11 @@ export default function HomePage({ location }) {
 						</div>
 						<p>
 							To find out more about the Telepresence Architecture, check out
-							the docs or join us in <a href="http://a8r.io/slack">Slack</a>.
+							the{' '}
+							<a href="https://www.getambassador.io/docs/telepresence/latest/reference/architecture/">
+								docs
+							</a>{' '}
+							or join us in <a href="http://a8r.io/slack">Slack</a>.
 						</p>
 						<a href="/docs/latest/quick-start/" className="btn-purple-light">
 							get started

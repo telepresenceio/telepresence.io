@@ -15,21 +15,24 @@ export default function AboutPage({ location }) {
 				<div className="aboutPageContainer-item">
 					<h1>About</h1>
 					<p>
-						Telepresence is an open source tool that lets you run a single
-						service locally, while connecting that service to a remote
-						Kubernetes cluster.
+						Telepresence is an open source tool for Kubernetes application
+						developers that lets you run a single service locally while
+						connecting that service to a remote Kubernetes cluster.
 					</p>
 					<p>
-						Telepresence was originally built by the team at Ambassador Labs,
-						which builds open source development tools for Kubernetes, including
-						Forge and Ambassador. The current list of maintainers of
-						Telepresence are listed in the MAINTAINERS.md file.
+						Telepresence is a CNCF sandbox tool built by the team at{' '}
+						<a href="https://www.getambassador.io/">Ambassador</a> Labs, the
+						creators of Emissary-ingress (Kubernetes-native API gateway powered
+						by Envoy Proxy). The team at Ambassador Labs is committed to helping
+						development teams build faster & ship safer on Kubernetes.
 					</p>
 					<p>
 						We welcome all community contributions. If you find a bug or a
 						mistake in the documentation, you can help us out by submitting an
 						issue or a pull request with a fix. If you have questions, join our
-						active Slack community or contact us about paid support plans.
+						active <a href="http://a8r.io/slack">Slack community</a> or{' '}
+						<a href="https://www.getambassador.io/contact-us">contact us</a>{' '}
+						about paid support plans.
 					</p>
 				</div>
 				<div className="aboutPageContainer-item">

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import { Helmet } from 'react-helmet';
-import { Link } from 'gatsby';
 
 import Platform from '@src/components/Platform';
 import MainNav from '@src/components/MainNav';

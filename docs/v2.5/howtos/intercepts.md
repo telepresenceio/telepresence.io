@@ -14,9 +14,81 @@ For a detailed walk-though on creating intercepts using our sample app, follow t
 
 ## Prerequisites
 
-Before you begin, you need to have [Telepresence installed](../../install/), and either the Kubernetes command-line tool, [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/), or the OpenShift Container Platform command-line interface, [`oc`](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). This document uses kubectl in all example commands. OpenShift users can substitute oc [commands instead](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html).
+Before you begin, you need to have either the Kubernetes command-line tool, [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/), or the OpenShift Container Platform command-line interface, [`oc`](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). This document uses kubectl in all example commands. OpenShift users can substitute oc [commands instead](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html).
 
-This guide assumes you have a Kubernetes deployment and service accessible publicly by an ingress controller, and that you can run a copy of that service on your laptop.
+This guide assumes you have a Kubernetes deployment and service, and that you can run a copy of that service on your laptop.
+
+## Install telepresence on your machine
+
+Install Telepresence by running the commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](../reference/rbac#administrating-telepresence) to install and use Telepresence in your cluster.
+
+<Platform.TabGroup>
+<Platform.MacOSTab>
+
+```shell
+# Intel Macs
+
+# Install via brew:
+brew install datawire/blackbird/telepresence
+
+# OR install manually:
+# 1. Download the latest binary (~60 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2/darwin/amd64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
+
+# 2. Make the binary executable:
+sudo chmod a+x /usr/local/bin/telepresence
+
+# Apple silicon Macs
+
+# Install via brew:
+brew install datawire/blackbird/telepresence-arm64
+
+# OR Install manually:
+# 1. Download the latest binary (~60 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2/darwin/arm64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
+
+# 2. Make the binary executable:
+sudo chmod a+x /usr/local/bin/telepresence
+```
+
+</Platform.MacOSTab>
+<Platform.GNULinuxTab>
+
+```shell
+# 1. Download the latest binary (~50 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2/linux/amd64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
+
+# 2. Make the binary executable:
+sudo chmod a+x /usr/local/bin/telepresence
+```
+
+</Platform.GNULinuxTab>
+<Platform.WindowsTab>
+
+```powershell
+# Windows is in Developer Preview, here is how you can install it:
+# Make sure you run the following from Powershell as Administrator
+# 1. Download the latest windows zip containing telepresence.exe and its dependencies (~50 MB):
+curl -fL https://app.getambassador.io/download/tel2/windows/amd64/$dlVersion$/telepresence.zip -o telepresence.zip
+
+# 2. Unzip the zip file to a suitable directory + cleanup zip
+Expand-Archive -Path telepresence.zip
+Remove-Item 'telepresence.zip'
+cd telepresence
+
+# 3. Run the install-telepresence.ps1 to install telepresence's dependencies. It will install telepresence to
+# C:\telepresence by default, but you can specify a custom path $path with -Path $path
+Set-ExecutionPolicy Bypass -Scope Process
+.\install-telepresence.ps1
+
+# 4. Remove the unzipped directory
+cd ..
+Remove-Item telepresence
+# 5. Close your current Powershell and open a new one. Telepresence should now be usable as telepresence.exe
+```
+
+</Platform.WindowsTab>
+</Platform.TabGroup>
 
 ## Install telepresence in your cluster
 

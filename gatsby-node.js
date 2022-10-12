@@ -120,27 +120,36 @@ exports.createPages = async ({ graphql, actions }) => {
 
     const urlpath = docsConfig.urlpath(node);
 
-    actions.createPage({
-      // URL-path to create the page at
-      path: urlpath,
-      // Absolute filepath of the component to render the page with
-      component: path.resolve('./src/templates/doc-page.js'),
-      // Arguments to pass to that component's `query`
-      context: {
-        contentFileNodeID:   node.id,
-        variablesFileNodeID: variablesCache[variablesFilepath],
-        sidebarFileNodeID:   sidebarCache[sidebarFilepath],
-        docinfo: {
-          docrootURL:   docsConfig.docrootURL(node),
-          canonicalURL: docsConfig.canonicalURL(node),
-          githubURL:    docsConfig.githubURL(node),
-
-          maybeShowReadingTime: docsConfig.maybeShowReadingTime(node),
-
-          peerVersions: docsConfig.peerVersions(urlpath, allURLPaths),
+    if (urlpath === '/docs/latest/quick-start/') {
+      actions.createPage({
+        // URL-path to create the page at
+        path: urlpath,
+        // Absolute filepath of the component to render the page with
+        component: path.resolve('./src/templates/doc-page.js'),
+        // Arguments to pass to that component's `query`
+        context: {
+          contentFileNodeID:   node.id,
+          variablesFileNodeID: variablesCache[variablesFilepath],
+          sidebarFileNodeID:   sidebarCache[sidebarFilepath],
+          docinfo: {
+            docrootURL:   docsConfig.docrootURL(node),
+            canonicalURL: docsConfig.canonicalURL(node),
+            githubURL:    docsConfig.githubURL(node),
+  
+            maybeShowReadingTime: docsConfig.maybeShowReadingTime(node),
+  
+            peerVersions: docsConfig.peerVersions(urlpath, allURLPaths),
+          },
         },
-      },
-    });
+      });
+    } else {
+      actions.createRedirect({
+        fromPath: urlpath,
+        toPath: '/docs/latest/quick-start/',
+        redirectInBrowser: true,
+        isPermanent: true,
+      });
+    }
   }
 
   // Create up redirects

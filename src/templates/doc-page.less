@@ -2,9 +2,20 @@
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
-    grid-template-columns: auto;
-    grid-template-rows: auto min-content;
-    &__sidebar {
-        display: none;
+    @media (min-width: 1200px) {
+        align-items: center;
+    }
+
+    &__main {
+        padding: 0px 1rem;
+        @media (min-width: 1200px) {
+            &_content {
+                max-width: 1000px;
+            }
+        }
+    }
+
+    &__footer {
+        width: 100%;
     }
 }

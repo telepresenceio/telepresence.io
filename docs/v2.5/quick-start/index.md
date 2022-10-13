@@ -10,17 +10,17 @@ import QSCards from '../quick-start/qs-cards'
 
 Telepresence enables you to create intercepts to a target Kubernetes workload. Once you have created and intercept, you can code and debug your associated service locally.
 
-For a detailed walk-though on creating intercepts using our sample app, follow the [quick start guide](../../quick-start/demo-node/).
+For a detailed walk-though on creating intercepts using our sample app, follow the [quick start guide](https://www.getambassador.io/docs/telepresence/latest/quick-start/demo-node/).
 
 ## Prerequisites
 
-Before you begin, you need to have either the Kubernetes command-line tool, [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/), or the OpenShift Container Platform command-line interface, [`oc`](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). This document uses kubectl in all example commands. OpenShift users can substitute oc [commands instead](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html).
+Before you begin, you need to have either the Kubernetes command-line tool, [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), or the OpenShift Container Platform command-line interface, [oc](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). This document uses kubectl in all example commands. OpenShift users can substitute oc [commands instead](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html).
 
 This guide assumes you have a Kubernetes deployment and service, and that you can run a copy of that service on your laptop.
 
 ## Install telepresence on your machine
 
-Install Telepresence by running the commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](../reference/rbac#administrating-telepresence) to install and use Telepresence in your cluster.
+Install Telepresence by running the commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](https://www.getambassador.io/docs/telepresence/latest/reference/rbac/#administrating-telepresence) to install and use Telepresence in your cluster.
 
 <Platform.TabGroup>
 <Platform.MacOSTab>
@@ -81,17 +81,17 @@ Remove-Item telepresence
 
 ## Install telepresence in your cluster
 
-1. Install the traffic manager into your cluster with `telepresence helm install`. More information about installing telepresence can be found [here](../install/manager/). This will require root access on your machine.
+1. Install the traffic manager into your cluster with `telepresence helm install`. More information about installing telepresence can be found [here](https://www.getambassador.io/docs/telepresence/latest/install/manager/). This will require root access on your machine.
 
 ```
 $ telepresence helm install
-  ...
-  Traffic Manager installed successfully
+...
+Traffic Manager installed successfully
 ```
 
 ## Intercept your service with a global intercept
 
-With Telepresence, you can create [global intercepts](../../concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your cluster and route it to your local environment instead.
+With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your cluster and route it to your local environment instead.
 
 1. Connect to your cluster with `telepresence connect` and connect to the Kubernetes API server:
 
@@ -116,7 +116,7 @@ With Telepresence, you can create [global intercepts](../../concepts/intercepts/
 
    You now have access to your remote Kubernetes API server as if you were on the same network. You can now use any local tools to connect to any service in the cluster.
 
-   If you have difficulties connecting, make sure you are using Telepresence 2.0.3 or a later version. Check your version by entering `telepresence version` and [upgrade if needed](../../install/upgrade/).
+   If you have difficulties connecting, make sure you are using Telepresence 2.0.3 or a later version. Check your version by entering `telepresence version` and [upgrade if needed](https://www.getambassador.io/docs/telepresence/latest/install/upgrade/).
 
 2. Enter `telepresence list` and make sure the service you want to intercept is listed. For example:
 

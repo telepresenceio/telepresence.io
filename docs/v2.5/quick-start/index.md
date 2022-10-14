@@ -8,16 +8,20 @@ import QSCards from '../quick-start/qs-cards'
 
 # Telepresence Quickstart
 
-Telepresence is an OSS tool that enables you to set up remote development environments for Kubernetes where you can still use all of your favorite local tools like IDEs, debuggers, and profilers.
+Telepresence is an open source tool that enables you to set up remote development environments for Kubernetes where you can still use all of your favorite local tools like IDEs, debuggers, and profilers.
 
 ## Prerequisites
 
    - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), the Kubernetes command-line tool, or the OpenShift Container Platform command-line interface, [oc](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). 
    - A Kubernetes Deployment and Service.
 
-Warning: Don’t have access to Kubernetes cluster? Try Telepresence in a free remote Kubernetes cluster without having to mess with your production environment. [Get Started >](https://app.getambassador.io/cloud/welcome?select=developer&utm_source=telepresence&utm_medium=website&utm_campaign=quickstart).
+   <Alert severity="info">
 
-## Install telepresence on your machine
+  **Don’t have access to Kubernetes cluster?** Try Telepresence in a free remote Kubernetes cluster without having to mess with your production environment. [Get Started >](https://app.getambassador.io/cloud/welcome?select=developer&utm_source=telepresence&utm_medium=website&utm_campaign=quickstart).
+
+   </Alert>
+
+## Install Telepresence on Your Machine
 
 Install Telepresence by running the relevant commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](https://www.getambassador.io/docs/telepresence/latest/reference/rbac/#administrating-telepresence) to install and use the Telepresence traffic-manager in your cluster.
 
@@ -101,9 +105,9 @@ Remove-Item telepresence
 </Platform.WindowsTab>
 </Platform.TabGroup>
 
-## Install telepresence in your cluster
+## Install Telepresence in Your Cluster
 
-1. Install the traffic manager into your cluster with `telepresence helm install`. More information about installing telepresence can be found [here](https://www.getambassador.io/docs/telepresence/latest/install/manager/). This will require root access on your machine.
+1. Install the traffic manager into your cluster with `telepresence helm install`. More information about installing Telepresence can be found [here](https://www.getambassador.io/docs/telepresence/latest/install/manager/). This will require root access on your machine.
 
 ```
 $ telepresence helm install
@@ -111,7 +115,7 @@ $ telepresence helm install
 Traffic Manager installed successfully
 ```
 
-## Intercept your service with a global intercept
+## Intercept Your Service (remove with a global intercept)
 
 With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
 
@@ -192,7 +196,7 @@ The following are some examples of how to pass the environment variables to your
 6. Query the environment in which you intercepted a service and verify your local instance being invoked.
    All the traffic previously routed to your Kubernetes Service is now routed to your local environment
 
-## 🎉 You’ve unlocked a faster development workflow for Kubernetes with Telepresence
+## 🎉 You've Unlocked a Faster Development Workflow for Kubernetes with Telepresence
 
 Now, with Telepresence, you can:
 

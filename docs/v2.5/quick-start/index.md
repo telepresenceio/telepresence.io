@@ -115,7 +115,7 @@ $ telepresence helm install
 Traffic Manager installed successfully
 ```
 
-## Intercept Your Service (remove with a global intercept)
+## Intercept Your Service
 
 With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
 

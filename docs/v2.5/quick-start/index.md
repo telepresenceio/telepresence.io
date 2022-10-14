@@ -6,17 +6,16 @@ import Alert from '@material-ui/lab/Alert';
 import Platform from '@src/components/Platform';
 import QSCards from '../quick-start/qs-cards'
 
-# Intercept a service in your own environment
+# Telepresence Quickstart
 
-Telepresence enables you to create intercepts to a target Kubernetes workload. Once you have created and intercept, you can code and debug your associated service locally.
-
-For a detailed walk-though on creating intercepts using our sample app, follow the [quick start guide](https://www.getambassador.io/docs/telepresence/latest/quick-start/demo-node/).
+Telepresence is an OSS tool that enables you to set up remote development environments for Kubernetes where you can still access your favorite local tools like IDEs & debuggers.
 
 ## Prerequisites
 
-Before you begin, you need to have either the Kubernetes command-line tool, [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), or the OpenShift Container Platform command-line interface, [oc](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). This document uses kubectl in all example commands. OpenShift users can substitute oc [commands instead](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html).
+   - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), the Kubernetes command-line tool, or the OpenShift Container Platform command-line interface, [oc](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). 
+   - A Kubernetes deployment and service.
 
-This guide assumes you have a Kubernetes deployment and service, and that you can run a copy of that service on your laptop.
+Warning: Don’t have access to Kubernetes cluster? Try Telepresence in a free remote Kubernetes cluster without having to mess with your production environment. [Get Started >](https://app.getambassador.io/cloud/welcome?select=developer&utm_source=telepresence&utm_medium=website&utm_campaign=quickstart).
 
 ## Install telepresence on your machine
 
@@ -195,15 +194,22 @@ The following are some examples of how to pass the environment variables to your
 6. Query the environment in which you intercepted a service and verify your local instance being invoked.
    All the traffic previously routed to your Kubernetes Service is now routed to your local environment
 
-You can now:
+## 🎉 You’ve unlocked a faster development workflow for Kubernetes with Telepresence
 
-- Make changes on the fly and see them reflected when interacting with
-  your Kubernetes environment.
-- Query services only exposed in your cluster's network.
-- Set breakpoints in your IDE to investigate bugs.
+Now, with Telepresence, you can:
+
+- <div>Make changes on the fly and see them reflected when interacting with your Kubernetes environment.</div>
+- <div>Query services only exposed in your cluster's network.</div>
+- <div>Set breakpoints in your IDE to investigate bugs.</div>
 
    <Alert severity="info">
 
   **Didn't work?** Make sure the port you're listening on matches the one you specified when you created your intercept.
 
    </Alert>
+
+## What’s Next?
+
+- [Set up sharable development environments.](https://www.getambassador.io/docs/telepresence/latest/howtos/preview-urls/)
+- [Learn about the Telepresence architecture.](https://www.getambassador.io/docs/telepresence/latest/reference/architecture/)
+- [Read the docs.](https://www.getambassador.io/docs/telepresence/)

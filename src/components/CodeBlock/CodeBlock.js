@@ -4,6 +4,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import Mermaid from '../Mermaid';
 
 import styles from './styles.module.less';
+import './prism-ambassador.css';
 
 import CopyButton from './CopyButton';
 

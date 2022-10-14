@@ -8,18 +8,18 @@ import QSCards from '../quick-start/qs-cards'
 
 # Telepresence Quickstart
 
-Telepresence is an OSS tool that enables you to set up remote development environments for Kubernetes where you can still access your favorite local tools like IDEs & debuggers.
+Telepresence is an OSS tool that enables you to set up remote development environments for Kubernetes where you can still use all of your favorite local tools like IDEs, debuggers, and profilers.
 
 ## Prerequisites
 
    - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), the Kubernetes command-line tool, or the OpenShift Container Platform command-line interface, [oc](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html#cli-installing-cli_cli-developer-commands). 
-   - A Kubernetes deployment and service.
+   - A Kubernetes Deployment and Service.
 
 Warning: Don’t have access to Kubernetes cluster? Try Telepresence in a free remote Kubernetes cluster without having to mess with your production environment. [Get Started >](https://app.getambassador.io/cloud/welcome?select=developer&utm_source=telepresence&utm_medium=website&utm_campaign=quickstart).
 
 ## Install telepresence on your machine
 
-Install Telepresence by running the commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](https://www.getambassador.io/docs/telepresence/latest/reference/rbac/#administrating-telepresence) to install and use Telepresence in your cluster.
+Install Telepresence by running the relevant commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](https://www.getambassador.io/docs/telepresence/latest/reference/rbac/#administrating-telepresence) to install and use the Telepresence traffic-manager in your cluster.
 
 <Platform.TabGroup>
 <Platform.MacOSTab>
@@ -113,7 +113,7 @@ Traffic Manager installed successfully
 
 ## Intercept your service with a global intercept
 
-With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your cluster and route it to your local environment instead.
+With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
 
 1. Connect to your cluster with `telepresence connect` and connect to the Kubernetes API server:
 
@@ -137,8 +137,6 @@ With Telepresence, you can create [global intercepts](https://www.getambassador.
    </Alert>
 
    You now have access to your remote Kubernetes API server as if you were on the same network. You can now use any local tools to connect to any service in the cluster.
-
-   If you have difficulties connecting, make sure you are using Telepresence 2.0.3 or a later version. Check your version by entering `telepresence version` and [upgrade if needed](https://www.getambassador.io/docs/telepresence/latest/install/upgrade/).
 
 2. Enter `telepresence list` and make sure the service you want to intercept is listed. For example:
 
@@ -198,9 +196,11 @@ The following are some examples of how to pass the environment variables to your
 
 Now, with Telepresence, you can:
 
-- <div>Make changes on the fly and see them reflected when interacting with your Kubernetes environment.</div>
-- <div>Query services only exposed in your cluster's network.</div>
-- <div>Set breakpoints in your IDE to investigate bugs.</div>
+- <div>
+   Make changes on the fly and see them reflected when interacting with your remote Kubernetes environment, this is just like hot reloading, but it works across both local and remote environments.
+  </div>
+- <div>Query services and microservice APIs that are only accessible in your remote cluster's network.</div>
+- <div>Set breakpoints in your IDE and re-route remote traffic to your local machine to investigate bugs with realistic user traffic and API calls.</div>
 
    <Alert severity="info">
 
@@ -212,4 +212,4 @@ Now, with Telepresence, you can:
 
 - [Set up sharable development environments.](https://www.getambassador.io/docs/telepresence/latest/howtos/preview-urls/)
 - [Learn about the Telepresence architecture.](https://www.getambassador.io/docs/telepresence/latest/reference/architecture/)
-- [Read the docs.](https://www.getambassador.io/docs/telepresence/)
+- [Read the Telepresence docs.](https://www.getambassador.io/docs/telepresence/)

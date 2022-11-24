@@ -36,11 +36,14 @@
     "react-dom": "^16.13.1",
     "react-github-btn": "^1.2.0",
     "react-helmet": "^6.1.0",
-    "react-hubspot-form": "^1.3.7",
+    "react-hubspot-form": "datawire/datawire-react-hubspot-form.git",
     "react-intersection-observer": "^8.32.0",
     "react-scroll": "^1.8.2",
     "slick-carousel": "^1.8.1",
     "typescript": "^2.8.0",
     "webpack": "^4.44.1"
+  },
+  "resolutions": {
+    "socket.io-parser": "4.0.5"
   }
 }

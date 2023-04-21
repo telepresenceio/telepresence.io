@@ -83,7 +83,7 @@ sudo chmod a+x /usr/local/bin/telepresence
 # Make sure you run the following from Powershell as Administrator
 
 # 1. Download the latest windows zip containing telepresence.exe and its dependencies (~50 MB):
-curl -fL https://app.getambassador.io/download/tel2/windows/amd64/$dlVersion$/telepresence.zip -o telepresence.zip
+curl https://app.getambassador.io/download/tel2/windows/amd64/$dlVersion$/telepresence.zip -o telepresence.zip
 
 # 2. Unzip the zip file to a suitable directory + cleanup zip
 Expand-Archive -Path telepresence.zip

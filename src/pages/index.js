@@ -178,7 +178,7 @@ export default function HomePage({ location }) {
 						<p>
 							To find out more about the Telepresence Architecture, check out
 							the{' '}
-							<a href="https://www.getambassador.io/docs/telepresence/latest/reference/architecture/">
+							<a href="https://www.getambassador.io/docs/telepresence-oss/latest/reference/architecture/">
 								docs
 							</a>{' '}
 							or join us in <a href="http://a8r.io/slack">Slack</a>.

@@ -23,7 +23,7 @@ Telepresence is an open source tool that enables you to set up remote developmen
 
 ## Install Telepresence on Your Machine
 
-Install Telepresence by running the relevant commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](https://www.getambassador.io/docs/telepresence/latest/reference/rbac/#administrating-telepresence) to install and use the Telepresence traffic-manager in your cluster.
+Install Telepresence by running the relevant commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](https://www.getambassador.io/docs/telepresence-oss/latest/reference/rbac/#administrating-telepresence) to install and use the Telepresence traffic-manager in your cluster.
 
 <Platform.TabGroup>
 <Platform.MacOSTab>
@@ -66,7 +66,7 @@ Installing Telepresence on Windows is easy. Download and run this [installer](ht
 
 ## Install Telepresence in Your Cluster
 
-1. Install the traffic manager into your cluster with `telepresence helm install`. More information about installing Telepresence can be found [here](https://www.getambassador.io/docs/telepresence/latest/install/manager/). This will require root access on your machine.
+1. Install the traffic manager into your cluster with `telepresence helm install`. More information about installing Telepresence can be found [here](https://www.getambassador.io/docs/telepresence-oss/latest/install/manager/). This will require root access on your machine.
 
 ```
 $ telepresence helm install
@@ -76,7 +76,7 @@ Traffic Manager installed successfully
 
 ## Intercept Your Service
 
-With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
+With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence-oss/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
 
 1. Connect to your cluster with `telepresence connect` and connect to the Kubernetes API server:
 

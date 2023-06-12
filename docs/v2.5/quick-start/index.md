@@ -23,41 +23,25 @@ Telepresence is an open source tool that enables you to set up remote developmen
 
 ## Install Telepresence on Your Machine
 
-Install Telepresence by running the relevant commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](https://www.getambassador.io/docs/telepresence/latest/reference/rbac/#administrating-telepresence) to install and use the Telepresence traffic-manager in your cluster.
+Install Telepresence by running the relevant commands below for your OS. If you are not the administrator of your cluster, you will need [administrative RBAC permissions](https://www.getambassador.io/docs/telepresence-oss/latest/reference/rbac/#administrating-telepresence) to install and use the Telepresence traffic-manager in your cluster.
 
 <Platform.TabGroup>
 <Platform.MacOSTab>
 
 ```shell
 # Intel Macs
-# Install via brew:
-brew install datawire/blackbird/telepresence
-```
 
-```shell
-# OR install manually:
-# 1. Download the latest binary (~60 MB):
-sudo curl -fL https://app.getambassador.io/download/tel2/darwin/amd64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
-```
+# 1. Download the latest binary (~105 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-darwin-amd64 -o /usr/local/bin/telepresence
 
-```shell
 # 2. Make the binary executable:
 sudo chmod a+x /usr/local/bin/telepresence
-```
 
-```shell
 # Apple silicon Macs
-# Install via brew:
-brew install datawire/blackbird/telepresence-arm64
-```
 
-```shell
-# OR Install manually:
-# 1. Download the latest binary (~60 MB):
-sudo curl -fL https://app.getambassador.io/download/tel2/darwin/arm64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
-```
+# 1. Download the latest binary (~101 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-darwin-arm64 -o /usr/local/bin/telepresence
 
-```shell
 # 2. Make the binary executable:
 sudo chmod a+x /usr/local/bin/telepresence
 ```
@@ -66,11 +50,9 @@ sudo chmod a+x /usr/local/bin/telepresence
 <Platform.GNULinuxTab>
 
 ```shell
-# 1. Download the latest binary (~50 MB):
-sudo curl -fL https://app.getambassador.io/download/tel2/linux/amd64/$dlVersion$/telepresence -o /usr/local/bin/telepresence
-```
+# 1. Download the latest binary (~95 MB):
+sudo curl -fL https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-linux-amd64 -o /usr/local/bin/telepresence
 
-```shell
 # 2. Make the binary executable:
 sudo chmod a+x /usr/local/bin/telepresence
 ```
@@ -78,36 +60,13 @@ sudo chmod a+x /usr/local/bin/telepresence
 </Platform.GNULinuxTab>
 <Platform.WindowsTab>
 
-```powershell
-# Windows is in Developer Preview, here is how you can install it:
-# Make sure you run the following from Powershell as Administrator
-
-# 1. Download the latest windows zip containing telepresence.exe and its dependencies (~50 MB):
-curl -fL https://app.getambassador.io/download/tel2/windows/amd64/$dlVersion$/telepresence.zip -o telepresence.zip
-
-# 2. Unzip the zip file to a suitable directory + cleanup zip
-Expand-Archive -Path telepresence.zip
-Remove-Item 'telepresence.zip'
-cd telepresence
-
-# 3. Run the install-telepresence.ps1 to install telepresence's dependencies. It will install telepresence to
-# C:\telepresence by default, but you can specify a custom path $path with -Path $path
-Set-ExecutionPolicy Bypass -Scope Process
-.\install-telepresence.ps1
-
-# 4. Remove the unzipped directory
-cd ..
-Remove-Item telepresence
-
-# 5. Close your current Powershell and open a new one. Telepresence should now be usable as telepresence.exe
-```
-
+Installing Telepresence on Windows is easy. Download and run this [installer](https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-windows-amd64.exe) and follow the on-screen instructions.
 </Platform.WindowsTab>
 </Platform.TabGroup>
 
 ## Install Telepresence in Your Cluster
 
-1. Install the traffic manager into your cluster with `telepresence helm install`. More information about installing Telepresence can be found [here](https://www.getambassador.io/docs/telepresence/latest/install/manager/). This will require root access on your machine.
+1. Install the traffic manager into your cluster with `telepresence helm install`. More information about installing Telepresence can be found [here](https://www.getambassador.io/docs/telepresence-oss/latest/install/manager/). This will require root access on your machine.
 
 ```
 $ telepresence helm install
@@ -117,7 +76,7 @@ Traffic Manager installed successfully
 
 ## Intercept Your Service
 
-With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
+With Telepresence, you can create [global intercepts](https://www.getambassador.io/docs/telepresence-oss/latest/concepts/intercepts/?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
 
 1. Connect to your cluster with `telepresence connect` and connect to the Kubernetes API server:
 
@@ -213,7 +172,5 @@ Now, with Telepresence, you can:
    </Alert>
 
 ## What’s Next?
-
-- [Set up sharable development environments.](https://www.getambassador.io/docs/telepresence/latest/howtos/preview-urls/)
-- [Learn about the Telepresence architecture.](https://www.getambassador.io/docs/telepresence/latest/reference/architecture/)
-- [Read the Telepresence docs.](https://www.getambassador.io/docs/telepresence/)
+- [Learn about the Telepresence architecture.](https://www.getambassador.io/docs/telepresence-oss/latest/reference/architecture/)
+- [Read the Telepresence docs.](https://www.getambassador.io/docs/telepresence-oss/)

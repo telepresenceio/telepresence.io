@@ -173,3 +173,5 @@ Now, with Telepresence, you can:
 
 ## What’s Next?
 - [Learn about the Telepresence architecture.](https://www.getambassador.io/docs/telepresence-oss/latest/reference/architecture)
+
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=d842651a-2e4d-465a-98e1-4808722c01ab" />

@@ -60,7 +60,7 @@ sudo chmod a+x /usr/local/bin/telepresence
 </Platform.GNULinuxTab>
 <Platform.WindowsTab>
 
-Installing Telepresence on Windows is easy. Download and run this [installer](https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-windows-amd64.exe) and follow the on-screen instructions.
+Installing Telepresence on Windows is easy. Download this [zip folder](https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-windows-amd64.zip) and run the powershell script.
 </Platform.WindowsTab>
 </Platform.TabGroup>
 

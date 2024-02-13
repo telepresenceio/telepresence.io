@@ -62,15 +62,24 @@ const CaseStudyTemplate = ({ caseStudy, children }) => {
 					{children}
 				</div>
 			</section>
-			<section className={classnames('purpleBackground', 'caseStudyFooter')}>
-				<h4>Questions?</h4>
-				<p>Let us help you get started</p>
-				<a className="btn-purple-light" href="/docs/latest/quick-start/">
-					get started
-				</a>
-			</section>
-		</>
-	);
+      <section className={classnames('purpleBackground', 'caseStudyFooter')}>
+        <h4>Questions?</h4>
+        <p>Let us help you get started</p>
+        <a className="btn-purple-light" href="/docs/latest/quick-start/">
+          get started
+        </a>
+        <div className="trademarkUsage">
+          <p>
+            The Linux Foundation has registered trademarks and uses trademarks.
+            For a list of trademarks of The Linux Foundation,
+            please see our <a
+            href="https://www.linuxfoundation.org/legal/trademark-usage">Trademark
+            Usage page</a>.
+          </p>
+        </div>
+      </section>
+    </>
+  );
 };
 
 export default CaseStudyTemplate;

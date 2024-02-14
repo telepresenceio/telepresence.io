@@ -134,10 +134,22 @@ export default function DocPage({ location, data, pageContext }) {
           </div>
         </main>
         <footer className="docs__footer">
-          <a href={pageContext.docinfo.githubURL} className="github" target="_blank" rel="noreferrer">
-              <GithubIcon />
+          <div>
+            <a href={pageContext.docinfo.githubURL} className="github"
+               target="_blank" rel="noreferrer">
+              <GithubIcon/>
               Edit this page on GitHub
-          </a>
+            </a>
+          </div>
+          <div className="trademarkUsage">
+            <p>
+              The Linux Foundation has registered trademarks and uses
+              trademarks. For a list of trademarks of The Linux Foundation,
+              please see our <a
+              href="https://www.linuxfoundation.org/legal/trademark-usage">Trademark
+              Usage page</a>.
+            </p>
+          </div>
         </footer>
       </div>
     </Layout>

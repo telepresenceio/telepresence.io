@@ -44,19 +44,29 @@ export default function AboutPage({ location }) {
 					/>
 				</div>
 			</section>
-			<section className="aboutPageStayUpdated">
-				<h4>Stay Updated</h4>
-				<p>
-					Telepresence is under active development. Subscribe to get updates and
-					announcements:
-				</p>
-				<div className="aboutPageHubspotForm">
-					<HubspotForm
-						portalId="485087"
-						formId="956287a4-7614-486b-91bd-28c9a91949cb"
-					/>
-				</div>
-			</section>
-		</EasyLayout>
-	);
+      <section className="aboutPageStayUpdated">
+        <h4>Stay Updated</h4>
+        <p>
+          Telepresence is under active development. Subscribe to get updates and
+          announcements:
+        </p>
+        <div className="aboutPageHubspotForm">
+          <HubspotForm
+            portalId="485087"
+            formId="956287a4-7614-486b-91bd-28c9a91949cb"
+          />
+        </div>
+        <div className="trademarkUsage">
+          <p>
+            The Linux Foundation has registered trademarks and uses
+            trademarks.
+            For a list of trademarks of The Linux Foundation,
+            please see our <a
+            href="https://www.linuxfoundation.org/legal/trademark-usage">Trademark
+            Usage page</a>.
+          </p>
+        </div>
+      </section>
+    </EasyLayout>
+  );
 }

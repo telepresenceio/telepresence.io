@@ -88,18 +88,28 @@ export default function CommunityPage({ location }) {
 					</div>
 				</div>
 			</section>
-			<section className="communityPageSection purpleLight">
-				<div className="communityPageSection-socialCards">
-					<h2 className="communityPageSection-exploreTitle">
-						Explore and Contribute to Our Networks
-					</h2>
-					<div className="communityPageSection-socialCards-container">
-						{SOCIAL_CARDS.map((card, index) => (
-							<SocialCard key={index} {...card} />
-						))}
-					</div>
-				</div>
-			</section>
-		</EasyLayout>
-	);
+      <section className="communityPageSection purpleLight">
+        <div className="communityPageSection-socialCards">
+          <h2 className="communityPageSection-exploreTitle">
+            Explore and Contribute to Our Networks
+          </h2>
+          <div className="communityPageSection-socialCards-container">
+            {SOCIAL_CARDS.map((card, index) => (
+              <SocialCard key={index} {...card} />
+            ))}
+          </div>
+          <div className="trademarkUsage">
+            <p>
+              The Linux Foundation has registered trademarks and uses
+              trademarks.
+              For a list of trademarks of The Linux Foundation,
+              please see our <a
+              href="https://www.linuxfoundation.org/legal/trademark-usage">Trademark
+              Usage page</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+    </EasyLayout>
+  );
 }

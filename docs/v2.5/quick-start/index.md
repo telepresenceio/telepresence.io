@@ -36,7 +36,9 @@ sudo curl -fL https://app.getambassador.io/download/tel2oss/releases/download/$d
 
 # 2. Make the binary executable:
 sudo chmod a+x /usr/local/bin/telepresence
+```
 
+```shell
 # Apple silicon Macs
 
 # 1. Download the latest binary (~101 MB):

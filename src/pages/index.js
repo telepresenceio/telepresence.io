@@ -181,7 +181,7 @@ export default function HomePage({ location }) {
 							<a href="https://www.getambassador.io/docs/telepresence-oss/latest/reference/architecture/">
 								docs
 							</a>{' '}
-							or join us in <a href="http://a8r.io/slack">Slack</a>.
+							or join us in the #telepresence-oss channel on the <a href="https://slack.cncf.io/">CNCF Slack</a>.
 						</p>
 						<a href="/docs/latest/quick-start/" className="btn-purple-light">
 							get started

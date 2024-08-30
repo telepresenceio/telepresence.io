@@ -48,7 +48,7 @@ release/v2\` (after fetching, of course).  However, be warned: Don't try to
 moreover v2 is a complete rewrite in a different language.
 
 If you have any questions, please reach out to us on GitHub or in the
-#telepresence channel on our [Community Slack](https://a8r.io/slack).
+#telepresence-oss channel on our [Community Slack](https://slack.cncf.io/).
 
           `}</Markdown>
         </div>

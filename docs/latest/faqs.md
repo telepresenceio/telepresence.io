@@ -100,4 +100,4 @@ Yes it is! You can find its source code on [GitHub](https://github.com/teleprese
 
 ** How do I share my feedback on Telepresence?**
 
-Your feedback is always appreciated and helps us build a product that provides as much value as possible for our community. You can chat with us directly on our [feedback page](https://www.getambassador.io/feedback/), or you can [join our Slack channel](http://a8r.io/slack) to share your thoughts.
+Your feedback is always appreciated and helps us build a product that provides as much value as possible for our community. You can chat with us directly on our [feedback page](https://www.getambassador.io/feedback/), or you can [join our Slack channel](https://slack.cncf.io/) to share your thoughts.

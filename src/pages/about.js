@@ -30,7 +30,7 @@ export default function AboutPage({ location }) {
 						We welcome all community contributions. If you find a bug or a
 						mistake in the documentation, you can help us out by submitting an
 						issue or a pull request with a fix. If you have questions, join our
-						active <a href="http://a8r.io/slack">Slack community</a> or{' '}
+						active <a href="https://slack.cncf.io/">Slack community</a> or{' '}
 						<a href="https://www.getambassador.io/contact-us">contact us</a>{' '}
 						about paid support plans.
 					</p>

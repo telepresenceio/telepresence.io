@@ -12,7 +12,7 @@ const SOCIAL_CARDS = [
 	{
 		logo: SlackLogo,
 		title: 'Slack',
-		link: 'http://a8r.io/slack',
+		link: 'https://slack.cncf.io/',
 		description:
 			'Join our Slack to get answers to your questions and learn how others are using Telepresence.',
 	},

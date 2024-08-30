@@ -51,8 +51,8 @@ export default function IrisPage({ location }) {
 					reflecting on it, and refining it. Testing your workflow with a small
 					set of users, and incrementally rolling it out is a good strategy.
 					Also,{' '}
-					<a href="https://a8r.io/slack">talk with the Ambassador Labs team</a>{' '}
-					on their Slack chat; they can provide good advice and perspective.
+					<a href="https://slack.cncf.io/">talk with the team behind Telepresence</a>{' '}
+					on their #telepresence-oss Slack chat; they can provide good advice and perspective.
 				</p>
 			</CaseStudyTemplate>
 		</EasyLayout>

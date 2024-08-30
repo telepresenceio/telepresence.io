@@ -56,7 +56,7 @@ export default function Layout({ location, children }) {
 							className={classnames('btn-purple-light')}
 							target="_blank"
 							rel="noreferrer"
-							href="https://a8r.io/slack"
+							href="https://slack.cncf.io/"
 						>
 							need help?
 						</a>
@@ -69,7 +69,7 @@ export default function Layout({ location, children }) {
 							className={classnames('btn-purple-light', 'needHelpButton')}
 							target="_blank"
 							rel="noreferrer"
-							href="https://a8r.io/slack"
+							href="https://slack.cncf.io/"
 						>
 							need help?
 						</a>

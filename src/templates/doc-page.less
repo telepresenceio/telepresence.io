@@ -1,21 +1,18 @@
 .docs {
-    margin-top: 4rem;
-    display: flex;
-    flex-direction: column;
-    @media (min-width: 1200px) {
-        align-items: center;
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-template-rows: auto min-content;
+    &__sidebar {
+        grid-column: 1;
+        grid-row-start: 1;
+        grid-row-end: 3;
     }
-
     &__main {
-        padding: 0px 1rem;
-        @media (min-width: 1200px) {
-            &_content {
-                max-width: 1000px;
-            }
-        }
+        grid-column: 2;
+        grid-row: 1;
     }
-
     &__footer {
-        width: 100%;
+        grid-column: 2;
+        grid-row: 2;
     }
 }

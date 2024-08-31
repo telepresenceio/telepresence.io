@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -109,6 +109,12 @@ const ReleaseNotesContent = ({
   );
 };
 
+const handleVersionChange = (event) => {
+  if (event.target.value) {
+    navigate(event.target.value);
+  }
+};
+
 export default function DocPage({ location, data, pageContext }) {
   const variables = jsYAML.safeLoad(data.variablesFile.internal.content);
 
@@ -119,19 +125,32 @@ export default function DocPage({ location, data, pageContext }) {
         <meta name="og:type" content="article" />
       </Helmet>
       <div className="docs">
-        <main className="docs__main">
-          <div className='docs__main_content'>
+        <nav className="docs__sidebar">
+          <label className="docs__sidebar_version">
+            Version:
+            <select defaultValue="" onChange={handleVersionChange}>{ /* eslint-disable-line jsx-a11y/no-onchange */ }
             {
-              data.contentFile.childMdx
-                ? <MarkdownContent mdxNode={data.contentFile.childMdx}
-                                  variables={variables}
-                                  siteTitle={data.site.siteMetadata.title}
-                                  maybeShowReadingTime={pageContext.docinfo.maybeShowReadingTime} />
-                : <ReleaseNotesContent fileNode={data.contentFile}
-                                      variables={variables}
-                                      siteTitle={data.site.siteMetadata.title} />
+              pageContext.docinfo.peerVersions.reverse().map(([version, urlpath]) => (
+                <option key={version} value={urlpath || ""}>{version}</option>
+              ))
             }
-          </div>
+            </select>
+          </label>
+          <LinkList className="docs__sidebar_toc"
+                    rooturl={pageContext.docinfo.docrootURL}
+                    items={jsYAML.safeLoad(template(data.sidebarFile.internal.content, variables))} />
+        </nav>
+        <main className="docs__main">
+          {
+            data.contentFile.childMdx
+              ? <MarkdownContent mdxNode={data.contentFile.childMdx}
+                                 variables={variables}
+                                 siteTitle={data.site.siteMetadata.title}
+                                 maybeShowReadingTime={pageContext.docinfo.maybeShowReadingTime} />
+              : <ReleaseNotesContent fileNode={data.contentFile}
+                                     variables={variables}
+                                     siteTitle={data.site.siteMetadata.title} />
+          }
         </main>
         <footer className="docs__footer">
           <div>

@@ -2,8 +2,7 @@ import React from 'react';
 import '../Layout/layout.less';
 
 const LINKS = [
-	{ label: 'Quick Start', link: '/docs/latest/quick-start/' },
-	{ label: 'Docs', link: 'https://www.getambassador.io/docs/telepresence-oss/' },
+	{ label: 'Docs', link: '/docs/latest/quick-start/' },
 	{ label: 'Case Studies', link: '/case-studies' },
 	{ label: 'Community', link: '/community' },
 	{ label: 'About', link: '/about' },

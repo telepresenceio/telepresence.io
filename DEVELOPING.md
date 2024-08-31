@@ -20,7 +20,7 @@ Commands of interest:
    yarn run gatsby develop  # Serve a hot-reloading development-build at http://localhost:8000/
    yarn run gatsby repl     # Run a Node.js REPL in the Gatsby environment
    yarn run eslint .        # Run the linter
-   make pull-docs           # Update ./docs/ from ambassador-docs.git
+   make pull-docs           # Update ./docs/ from telepresenceio/telepresence.git
 
    # Production or production-like
    yarn run gatsby build    # Build a production-build, writing it to ./public/
@@ -179,11 +179,10 @@ So we should upgrade Gatsby and associated plugins, and then turn
 
 The docs-build machinery in of `package.json`, `gatsby-config.js`,
 `gatsby-node.js`, `src/assets/` and `src/components/` seem obviously
-want be a separate reusable module, so that these things don't need to
-be manually kept in-sync between getambassador.io, telepresence.io,
-and emissaryingress.io.  This seems to be mostly obvious an trival to
-do... except for I can't figure how to handle
-`src/templates/doc-page.js` to where it's sufficiently
+want to be a separate reusable module, so that these things don't need to
+be manually kept in-sync between telepresence.io,  and telepresence.
+This seems to be mostly obvious an trival to  do... except for I can't
+figure how to handle `src/templates/doc-page.js` to where it's sufficiently
 parametarized/pluggable, or a way to make it possible to plug in the
 site-specific one.
 

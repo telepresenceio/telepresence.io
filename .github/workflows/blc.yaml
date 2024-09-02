@@ -4,16 +4,12 @@ jobs:
   "Check":
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '^3.9'
-      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
           path: site
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
         with:
           repository: datawire/getambassador.io-blc2
           path: blc

@@ -3,7 +3,7 @@
   "private": true,
   "engines": {
     "npm": "Please use yarn instead of npm",
-    "yarn": "^1.22.17",
+    "yarn": "^1.22.4",
     "node": ">=15.0.0"
   },
   "dependencies": {

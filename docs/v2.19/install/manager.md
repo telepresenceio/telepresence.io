@@ -4,7 +4,7 @@ Telepresence uses a traffic manager to send/recieve cloud traffic to the user. T
 
 ## Prerequisites
 
-Before you begin, you need to have [Telepresence installed](../install/).
+Before you begin, you need to have [Telepresence installed](../install/client).
 
 If you are not the administrator of your cluster, you will need [administrative RBAC permissions](../reference/rbac#administrating-telepresence) to install and use Telepresence in your cluster.
 

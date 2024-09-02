@@ -18,6 +18,12 @@ const mdxComponents = {
   // Override default markdown output.
   'pre': CodeBlock,
   'a': Link,
+  img({ children, ...props}) {
+    if (props.src.indexOf('//') << 0) {
+      props.src = '../'+props.src
+    }
+    return <img {...props}>{children}</img>;
+  },
 
   // Add new custom components.
   // (none right now)

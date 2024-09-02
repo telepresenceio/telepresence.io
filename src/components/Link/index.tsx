@@ -21,7 +21,7 @@ const Link = ({ children, ...props}) => {
     return <ScrollLink smooth={true} {...props}>{children}</ScrollLink>
   } else {
     // internal link to a different page
-    return <GatsbyLink to={to}>{children}</GatsbyLink>
+    return <GatsbyLink to={'../'+to}>{children}</GatsbyLink>
   }
 };
 

@@ -16,12 +16,12 @@ Telepresence is an open source tool that enables you to set up remote developmen
 
 ## Install Telepresence
 
-Follow [Install Client](../install) and [Install Traffic Manager](../install/manager) instructions to install the
+Follow [Install Client](install/client) and [Install Traffic Manager](install/manager) instructions to install the
 telepresence client on your workstation, and the traffic manager in your cluster.
 
 ## Intercept Your Service
 
-With Telepresence, you can create [intercepts](../concepts/intercepts?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
+With Telepresence, you can create [intercepts](concepts/intercepts?intercept=global) that intercept all traffic going to a service in your remote cluster and route it to your local environment instead.
 
 1. Connect to your cluster with `telepresence connect` and connect to the Kubernetes API server:
 
@@ -117,6 +117,6 @@ Now, with Telepresence, you can:
    </Alert>
 
 ## What’s Next?
-- [Learn about the Telepresence architecture.](../reference/architecture)
+- [Learn about the Telepresence architecture.](reference/architecture)
 
 <img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=d842651a-2e4d-465a-98e1-4808722c01ab" />

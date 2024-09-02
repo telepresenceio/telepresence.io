@@ -61,18 +61,12 @@ const MarkdownContent = ({
   mdxNode,
   variables,
   siteTitle,
-  maybeShowReadingTime,
 }) => {
   const title = mdxNode.frontmatter.title ||
         mdxNode.headings[0]?.value ||
         "Docs";
   const description = mdxNode.frontmatter.description ||
         mdxNode.excerpt;
-  const readingTime = mdxNode.frontmatter.reading_time ||
-        mdxNode.fields.readingTime.text;
-
-  const showReadingTime = maybeShowReadingTime &&
-        !mdxNode.frontmatter.frontmatter.hide_reading_time;
 
   return (
     <>
@@ -81,7 +75,6 @@ const MarkdownContent = ({
         <meta name="og:title" content={title + " | " + siteTitle} />
         <meta name="description" content={description} />
       </Helmet>
-      {showReadingTime ? <span className="docs__reading-time">{readingTime}</span> : ''}
       <MDXProvider components={mdxComponents}>
         <MDXRenderer>
           {template(mdxNode.body, variables)}
@@ -151,8 +144,7 @@ const DocPage = props => {
             data.contentFile.childMdx
               ? <MarkdownContent mdxNode={data.contentFile.childMdx}
                                  variables={variables}
-                                 siteTitle={data.site.siteMetadata.title}
-                                 maybeShowReadingTime={docinfo.maybeShowReadingTime} />
+                                 siteTitle={data.site.siteMetadata.title} />
               : <ReleaseNotesContent releaseNotes={releaseNotes}
                                      variables={variables}
                                      siteTitle={data.site.siteMetadata.title} />
@@ -210,12 +202,6 @@ export const query = graphql`
           value # fallback for frontmatter.title
         }
         excerpt(pruneLength: 150, truncate: true) # fallback for frontmatter.description
-        fields {
-          readingTime {
-            text # fallback for frontmatter.reading_time
-          }
-        }
-
       }
       # But in some cases (namely: release-notes.yml) it's not actually a markdown file.
       internal {

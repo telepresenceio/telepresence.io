@@ -22,8 +22,6 @@
     "gatsby-plugin-netlify": "^4.4.0",
     "gatsby-plugin-react-helmet": "^5.0.0",
     "gatsby-plugin-react-svg": "^3.1.0",
-    "gatsby-remark-autolink-headers": "file:./plugins/gatsby-remark-autoid-headers",
-    "gatsby-remark-reading-time": "file:./plugins/gatsby-remark-reading-time",
     "gatsby-source-filesystem": "^4.0.0",
     "jquery": "^3.6.0",
     "less": "^4.2.0",
@@ -46,9 +44,6 @@
     "webpack": "^5.79.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.0",
-    "@babel/helper-hoist-variables": "^7.16.0",
-    "babel-eslint": "^10.0.0",
     "eslint": "^8.6.0",
     "eslint-config-react-app": "^7.0.1",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.25"

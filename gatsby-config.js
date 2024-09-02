@@ -31,14 +31,6 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: [`.md`],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-autolink-headers',
-            options: {
-              enableCustomId: true,
-            },
-          },
-        ],
       },
     },
     {
@@ -60,9 +52,6 @@ module.exports = {
         name: 'frontmatter-schema',
         path: `${__dirname}/src/frontmatter-schema/`,
       },
-    },
-    {
-      resolve: 'gatsby-remark-reading-time',
     },
     // We need this in order to set things in <head> in the HTML.  Otherwise it
     // gets set by client-side in the DOM after page-load.

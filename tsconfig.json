@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "jsx": "react"
+  },
+  "include": ["src/components", "src/custom.d.ts"]
+}

@@ -3,21 +3,33 @@ import { graphql, navigate } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import jsYAML from 'js-yaml';
 import url from 'url';
 
 import Layout from '../components/Layout';
 import Release from '../components/ReleaseNotes/Release';
 import GithubIcon from '../images/github-icon.inline.svg';
-import { components } from '../components/Markdown';
+import CodeBlock from '../components/CodeBlock';
+import Link from '../components/Link';
 
 import '@fontsource/inter';
 import './doc-page.less';
+
+const mdxComponents = {
+  // Override default markdown output.
+  'pre': CodeBlock,
+  'a': Link,
+
+  // Add new custom components.
+  // (none right now)
+};
 
 // Given a content string and a dict of variables, expand $variables$ in the string.
 //
 // https://github.com/gatsbyjs/gatsby/issues/10174#issuecomment-442513501
 const template = (content, vars) => {
+  if (content === null || vars === null) {
+    return '';
+  }
   return content.replace(/\$(\S+)\$/g, (match, key) => {
     const value = vars[key];
     if (typeof value !== 'undefined') {
@@ -70,7 +82,7 @@ const MarkdownContent = ({
         <meta name="description" content={description} />
       </Helmet>
       {showReadingTime ? <span className="docs__reading-time">{readingTime}</span> : ''}
-      <MDXProvider components={components}>
+      <MDXProvider components={mdxComponents}>
         <MDXRenderer>
           {template(mdxNode.body, variables)}
         </MDXRenderer>
@@ -80,30 +92,23 @@ const MarkdownContent = ({
 };
 
 const ReleaseNotesContent = ({
-  fileNode,
+  releaseNotes,
   variables,
   siteTitle,
+  onClick,
 }) => {
-  const content = jsYAML.safeLoad(template(fileNode.internal.content, variables))
-
   return (
     <>
       <Helmet>
-        <title>{content.docTitle} | {siteTitle}</title>
-        <meta name="og:title" content={content.docTitle + " | " + siteTitle} />
-        <meta name="description" content={content.docDescription} />
+        <title>{releaseNotes.docTitle} | {siteTitle}</title>
+        <meta name="og:title" content={releaseNotes.docTitle + " | " + siteTitle} />
+        <meta name="description" content={releaseNotes.docDescription} />
       </Helmet>
-      <h1>{content.docTitle}</h1>
+      <h1>{releaseNotes.docTitle}</h1>
       {
-        content.items.map((release) => (
-          <Release key={release.version}
-                   release={release} />
+        releaseNotes.items.map((release) => (
+          <Release key={release.version} release={release} versions={variables} onClick={onClick} />
         ))
-      }
-      {
-        content.changelog &&
-          <p>For a detailed list of all the changes in past releases, please
-          consult the <a href={content.changelog}>CHANGELOG</a>.</p>
       }
     </>
   );
@@ -115,13 +120,14 @@ const handleVersionChange = (event) => {
   }
 };
 
-export default function DocPage({ location, data, pageContext }) {
-  const variables = jsYAML.safeLoad(data.variablesFile.internal.content);
+const DocPage = props => {
+  const { location, data, pageContext } = props;
+  const { docinfo, variables, sidebar, releaseNotes } = pageContext;
 
   return (
     <Layout location={location}>
       <Helmet>
-        <link rel="canonical" href={pageContext.docinfo.canonicalURL} />
+        <link rel="canonical" href={docinfo.canonicalURL} />
         <meta name="og:type" content="article" />
       </Helmet>
       <div className="docs">
@@ -130,15 +136,15 @@ export default function DocPage({ location, data, pageContext }) {
             Version:
             <select defaultValue="" onChange={handleVersionChange}>{ /* eslint-disable-line jsx-a11y/no-onchange */ }
             {
-              pageContext.docinfo.peerVersions.reverse().map(([version, urlpath]) => (
+              docinfo.peerVersions.reverse().map(([version, urlpath]) => (
                 <option key={version} value={urlpath || ""}>{version}</option>
               ))
             }
             </select>
           </label>
           <LinkList className="docs__sidebar_toc"
-                    rooturl={pageContext.docinfo.docrootURL}
-                    items={jsYAML.safeLoad(template(data.sidebarFile.internal.content, variables))} />
+                    rooturl={docinfo.docrootURL}
+                    items={sidebar} />
         </nav>
         <main className="docs__main">
           {
@@ -146,15 +152,15 @@ export default function DocPage({ location, data, pageContext }) {
               ? <MarkdownContent mdxNode={data.contentFile.childMdx}
                                  variables={variables}
                                  siteTitle={data.site.siteMetadata.title}
-                                 maybeShowReadingTime={pageContext.docinfo.maybeShowReadingTime} />
-              : <ReleaseNotesContent fileNode={data.contentFile}
+                                 maybeShowReadingTime={docinfo.maybeShowReadingTime} />
+              : <ReleaseNotesContent releaseNotes={releaseNotes}
                                      variables={variables}
                                      siteTitle={data.site.siteMetadata.title} />
           }
         </main>
         <footer className="docs__footer">
           <div>
-            <a href={pageContext.docinfo.githubURL} className="github"
+            <a href={docinfo.githubURL} className="github"
                target="_blank" rel="noreferrer">
               <GithubIcon/>
               Edit this page on GitHub
@@ -175,8 +181,10 @@ export default function DocPage({ location, data, pageContext }) {
   )
 }
 
+export default DocPage
+
 export const query = graphql`
-  query($contentFileNodeID: String!, $variablesFileNodeID: String!, $sidebarFileNodeID: String!) {
+  query($contentFileNodeID: String!) {
     site {
       siteMetadata {
         title
@@ -214,18 +222,5 @@ export const query = graphql`
         content
       }
     }
-
-    variablesFile: file(id: { eq: $variablesFileNodeID }) {
-      internal {
-        content
-      }
-    }
-
-    sidebarFile: file(id: { eq: $sidebarFileNodeID }) {
-      internal {
-        content
-      }
-    }
-
   }
 `

@@ -18,7 +18,6 @@ module.exports = {
     siteURL: "https://www.telepresence.io"
   },
   plugins: [
-
     // We have a bunch of documentation subtree'd in at ./docs/
     {
       resolve: 'gatsby-source-filesystem',

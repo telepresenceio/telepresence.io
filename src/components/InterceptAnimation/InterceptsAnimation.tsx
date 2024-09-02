@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 
 import InterceptAnimationSVG from '../../assets/images/intercept-animation.inline.svg';
 
-function Animation(props) {
-  const el = React.useRef(null);
+function Animation(props: React.JSX.IntrinsicAttributes) {
+  const el = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     const queueAnimation = () => {
       setTimeout(() => {
@@ -15,13 +15,12 @@ function Animation(props) {
       }, 3000);
     };
     queueAnimation();
-  }, el);
+  }, [el]);
   return (
     <div ref={el} style={{ textAlign: 'center' }}>
       <InterceptAnimationSVG
         style={{ maxWidth: '700px' }}
         {...props}
-        loading="lazy"
       />
     </div>
   );

@@ -1,4 +1,4 @@
-@import '../Layout/vars.less';
+@import '~@src/components/Layout/vars.less';
 
 @line-height: 24px;
 @codeblock-header-height: 36px;
@@ -7,224 +7,254 @@
 @copybutton-height: 30px;
 
 .CopyButton {
-    background: none;
-    border: 0;
-    cursor: pointer;
-    height: @copybutton-height;
-    outline: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  height: @copybutton-height;
+  outline: 0;
+  position: absolute;
+  right: 6px;
+  text-align: center;
+  top: calc((@codeblock-header-height - @copybutton-height) / 2); // 3px
+  width: @copybutton-width;
+
+  .CopyButton__icons {
+    height: 30px;
+    left: 0;
+    overflow: hidden;
     position: absolute;
-    right: 6px;
-    text-align: center;
-    top: calc((@codeblock-header-height - @copybutton-height) / 2); // 3px
-    width: @copybutton-width;
+    top: 0;
+    width: 30px;
+  }
 
-    .CopyButton__icons {
-        height: 30px;
-        left: 0;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        width: 30px;
+  .CopyButton__mover {
+    height: 60px;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translate3d(-50%, 0%, 0);
+  }
+
+  svg {
+    display: block;
+    fill: @purple-electric;
+    height: 30px;
+    margin: 0;
+    transition: fill @copybutton-hover-transition;
+    width: 20px;
+  }
+
+  &:hover svg {
+    fill: @purple;
+  }
+
+  span {
+    color: @white;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+  }
+
+  &.CopyButton__suceeded .CopyButton__mover {
+    animation-duration: 1.5s;
+    animation-name: iconIt;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes iconIt {
+    0% {
+      transform: translate3d(-50%, 0%, 0);
     }
-
-    .CopyButton__mover {
-        height: 60px;
-        left: 50%;
-        position: absolute;
-        top: 0;
-        transform: translate3d(-50%, 0%, 0);
+    8% {
+      transform: translate3d(-50%, -50%, 0);
     }
-
-    svg {
-        display: block;
-        fill: @purple-electric;
-        height: 30px;
-        margin: 0;
-        transition: fill @copybutton-hover-transition;
-        width: 20px;
+    90% {
+      transform: translate3d(-50%, -50%, 0);
     }
-
-    &:hover svg {
-        fill: @purple;
+    99% {
+      transform: translate3d(-50%, -100%, 0);
     }
+    100% {
+      transform: translate3d(-50%, 0%, 0);
+    }
+  }
 
-    span {
-      color: @white;
-      font-size: 14px;
+  &.CopyButton__suceeded span {
+    animation-duration: 1.5s;
+    animation-name: identifyIt;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes identifyIt {
+    0% {
       opacity: 0;
-      pointer-events: none;
-      position: absolute;
-      right: 100%;
-      top: 50%;
-      transform: translate3d(0, -50%, 0);
     }
-
-    &.CopyButton__suceeded .CopyButton__mover {
-        animation-duration: 1.5s;
-        animation-name: iconIt;
-        animation-timing-function: ease-in-out;
+    50% {
+      opacity: 1;
     }
-
-    @keyframes iconIt {
-        0% { transform: translate3d(-50%, 0%, 0); }
-        8% { transform: translate3d(-50%, -50%, 0); }
-        90% { transform: translate3d(-50%, -50%, 0); }
-        99% { transform: translate3d(-50%, -100%, 0); }
-        100% { transform: translate3d(-50%, 0%, 0); }
+    90% {
+      opacity: 1;
     }
-
-    &.CopyButton__suceeded span {
-        animation-duration: 1.5s;
-        animation-name: identifyIt;
-        animation-timing-function: ease-in-out;
+    100% {
+      opacity: 0;
     }
-
-    @keyframes identifyIt {
-        0% { opacity: 0; }
-        50% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { opacity: 0; }
-    }
+  }
 }
 
 .CodeBlock {
-    position: relative;
+  position: relative;
+}
+
+.LineNumber {
+  margin-right: 1rem;
+  min-width: 1.25rem;
+  min-width: 1.25rem;
+  display: inline-block;
+  text-align: left;
+  color: @grey-dark-md;
 }
 
 .CodeBlock__light,
 .CodeBlock__dark {
-    @codeblock-border-radius: 5px;
+  @codeblock-border-radius: 5px;
 
-    border-radius: @codeblock-border-radius;
-    margin: 20px 0;
-    padding: 0 0 3px;
+  border-radius: @codeblock-border-radius;
+  margin: 20px 0;
+  padding: 0 0 3px;
+  position: relative;
+
+  .CodeBlock__header {
+    border-radius: @codeblock-border-radius @codeblock-border-radius 0 0;
+    height: @codeblock-header-height;
     position: relative;
 
-    .CodeBlock__header {
-        border-radius: @codeblock-border-radius @codeblock-border-radius 0 0;
-        height: @codeblock-header-height;
-        position: relative;
+    span {
+      display: inline-block;
+      font-size: 14px;
+      line-height: @line-height;
+      margin: calc((@codeblock-header-height - @line-height) / 2) 0 0 12px; // 6px 0 0 12px
 
-        span {
-            display: inline-block;
-            font-size: 14px;
-            line-height: @line-height;
-            margin: calc((@codeblock-header-height - @line-height) / 2) 0 0 12px; // 6px 0 0 12px
-
-            svg {
-                display: inline;
-                height: 18px;
-                margin: 0 10px 0 0;
-                vertical-align: middle;
-                width: 18px;
-            }
-        }
+      svg {
+        display: inline;
+        height: 18px;
+        margin: 0 10px 0 0;
+        vertical-align: middle;
+        width: 18px;
+      }
     }
+  }
 
-    pre[class*=language-] {
-        margin: 5px;
-        overflow: auto;
-        padding: 10px 25px;
+  pre[class*='language-'] {
+    margin: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 25px;
+  }
+
+  // Use "[class=whatever]" instead of ".whatever" so that the names
+  // don't get mangled.
+  pre[class='language-console'] {
+    @line-height: 21px; // Keep this in-sync with line-height in prism-ambassador.css pre[class*="language-"].
+
+    // Allow some extra padding because of the border we draw when hovering over input.
+    @codeinput-vpad: 3px;
+    @codeinput-hpad: 5px;
+    @codeinput-border-width: 1px;
+    @codeinput-min-height: calc(
+      @line-height + ((@codeinput-border-width + @codeinput-vpad) * 2)
+    ); // Make some math below easier.
+
+    div[class*='console-output'] {
+      padding: 0 @codeinput-hpad;
     }
+    div[class*='console-input'] {
+      position: relative; // Grab the CopyButton; don't let it float up to the parent.
 
-    // Use "[class=whatever]" instead of ".whatever" so that the names
-    // don't get mangled.
-    pre[class=language-console] {
-        @line-height: 21px; // Keep this in-sync with line-height in prism-ambassador.css pre[class*="language-"].
+      .CopyButton {
+        top: calc((@codeinput-min-height - @copybutton-height) / 2);
+        left: -@copybutton-width;
 
-        // Allow some extra padding because of the border we draw when hovering over input.
-        @codeinput-vpad: 3px;
-        @codeinput-hpad: 5px;
-        @codeinput-border-width: 1px;
-        @codeinput-min-height: calc(@line-height + ((@codeinput-border-width + @codeinput-vpad) * 2)); // Make some math below easier.
+        // Add the border.
+        & ~ div[class='copy-content'] {
+          transition: all @copybutton-hover-transition;
+          border: solid @codeinput-border-width @grey-separator;
+          border-radius: 5px;
 
-        div[class*=console-output] {
-            padding: 0 @codeinput-hpad;
+          padding: @codeinput-vpad @codeinput-hpad;
+
+          display: inline-block; // If a line of text grows too long, let the box grow; don't graw the border through some text...
+          min-width: 100%; // ...but don't let display:inline-block make it narrower than it would be otherwise.
         }
-        div[class*=console-input] {
-            position: relative; // Grab the CopyButton; don't let it float up to the parent.
-
-            .CopyButton {
-                top: calc((@codeinput-min-height - @copybutton-height) / 2);
-                left: -@copybutton-width;
-
-                // Add the border.
-                & ~ div[class=copy-content] {
-                    transition: all @copybutton-hover-transition;
-                    border: solid @codeinput-border-width @grey-separator;
-                    border-radius: 5px;
-
-                    padding: @codeinput-vpad @codeinput-hpad;
-
-                    display: inline-block; // If a line of text grows too long, let the box grow; don't graw the border through some text...
-                    min-width: 100%; // ...but don't let display:inline-block make it narrower than it would be otherwise.
-                }
-                &:hover ~ div[class=copy-content] {
-                    border-color: @purple;
-                }
-            }
+        &:hover ~ div[class='copy-content'] {
+          border-color: @purple;
         }
+      }
     }
+  }
 }
 
 .CodeBlock__light {
-    background-color: @grey-surface;
-    border: solid 1px @grey-separator;
+  background-color: @grey-surface;
+  border: solid 1px @grey-separator;
 
-    .CodeBlock__header {
-        background-color: darken(@grey-surface, 2%);
+  .CodeBlock__header {
+    background-color: darken(@grey-surface, 2%);
 
-        span {
-            color: @grey-primary;
+    span {
+      color: @grey-primary;
 
-            svg {
-                fill: @grey-primary;
-            }
-        }
-
-        .CopyButton {
-            svg {
-                fill: @purple;
-            }
-
-            &:hover svg {
-                fill: @purple-dark;
-            }
-
-            span {
-                color: @grey-primary;
-            }
-        }
+      svg {
+        fill: @grey-primary;
+      }
     }
 
-    code[class*="language-"],
-    pre[class*="language-"] {
-        color: @grey-dark;
+    .CopyButton {
+      svg {
+        fill: @purple;
+      }
+
+      &:hover svg {
+        fill: @purple-dark;
+      }
+
+      span {
+        color: @grey-primary;
+      }
     }
+  }
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    color: @grey-dark;
+  }
 }
 
 .CodeBlock__dark {
-    background-color: @black;
-    box-shadow: 2px 4px 8px rgba(39, 39, 51, 0.25);
+  background-color: @black;
+  box-shadow: 2px 4px 8px rgba(39, 39, 51, 0.25);
 
-    .CodeBlock__header {
-        background-color: @purple-dark;
+  .CodeBlock__header {
+    background-color: @purple-dark;
 
-        span {
-            color: @purple-electric;
+    span {
+      color: @purple-electric;
 
-            svg {
-                fill: @purple-electric;
-            }
-        }
+      svg {
+        fill: @purple-electric;
+      }
     }
+  }
 }
 
 ol {
-    li {
-        .CodeBlock__light,
-        .CodeBlock__dark {
-            margin-right: 20px;
-        }
+  li {
+    .CodeBlock__light,
+    .CodeBlock__dark {
+      margin-right: 20px;
     }
+  }
 }

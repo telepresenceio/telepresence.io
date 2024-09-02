@@ -42,7 +42,7 @@ function matchesRedirect(forcefulOnly, requestURL, redirect) {
 
 function doRedirect(requestURL, response, redirect) {
   let location = redirect.to;
-  if (!url.parse(location).search) {
+  if (!new URL(location).search) {
     location += (requestURL.search||'');
   }
   response.writeHead(redirect.status, {
@@ -54,8 +54,8 @@ function doRedirect(requestURL, response, redirect) {
 
 server.on('request', async (request, response) => {
   console.log(request.method, request.url);
-  const requestURL = url.parse(url.resolve('/', request.url));
-  if (requestURL.protocol || requestURL.slashes || requestURL.host) {
+  const requestURL = new URL(url.resolve('/', request.url));
+  if (requestURL.protocol || requestURL.host) {
     response.writeHead(400);
     response.end('Bad request URL');
   }

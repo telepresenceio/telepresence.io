@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+import { navigate } from 'gatsby';
 import Note from './Note';
-import styles from './releaseNotes.module.less';
+import * as styles from './releaseNotes.module.less';
 
 const month = [
   'January',
@@ -17,7 +18,7 @@ const month = [
   'December',
 ];
 
-const Release = ({ release }) => {
+const Release = ({ release, versions }) => {
   const formattedDate = (() => {
     if (release.date) {
       const [yyyy, mm, dd] = release.date.split('-');
@@ -27,6 +28,21 @@ const Release = ({ release }) => {
     }
     return '';
   })();
+
+  const handleViewMore = React.useCallback(
+      ({ docs, href }) => {
+        if (href) {
+          navigate(href);
+          return;
+        }
+        if (docs) {
+          if (docs.indexOf('http://') === 0 || docs.indexOf('https://') === 0) {
+            window.location = docs;
+          }
+        }
+      },
+      []
+  );
 
   return (
     <div className={styles.release}>
@@ -43,7 +59,7 @@ const Release = ({ release }) => {
       </h2>
       <div>
         {release.notes.map((note, index) => (
-          <Note key={index} note={note} />
+          <Note key={index} note={note} versions={versions} onClick={() => handleViewMore(note)} />
         ))}
       </div>
     </div>

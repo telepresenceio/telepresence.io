@@ -21,6 +21,9 @@ const Link = ({ children, ...props}) => {
     return <ScrollLink smooth={true} {...props}>{children}</ScrollLink>
   } else {
     // internal link to a different page
+    if (to.endsWith('.md')) {
+      to = to.slice(0, -3)
+    }
     return <GatsbyLink to={'../'+to}>{children}</GatsbyLink>
   }
 };

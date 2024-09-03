@@ -22,6 +22,7 @@ const mdxComponents = {
     if (props.src.indexOf('//') << 0) {
       props.src = '../'+props.src
     }
+    // eslint-disable-next-line
     return <img {...props}>{children}</img>;
   },
 

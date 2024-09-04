@@ -41,7 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
     query($sourceInstanceName: String!) {
       pageFiles: allFile(filter: {
         sourceInstanceName: { eq: $sourceInstanceName },
-        base: { regex: "/^(.*[.]md|releaseNotes[.]yml)$/" },
+        base: { regex: "/^.*[.]md$/" },
       }) {
         edges {
           node {
@@ -88,7 +88,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // ...and finally generate HTML pages for them.
   let variablesCache = {};
   let sidebarCache = {};
-  let releaseNotes = null;
   for (const { node } of result.data.pageFiles.edges) {
 
     const urlPath = docsConfig.urlpath(node);
@@ -98,10 +97,6 @@ exports.createPages = async ({ graphql, actions }) => {
       const fp = path.join(docsConfig.sourceInstanceName, variablesFilepath)
       if (fs.existsSync(fp)) {
         variablesCache[variablesFilepath] = jsYAML.load(fs.readFileSync(fp));
-        const relNotesPath = path.join(path.dirname(fp), "releaseNotes.yml");
-        if (fs.existsSync(relNotesPath)) {
-          releaseNotes = jsYAML.load(fs.readFileSync(relNotesPath));
-        }
       }
     }
 
@@ -123,7 +118,6 @@ exports.createPages = async ({ graphql, actions }) => {
         contentFileNodeID:   node.id,
         variables: variablesCache[variablesFilepath],
         sidebar:   sidebarCache[sidebarFilepath],
-        releaseNotes: releaseNotes,
         docinfo: {
           docrootURL:   docsConfig.docrootURL(node),
           canonicalURL: docsConfig.canonicalURL(node),

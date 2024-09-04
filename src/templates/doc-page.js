@@ -6,7 +6,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import url from 'url';
 
 import Layout from '../components/Layout';
-import Release from '../components/ReleaseNotes/Release';
 import GithubIcon from '../images/github-icon.inline.svg';
 import CodeBlock from '../components/CodeBlock';
 import Link from '../components/Link';
@@ -91,29 +90,6 @@ const MarkdownContent = ({
   );
 };
 
-const ReleaseNotesContent = ({
-  releaseNotes,
-  variables,
-  siteTitle,
-  onClick,
-}) => {
-  return (
-    <>
-      <Helmet>
-        <title>{releaseNotes.docTitle} | {siteTitle}</title>
-        <meta name="og:title" content={releaseNotes.docTitle + " | " + siteTitle} />
-        <meta name="description" content={releaseNotes.docDescription} />
-      </Helmet>
-      <h1>{releaseNotes.docTitle}</h1>
-      {
-        releaseNotes.items.map((release) => (
-          <Release key={release.version} release={release} versions={variables} onClick={onClick} />
-        ))
-      }
-    </>
-  );
-};
-
 const handleVersionChange = (event) => {
   if (event.target.value) {
     navigate(event.target.value);
@@ -122,7 +98,7 @@ const handleVersionChange = (event) => {
 
 const DocPage = props => {
   const { location, data, pageContext } = props;
-  const { docinfo, variables, sidebar, releaseNotes } = pageContext;
+  const { docinfo, variables, sidebar } = pageContext;
 
   return (
     <Layout location={location}>
@@ -147,15 +123,10 @@ const DocPage = props => {
                     items={sidebar} />
         </nav>
         <main className="docs__main">
-          {
-            data.contentFile.childMdx
-              ? <MarkdownContent mdxNode={data.contentFile.childMdx}
-                                 variables={variables}
-                                 siteTitle={data.site.siteMetadata.title} />
-              : <ReleaseNotesContent releaseNotes={releaseNotes}
-                                     variables={variables}
-                                     siteTitle={data.site.siteMetadata.title} />
-          }
+          <MarkdownContent
+            mdxNode={data.contentFile.childMdx}
+            variables={variables}
+            siteTitle={data.site.siteMetadata.title} />
         </main>
         <footer className="docs__footer">
           <div>
@@ -209,10 +180,6 @@ export const query = graphql`
           value # fallback for frontmatter.title
         }
         excerpt(pruneLength: 150, truncate: true) # fallback for frontmatter.description
-      }
-      # But in some cases (namely: release-notes.yml) it's not actually a markdown file.
-      internal {
-        content
       }
     }
   }

@@ -16,8 +16,7 @@ module.exports = {
     return '/docs/' + (node.relativePath
                        .replaceAll(path.sep, path.posix.sep)
                        .replace(/\/index\.md$/, '/')
-                       .replace(/\.md$/, '/')
-                       .replace(/releaseNotes\.yml$/, 'release-notes/'));
+                       .replace(/\.md$/, '/'));
   },
 
   docrootURL: function(node) {

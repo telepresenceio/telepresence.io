@@ -39,7 +39,8 @@ module.exports = {
   },
 
   canonicalURL: function(node) {
-    return this.urlpath(node);
+    const relpath =  this.urlpath(node).split(path.posix.sep).slice(3).join(path.posix.sep);
+    return `https://www.getambassador.io/docs/telepresence/latest/${relpath}`;
   },
 
   githubURL: function(node) {

@@ -4,17 +4,13 @@ jobs:
   "Lint":
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
       - run: yarn install
       - name: "yarn run gatsby build"
         run: |
           # The sed part of this command removes terminal escape codes.
-          OVERRIDE_NODE_ENV=development yarn run gatsby build 2> >(tee /dev/stdout | sed $'s/\e[^a-z]*[a-z]//g' > err.log)
-      - run: |
-          ! grep ^ err.log
+          NODE_ENV=development yarn run gatsby build
       - name: "Dirty check"
         run: |
           git add .

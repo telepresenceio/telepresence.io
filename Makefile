@@ -1,41 +1,24 @@
-define nl
-
-
-endef
-
-subtree-preflight:
-	@if ! grep -q -e 'has_been_added' $$(PATH=$$(git --exec-path):$$PATH which git-subtree 2>/dev/null) /dev/null; then \
-	    printf '$(RED)Please upgrade your git-subtree:$(END)\n'; \
-	    printf '$(BLD)  sudo curl -fL https://raw.githubusercontent.com/LukeShu/git/lukeshu/next/2021-05-15/contrib/subtree/git-subtree.sh -o $$(git --exec-path)/git-subtree && sudo chmod 755 $$(git --exec-path)/git-subtree$(END)\n'; \
-	    false; \
-	else \
-	    printf '$(GRN)git-subtree OK$(END)\n'; \
+# Ensure that the telepresence remote is up-to-date.
+telepresence-remote:
+	@if [ "$$(git remote | grep -E '^telepresence$$')" = 'telepresence' ]; then\
+		git remote update telepresence;\
+	else\
+		git remote add -f telepresence git@github.com:telepresenceio/telepresence.git;\
 	fi
-	git gc
-.PHONY: subtree-preflight
+.PHONY: telepresence-remote
 
-PULL_PREFIX ?=
-PUSH_PREFIX ?= $(USER)/from-telepresence.io-$(shell date +%Y-%m-%d)/
+# MATCH_TAGS is the regexp matching the tags that we expect will have docs.
+MATCH_TAGS ?= ^v2\.[2-9][0-9]+\.[0-9]+(-(rc|test)\.[0-9]+)$$
 
-dir2branch = $(patsubst docs/%,release/%,$(subst pre-release,v2,$1))
+# EXCLUDE_TAGS is used when we want to exclude some of the matching tags from the telepresence repository
+EXCLUDE_TAGS ?=
 
-# Used when syncing from telepresenceio since that repo doesn't
-# have docs for v1.
-EXCLUDE_DIR ?= ""
-pull-docs: ## Update ./docs from https://github.com/telepresenceio/docs
-pull-docs: subtree-preflight
-	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d -not -name $(EXCLUDE_DIR)|sort -V),\
-          git subtree pull --squash --prefix=$(subdir) https://github.com/telepresenceio/docs $(PULL_PREFIX)$(call dir2branch,$(subdir))$(nl))
+# Update the docs at docs/v<major>.<minor> from the found tags.
+pull-docs:
+	$(foreach release,$(shell git tag -l | grep -E '$(MATCH_TAGS)' | (test -n '$(EXCLUDE_TAGS)' && grep -vE '$(EXCLUDE_TAGS)' || cat) | sort -V),\
+		dir=$$(expr '$(release)' : '\(v[0-9]\.[0-9][0-9]*\)');\
+		echo $$dir;\
+		rm -rf docs/$$dir;\
+		git add docs;\
+		git read-tree --prefix docs/$$dir -u $(release):docs)
 .PHONY: pull-docs
-
-PUSH_BRANCH ?= $(USER)/from-telepresence.io-$(shell date +%Y-%m-%d)
-push-docs: ## Publish ./ambassador to https://github.com/telepresenceio/docs
-push-docs: subtree-preflight
-	@PS4=; set -x; { \
-	  git remote add --no-tags remote-docs https://github.com/telepresenceio/docs && \
-	  git remote set-url --push remote-docs git@github.com:telepresenceio/docs && \
-	:; } || true
-	git fetch --prune remote-docs
-	$(foreach subdir,$(shell find docs -mindepth 1 -maxdepth 1 -type d|sort -V),\
-          git subtree push --rejoin --squash --prefix=$(subdir) remote-docs $(PUSH_PREFIX)$(call dir2branch,$(subdir))$(nl))
-.PHONY: push-docs

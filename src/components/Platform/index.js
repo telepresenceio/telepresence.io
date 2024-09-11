@@ -5,10 +5,10 @@ import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import React from 'react';
 
+import * as styles from './styles.module.less';
 import * as allTabs from './tabs';
-import styles from './styles.module.less';
 
-let publicTabs = {...allTabs};
+let publicTabs = { ...allTabs };
 delete publicTabs.AbstractTab;
 delete publicTabs.UnknownTab;
 
@@ -28,8 +28,8 @@ function detectUserOS(window) {
 
 function isValidTab(element) {
   return (
-    React.isValidElement(element) &&
-    element.type.prototype instanceof allTabs.AbstractTab
+      React.isValidElement(element) &&
+      element.type.prototype instanceof allTabs.AbstractTab
   );
 }
 
@@ -44,9 +44,9 @@ function Provider({ children, ...props }) {
   if (!state.setTab) {
     state.setTab = (newTab) => {
       window.history.replaceState(
-        null,
-        '',
-        `?os=${newTab}${window.location.hash}`,
+          null,
+          '',
+          `?os=${newTab}${window.location.hash}`,
       );
       setState({
         curTab: newTab,
@@ -57,7 +57,11 @@ function Provider({ children, ...props }) {
 
   React.useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    if (Object.values(publicTabs).map((cls) => cls.slug).includes(query.get('os'))) {
+    if (
+        Object.values(publicTabs)
+            .map((cls) => cls.slug)
+            .includes(query.get('os'))
+    ) {
       if (state.doAutoDetect || state.curTab !== query.get('os')) {
         setState({
           curTab: query.get('os'),
@@ -89,7 +93,7 @@ function TabGroup({ children, ...props }) {
   const slugs = new Set(children.map((child) => child.type.slug));
   if (slugs.size < children.length) {
     throw new Error(
-      'Platform.TabGroup: Has multiple children of the same type',
+        'Platform.TabGroup: Has multiple children of the same type',
     );
   }
 
@@ -100,33 +104,31 @@ function TabGroup({ children, ...props }) {
   });
 
   let { curTab, setTab } = React.useContext(Context);
-  
+
   if (!curTab) {
     // This is essentially the noscript case, which is important to
     // support because of the broken link checker.
     return (
-      <div className={styles.TabGroup}>
-        {sortedChildren.map((child) => {
-          const Icon = child.type.icon;
-          return (
-            <details key={child.type.slug}>
-              <summary className={styles.TabHead}>
-                <Icon />
-                {child.type.label}
-              </summary>
-              <div className={styles.TabBody}>
-                {child.props.children}
-              </div>
-            </details>
-          );
-        })}
-      </div>
+        <div className={styles.TabGroup}>
+          {sortedChildren.map((child) => {
+            const Icon = child.type.icon;
+            return (
+                <details key={child.type.slug}>
+                  <summary className={styles.TabHead}>
+                    <Icon />
+                    {child.type.label}
+                  </summary>
+                  <div className="TabBody">{child.props.children}</div>
+                </details>
+            );
+          })}
+        </div>
     );
   }
 
   if (!slugs.has(curTab)) {
     const defaultChild = [...children].sort(
-      (a, b) => b.type.priority - a.type.priority,
+        (a, b) => b.type.priority - a.type.priority,
     )[0];
     curTab = defaultChild.type.slug;
   }
@@ -136,42 +138,44 @@ function TabGroup({ children, ...props }) {
   };
 
   return (
-    <div className={styles.TabGroup}>
-      <TabContext value={curTab}>
-        <AppBar elevation={0} position="static" className={styles.TabBar}>
-          <TabList onChange={handleChange} aria-label="operating system tabs">
-            {sortedChildren.map((child) => {
-              const Icon = child.type.icon;
-              return (
-                <Tab
-                  key={child.type.slug}
-                  value={child.type.slug}
-                  icon={<Icon />}
-                  label={child.type.label}
-                  className={styles.TabHead}
-                />
-              );
-            })}
-          </TabList>
-        </AppBar>
-        {sortedChildren.map((child) => {
-          return (
-            <TabPanel
-              key={child.type.slug}
-              value={child.type.slug}
-              className={styles.TabBody}
-            >
-              {child.props.children}
-            </TabPanel>
-          );
-        })}
-      </TabContext>
-    </div>
+      <div className={styles.TabGroup}>
+        <TabContext value={curTab}>
+          <AppBar elevation={0} position="static" className={styles.TabBar}>
+            <TabList onChange={handleChange} aria-label="operating system tabs">
+              {sortedChildren.map((child) => {
+                const Icon = child.type.icon;
+                return (
+                    <Tab
+                        key={child.type.slug}
+                        value={child.type.slug}
+                        icon={<Icon />}
+                        label={child.type.label}
+                        className={styles.TabHead}
+                    />
+                );
+              })}
+            </TabList>
+          </AppBar>
+          {sortedChildren.map((child) => {
+            return (
+                <TabPanel
+                    key={child.type.slug}
+                    value={child.type.slug}
+                    className="TabBody"
+                >
+                  {child.props.children}
+                </TabPanel>
+            );
+          })}
+        </TabContext>
+      </div>
   );
 }
 
-export default {
+const Platform = {
   Provider,
   TabGroup,
   ...publicTabs,
 };
+
+export default Platform;

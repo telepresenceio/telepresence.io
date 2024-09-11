@@ -4,6 +4,7 @@ import AppleIcon from '@src/assets/icons/apple.inline.svg';
 import LinuxIcon from '@src/assets/icons/linux.inline.svg';
 import WindowsIcon from '@src/assets/icons/windows.inline.svg';
 
+
 // prettier-ignore
 export class AbstractTab extends React.Component {
   render() {
@@ -49,6 +50,33 @@ export class GNULinuxTab extends AbstractTab {
   }
 }
 
+export class GNULinuxAMD64Tab extends AbstractTab {
+  static get order() { return 1; }
+  static get priority() { return 5; }
+  static get slug() { return 'gnu-linux-amd64'; }
+
+  static get icon() { return LinuxIcon; }
+  static get label() { return 'GNU/Linux amd64'; }
+
+  static detect(window) {
+    return /Linux/.test(window.navigator.platform);
+  }
+}
+
+export class GNULinuxARM64Tab extends AbstractTab {
+  static get order() { return 2; }
+  static get priority() { return 4; }
+  static get slug() { return 'gnu-linux-arm64'; }
+
+  static get icon() { return LinuxIcon; }
+  static get label() { return 'GNU/Linux arm64'; }
+
+  static detect(window) {
+    return /Linux/.test(window.navigator.platform);
+  }
+}
+
+
 // prettier-ignore
 export class MacOSTab extends AbstractTab {
   static get order() { return 2; }
@@ -60,6 +88,45 @@ export class MacOSTab extends AbstractTab {
 
   static detect(window) {
     return /Mac(intosh|Intel|PPC|68K)/.test(window.navigator.platform);
+  }
+}
+
+export class MacOSAMD64Tab extends AbstractTab {
+  static get order() { return 3; }
+  static get priority() { return 3; }
+  static get slug() { return 'macos-amd64'; }
+
+  static get icon() { return AppleIcon; }
+  static get label() { return 'macOS Intel (amd64)'; }
+
+  static detect(window) {
+    return /Mac(intosh|Intel|PPC|68K)/.test(window.navigator.platform);
+  }
+}
+
+export class MacOSARM64Tab extends AbstractTab {
+  static get order() { return 4; }
+  static get priority() { return 2; }
+  static get slug() { return 'macos-arm64'; }
+
+  static get icon() { return AppleIcon; }
+  static get label() { return 'macOS M Series (arm64)'; }
+
+  static detect(window) {
+    return /Mac(intosh|Intel|PPC|68K)/.test(window.navigator.platform);
+  }
+}
+
+export class WindowsTabAMD64 extends AbstractTab {
+  static get order() { return 5; }
+  static get priority() { return 1; }
+  static get slug() { return 'windows'; }
+
+  static get icon() { return WindowsIcon; }
+  static get label() { return 'Windows'; }
+
+  static detect(window) {
+    return /Win(dows|32|64|CE)/.test(window.navigator.platform);
   }
 }
 

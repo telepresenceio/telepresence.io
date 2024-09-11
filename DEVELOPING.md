@@ -1,19 +1,6 @@
 # How to hack on this
 
 ## Releasing Docs for new Telepresence Versions
-If you are only making changes to the `docs/` directory and those changes
-aren't ready to go out immediately (for example, if they are for a future
-telepresence release), please make those changes in the
-[telepresence repository](https://github.com/telepresenceio/telepresence).
-
-If you are making changes to more than the `docs/` and those changes are
-for a future release, merge those changes into a branch `rel/x.y.z`.
-
-When it is time to do a telepresence release, the docs will be pushed to
-the [docs repo](https://github.com/telepresenceio/docs). From there, you can
-create (or checkout if it already exists) a `rel/x.y.z` branch on this repo
-and run `make pull-docs`.  Once you merge that PR, the website will update
-with the docs for the new release.
 
 ## Local development quickstart
 
@@ -29,10 +16,11 @@ Commands of interest:
    yarn install             # Install dependencies in to ./node_modules/
 
    # Development
+   export NODE_OPTIONS=--openssl-legacy-provider
    yarn run gatsby develop  # Serve a hot-reloading development-build at http://localhost:8000/
    yarn run gatsby repl     # Run a Node.js REPL in the Gatsby environment
    yarn run eslint .        # Run the linter
-   make pull-docs           # Update ./docs/ from ambassador-docs.git
+   make pull-docs           # Update ./docs/ from telepresenceio/telepresence.git
 
    # Production or production-like
    yarn run gatsby build    # Build a production-build, writing it to ./public/
@@ -191,11 +179,10 @@ So we should upgrade Gatsby and associated plugins, and then turn
 
 The docs-build machinery in of `package.json`, `gatsby-config.js`,
 `gatsby-node.js`, `src/assets/` and `src/components/` seem obviously
-want be a separate reusable module, so that these things don't need to
-be manually kept in-sync between getambassador.io, telepresence.io,
-and emissaryingress.io.  This seems to be mostly obvious an trival to
-do... except for I can't figure how to handle
-`src/templates/doc-page.js` to where it's sufficiently
+want to be a separate reusable module, so that these things don't need to
+be manually kept in-sync between telepresence.io,  and telepresence.
+This seems to be mostly obvious an trival to  do... except for I can't
+figure how to handle `src/templates/doc-page.js` to where it's sufficiently
 parametarized/pluggable, or a way to make it possible to plug in the
 site-specific one.
 

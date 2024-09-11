@@ -13,10 +13,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       alias: {
         "@src": path.resolve(__dirname, "src"),
       },
-    },
-    // https://github.com/gatsbyjs/gatsby/issues/564
-    node: {
-      fs: 'empty',
+      fallback: {
+        fs: false,
+      },
     },
   });
 };
@@ -33,24 +32,6 @@ exports.onCreateNode = async ({ node, loadNodeContent, actions }) => {
   }
 };
 
-// resolvePathToID takes a filepath, and resolves it to a node ID.
-async function resolvePathToID(helpers, sourceInstanceName, relativePath) {
-  let result = await helpers.graphql(`
-    query($sourceInstanceName: String!, $relativePath: String!) {
-      file(
-        sourceInstanceName: { eq: $sourceInstanceName },
-        relativePath: {eq: $relativePath },
-      ) {
-        id
-      }
-    }
-    `, {
-      sourceInstanceName: sourceInstanceName,
-      relativePath: relativePath,
-    });
-  return result.data.file?.id;
-}
-
 // Tell Gatsby to create web pages for each of the docs markdown files.
 exports.createPages = async ({ graphql, actions }) => {
   const docsConfig = require('./docs-config');
@@ -60,7 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
     query($sourceInstanceName: String!) {
       pageFiles: allFile(filter: {
         sourceInstanceName: { eq: $sourceInstanceName },
-        base: { regex: "/^(.*[.]md|releaseNotes[.]yml)$/" },
+        base: { regex: "/^.*[.]md$/" },
       }) {
         edges {
           node {
@@ -102,64 +83,62 @@ exports.createPages = async ({ graphql, actions }) => {
   for (const { node } of result.data.pageFiles.edges) {
     allURLPaths.add(docsConfig.urlpath(node));
   }
+  const basepath = path.posix.sep;
 
   // ...and finally generate HTML pages for them.
   let variablesCache = {};
   let sidebarCache = {};
   for (const { node } of result.data.pageFiles.edges) {
 
+    const urlPath = docsConfig.urlpath(node);
+    const nodePath = urlPath.replaceAll(path.posix.sep, path.sep)
     const variablesFilepath = docsConfig.variablesFilepath(node);
     if (!(variablesFilepath in variablesCache)) {
-      variablesCache[variablesFilepath] = await resolvePathToID({ graphql }, docsConfig.sourceInstanceName, variablesFilepath);
+      const fp = path.join(docsConfig.sourceInstanceName, variablesFilepath)
+      if (fs.existsSync(fp)) {
+        variablesCache[variablesFilepath] = jsYAML.load(fs.readFileSync(fp));
+      }
     }
 
     const sidebarFilepath = docsConfig.sidebarFilepath(node);
     if (!(sidebarFilepath in sidebarCache)) {
-      sidebarCache[sidebarFilepath] = await resolvePathToID({ graphql }, docsConfig.sourceInstanceName, sidebarFilepath);
+      const fp = path.join(docsConfig.sourceInstanceName, sidebarFilepath)
+      if (fs.existsSync(fp)) {
+        sidebarCache[sidebarFilepath] = jsYAML.load(fs.readFileSync(fp));
+      }
     }
 
-    const urlpath = docsConfig.urlpath(node);
+    actions.createPage({
+      // URL-path to create the page at
+      path: urlPath,
+      // Absolute filepath of the component to render the page with
+      component: path.resolve('./src/templates/doc-page.js'),
+      // Arguments to pass to that component's `query`
+      context: {
+        contentFileNodeID:   node.id,
+        variables: variablesCache[variablesFilepath],
+        sidebar:   sidebarCache[sidebarFilepath],
+        docinfo: {
+          docrootURL:   docsConfig.docrootURL(node),
+          canonicalURL: docsConfig.canonicalURL(node),
+          githubURL:    docsConfig.githubURL(node),
 
-    if (urlpath === '/docs/latest/quick-start/') {
-      actions.createPage({
-        // URL-path to create the page at
-        path: urlpath,
-        // Absolute filepath of the component to render the page with
-        component: path.resolve('./src/templates/doc-page.js'),
-        // Arguments to pass to that component's `query`
-        context: {
-          contentFileNodeID:   node.id,
-          variablesFileNodeID: variablesCache[variablesFilepath],
-          sidebarFileNodeID:   sidebarCache[sidebarFilepath],
-          docinfo: {
-            docrootURL:   docsConfig.docrootURL(node),
-            canonicalURL: docsConfig.canonicalURL(node),
-            githubURL:    docsConfig.githubURL(node),
-  
-            maybeShowReadingTime: docsConfig.maybeShowReadingTime(node),
-  
-            peerVersions: docsConfig.peerVersions(urlpath, allURLPaths),
-          },
+          maybeShowReadingTime: docsConfig.maybeShowReadingTime(node),
+
+          peerVersions: docsConfig.peerVersions(urlPath, allURLPaths),
         },
-      });
-    } else {
-      actions.createRedirect({
-        fromPath: urlpath,
-        toPath: '/docs/latest/quick-start/',
-        redirectInBrowser: true,
-        isPermanent: true,
-      });
-    }
-  }
+      },
+    });
 
-  // Create up redirects
-  for (const { node } of result.data.redirectFiles.edges) {
-    const basepath = path.posix.dirname(docsConfig.urlpath(node)) + path.posix.sep;
-    for (const { from, to } of jsYAML.safeLoad(node.internal.content)) {
-      actions.createRedirect({
-        fromPath: path.posix.normalize(url.resolve(basepath, from)+path.posix.sep),
-        toPath:   url.resolve(basepath, to),
-      })
+    const fp = path.join(nodePath, "redirects.yml")
+    if (fs.existsSync(fp)) {
+      const redirectFile = jsYAML.load(fs.readFileSync(fp))
+      for (const {from, to} of redirectFile) {
+        actions.createRedirect({
+          fromPath: path.posix.normalize(url.resolve(basepath, from) + path.posix.sep),
+          toPath: url.resolve(basepath, to),
+        })
+      }
     }
   }
 
@@ -173,8 +152,7 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Side-wide redirects
-  const basepath = path.posix.sep;
-  for (const { from, to } of jsYAML.safeLoad(fs.readFileSync('./redirects.yml'))) {
+  for (const { from, to } of jsYAML.load(fs.readFileSync('./redirects.yml'))) {
     actions.createRedirect({
       fromPath: url.resolve(basepath, from),
       toPath:   url.resolve(basepath, to),

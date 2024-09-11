@@ -16,8 +16,7 @@ module.exports = {
     return '/docs/' + (node.relativePath
                        .replaceAll(path.sep, path.posix.sep)
                        .replace(/\/index\.md$/, '/')
-                       .replace(/\.md$/, '/')
-                       .replace(/releaseNotes\.yml$/, 'release-notes/'));
+                       .replace(/\.md$/, '/'));
   },
 
   docrootURL: function(node) {
@@ -40,21 +39,15 @@ module.exports = {
   },
 
   canonicalURL: function(node) {
-    const urlpath = this.urlpath(node);
-    const version = urlpath.split(path.posix.sep)[2];
-    if (version === "v1") {
-      // v1 docs aren't on getambassador.io
-      return urlpath;
-    }
-    const relpath = urlpath.split(path.posix.sep).slice(3).join(path.posix.sep);
+    const relpath =  this.urlpath(node).split(path.posix.sep).slice(3).join(path.posix.sep);
     return `https://www.getambassador.io/docs/telepresence/latest/${relpath}`;
   },
 
   githubURL: function(node) {
     const gitpath = 'docs/' + (node.relativePath
-                               .replace(/^latest/,'v2.5')
+                               .replace(/^latest\//,'')
                                .replaceAll(path.sep, path.posix.sep));
-    return `https://github.com/telepresenceio/telepresence.io/blob/master/${gitpath}`;
+    return `https://github.com/telepresenceio/telepresence/blob/release/v2/${gitpath}`;
   },
 
   // Don't show reading time for Telepresence.

@@ -8,5 +8,5 @@
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "types": ["docusaurus-plugin-sass"]
   },
-  "include": ["src/components", "src/custom.d.ts"]
+  "include": ["sidebars.ts", "docusaurus.config.ts", "src/components", "src/plugin", "src/theme", "src/custom.d.ts"]
 }

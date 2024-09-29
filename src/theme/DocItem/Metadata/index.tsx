@@ -13,7 +13,6 @@ export default function MetadataWrapper(props: Props): JSX.Element {
   const { pathname } = useLocation();
   const canonical = `${customFields['canonicalBaseUrl']}${pathname}`
 
-  console.log("canonical: "+canonical);
   return (
     <>
       <Metadata {...props} />

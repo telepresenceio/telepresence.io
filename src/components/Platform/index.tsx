@@ -65,14 +65,12 @@ function Provider({children}: Props) {
 		doAutoDetect: true,
 	});
 	if (!state.setTab) {
-		console.log("Setting setState function")
 		state.setTab = (newTab: string) => {
 			window.history.replaceState(
 				null,
 				'',
 				`?os=${newTab}${window.location.hash}`,
 			);
-			console.log("Setting state to " + newTab)
 			setState({
 				curTab: newTab,
 				setTab: null,
@@ -85,11 +83,9 @@ function Provider({children}: Props) {
 		const query = new URLSearchParams(window.location.search);
 		let os = query.get('os');
 		if (os === null) {
-			console.log("Query for 'os' returned null")
 			os = detectUserOS(window);
 		}
 		if (publicTabs().map((cls) => cls.slug).includes(os)) {
-			console.log("OS " + os + " is included")
 			if (state.doAutoDetect || state.curTab !== os) {
 				setState({
 					curTab: os,

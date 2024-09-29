@@ -18,10 +18,8 @@ function CopyButton({ content }: { content: string }) {
       disabled={copied}
       onClick={async () => {
         navigator.clipboard.writeText(content).then(() => {
-          console.log('set copied true');
           setCopied(true);
           delay(1500).then(() => {
-            console.log('set copied false');
             setCopied(false);
           })
       })}}

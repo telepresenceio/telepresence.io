@@ -13,9 +13,9 @@ jobs:
         with:
           repository: datawire/getambassador.io-blc2
           path: blc
-      - run: yarn install
+      - run: yarn
         working-directory: site
-      - run: yarn run gatsby build
+      - run: yarn build
         working-directory: site
       - run: npm install
         working-directory: blc
@@ -24,7 +24,7 @@ jobs:
           set -o pipefail
           (TARGET=../site PRODUCT=telepresenceio make -C . > blc.log) || ! (grep 'has a broken' blc.log)
         working-directory: blc
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: blc.log
           path: blc/blc.log

@@ -37,7 +37,6 @@ const config: Config = {
 			'classic',
 			{
 				docs: {
-					sidebarPath: './sidebars.ts',
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
 					editUrl: ({docPath}) => {
@@ -47,7 +46,7 @@ const config: Config = {
 					includeCurrentVersion: false,
 					beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
 					async sidebarItemsGenerator(args) {
-						const { docs, version: {versionName, contentPath}} = args;
+						const {docs, version: {versionName, contentPath}} = args;
 						type LinkItem = {
 							link?: string,
 							title: string,
@@ -55,7 +54,7 @@ const config: Config = {
 						}
 						const idSet = new Set<string>(docs.map(doc => doc.id))
 						const linkToItem = ((linkItem: LinkItem) => {
-							if(linkItem.link) {
+							if (linkItem.link) {
 								idSet.delete(linkItem.link);
 								return {
 									type: 'doc',

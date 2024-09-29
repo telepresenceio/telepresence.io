@@ -15,7 +15,6 @@ export default function ColorModeToggleWrapper(props: Props): JSX.Element {
 
 	// Whenever the theme changes in docusaurus, trigger the change in MUI
 	useEffect(() => {
-		console.log("setColorScheme: "+value)
 		setMode(value);
 	});
 

@@ -1,7 +1,12 @@
 {
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es6",
+    "downlevelIteration": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
-    "jsx": "react"
+    "types": ["docusaurus-plugin-sass"]
   },
   "include": ["src/components", "src/custom.d.ts"]
 }

@@ -1,0 +1,2 @@
+# Redirect the "latest" version to the current.
+/docs/latest/* /docs/:splat

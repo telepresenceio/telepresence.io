@@ -21,12 +21,10 @@ import {Theme} from "@mui/material";
 import styled from "@mui/material/styles/styled";
 
 const HomePage: React.FC = () => {
-	const latestVersion = "2.20";
-
 	const getStarted = (
 		<Button
 			variant="contained"
-			href={`/docs/${latestVersion}/quick-start/`}
+			href={`/docs/quick-start/`}
 			sx={{
 				marginY: "4em",
 				lineHeight: "2.5",
@@ -198,7 +196,7 @@ const HomePage: React.FC = () => {
 					)}
 					<Typography variant="body1">
 						To find out more about the Telepresence Architecture, check out
-						the {link("docs", `/docs/${latestVersion}/reference/architecture/`)} or
+						the {link("docs", `/docs/reference/architecture/`)} or
 						join us in the #telepresence-oss channel on
 						the {link("CNCF Slack", "https://slack.cncf.io/")}.
 					</Typography>

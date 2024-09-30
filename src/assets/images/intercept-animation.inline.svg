@@ -23,38 +23,45 @@
             --animation-backend-grn-start: 1.5s;
         }
 
-        .only-regular,
-        .only-global,
-        .only-personal,
-        .usr-blu,
-        .usr-grn,
-        .usr-red,
-        .dev-blu,
-        .dev-grn,
-        .dev-red {
-            display: none;
-        }
-
-        .mode-regular .only-regular,
-        .mode-regular .usr-blu,
         .mode-regular .dev-blu {
             display: block;
         }
 
-        .mode-global .only-global,
-        .mode-global .usr-blu,
+        .mode-regular .only-personal,
+        .mode-regular .dev-grn,
+        .mode-regular .dev-red,
+        .mode-regular .usr-grn,
+        .mode-regular .usr-red {
+            display: none;
+        }
+
+        .mode-global .dev-blu,
         .mode-global .dev-grn {
             display: block;
         }
 
+        .mode-global .only-personal,
+        .mode-global .dev-blu,
+        .mode-global .dev-red,
+        .mode-global .usr-grn,
+        .mode-global .usr-red {
+            display: none;
+        }
+
         .mode-personal .only-personal,
         .mode-personal .usr-blu,
-        .mode-personal .usr-grn,
         .mode-personal .usr-red,
         .mode-personal .dev-blu,
         .mode-personal .dev-grn,
-        .mode-personal .dev-red {
+        .mode-personal .dev-red,
+        .mode-personal .usr-grn,
+        .mode-personal .dev-grn {
             display: block;
+        }
+
+        .mode-personal .only-regular,
+        .mode-personal .only-global {
+            display: none;
         }
 
         .paths path {

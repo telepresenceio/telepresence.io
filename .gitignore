@@ -6,6 +6,10 @@
 /.cache/
 /public/
 
+# Docusaurus
+/.docusaurus/
+/build/
+
 # gatsby-plugin-extract-schema
 /schema.graphql
 

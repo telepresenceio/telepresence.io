@@ -1,27 +1,15 @@
-import * as React from 'react';
+import React, { Suspense } from 'react';
 
 function InterceptAnimationLazy(props: React.JSX.IntrinsicAttributes) {
-  const [Component, setComponent] = React.useState(null);
-  const [ReactSuspense, setSuspense] = React.useState(null);
-
   const FallBack = () => <div>Loading...</div>;
+  const LazyComp = React.lazy(() => import(`./InterceptsAnimation`));
 
-  React.useEffect(() => {
-    const lazyComp = React.lazy(() => import(`./InterceptsAnimation`));
-    setComponent(lazyComp);
-    setSuspense(React.Suspense);
-  }, []);
   return (
     <>
-      {Component && ReactSuspense ? (
-        <ReactSuspense fallback={<FallBack />}>
-          <Component {...props} />
-        </ReactSuspense>
-      ) : (
-        <FallBack />
-      )}
+      <Suspense fallback={<FallBack />}>
+        <LazyComp {...props} />
+      </Suspense>
     </>
   );
 }
-
 export default InterceptAnimationLazy;

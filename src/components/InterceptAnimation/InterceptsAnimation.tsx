@@ -17,9 +17,8 @@ function Animation(props: React.JSX.IntrinsicAttributes) {
     queueAnimation();
   }, [el]);
   return (
-    <div ref={el} style={{ textAlign: 'center' }}>
+    <div ref={el}>
       <InterceptAnimationSVG
-        style={{ maxWidth: '700px' }}
         {...props}
       />
     </div>

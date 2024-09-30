@@ -6,11 +6,10 @@ jobs:
     steps:
       - uses: actions/setup-node@v4
       - uses: actions/checkout@v4
-      - run: yarn install
-      - name: "yarn run gatsby build"
+      - run: yarn
+      - name: "yarn build"
         run: |
-          # The sed part of this command removes terminal escape codes.
-          NODE_ENV=development yarn run gatsby build
+          yarn build
       - name: "Dirty check"
         run: |
           git add .

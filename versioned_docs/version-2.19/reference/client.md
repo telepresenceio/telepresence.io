@@ -1,6 +1,7 @@
 ---
 title: Client reference
 description: CLI options for Telepresence to intercept traffic from your Kubernetes cluster to code running on your laptop.
+hide_table_of_contents: true
 ---
 
 # Client reference

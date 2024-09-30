@@ -1,5 +1,6 @@
 ---
 title: "Using Telepresence with Docker"
+hide_table_of_contents: true
 ---
 # Telepresence with Docker Golden Path
 

@@ -1,5 +1,6 @@
 ---
 title: Install Traffic Manager
+hide_table_of_contents: true
 ---
 
 # Install/Uninstall the Traffic Manager

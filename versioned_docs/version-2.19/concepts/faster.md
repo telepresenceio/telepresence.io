@@ -1,5 +1,6 @@
 ---
 title: "Making the remote local: Faster feedback, collaboration and debugging"
+hide_table_of_contents: true
 ---
 
 ---

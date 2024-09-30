@@ -1,6 +1,7 @@
 ---
 title: "Intercepts"
 description: "Short demonstration of global intercepts"
+hide_table_of_contents: true
 ---
 
 import Admonition from '@theme/Admonition';

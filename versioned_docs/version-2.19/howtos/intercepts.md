@@ -1,6 +1,7 @@
 ---
 title: Intercept a service in your own environment
 description: Start using Telepresence in your own environment. Follow these steps to intercept your service in your cluster.
+hide_table_of_contents: true
 ---
 
 # Intercept a service in your own environment

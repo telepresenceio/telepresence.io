@@ -1,5 +1,6 @@
 ---
 title: DNS resolution
+hide_table_of_contents: true
 ---
 # DNS resolution
 

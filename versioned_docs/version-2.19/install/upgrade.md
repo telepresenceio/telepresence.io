@@ -1,6 +1,7 @@
 ---
 title: Upgrade client
 description: "How to upgrade your installation of Telepresence and install previous versions."
+hide_table_of_contents: true
 ---
 
 import Platform from '@site/src/components/Platform';

@@ -1,5 +1,6 @@
 ---
 title: Licenses
+hide_table_of_contents: true
 ---
 
 Telepresence incorporates Free and Open Source software under the following licenses:

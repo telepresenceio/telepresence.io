@@ -1,5 +1,6 @@
 ---
 title: Running Telepresence inside a container
+hide_table_of_contents: true
 ---
 # Running Telepresence inside a container
 

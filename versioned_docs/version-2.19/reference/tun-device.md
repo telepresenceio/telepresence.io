@@ -1,5 +1,6 @@
 ---
 title: Networking through Virtual Network Interface
+hide_table_of_contents: true
 ---
 
 # Networking through Virtual Network Interface

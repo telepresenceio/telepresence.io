@@ -5,7 +5,28 @@ import type * as Preset from '@docusaurus/preset-classic';
 import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
 import path from "path";
 import YAML from "yaml";
-import {readFileSync} from "node:fs";
+import {existsSync, readFileSync} from "node:fs";
+import {Tag} from "@docusaurus/utils";
+
+type VariablesType = { [key: string]: string }
+const variablesCache: { [key: string]: VariablesType } = {};
+
+function getDocVariables(filePath: string): VariablesType|null {
+	let vars = variablesCache[filePath];
+	if (!vars) {
+		const px = filePath.match(/(^.+\/version-\d+\.\d+)\//)
+		if (!px) {
+			return null;
+		}
+		const vp = path.join(px[1], "variables.yml");
+		if (!existsSync(vp)) {
+			return null;
+		}
+		vars = YAML.parse(readFileSync(vp, "utf-8"))
+		variablesCache[filePath] = vars;
+	}
+	return vars
+}
 
 const config: Config = {
 	title: 'Telepresence',
@@ -146,10 +167,20 @@ const config: Config = {
 		},
 	} satisfies Preset.ThemeConfig,
 
+	markdown: {
+		preprocessor({filePath, fileContent}) {
+			const vars = getDocVariables(filePath);
+			return vars? fileContent.replace(/\$(\S+)\$/g, (match, key) => {
+				const value = vars[key];
+				return (typeof value !== 'undefined') ? value : match;
+			}): fileContent;
+		},
+	},
+
 	plugins: ["docusaurus-plugin-sass", "./src/plugins/configure-svgo.ts"],
 
 	customFields: {
-		canonicalBaseUrl: "https://www.getambassador.io"
+		canonicalBaseUrl: "https://www.getambassador.io",
 	}
 };
 

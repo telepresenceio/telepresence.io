@@ -5,13 +5,16 @@ import type {WrapperProps} from '@docusaurus/types';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Head from "@docusaurus/Head";
 import {useLocation} from "@docusaurus/router";
+import {useDoc} from '@docusaurus/plugin-content-docs/client';
 
 type Props = WrapperProps<typeof MetadataType>;
 
 export default function MetadataWrapper(props: Props): JSX.Element {
   const { siteConfig: {customFields}} = useDocusaurusContext()
   const { pathname } = useLocation();
-  const canonical = `${customFields['canonicalBaseUrl']}${pathname}`
+  const { metadata } = useDoc();
+  const vpath = pathname.replace(/^\/docs\//, `/docs/telepresence/${metadata.version}/`)
+  const canonical = `${customFields['canonicalBaseUrl']}${vpath}`
 
   return (
     <>

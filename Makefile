@@ -8,7 +8,7 @@ telepresence-remote:
 .PHONY: telepresence-remote
 
 # MATCH_TAGS is the regexp matching the tags that we expect will have docs.
-MATCH_TAGS ?= ^v2\.[2-9][0-9]+\.[0-9]+(-(rc)\.[0-9]+)?$$
+MATCH_TAGS ?= ^v2\.[2-9][0-9]+\.[0-9]+$$
 
 # EXCLUDE_TAGS is used when we want to exclude some of the matching tags from the telepresence repository
 EXCLUDE_TAGS ?=

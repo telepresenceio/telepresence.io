@@ -17,6 +17,10 @@ EXCLUDE_TAGS ?=
 # the same major.minor combo. The versioned directory contains only the major.minor, and first matching tag wins.
 tags := $(shell git tag -l | grep -E '$(MATCH_TAGS)' | (test -n '$(EXCLUDE_TAGS)' && grep -vE '$(EXCLUDE_TAGS)' || cat) | sed '/-/!{s/$$/_/}' | sort -rV | sed 's/_$$//')
 
+.PHONY: echo-tags
+echo-tags:
+	echo $(tags)
+
 .PHONY: pull-docs
 pull-docs: telepresence-remote
 	set -x -e

@@ -4,6 +4,8 @@ hide_table_of_contents: true
 ---
 # Running Telepresence inside a container
 
+## Run with the daemon and intercept handler in containers
+
 The `telepresence connect` command now has the option `--docker`. This option tells telepresence to start the Telepresence daemon in a
 docker container.
 
@@ -13,3 +15,24 @@ like macFUSE or WinFSP to mount the remote file systems.
 
 The intercept handler (the process that will receive the intercepted traffic) must also be a docker container, because that is the only
 way to access the cluster network that the daemon makes available, and to mount the docker volumes needed.
+
+## Run everything in a container
+
+Environments like [GitHub Codespaces](https://docs.github.com/en/codespaces/overview) runs everything in a container. Your shell, the
+telepresence CLI, and both its daemons. This means that the container must be configured so that it allows Telepresence to set up its
+Virtual Network Interface before you issue a `telepresence connect`.
+
+There are several conditions that must be met.
+
+- Access to the `/dev/net/tun` device
+- The `NET_ADMIN` capability
+- If you're using IPv6, then you also need sysctl `net.ipv6.conf.all.disable_ipv6=0`
+
+The Codespaces `devcontainer.json` will typically need to include:
+
+```json
+    "runArgs": [
+        "--privileged",
+        "--cap-add=NET_ADMIN",
+    ],
+```

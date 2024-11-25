@@ -45,28 +45,28 @@ client:
 ### Cluster
 Values for `client.cluster` controls aspects on how client's connection to the traffic-manager.
 
-| Field                     | Description                                                        | Type                                        | Default            |
-|---------------------------|--------------------------------------------------------------------|---------------------------------------------|--------------------|
-| `defaultManagerNamespace` | The default namespace where the Traffic Manager will be installed. | [string][yaml-str]                          | ambassador         |
-| `mappedNamespaces`        | Namespaces that will be mapped by default.                         | [sequence][yaml-seq] of [strings][yaml-str] | `[]`               |
-| `connectFromRootDaeamon`  | Make connections to the cluster directly from the root daemon.     | [boolean][yaml-bool]                        | `true`             |
-| `agentPortForward`        | Let telepresence-client use port-forwards directly to agents       | [boolean][yaml-bool]                        | `true`             |
-| `virtualIPSubnet`         | The CIDR to use when generating virtual IPs                        | [string][yaml-str]                          | platform dependent |
+| Field                     | Description                                                                                                                                                                                            | Type                                        | Default            |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|--------------------|
+| `defaultManagerNamespace` | The default namespace where the Traffic Manager will be installed. This value cannot be configured in the Helm chart, because a connection must be established before the client can reach the config. | [string][yaml-str]                          | ambassador         |
+| `mappedNamespaces`        | Namespaces that will be mapped by default.                                                                                                                                                             | [sequence][yaml-seq] of [strings][yaml-str] | `[]`               |
+| `connectFromRootDaeamon`  | Make connections to the cluster directly from the root daemon.                                                                                                                                         | [boolean][yaml-bool]                        | `true`             |
+| `agentPortForward`        | Let telepresence-client use port-forwards directly to agents                                                                                                                                           | [boolean][yaml-bool]                        | `true`             |
+| `virtualIPSubnet`         | The CIDR to use when generating virtual IPs                                                                                                                                                            | [string][yaml-str]                          | platform dependent |
 
 ### DNS
 
 The `client.dns` configuration offers options for configuring the DNS resolution behavior in a client application or system. Here is a summary of the available fields:
 
-The fields for `client.dns` are: `localIP`, `excludeSuffixes`, `includeSuffixes`, and `lookupTimeout`.
+The fields for `client.dns` are: `localIP`, `excludeSuffixes`, `includeSuffixes`, `excludes`, `mappings`, and `lookupTimeout`.
 
-| Field             | Description                                                                                                                                                         | Type                                        | Default                                            |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|----------------------------------------------------|
-| `localIP`         | The address of the local DNS server.  This entry is only used on Linux systems that are not configured to use systemd-resolved.                                     | IP address [string][yaml-str]               | first `nameserver` mentioned in `/etc/resolv.conf` |
-| `excludeSuffixes` | Suffixes for which the DNS resolver will always fail (or fallback in case of the overriding resolver). Can be globally configured in the Helm chart.                | [sequence][yaml-seq] of [strings][yaml-str] | `[".arpa", ".com", ".io", ".net", ".org", ".ru"]`  |
-| `includeSuffixes` | Suffixes for which the DNS resolver will always attempt to do a lookup.  Includes have higher priority than excludes. Can be globally configured in the Helm chart. | [sequence][yaml-seq] of [strings][yaml-str] | `[]`                                               |
-| `excludes`        | Names to be excluded by the DNS resolver                                                                                                                            | `[]`                                        |
-| `mappings`        | Names to be resolved to other names (CNAME records) or to explicit IP addresses                                                                                     | `[]`                                        |
-| `lookupTimeout`   | Maximum time to wait for a cluster side host lookup.                                                                                                                | [duration][go-duration] [string][yaml-str]  | 4 seconds                                          |
+| Field             | Description                                                                                                                     | Type                                        | Default                                            |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|----------------------------------------------------|
+| `localIP`         | The address of the local DNS server.  This entry is only used on Linux systems that are not configured to use systemd-resolved. | IP address [string][yaml-str]               | first `nameserver` mentioned in `/etc/resolv.conf` |
+| `excludeSuffixes` | Suffixes for which the DNS resolver will always fail (or fallback in case of the overriding resolver).                          | [sequence][yaml-seq] of [strings][yaml-str] | `[".arpa", ".com", ".io", ".net", ".org", ".ru"]`  |
+| `includeSuffixes` | Suffixes for which the DNS resolver will always attempt to do a lookup.  Includes have higher priority than excludes.           | [sequence][yaml-seq] of [strings][yaml-str] | `[]`                                               |
+| `excludes`        | Names to be excluded by the DNS resolver.                                                                                       | `[]`                                        |
+| `mappings`        | Names to be resolved to other names (CNAME records) or to explicit IP addresses                                                 | `[]`                                        |
+| `lookupTimeout`   | Maximum time to wait for a cluster side host lookup.                                                                            | [duration][go-duration] [string][yaml-str]  | 4 seconds                                          |
 
 Here is an example values.yaml:
 ```yaml

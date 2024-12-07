@@ -29,26 +29,15 @@ type TitleProps = {
 export const Title: React.FC<TitleProps> = ({children, type, docs, href}) => {
 	const typeKey = type as keyof typeof titlePrefix;
 
-	const handleViewMore = () => {
-		if (href) {
-			return;
-		}
-		if (docs) {
-			if (docs.indexOf('https://') === 0) {
-				window.location.href = docs;
-			}
-		}
+	if(docs || href) {
+		return (
+		<a className={styles.note__title_link} href={docs ? docs: href}>
+			{typeIcon[typeKey]}
+			<span>{children}</span>
+		</a>)
 	}
-
 	return (
-		<h3
-			className={
-				docs || href
-					? styles.note__title
-					: styles.note__title_no_link
-			}
-			onClick={handleViewMore}
-		>
+		<h3 className={styles.note__title_no_link}>
 			{typeIcon[typeKey]}
 			<span>{children}</span>
 		</h3>

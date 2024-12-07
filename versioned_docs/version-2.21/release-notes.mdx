@@ -9,15 +9,15 @@ import { Note, Title, Body } from '@site/src/components/ReleaseNotes'
 # Telepresence Release Notes
 ## Version 2.21.0
 <Note>
-	<Title type="feature" docs="https://telepresence.io/docs/reference/vpn">Automatic subnet conflict avoidance</Title>
+	<Title type="feature" docs="reference/vpn">Automatic subnet conflict avoidance</Title>
 	<Body>-> Telepresence not only detects when the cluster's subnets are in conflict with subnets on the workstation, it will also avoid such conflicts by doing network address translations, placing a conflicting subnet in a virtual subnet.</Body>
 </Note>
 <Note>
-	<Title type="feature" docs="https://telepresence.io/docs/reference/vpn">Virtual Address Translation (VNAT).</Title>
+	<Title type="feature" docs="reference/vpn">Virtual Address Translation (VNAT).</Title>
 	<Body>-> It is now possible to use a virtual subnet without routing the affected IPs to a specific workload. A new `telepresence connect --vnat CIDR` flag was added that will perform virtual network address translation of cluster IPs. This flag is very similar to the `--proxy-via CIDR=WORKLOAD` introduced in 2.19, but without the need to specify a workload.</Body>
 </Note>
 <Note>
-	<Title type="feature" docs="https://telepresence.io/docs/reference/intercepts/container">Intercepts targeting a specific container</Title>
+	<Title type="feature" docs="reference/intercepts/container">Intercepts targeting a specific container</Title>
 	<Body>-> In certain scenarios, the container owning the intercepted port differs from the container the intercept targets. This port owner's sole purpose is to route traffic from the service to the intended container, often using a direct localhost connection.
 This update introduces a `--container <name>` option to the intercept command. While this option doesn't influence the port selection, it guarantees that the environment variables and mounts propagated to the client originate from the specified container. Additionally, if the `--replace` option is used, it ensures that this container is replaced.</Body>
 </Note>
@@ -39,7 +39,7 @@ An ingest requires a traffic-agent to be installed in the pods of the targeted w
 	<Body>It is now possible to append ":ro" to the intercept `--mount` flag value. This ensures that all remote volumes that the intercept mounts are read-only.</Body>
 </Note>
 <Note>
-	<Title type="feature" docs="https://telepresence.io/docs/reference/config">Unify client configuration</Title>
+	<Title type="feature" docs="reference/config">Unify client configuration</Title>
 	<Body>Previously, client configuration was divided between the config.yml file and a Kubernetes extension. DNS and routing settings were initially found only in the extension. However, the Helm client structure allowed entries from both.
 To simplify this, we've now aligned the config.yml and Kubernetes extension with the Helm client structure. This means DNS and routing settings are now included in both. The Kubernetes extension takes precedence over the config.yml and Helm client object.
 While the old-style Kubernetes extension is still supported for compatibility, it cannot be used with the new style.</Body>
@@ -62,13 +62,13 @@ See [Streaming Transitions from SPDY to WebSockets](https://kubernetes.io/blog/2
 	<Body>The auto-completion of namespaces, services, and containers have been added where appropriate, and the default file auto completion has been removed from most commands.</Body>
 </Note>
 <Note>
-	<Title type="">Docker run flags --publish, --expose, and --network now work with docker mode connections</Title>
+	<Title type="feature">Docker run flags --publish, --expose, and --network now work with docker mode connections</Title>
 	<Body>After establishing a connection to a cluster using `telepresence connect --docker`, you can run new containers that share the same network as the containerized daemon that maintains the connection. This enables seamless communication between your local development environment and the remote services.
 Normally, Docker has a limitation that prevents combining a shared network configuration with custom networks and exposing ports. However, Telepresence now elegantly circumvents this limitation so that a container started with `telepresence docker-run`, `telepresence intercept --docker-run`, or `telepresence ingest --docker-run` can use flags like `--network`, `--publish`, or `--expose`.
 To achieve this, Telepresence temporarily adds the necessary network to the containerized daemon. This allows the new container to join the same network. Additionally, Telepresence starts extra socat containers to handle port mapping, ensuring that the desired ports are exposed to the local environment.</Body>
 </Note>
 <Note>
-	<Title type="feature" docs="https://telepresence.io/docs/howtos/cluster-in-vm">Prevent recursion in the Telepresence Virtual Network Interface (VIF)</Title>
+	<Title type="feature" docs="howtos/cluster-in-vm">Prevent recursion in the Telepresence Virtual Network Interface (VIF)</Title>
 	<Body>Network problems may arise when running Kubernetes locally (e.g., Docker Desktop, Kind, Minikube, k3s), because the VIF on the host is also accessible from the cluster's nodes. A request that isn't handled by a cluster resource might be routed back into the VIF and cause a recursion.
 These recursions can now be prevented by setting the client configuration property `routing.recursionBlockDuration` so that new connection attempts are temporarily blocked for a specific IP:PORT pair immediately after an initial attempt, thereby effectively ending the recursion.</Body>
 </Note>
@@ -119,7 +119,7 @@ If a user should require the pod-subnet to be mapped, it can be added to the `cl
 	<Body>Telepresence is now capable of easily find telepresence gather-logs by certain timestamp.</Body>
 </Note>
 <Note>
-	<Title type="feature" docs="https://telepresence.io/docs/reference/intercepts/cli#intercepting-without-a-service">Enable intercepts of workloads that have no service.</Title>
+	<Title type="feature" docs="reference/intercepts/cli#intercepting-without-a-service">Enable intercepts of workloads that have no service.</Title>
 	<Body>Telepresence is now capable of intercepting workloads that have no associated service. The intercept will then target container port instead of a service port. The new behavior is enabled by adding a <code>telepresence.getambassador.io/inject-container-ports</code> annotation where the value is a comma separated list of port identifiers consisting of either the name or the port number of a container port, optionally suffixed with `/TCP` or `/UDP`.</Body>
 </Note>
 <Note>
@@ -127,7 +127,7 @@ If a user should require the pod-subnet to be mapped, it can be added to the `cl
 	<Body>The OSS version of the telepresence helm chart is now available at ghcr.io/telepresenceio/telepresence-oss, and can be installed using the command:<br/> <code>helm install traffic-manager oci://ghcr.io/telepresenceio/telepresence-oss --namespace ambassador --version 2.20.0</code> The chart documentation is published at <a href="https://artifacthub.io/packages/helm/telepresence-oss/telepresence-oss">ArtifactHUB</a>.</Body>
 </Note>
 <Note>
-	<Title type="feature" docs="https://telepresence.io/docs/reference/environment">Control the syntax of the environment file created with the intercept flag --env-file</Title>
+	<Title type="feature" docs="reference/environment">Control the syntax of the environment file created with the intercept flag --env-file</Title>
 	<Body>A new <code>--env-syntax &lt;syntax&gt;</code> was introduced to allow control over the syntax of the file created when using the intercept flag <code>--env-file &lt;file&gt;</code>. Valid syntaxes are &quot;docker&quot;, &quot;compose&quot;, &quot;sh&quot;, &quot;csh&quot;, &quot;cmd&quot;, and &quot;ps&quot;; where &quot;sh&quot;, &quot;csh&quot;, and &quot;ps&quot; can be suffixed with &quot;:export&quot;.</Body>
 </Note>
 <Note>

@@ -210,7 +210,7 @@ You can now:
 
 1. Connect using docker start an ingest from `example-app`, and run a container locally with the ingested environment and volume mounts:
     ```console
-    t connect --docker
+    $ telepresence connect --docker
     Launching Telepresence User Daemon
     Connected to context xxx, namespace default (https://&lt;some url&gt;)
     $ telepresence ingest example-app --expose 8080 --docker-run -- &lt;your local container&gt;

@@ -5,7 +5,13 @@ hide_table_of_contents: true
 
 # Install/Uninstall the Traffic Manager
 
-Telepresence uses a traffic manager to send/receive cloud traffic to the user. Telepresence uses [Helm](https://helm.sh) under the hood to install the traffic manager in your cluster. The `telepresence` binary embeds both `helm` and a helm-chart for a traffic-manager that is of the same version as the binary.
+Telepresence uses a traffic manager to send/receive cloud traffic to the user. Telepresence uses [Helm](https://helm.sh) under the
+hood to install the traffic manager in your cluster. The `telepresence` binary embeds both `helm` and a helm-chart for a
+traffic-manager that is of the same version as the binary.
+
+The Telepresence Helm chart documentation is published at [ArtifactHUB](https://artifacthub.io/packages/helm/telepresence-oss/telepresence-oss).
+
+You can also use `helm` command directly, see [Install With Helm](#install-with-helm) for more details.
 
 ## Prerequisites
 
@@ -180,3 +186,36 @@ Telepresence Traffic Manager does require some [RBAC](../reference/rbac.md) for 
 To make it easier for operators to introspect / manage RBAC separately, you can use `rbac.only=true` to
 only create the rbac-related objects.
 Additionally, you can use `clientRbac.create=true` and `managerRbac.create=true` to toggle which subset(s) of RBAC objects you wish to create.
+
+## Install with Helm
+
+Before you begin, you must ensure that the [helm command](https://helm.sh/docs/intro/install/) is installed.
+
+The Telepresence Helm chart is published at GitHub in the ghcr.io repository.
+
+### Installing
+
+Install the latest stable version of the traffic-manager into the default "ambassador" namespace with the following command:
+
+```bash
+helm install --create-namespace --namespace ambassador traffic-manager oci://ghcr.io/telepresenceio/telepresence-oss
+```
+
+### Upgrading/Downgrading
+
+Use this command if you installed the Traffic Manager into the "ambassador" namespace, and you just wish to upgrade it
+to the latest version without changing any configuration values:
+
+```bash
+helm upgrade --namespace ambassador --reuse-values traffic-manager oci://ghcr.io/telepresenceio/telepresence-oss
+```
+
+If you want to upgrade (or downgrade) the Traffic Manager to a specific version, add a `--version` flag with the version
+number to the upgrade command, e.g.: `--version v2.20.3`.
+
+### Uninstalling
+
+Use the following command to uninstall the Traffic Manager:
+```bash
+helm uninstall --namespace ambassador traffic-manager
+```

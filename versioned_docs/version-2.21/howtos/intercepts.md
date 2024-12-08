@@ -49,7 +49,7 @@ network telepresence, and remote mounts must be made relative to a specific moun
 
 3. Get the name of the port you want to intercept on your service:
    `kubectl get service &lt;service name&gt; --output yaml`.
-  
+
    If we assume that the service and deployment use the same name:
 
    ```console
@@ -85,7 +85,7 @@ network telepresence, and remote mounts must be made relative to a specific moun
     ```
 
 5. &lt;a name="start-local-instance"&gt;&lt;/a&gt;Start your local application using the environment variables retrieved in the previous step.
-  The following are some examples of how to pass the environment variables to your local process:
+   The following are some examples of how to pass the environment variables to your local process:
    * **Visual Studio Code:** specify the path to the environment variables file in the `envFile` field of your configuration.
    * **JetBrains IDE (IntelliJ, WebStorm, PyCharm, GoLand, etc.):** use the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile).
 
@@ -148,9 +148,9 @@ present challenges in terms of toolchain integration, debugging, and the overall
     telepresence intercept &lt;workload-name&gt; --port [&lt;local-port&gt;][:&lt;remote-port&gt;] --docker-run -- &lt;your local container&gt;.
     ```
 
-    * For `--port`: If the intercepted service exposes multiple ports, specify the service port you want to intercept after a colon.
-      The local port can be empty to default to the same as the targeted container port.
- 
+   * For `--port`: If the intercepted service exposes multiple ports, specify the service port you want to intercept after a colon.
+     The local port can be empty to default to the same as the targeted container port.
+
    The example below shows Telepresence intercepting traffic going to deployment `example-app`. The local container inherits
    the environment and the volume mounts from the targeted container, and requests to the service on port `http` in the
    cluster get routed to the local container and the environment variables of the service are written to `~/example-app-intercept.env`.
@@ -183,7 +183,7 @@ but you don't wish to intercept any traffic intended for the targeted workload. 
 comes into play. Just like intercept, it will make the environment and mounted containers of the targeted container available locally,
 but it will not intercept any traffic.
 
-This example assumes that you have the `example-app` 
+This example assumes that you have the `example-app`
 
 ### Running everything directly on the workstation
 

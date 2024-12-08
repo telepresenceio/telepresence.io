@@ -27,5 +27,3 @@ The dev loop can be jump-started with the right development environment and Kube
 A rapid and continuous feedback loop is essential for productivity and speed; Telepresence enables the fast, efficient feedback loop to ensure that developers can access the rapid local development loop they rely on without disrupting their own or other developers' workflows. Telepresence safely intercepts traffic from the production cluster and enables near-instant testing of code and local debugging in production.
 
 Telepresence works by deploying a two-way network proxy in a pod running in a Kubernetes cluster. This pod proxies data from the Kubernetes environment (e.g., TCP/UDP connections, environment variables, volumes) to the local process. This proxy can intercept traffic meant for the service and reroute it to a local copy, which is ready for further (local) development.
-
-The intercept proxy works thanks to context propagation, which is most frequently associated with distributed tracing but also plays a key role in controllable intercepts.

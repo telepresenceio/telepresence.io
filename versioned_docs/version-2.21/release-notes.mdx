@@ -82,6 +82,19 @@ These recursions can now be prevented by setting the client configuration proper
 A default can still be explicitly defined using the `config.intercept.defaultPort` setting.</Body>
 </Note>
 <Note>
+	<Title type="change">Move the telepresence-intercept-env configmap data into traffic-manager configmap.</Title>
+	<Body>There's no need for two configmaps that store configuration data for the traffic manager. The traffic-manager configmap is also watched, so consolidating the configuration there saves some k8s API calls.</Body>
+</Note>
+<Note>
+	<Title type="bugfix">Cap timeouts.connectivityCheck at 5 seconds.</Title>
+	<Body>The timeout value of `timeouts.connectivityCheck` is used when checking if a cluster is already reachable without Telepresence setting up an additional network route. If it is, this timeout should be high enough to cover the delay when establishing a connection. If this delay is higher than a second, then chances are very low that the cluster already is reachable, and if it can, that all accesses to it will be very slow. In such cases, Telepresence will create its own network interface and do perform its own tunneling.
+The default timeout for the check remains at 500 millisecond, which is more than sufficient for the majority of cases.</Body>
+</Note>
+<Note>
+	<Title type="change">Tracing was removed.</Title>
+	<Body>The ability to collect trace has been removed. The code was complex and has not been well maintained since its inception in 2022. We have seen no indication that it has ever been used.</Body>
+</Note>
+<Note>
 	<Title type="bugfix">Prevent that traffic-manager injects a traffic-agent into itself.</Title>
 	<Body>The traffic-manager can never be a subject for an intercept, ingest, or proxy-via, because that means that it injects the traffic-agent into itself, and it is not designed to do that. A user attempting this will now see a meaningful error message.</Body>
 </Note>

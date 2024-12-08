@@ -45,45 +45,6 @@ After you've installed `sshfs`, if mounts still aren't working:
 2. Add your user to the "fuse" group with: `sudo usermod -a -G fuse <your username>`
 3. Restart your computer after uncommenting `user_allow_other` 
 
-## Distributed tracing
-
-Telepresence is a complex piece of software with components running locally on your laptop and remotely in a distributed kubernetes environment.
-As such, troubleshooting investigations require tools that can give users, cluster admins, and maintainers a broad view of what these distributed components are doing.
-In order to facilitate such investigations, telepresence >= 2.7.0 includes distributed tracing functionality via [OpenTelemetry](https://opentelemetry.io/)
-Tracing is controlled via a `grpcPort` flag under the `tracing` configuration of your `values.yaml`. It is enabled by default and can be disabled by setting `grpcPort` to `0`, or `tracing` to an empty object:
-
-```yaml
-tracing: {}
-```
-
-If tracing is configured, the traffic manager and traffic agents will open a GRPC server under the port given, from which telepresence clients will be able to gather trace data.
-To collect trace data, ensure you're connected to the cluster, perform whatever operation you'd like to debug and then run `gather-traces` immediately after:
-
-```console
-$ telepresence gather-traces
-```
-
-This command will gather traces from both the cloud and local components of telepresence and output them into a file called `traces.gz` in your current working directory:
-
-```console
-$ file traces.gz
-    traces.gz: gzip compressed data, original size modulo 2^32 158255
-```
-
-Please do not try to open or uncompress this file, as it contains binary trace data.
-Instead, you can use the `upload-traces` command built into telepresence to send it to an [OpenTelemetry collector](https://opentelemetry.io/docs/collector/) for ingestion:
-
-```console
-$ telepresence upload-traces traces.gz $OTLP_GRPC_ENDPOINT
-```
-
-Once that's been done, the traces will be visible via whatever means your usual collector allows. For example, this is what they look like when loaded into Jaeger's [OTLP API](https://www.jaegertracing.io/docs/1.36/apis/#opentelemetry-protocol-stable):
-
-![Jaeger Interface](images/tracing.png)
-
-**Note:** The host and port provided for the `OTLP_GRPC_ENDPOINT` must accept OTLP formatted spans (instead of e.g. Jaeger or Zipkin specific spans) via a GRPC API (instead of the HTTP API that is also available in some collectors)
-**Note:** Since traces are not automatically shipped to the backend by telepresence, they are stored in memory. Hence, to avoid running telepresence components out of memory, only the last 10MB of trace data are available for export.
-
 ### No Sidecar Injected in GKE private clusters
 
 An attempt to `telepresence intercept` results in a timeout, and upon examination of the pods (`kubectl get pods`) it's discovered that the intercept command did not inject a sidecar into the workload's pods:

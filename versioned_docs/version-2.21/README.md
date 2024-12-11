@@ -17,7 +17,6 @@ raw markdown version, more bells and whistles at [telepresence.io](https://telep
   - [Intercepts](concepts/intercepts.md)
 - How do I...
   - [Code and debug an application locally](howtos/intercepts.md)
-  - [Proxy outbound traffic to my cluster](howtos/outbound.md)
   - [Work with large clusters](howtos/large-clusters.md)
   - [Host a cluster in Docker or a VM](howtos/cluster-in-vm.md)
 - Technical reference

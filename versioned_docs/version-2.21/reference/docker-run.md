@@ -34,6 +34,11 @@ To achieve this, Telepresence temporarily adds the necessary network to the cont
 container to join the  same network. Additionally, Telepresence starts extra socat containers to handle port mappings,
 ensuring that the desired ports are exposed to the local environment.
 
+> [!NOTE]
+> If you use `telepresence docker-run` to run a command that lasts longer than the `telepresence connect --docker` that
+> was in effect when it started, then it will lose its network. In other words, when using `telepresence docker-run`,
+> you must always rerun after a `telepresence quit`/`telepresence connect --docker`.
+
 ### The ingest/intercept --docker-run flag
 
 If you want your ingest or intercept to use another Docker container, you can use the `--docker-run` flag. It creates the ingest or intercept, runs your container in the foreground, then automatically ends the ingest or intercept when the container exits.

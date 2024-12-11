@@ -2,6 +2,8 @@
 title: Telepresence and VPNs
 ---
 
+import Platform from '@site/src/components/Platform';
+
 # Telepresence and VPNs
 
 Telepresence creates a virtual network interface (VIF) when it connects. This VIF is configured to route the cluster's 
@@ -217,3 +219,98 @@ The end result of this (assuming an allowlist of `/9`) will be a configuration l
 
 Use `telepresence connect --docker` to make the Telepresence daemon containerized, which means that it has its own
 network configuration and therefore no conflict with a VPN. Read more about docker [here](docker-run.md).
+
+## Some helpful hints when dealing with conflicts
+
+When resolving a conflict by allowing it, you might want to validate that the routing is correct during the time when
+Telepresence is connected. One way of doing this is to retrieve the route for an IP in a conflicting subnet.
+
+This example assumes that Telepresence detected a conflict with a VPN using subnet `100.124.0.0/16`, and that we then
+decided to  allow a conflict in a small portion of that using allowConflictingSubnets `100.124.150.0/24`. Without
+telepresence being connected, we check the route for the IP `100.124.150.45`, and discover  that it's running through a
+Tailscale device.
+
+<Platform.Provider>
+<Platform.TabGroup>
+<Platform.MacOSTab>
+
+```console
+$ route -n get 100.124.150.45
+   route to: 100.64.2.3
+destination: 100.64.0.0
+       mask: 255.192.0.0
+  interface: utun4
+      flags: <UP,DONE,CLONING,STATIC>
+ recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire
+       0         0         0         0         0         0      1280         0
+```
+
+Note that in macOS it's difficult to determine what software the name of a virtual interface corresponds to -- `utun4`
+doesn't indicate that it was created by Tailscale. One option is to look at the output of `ifconfig` before and after
+connecting to your VPN to see if the interface in question is being added upon connection
+
+</Platform.MacOSTab>
+<Platform.GNULinuxTab>
+
+```console
+$ ip route get 100.124.150.45
+100.64.2.3 dev tailscale0 table 52 src 100.111.250.89 uid 0
+```
+
+</Platform.GNULinuxTab>
+<Platform.WindowsTab>
+
+```console
+$ Find-NetRoute -RemoteIPAddress 100.124.150.45
+
+IPAddress         : 100.102.111.26
+InterfaceIndex    : 29
+InterfaceAlias    : Tailscale
+AddressFamily     : IPv4
+Type              : Unicast
+PrefixLength      : 32
+PrefixOrigin      : Manual
+SuffixOrigin      : Manual
+AddressState      : Preferred
+ValidLifetime     : Infinite ([TimeSpan]::MaxValue)
+PreferredLifetime : Infinite ([TimeSpan]::MaxValue)
+SkipAsSource      : False
+PolicyStore       : ActiveStore
+
+
+Caption            : 
+Description        : 
+ElementName        : 
+InstanceID         : ;::8;;;8<?:8BC9=<55<C55:8:8:8:55;
+AdminDistance      : 
+DestinationAddress : 
+IsStatic           : 
+RouteMetric        : 0
+TypeOfRoute        : 3
+AddressFamily      : IPv4
+CompartmentId      : 1
+DestinationPrefix  : 100.124.150.45/32
+InterfaceAlias     : Tailscale
+InterfaceIndex     : 29
+InterfaceMetric    : 5
+NextHop            : 0.0.0.0
+PreferredLifetime  : 10675199.02:48:05.4775807
+Protocol           : NetMgmt
+Publish            : No
+State              : Alive
+Store              : ActiveStore
+ValidLifetime      : 10675199.02:48:05.4775807
+PSComputerName     : 
+ifIndex            : 29
+```
+
+</Platform.WindowsTab>
+</Platform.TabGroup>
+</Platform.Provider>
+
+Now, run the same command with telepresence connected. The output should differ and instead show that the same IP Is
+routed via the Telepresence Virtual Network. This should always be the case for an allowed conflict.
+
+> [!NOTE]
+> If you instead choose to avoid the conflict using VNAT, then the IP will be unaffected and still get routed via
+> Tailscale. The cluster resource using that IP will be available to you from another subnet, using another IP.

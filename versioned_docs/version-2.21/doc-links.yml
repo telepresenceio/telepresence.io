@@ -24,8 +24,6 @@
   items:
     - title: Code and debug an application locally
       link: howtos/intercepts
-    - title: Proxy outbound traffic to my cluster
-      link: howtos/outbound
     - title: Work with large clusters
       link: howtos/large-clusters
     - title: Host a cluster in Docker or a VM

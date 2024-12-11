@@ -78,10 +78,10 @@ When intercepting a service that has multiple ports, the name of the
 service port that has been intercepted is also listed.
 
 If you want to change which port has been intercepted, you can create
-a new intercept the same way you did above and it will change which
+a new intercept the same way you did above, and it will change which
 service port is being intercepted.
 
-## Creating an intercept When multiple services match your workload
+## Creating an intercept when multiple services match your workload
 
 Oftentimes, there's a 1-to-1 relationship between a service and a
 workload, so telepresence is able to auto-detect which service it

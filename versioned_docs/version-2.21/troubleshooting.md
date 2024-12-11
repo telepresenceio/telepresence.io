@@ -3,8 +3,6 @@ title: Troubleshooting
 description: "Learn how to troubleshoot common issues related to Telepresence, including intercept issues, cluster connection issues, and errors related to Ambassador Cloud."
 ---
 
-import Platform from '@site/src/components/Platform';
-
 # Troubleshooting
 
 ## Connecting to a cluster via VPN doesn't work.
@@ -101,8 +99,9 @@ spec:
       targetPort: http
 ```
 
-Telepresence's mutating webhook will refrain from injecting an init-container when the `targetPort` is a name.  Instead,
-it will do the following during the injection of the traffic-agent:
+Telepresence injects an init-container into the pods of a workload, only if at least one service specifies a numeric
+`tagertPort` that references a `containerPort` in the workload. When this isn't the case, it will instead do the
+following during the injection of the traffic-agent:
 
 1. Rename the designated container's port by prefixing it (i.e., containerPort: http becomes containerPort: tm-http).
 2. Let the container port of our injected traffic-agent use the original name (i.e., containerPort: http).
@@ -110,9 +109,17 @@ it will do the following during the injection of the traffic-agent:
 Kubernetes takes care of the rest and will now associate the service's `targetPort` with our traffic-agent's
 `containerPort`.
 
-### Important note
-If the service is "headless" (using `ClusterIP: None`), then using named ports won't help because the `targetPort` will
-not get remapped. A headless service will always require the init-container.
+> [!IMPORTANT]
+> If the service is "headless" (using `ClusterIP: None`), then using named ports won't help because the `targetPort` will
+> not get remapped. A headless service will always require the init-container.
+
+## EKS, Calico, and Traffic Agent injection timeouts
+
+When using EKS with Calico CNI, the Kubernetes API server cannot reach the mutating webhook
+used for triggering the traffic agent injection. To solve this problem, try providing the
+Helm chart value `"hostNetwork=true"` when installing or upgrading the traffic-manager.
+
+More information can be found in this [blog post](https://medium.com/@denisstortisilva/kubernetes-eks-calico-and-custom-admission-webhooks-a2956b49bd0d).
 
 ## Error connecting to GKE or EKS cluster
 
@@ -123,94 +130,3 @@ for Telepresence to connect to your cluster.
 ## `too many files open` error when running `telepresence connect` on Linux
 
 If `telepresence connect` on linux fails with a message in the logs `too many files open`, then check if `fs.inotify.max_user_instances` is set too low. Check the current settings with `sysctl fs.notify.max_user_instances` and increase it temporarily with `sudo sysctl -w fs.inotify.max_user_instances=512`. For more information about permanently increasing it see [Kernel inotify watch limit reached](https://unix.stackexchange.com/a/13757/514457).
-
-## Connected to cluster via VPN but IPs don't resolve
-
-If `telepresence connect` succeeds, but you find yourself unable to reach services on your cluster, a routing conflict may be to blame. This frequently happens when connecting to a VPN at the same time as telepresence,
-as often VPN clients may add routes that conflict with those added by telepresence. To debug this, pick an IP address in the cluster and get its route information. In this case, we'll get the route for `100.124.150.45`, and discover
-that it's running through a `tailscale` device.
-
-<Platform.Provider>
-<Platform.TabGroup>
-<Platform.MacOSTab>
-
-```console
-$ route -n get 100.124.150.45
-   route to: 100.64.2.3
-destination: 100.64.0.0
-       mask: 255.192.0.0
-  interface: utun4
-      flags: <UP,DONE,CLONING,STATIC>
- recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire
-       0         0         0         0         0         0      1280         0
-```
-
-Note that in macos it's difficult to determine what software the name of a virtual interface corresponds to -- `utun4` doesn't indicate that it was created by tailscale.
-One option is to look at the output of `ifconfig` before and after connecting to your VPN to see if the interface in question is being added upon connection
-
-</Platform.MacOSTab>
-<Platform.GNULinuxTab>
-
-```console
-$ ip route get 100.124.150.45
-100.64.2.3 dev tailscale0 table 52 src 100.111.250.89 uid 0
-```
-
-</Platform.GNULinuxTab>
-<Platform.WindowsTab>
-
-```console
-$ Find-NetRoute -RemoteIPAddress 100.124.150.45
-
-IPAddress         : 100.102.111.26
-InterfaceIndex    : 29
-InterfaceAlias    : Tailscale
-AddressFamily     : IPv4
-Type              : Unicast
-PrefixLength      : 32
-PrefixOrigin      : Manual
-SuffixOrigin      : Manual
-AddressState      : Preferred
-ValidLifetime     : Infinite ([TimeSpan]::MaxValue)
-PreferredLifetime : Infinite ([TimeSpan]::MaxValue)
-SkipAsSource      : False
-PolicyStore       : ActiveStore
-
-
-Caption            : 
-Description        : 
-ElementName        : 
-InstanceID         : ;::8;;;8<?:8BC9=<55<C55:8:8:8:55;
-AdminDistance      : 
-DestinationAddress : 
-IsStatic           : 
-RouteMetric        : 0
-TypeOfRoute        : 3
-AddressFamily      : IPv4
-CompartmentId      : 1
-DestinationPrefix  : 100.124.150.45/32
-InterfaceAlias     : Tailscale
-InterfaceIndex     : 29
-InterfaceMetric    : 5
-NextHop            : 0.0.0.0
-PreferredLifetime  : 10675199.02:48:05.4775807
-Protocol           : NetMgmt
-Publish            : No
-State              : Alive
-Store              : ActiveStore
-ValidLifetime      : 10675199.02:48:05.4775807
-PSComputerName     : 
-ifIndex            : 29
-```
-
-</Platform.WindowsTab>
-</Platform.TabGroup>
-</Platform.Provider>
-
-This will tell you which device the traffic is being routed through. As a rule, if the traffic is not being routed by the telepresence device,
-your VPN may need to be reconfigured, as its routing configuration is conflicting with telepresence. One way to determine if this is the case
-is to run `telepresence quit -s`, check the route for an IP in the cluster (see commands above), run `telepresence connect`, and re-run the commands to see if the output changes.
-If it doesn't change, that means telepresence is unable to override your VPN routes, and your VPN may need to be reconfigured. Talk to your network admins
-to configure it such that clients do not add routes that conflict with the pod and service CIDRs of the clusters. How this will be done will
-vary depending on the VPN provider.
-Future versions of telepresence will be smarter about informing you of such conflicts upon connection.

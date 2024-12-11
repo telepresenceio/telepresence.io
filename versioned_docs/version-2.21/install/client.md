@@ -36,7 +36,7 @@ sudo chmod a+x /usr/local/bin/telepresence
 ```shell
 # 1. Ensure that no old binary exists. This is very important because Silicon macs track the executable's signature
 # and just updating it in place will not work.
-sudo curl -fL https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-darwin-amd64 -o /usr/local/bin/telepresence
+sudo rm -f /usr/local/bin/telepresence
 
 # 2. Download the binary.
 sudo curl -fL https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-darwin-arm64 -o /usr/local/bin/telepresence
@@ -61,12 +61,39 @@ sudo chmod a+x /usr/local/bin/telepresence
 
 We've developed a Powershell script to simplify the process of installing telepresence. Here are the commands you can execute:
 
+### Windows AMD64
+
 ```powershell
 # To install Telepresence, run the following commands
 # from PowerShell as Administrator.
 
 # 1. Download the latest windows zip containing telepresence.exe and its dependencies (~50 MB):
 Invoke-WebRequest https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-windows-amd64.zip -OutFile telepresence.zip
+
+# 2. Unzip the telepresence.zip file to the desired directory, then remove the zip file:
+Expand-Archive -Path telepresence.zip -DestinationPath telepresenceInstaller/telepresence
+Remove-Item 'telepresence.zip'
+cd telepresenceInstaller/telepresence
+
+# 3. Run the install-telepresence.ps1 to install telepresence's dependencies. It will install telepresence to
+# C:\telepresence by default, but you can specify a custom path by passing in -Path C:\my\custom\path
+powershell.exe -ExecutionPolicy bypass -c " . '.\install-telepresence.ps1';"
+
+# 4. Remove the unzipped directory:
+cd ../..
+Remove-Item telepresenceInstaller -Recurse -Confirm:$false -Force
+
+# 5. Telepresence is now installed and you can use telepresence commands in PowerShell.
+```
+
+### Windows ARM64
+
+```powershell
+# To install Telepresence, run the following commands
+# from PowerShell as Administrator.
+
+# 1. Download the latest windows zip containing telepresence.exe and its dependencies (~50 MB):
+Invoke-WebRequest https://app.getambassador.io/download/tel2oss/releases/download/$dlVersion$/telepresence-windows-arm64.zip -OutFile telepresence.zip
 
 # 2. Unzip the telepresence.zip file to the desired directory, then remove the zip file:
 Expand-Archive -Path telepresence.zip -DestinationPath telepresenceInstaller/telepresence
@@ -117,7 +144,11 @@ https://app.getambassador.io/download/tel2oss/releases/download/vx.y.z/teleprese
 <Platform.WindowsTab>
 
 ```
-(https://app.getambassador.io/download/tel2oss/releases/download/vx.y.z/telepresence-windows-amd64.exe
+# Windows AMD64
+https://app.getambassador.io/download/tel2oss/releases/download/vx.y.z/telepresence-windows-amd64.exe
+
+# Windows ARM64
+https://app.getambassador.io/download/tel2oss/releases/download/vx.y.z/telepresence-windows-arm64.exe
 ```
 
 </Platform.WindowsTab>

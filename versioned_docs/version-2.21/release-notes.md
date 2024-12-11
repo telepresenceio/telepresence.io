@@ -100,6 +100,24 @@ These recursions can now be prevented by setting the client configuration proper
 The Helm chart previously had the unnecessary restriction that the .Release.Name under which telepresence is installed is literally called "traffic-manager".  This restriction was preventing telepresence from being included as a sub-chart in a parent chart called anything but "traffic-manager". This restriction has been lifted.
 </div>
 
+## <div style="display:flex;"><img src="images/feature.png" alt="feature" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">Add Windows arm64 client build</div></div>
+<div style="margin-left: 15px">
+
+Telepresence client is now available for Windows ARM64. Updated the release workflow files in github actions to build and publish the Windows ARM64 client.
+</div>
+
+## <div style="display:flex;"><img src="images/change.png" alt="change" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">The --agents flag to telepresence uninstall is now the default.</div></div>
+<div style="margin-left: 15px">
+
+The `telepresence uninstall` was once capable of uninstalling the traffic-manager as well as traffic-agents. This behavior has been deprecated for some time now and in this release, the command is all about uninstalling the agents. Therefore the `--agents` flag was made redundant and whatever arguments that are given to the command must be name of workloads that have an agent installed unless the `--all-agents` is used, in which case no arguments are allowed.
+</div>
+
+## <div style="display:flex;"><img src="images/change.png" alt="change" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">Performance improvement for the telepresence list command</div></div>
+<div style="margin-left: 15px">
+
+The `telepresence list` command will now retrieve its data from the traffic-manager, which significantly improves its performance when used on namespaces that have a lot of workloads.
+</div>
+
 ## <div style="display:flex;"><img src="images/change.png" alt="change" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">During an intercept, the local port defaults to the targeted port of the intercepted container instead of 8080.</div></div>
 <div style="margin-left: 15px">
 
@@ -116,7 +134,13 @@ There's no need for two configmaps that store configuration data for the traffic
 ## <div style="display:flex;"><img src="images/change.png" alt="change" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">Tracing was removed.</div></div>
 <div style="margin-left: 15px">
 
-The ability to collect trace has been removed along with the `telepresence gather-traces` and  `telepresence upload-traces` commands. The underlying code was complex and has not been well maintained since its inception in 2022. We have received no feedback on it and seen no indication that it has ever been used.
+The ability to collect trace has been removed along with the `telepresence gather-traces` and `telepresence upload-traces` commands. The underlying code was complex and has not been well maintained since its inception in 2022. We have received no feedback on it and seen no indication that it has ever been used.
+</div>
+
+## <div style="display:flex;"><img src="images/bugfix.png" alt="bugfix" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">Fix telepresence connect confusion caused by /.dockerenv file</div></div>
+<div style="margin-left: 15px">
+
+A `/.dockerenv` will be present when running in a GitHub Codespaces environment. That doesn't mean that telepresence cannot use docker, or that the root daemon shouldn't start.
 </div>
 
 ## <div style="display:flex;"><img src="images/bugfix.png" alt="bugfix" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">Cap timeouts.connectivityCheck at 5 seconds.</div></div>
@@ -137,6 +161,12 @@ The traffic-manager can never be a subject for an intercept, ingest, or proxy-vi
 
 A user would normally never access pods in the `kube-system` namespace directly, and automatically including pods included there when computing the subnets will often lead to problems when running the cluster locally. This namespace is therefore now excluded in situations when the pod subnets are computed from the IPs of pods. Services in this namespace will still be available through the service subnet.
 If a user should require the pod-subnet to be mapped, it can be added to the `client.routing.alsoProxy` list in the helm chart.
+</div>
+
+## <div style="display:flex;"><img src="images/bugfix.png" alt="bugfix" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">Let routes belonging to an allowed conflict be added as a static route on Linux.</div></div>
+<div style="margin-left: 15px">
+
+The `allowConflicting` setting didn't always work on Linux because the conflicting subnet was just added as a link to the TUN device, and therefore didn't get subjected to routing rule used to assign priority to the given subnet.
 </div>
 
 ## Version 2.20.3 <span style="font-size: 16px;">(November 18)</span>

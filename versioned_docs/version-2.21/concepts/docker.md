@@ -48,15 +48,11 @@ Echo server listening on port 8080.
 Using `--docker-run` starts the local container that acts as the intercept handler so that it uses the same network as the container that runs the telepresence daemon. It will also
 have the remote volumes mounted in the same way as the remote container that it intercepts.
 
-If you want to curl your remote service, you'll need to do that from a container that shares the daemon container's network. You can find the network using `telepresence status`:
-```cli
-$ telepresence status | grep 'Container network'
-  Container network : container:tp-default-default-cn
-```
+If you want to curl your remote service, you'll need to do that from a container that shares the daemon container's
+network. Telepresence provides a `curl` command that will do just that.
 
-Now curl with a `docker run` that uses that network:
-```cli
-$ docker run --network container:tp-default-default-cn --rm curlimages/curl echo-easy
+```console
+$ telepresence curl echo-easy
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100    99  100    99    0     0  21104      0 --:--:-- --:--:-- -Request served by 4b225bc8d6f1
@@ -69,33 +65,26 @@ User-Agent: curl/8.6.0
 -:--:-- 24750
 ```
 
-Similarly, if you want to start your intercept handler manually using `docker run`, you must ensure that it shares the daemon container's network:
+Similarly, if you want to start your intercept handler manually using `docker run`, you must ensure that it shares the
+daemon container's network. The most convenient way to do that is to use `telepresence docker-run`.
 
-```cli
-$ docker run \
-  --network=container:tp-default \
-  -e PORT=8080 jmalloc/echo-server
+```console
+$ telepresence docker-run -e PORT=8080 jmalloc/echo-server
 Echo server listening on port 8080.
 ```
 
-### Tip. Use named connections
-You can use the `--name` flag to name the connection and get a shorter network name:
+> [!TIP]
+> Use named connections
+> You can use the `--name` flag to name the connection if you want to connect to several namespaces simultaneously, e.g.
 
-```
-$ telepresence quit
-$ telepresence connect --docker --name a
-```
-Now, the network name will be `tp-a` instead of `tp-default-default-cn`.
-
-Naming is also very useful when you want to connect to several namespaces simultaneously, e.g.
-
-```
+```console
 $ telepresence connect --docker --name alpha --namespace alpha
 $ telepresence connect --docker --name beta --namespace beta
 ```
 
 Now, with two connections active, you must pass the flag `--use <name pattern>` to other commands, e.g.
-```
+
+```console
 $ telepresence intercept echo-easy --use alpha --port 8080:80 --docker-run -- jmalloc/echo-server
 ```
 

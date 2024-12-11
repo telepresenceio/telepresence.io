@@ -36,9 +36,9 @@ client:
     excludeSuffixes: [.se, .com, .io, .net, .org, .ru]
     lookupTimeout: 30s
   routing:
-      alsoProxySubnets:
-        - 1.2.3.4/32
-      neverProxySubnets:
+    alsoProxySubnets:
+      - 1.2.3.4/32
+    neverProxySubnets:
       - 1.2.3.4/32
 ```
 

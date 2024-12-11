@@ -48,7 +48,7 @@ network telepresence, and remote mounts must be made relative to a specific moun
    ```
 
 3. Get the name of the port you want to intercept on your service:
-   `kubectl get service &lt;service name&gt; --output yaml`.
+   `kubectl get service <service name> --output yaml`.
 
    If we assume that the service and deployment use the same name:
 
@@ -65,7 +65,7 @@ network telepresence, and remote mounts must be made relative to a specific moun
 
 4. Intercept all traffic going to the application in your cluster:
     ```
-    telepresence intercept &lt;workload-name&gt; --port [&lt;local-port&gt;][:&lt;remote-port&gt;] --env-file &lt;path-to-env-file&gt;`.
+    telepresence intercept <workload-name> --port [<local-port>][:<remote-port>] --env-file <path-to-env-file>`.
     ```
 
    * For `--port`: specify the port the local instance of your application is running on. If the intercepted service exposes multiple ports, specify the port you want to intercept after a colon.
@@ -84,7 +84,7 @@ network telepresence, and remote mounts must be made relative to a specific moun
       Intercepting  : all TCP connections
     ```
 
-5. &lt;a name="start-local-instance"&gt;&lt;/a&gt;Start your local application using the environment variables retrieved in the previous step.
+5. Start your local application using the environment variables retrieved in the previous step.
    The following are some examples of how to pass the environment variables to your local process:
    * **Visual Studio Code:** specify the path to the environment variables file in the `envFile` field of your configuration.
    * **JetBrains IDE (IntelliJ, WebStorm, PyCharm, GoLand, etc.):** use the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile).
@@ -128,7 +128,7 @@ present challenges in terms of toolchain integration, debugging, and the overall
    ```
 
 3. Get the name of the port you want to intercept on your service:
-   `kubectl get service &lt;service name&gt; --output yaml`.
+   `kubectl get service <service name> --output yaml`.
 
    If we assume that the service and deployment use the same name:
 
@@ -145,7 +145,7 @@ present challenges in terms of toolchain integration, debugging, and the overall
 
 4. Intercept all traffic going to the application in your cluster, and start a local container to handle that intercept:
     ```
-    telepresence intercept &lt;workload-name&gt; --port [&lt;local-port&gt;][:&lt;remote-port&gt;] --docker-run -- &lt;your local container&gt;.
+    telepresence intercept <workload-name> --port [<local-port>][:<remote-port>] --docker-run -- <your local container>.
     ```
 
    * For `--port`: If the intercepted service exposes multiple ports, specify the service port you want to intercept after a colon.
@@ -156,7 +156,7 @@ present challenges in terms of toolchain integration, debugging, and the overall
    cluster get routed to the local container and the environment variables of the service are written to `~/example-app-intercept.env`.
 
     ```console
-    $ telepresence intercept example-app --port :http --docker-run -- &lt;your local container&gt;
+    $ telepresence intercept example-app --port :http --docker-run -- <your local container>
     Using Deployment example-app
     intercepted
       Intercept name: example-app
@@ -164,7 +164,7 @@ present challenges in terms of toolchain integration, debugging, and the overall
       Workload kind : Deployment
       Destination   : 127.0.0.1:8080
       Intercepting  : all TCP connections
-    &lt;output from your local container&gt;
+    <output from your local container>
     ```
 
 5. Query the cluster in which you intercepted an application and verify your local instance being invoked.
@@ -192,7 +192,7 @@ This example assumes that you have the `example-app`
     $ telepresence connect
     Launching Telepresence User Daemon
     Launching Telepresence Root Daemon
-    Connected to context xxx, namespace default (https://&lt;some url&gt;)
+    Connected to context xxx, namespace default (https://<some url>)
     $ telepresence ingest example-app --env-file ~/example-app-intercept.env
     Using Deployment example-app
        Container         : example-app
@@ -212,10 +212,10 @@ You can now:
     ```console
     $ telepresence connect --docker
     Launching Telepresence User Daemon
-    Connected to context xxx, namespace default (https://&lt;some url&gt;)
-    $ telepresence ingest example-app --expose 8080 --docker-run -- &lt;your local container&gt;
+    Connected to context xxx, namespace default (https://<some url>)
+    $ telepresence ingest example-app --expose 8080 --docker-run -- <your local container>
     Using Deployment example-app, container example-app
-    &lt;output from your local container&gt;
+    <output from your local container>
    ```
 
 You can now:

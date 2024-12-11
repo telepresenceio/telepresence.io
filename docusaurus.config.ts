@@ -57,9 +57,10 @@ const config: Config = {
 		[
 			'classic',
 			{
+				blog: {
+					beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
+				},
 				docs: {
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
 					editUrl: ({docPath}) => {
 						return `https://github.com/telepresenceio/telepresence/tree/thallgren/add-documentation/docs/${docPath}`
 					},
@@ -123,6 +124,11 @@ const config: Config = {
 					position: 'left',
 					docId: 'quick-start',
 					label: 'Docs',
+				},
+				{
+					to: 'blog',
+					position: 'left',
+					label: 'Blog'
 				},
 				{
 					to: 'case-studies',

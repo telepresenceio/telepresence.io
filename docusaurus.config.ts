@@ -57,9 +57,10 @@ const config: Config = {
 		[
 			'classic',
 			{
+				blog: {
+					beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
+				},
 				docs: {
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
 					editUrl: ({docPath}) => {
 						return `https://github.com/telepresenceio/telepresence/tree/thallgren/add-documentation/docs/${docPath}`
 					},
@@ -125,6 +126,11 @@ const config: Config = {
 					label: 'Docs',
 				},
 				{
+					to: 'blog',
+					position: 'left',
+					label: 'Blog'
+				},
+				{
 					to: 'case-studies',
 					position: 'left',
 					label: 'Case studies',
@@ -180,7 +186,7 @@ const config: Config = {
 	plugins: ["docusaurus-plugin-sass", "./src/plugins/configure-svgo.ts"],
 
 	customFields: {
-		canonicalBaseUrl: "https://www.getambassador.io",
+		canonicalBaseUrl: "https://www.telepresence.io",
 	}
 };
 

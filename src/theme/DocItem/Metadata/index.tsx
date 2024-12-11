@@ -12,9 +12,7 @@ type Props = WrapperProps<typeof MetadataType>;
 export default function MetadataWrapper(props: Props): JSX.Element {
   const { siteConfig: {customFields}} = useDocusaurusContext()
   const { pathname } = useLocation();
-  const { metadata } = useDoc();
-  const vpath = pathname.replace(/^\/docs\//, `/docs/telepresence/${metadata.version}/`)
-  const canonical = `${customFields['canonicalBaseUrl']}${vpath}`
+  const canonical = `${customFields['canonicalBaseUrl']}${pathname}`
 
   return (
     <>

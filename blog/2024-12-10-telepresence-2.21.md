@@ -51,20 +51,23 @@ details on how to do that.
 
 ## New Ingest Command
 
-The _telepresence ingest_ can be thought of as a _telepresence intercept_ light. It's an intercept, but without the
-traffic.
+The new ingest command can be thought of as a light version of intercept. It's in many respects the same thing, but
+without the traffic.
 
 Sometimes, intercepting network traffic to a container isn't the most efficient solution. For example, if you're working
 with a Kafka service that only interacts with a message broker, or if you're planning to send data to your local
 application through other means, just accessing the container's environment and volume mounts might be more practical.
-The new `telepresence ingest <workload> [--container <container name>]` command was designed for exactly this purpose.
+The new `telepresence ingest <workload> [--container <container name>]` command was designed for this purpose.
 
-The ingest and intercept commands are very similar, but while the intercept will target a port to intercept (and
-implicitly a container), the ingest command will target a container directly.
+First, `telepresence connect` establishes network access to the cluster. Then, `telepresence ingest` makes the
+container's environment and volume mounts available locally, allowing local processes to run, but without receiving
+intercepted traffic.
 
-An ingest is also less intrusive. Since volumes are always mounted read-only, and everything happens on the client side,
-there's no conflict when several ingests of the same container, possibly on different workstations, happen
-simultaneously.
+The syntax for the ingest and intercept commands are very similar, but while the intercept will target a port to
+intercept (and implicitly a container), the ingest command will target a container directly.
+
+There's no conflict when several ingests of the same container, possibly on different workstations, happen
+simultaneously, because volumes are always mounted read-only, and everything happens on the client side.
 
 ### Why the term "ingest"?
 I initially considered adding a `--no-traffic` option to the `intercept` command. This would allow users to invoke the
@@ -114,9 +117,10 @@ The `telpresence intercept/ingest --docker-run` now also leverages this techniqu
 
 This release contains several performance improvements. Most notably perhaps the rewrite of the `telepresence list`
 command, so that it now retrieves its data from the traffic-manager instead of doing a large number of API calls to
-the Kubernetes API.
+the Kubernetes API. This makes a huge difference when the namespace contains a large number of workloads.
 
 ## And there's more
 
 The release contains several other improvements such as Windows arm64 support, and the ability to exclude certain
-workload types to offload the traffic-manager. For a full list, please review the [release notes](../docs/release-notes).
+workload types to offload the traffic-manager. And, of course, a number of bugfixes. For a full list, please review the
+[release notes](../docs/release-notes).

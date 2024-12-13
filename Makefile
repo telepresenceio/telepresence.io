@@ -8,7 +8,7 @@ telepresence-remote:
 .PHONY: telepresence-remote
 
 # MATCH_TAGS is the regexp matching the tags that we expect will have docs.
-MATCH_TAGS ?= ^v2\.[2-9][0-9]+\.[0-9]+$$
+MATCH_TAGS ?= ^v2\.[2-9][0-9]+\.[0-9]+(-rc\.[0-9]+)?$$
 
 # EXCLUDE_TAGS is used when we want to exclude some of the matching tags from the telepresence repository
 EXCLUDE_TAGS ?=
@@ -37,3 +37,31 @@ pull-docs: telepresence-remote
 	git add .
 	rm -rf docs
 	git checkout HEAD -- docs
+
+DOCS_VERSION:=${DOCS_VERSION}
+DOCS_BRANCH:=${DOCS_BRANCH}
+
+.PHONY: read-branch
+read-branch:
+	git fetch telepresence
+	rm -rf docs
+	git add docs || true
+	git read-tree --prefix docs -u telepresence/$(DOCS_BRANCH):docs
+
+# drop-version will remove the version given by DOCS_VERSION.
+# Example:
+# DOCS_VERSION=2.21 make drop-version
+.PHONY: drop-version
+drop-version:
+	rm -rf "versioned_docs/version-$(DOCS_VERSION)"
+	rm -rf "versioned_sidebars/version-$(DOCS_VERSION)-sidebars.json"
+	jq '. - ["$(DOCS_VERSION)"]' versions.json > versions.tmp && mv versions.tmp versions.json
+
+# generate-version will first remove the given version and then regenerate it. Assumes that
+# read-branch has been called just prior.
+.PHONY: generate-version
+generate-version: drop-version
+	yarn docusaurus docs:version $(DOCS_VERSION)
+	rm -rf docs
+	git checkout HEAD -- docs
+	git add .

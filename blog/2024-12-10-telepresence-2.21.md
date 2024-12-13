@@ -63,7 +63,7 @@ First, `telepresence connect` establishes network access to the cluster. Then, `
 container's environment and volume mounts available locally, allowing local processes to run, but without receiving
 intercepted traffic.
 
-The syntax for the ingest and intercept commands are very similar, but while the intercept will target a port to
+The syntax for the ingest and the intercept command is very similar, but while the intercept will target a port to
 intercept (and implicitly a container), the ingest command will target a container directly.
 
 There's no conflict when several ingests of the same container, possibly on different workstations, happen
@@ -107,9 +107,10 @@ becomes:
 telepresence docker-run --rm -it jonlabell/network-tools ip route
 ```
 
-The command will also ensure that port flags like `--publish`, `--expose` works by circumventing the Docker network
-limitation using ephemeral socat containers. It will even enable adding additional `--network` flags by temporarily
-adding them to the daemon container.
+The command will also ensure that port flags like `--publish`, `--expose` works by circumventing a docker network
+limitation otherwise preventing this when a container's network is shared. This is achieved using ephemeral socat
+containers. The command will also enable adding additional `--network` flags by temporarily adding them to the daemon
+container.
 
 The `telpresence intercept/ingest --docker-run` now also leverages this technique.
 

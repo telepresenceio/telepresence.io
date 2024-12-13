@@ -123,4 +123,4 @@ the Kubernetes API. This makes a huge difference when the namespace contains a l
 
 The release contains several other improvements such as Windows arm64 support, and the ability to exclude certain
 workload types to offload the traffic-manager. And, of course, a number of bugfixes. For a full list, please review the
-[release notes](../docs/release-notes).
+[release notes](../../docs/release-notes).

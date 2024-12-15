@@ -19,7 +19,7 @@ In addition to the above, there is also a consideration of how to manage Users a
 
 ## Editing your kubeconfig
 
-This guide also assumes that you are utilizing a kubeconfig file that is specified by the `KUBECONFIG` environment variable.  This is a `yaml` file that contains the cluster's API endpoint information as well as the user data being supplied for authentication.  The Service Account name used in the example below is called tp-user.  This can be replaced by any value (i.e. John or Jane) as long as references to the Service Account are consistent throughout the `yaml`.  After an administrator has applied the RBAC configuration, a user should create a `config.yaml` in your current directory that looks like the following:​
+This guide also assumes that you are utilizing a kubeconfig file that is specified by the `KUBECONFIG` environment variable.  This is a `yaml` file that contains the cluster's API endpoint information as well as the user data being supplied for authentication.  The Service Account name used in the example below is called tp-user.  This can be replaced by any value (i.e. John or Jane) as long as references to the Service Account are consistent throughout the `yaml`.  After an administrator has applied the RBAC configuration, a user should create a `config.yaml` in your current directory that looks like the following:
 
 ```yaml
 apiVersion: v1
@@ -45,197 +45,224 @@ After creating `config.yaml` in your current directory, export the file's locati
 
 ## Administrating Telepresence
 
-Telepresence administration requires permissions for creating `Namespaces`, `ServiceAccounts`, `ClusterRoles`, `ClusterRoleBindings`, `Secrets`, `Services`, `MutatingWebhookConfiguration`, and for creating the `traffic-manager` [deployment](architecture.md#traffic-manager) which is typically done by a full cluster administrator. The following permissions are needed for the installation and use of Telepresence:
+Telepresence administration requires permissions for creating the `traffic-manager` [deployment](architecture.md#traffic-manager) which is typically
+done by a full cluster administrator.
+
+Once installed, the Telepresence Traffic Manager will run using the `traffic-manager` ServiceAccount. This account is
+set up differently depending on if the manager is installed cluster-wide or namespaced.
+
+### Cluster Wide Installation
+
+This is the permissions required by the `traffic-manager` account in a cluster-wide configuration:
 
 ```yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: telepresence-admin
-  namespace: default
+  name: traffic-manager
+  namespace: ambassador
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: telepresence-admin-role
+  name: traffic-manager
 rules:
   - apiGroups: [""]
-    resources: ["pods", "pods/log"]
-    verbs: ["get", "list", "create", "delete", "watch"]
-  - apiGroups: [""]
-    resources: ["services"]
-    verbs: ["get", "list", "update", "create", "delete"]
-  - apiGroups: [""]
-    resources: ["pods/portforward"]
+    resources: ["configmaps"]
     verbs: ["create"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]
+    resourceNames: ["telepresence-agents"]
   - apiGroups: ["apps"]
     resources: ["deployments", "replicasets", "statefulsets"]
-    verbs: ["get", "list", "update", "create", "delete", "watch"]
-  - apiGroups: ["rbac.authorization.k8s.io"]
-    resources: ["clusterroles", "clusterrolebindings", "roles", "rolebindings"]
-    verbs: ["get", "list", "watch", "create", "delete"]
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    verbs: ["create"]
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    verbs: ["get", "list", "watch", "delete"]
-    resourceNames: ["telepresence-agents"]
+    verbs: ["get", "list", "watch"]
   - apiGroups: [""]
     resources: ["namespaces"]
-    verbs: ["get", "list", "watch", "create"]
+    verbs: ["get", "list"]
+  - apiGroups: ["events.k8s.io"]
+    resources: ["events"]
+    verbs: ["get", "watch"]
   - apiGroups: [""]
-    resources: ["secrets"]
-    verbs: ["get", "create", "list", "delete"]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+
+  # If argoRollouts.enabled is set to true
+  - apiGroups: ["argoproj.io"]
+    resources: ["rollouts"]
+    verbs: ["get", "list", "watch"]
+
+  # The following is not needed when agentInjector.enabled is set to false
   - apiGroups: [""]
-    resources: ["serviceaccounts"]
-    verbs: ["get", "create", "delete"]
-  - apiGroups: ["admissionregistration.k8s.io"]
-    resources: ["mutatingwebhookconfigurations"]
-    verbs: ["get", "create", "delete"]
+    resources: ["configmaps"]
+    verbs: ["update", "delete"]
+    resourceNames: ["telepresence-agents"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets", "statefulsets"]
+    verbs: ["patch"]
+  # If argoRollouts.enabled is set to true
+  - apiGroups: ["argoproj.io"]
+    resources: ["rollouts"]
+    verbs: ["patch"]
+
+  # When using podCIDRStrategy nodePodCIDRs
   - apiGroups: [""]
     resources: ["nodes"]
-    verbs: ["list", "get", "watch"]
+    verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: telepresence-clusterrolebinding
+  name: traffic-manager
 subjects:
-  - name: telepresence-admin
+  - name: traffic-manager
     kind: ServiceAccount
     namespace: default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  name: telepresence-admin-role
+  name: traffic-manager
   kind: ClusterRole
 ```
 
-There are two ways to install the traffic-manager: Using `telepresence connect` and installing the [helm chart](../install/manager.md).
+### Namespaced Installation
 
-By using `telepresence connect`, Telepresence will use your kubeconfig to create the objects mentioned above in the cluster if they don't already exist.  If you want the most introspection into what is being installed, we recommend using the helm chart to install the traffic-manager.
+The permissions required by the `traffic-manager` account in a namespaced configuration is very similar to the ones
+used in a cluster-wide installation, but a `Role`/`RoleBinding` will be installed in each managed namespace instead of
+the `ClusterRole`/`ClusterRoleBinding` pair.
 
-## Cluster-wide telepresence user access
+## Telepresence Client Access
 
-To allow users to make intercepts across all namespaces, but with more limited `kubectl` permissions, the following `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding` will allow full `telepresence intercept` functionality.
+A Telepresence client requires just a small set of RBAC permissions. The bare minimum to connect is the ability to
+create a port-forward to the traffic-manager.
 
-> [!WARNING]
-> The following RBAC configurations assume that there is already a Traffic Manager deployment set up by a Cluster Administrator.
+The following configuration assumes that a ServiceAccount "tp-user" has been created in the traffic-manager's default
+"ambassador" namespace.
+
+In order to connect, the client must resolve the traffic-manager service name into a pod-IP and set up a port-forward.
+This requires the following Role/RoleBinding in the Traffic Manager's namespace.
 
 ```yaml
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: tp-user                                       # Update value for appropriate value
-  namespace: ambassador                                # Traffic-Manager is deployed to Ambassador namespace
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: telepresence-role
-rules:
-# For gather-logs command
-- apiGroups: [""]
-  resources: ["pods/log"]
-  verbs: ["get"]
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["list"]
-# Needed in order to maintain a list of workloads
-- apiGroups: ["apps"]
-  resources: ["deployments", "replicasets", "statefulsets"]
-  verbs: ["get", "list", "watch"]
-- apiGroups: [""]
-  resources: ["namespaces", "services"]
-  verbs: ["get", "list", "watch"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: telepresence-rolebinding
-subjects:
-- name: tp-user
-  kind: ServiceAccount
-  namespace: ambassador
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  name: telepresence-role
-  kind: ClusterRole
-```
-
-### Traffic Manager connect permission
-In addition to the cluster-wide permissions, the client will also need the following namespace scoped permissions
-in the traffic-manager's namespace in order to establish the needed port-forward to the traffic-manager.
-```yaml
----
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name:  traffic-manager-connect
+  namespace: ambassador
 rules:
   - apiGroups: [""]
     resources: ["pods"]
-    verbs: ["get", "list", "watch"]
+    verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: ["services"]
+    resourceNames: ["traffic-manager"]
+    verbs: ["get"]
   - apiGroups: [""]
     resources: ["pods/portforward"]
     verbs: ["create"]
 ---
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: traffic-manager-connect
+  namespace: ambassador
 subjects:
-  - name: telepresence-test-developer
-    kind: ServiceAccount
-    namespace: default
+  - kind: ServiceAccount
+    name: tp-user
+    namespace: ambassador
 roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  name: traffic-manager-connect
   kind: Role
+  name: traffic-manager-connect
+  apiGroup: rbac.authorization.k8s.io
 ```
 
-## Namespace only telepresence user access
+Once connected, it is desirable, but not necessary that the client can create port-forwards directly to Traffic Agents
+in the namespace that it is connected to. The lack of this permission will cause all traffic to be routed via the
+Traffic Manager, which will have a slightly negative impact on throughput.
 
-RBAC for multi-tenant scenarios where multiple dev teams are sharing a single cluster where users are constrained to a specific namespace(s).
+It's recommended that the client also has the following permissions in a cluster-wide installation:
 
-> [!WARNING]
-> The following RBAC configurations assume that there is already a Traffic Manager deployment set up by a Cluster Administrator.
-
-For each accessible namespace
 ```yaml
----
-apiVersion: v1
-kind: ServiceAccount
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: tp-user             # Update value for appropriate user name
-  namespace: tp-namespace   # Update value for appropriate namespace
+  name:  telepresence-ambassador
+rules:
+- apiGroups:
+  - ""
+  resources: ["namespaces"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get"]
+
+  # Necessary if the client should be able to gather the pod logs
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list"]
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get"]
+
+  # All traffic will be routed via the traffic-manager unless a portforward can be created directly to a pod
+- apiGroups: [""]
+  resources: ["pods/portforward"]
+  verbs: ["create"]
+
 ---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: telepresence-ambassador
+subjects:
+  - kind: ServiceAccount
+    name: tp-user
+    namespace: ambassador
+roleRef:
+  kind: ClusterRole
+  name: telepresence-ambassador
+  apiGroup: rbac.authorization.k8s.io
+```
+
+The corresponding configuration for a namespaced installation, for each namespaece that the client should be able to
+access:
+
+
+```yaml
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name:  telepresence-role
-  namespace: tp-namespace    # Should be the same as metadata.namespace of above  ServiceAccount
+  name:  telepresence-client
 rules:
 - apiGroups: [""]
-  resources: ["services"]
-  verbs: ["get", "list", "watch"]
-- apiGroups: ["apps"]
-  resources: ["deployments", "replicasets", "statefulsets"]
-  verbs: ["get", "list", "watch"]
+  resources: ["pods"]
+  verbs: ["get"]
+
+  # Necessary if the client should be able to gather the pod logs
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list"]
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get"]
+
+  # All traffic will be routed via the traffic-manager unless a portforward can be created directly to a pod
+- apiGroups: [""]
+  resources: ["pods/portforward"]
+  verbs: ["create"]
+
 ---
-kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
 metadata:
-  name: telepresence-role-binding
-  namespace: tp-namespace   # Should be the same as metadata.namespace of above  ServiceAccount
+  name: telepresence-client
 subjects:
-- kind: ServiceAccount
-  name: tp-user             # Should be the same as metadata.name of above ServiceAccount
+  - kind: ServiceAccount
+    name: tp-user
+    namespace: ambassador
 roleRef:
   kind: Role
-  name: telepresence-role
+  name: telepresence-client
   apiGroup: rbac.authorization.k8s.io
 ```
 

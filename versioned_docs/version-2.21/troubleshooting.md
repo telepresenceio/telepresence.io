@@ -43,7 +43,27 @@ After you've installed `sshfs`, if mounts still aren't working:
 2. Add your user to the "fuse" group with: `sudo usermod -a -G fuse <your username>`
 3. Restart your computer after uncommenting `user_allow_other` 
 
-### No Sidecar Injected in GKE private clusters
+## DNS is broken on macOS
+
+Commands like `dig` cannot find cluster resources even though Telepresence is connected to the cluster, but it works
+with `curl`.
+
+This is because `dig`, and some other utilities on macOS have their own built-in DNS client which bypasses the macOS
+native DNS system and use the libc resolver directly. Here's an excerpt from the `dig` command's man-page:
+> Mac OS X NOTICE
+> 
+> The nslookup command does not use the host name and address resolution or the DNS query routing
+> mechanisms used by other processes running on Mac OS X.  The results of name or address queries
+> printed by nslookup may differ from those found by other processes that use the Mac OS X native
+> name and address resolution mechanisms.  The results of DNS queries may also differ from queries
+> that use the Mac OS X DNS routing library.
+
+A command that should always work is:
+```console
+$ dscacheutil -q host -a name <name to resolve>
+```
+
+## No Sidecar Injected in GKE private clusters
 
 An attempt to `telepresence intercept` results in a timeout, and upon examination of the pods (`kubectl get pods`) it's discovered that the intercept command did not inject a sidecar into the workload's pods:
 

@@ -62,7 +62,7 @@ const config: Config = {
 				},
 				docs: {
 					editUrl: ({docPath}) => {
-						return `https://github.com/telepresenceio/telepresence/tree/thallgren/add-documentation/docs/${docPath}`
+						return `https://github.com/telepresenceio/telepresence/tree/release/v2/docs/${docPath}`
 					},
 					exclude: ['**/release-notes.md', '**/README.md', '**/CONTRIBUTING.md'],
 					includeCurrentVersion: false,

@@ -43,10 +43,12 @@ DOCS_BRANCH:=${DOCS_BRANCH}
 
 .PHONY: read-branch
 read-branch:
-	git fetch telepresence
+	git remote add telepresence git@github.com:telepresenceio/telepresence.git
+	git fetch --no-tags telepresence
 	rm -rf docs
 	git add docs || true
 	git read-tree --prefix docs -u telepresence/$(DOCS_BRANCH):docs
+	git remote remove telepresence
 
 # drop-version will remove the version given by DOCS_VERSION.
 # Example:
@@ -60,7 +62,7 @@ drop-version:
 # generate-version will first remove the given version and then regenerate it. Assumes that
 # read-branch has been called just prior.
 .PHONY: generate-version
-generate-version: drop-version
+generate-version: read-branch drop-version
 	yarn docusaurus docs:version $(DOCS_VERSION)
 	rm -rf docs
 	git checkout HEAD -- docs

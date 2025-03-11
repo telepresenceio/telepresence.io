@@ -2,17 +2,11 @@
 title: Telepresence 2.21
 description: What's new in Telepresence 2.21.
 slug: telepresence-2.21
-authors:
-  - name: Thomas Hallgren
-    title: Maintainer of Telepresence OSS
-    url: https://github.com/thallgren
-    image_url: https://github.com/thallgren.png
-    socials:
-      linkedin: https://www.linkedin.com/in/thallgren/
+authors: thallgren
 ---
 
-Telepresence 2.21.0 has been released, and here is a walkthrough of its many new features, such as  automatic VPN
-conflict avoidance, the new `telepresence ingest` command, and the improved docker  support provided by commands like
+Telepresence 2.21.0 has been released, and here is a walkthrough of its many new features, such as automatic VPN
+conflict avoidance, the new `telepresence ingest` command, and the improved docker support provided by commands like
 `telepresence curl` and `telepresence docker-run`.
 
 <!-- truncate -->

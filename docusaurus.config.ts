@@ -98,6 +98,9 @@ const config: Config = {
 						return items;
 					},
 				},
+				sitemap: {
+					lastmod: "datetime",
+				},
 				theme: {
 					customCss: ['./src/css/custom.css', './src/css/telepresence.scss'],
 				},

@@ -68,6 +68,10 @@
       link: reference/routing
     - title: Monitoring
       link: reference/monitoring
+- title: Comparisons
+  items:
+    - title: Telepresence vs mirrord
+      link: compare/mirrord
 - title: FAQs
   link: faqs
 - title: Troubleshooting

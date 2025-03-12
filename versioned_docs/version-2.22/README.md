@@ -19,6 +19,7 @@ raw markdown version, more bells and whistles at [telepresence.io](https://telep
   - [Use Telepresence with Docker](howtos/docker.md)
   - [Work with large clusters](howtos/large-clusters.md)
   - [Host a cluster in Docker or a VM](howtos/cluster-in-vm.md)
+  - [Use Telepresence with Azure (Microsoft Learn)](https://learn.microsoft.com/en-us/azure/aks/use-telepresence-aks.md)
 - Technical reference
   - [Architecture](reference/architecture.md)
   - [Client reference](reference/client.md)
@@ -38,6 +39,8 @@ raw markdown version, more bells and whistles at [telepresence.io](https://telep
   - [Networking through Virtual Network Interface](reference/tun-device.md)
   - [Connection Routing](reference/routing.md)
   - [Monitoring](reference/monitoring.md)
+- Comparisons
+  - [Telepresence vs mirrord](compare/mirrord.md)
 - [FAQs](faqs.md)
 - [Troubleshooting](troubleshooting.md)
 - [Community](community.md)

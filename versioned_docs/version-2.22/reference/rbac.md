@@ -27,7 +27,7 @@ kind: Config
 clusters:
 - name: my-cluster # Must match the cluster value in the contexts config
   cluster:
-    ## The cluster field is highly cloud dependent.
+    ## The cluster field is highly cloud-dependent.
 contexts:
 - name: my-context
   context:
@@ -56,9 +56,10 @@ set up differently depending on if the manager is installed using a dynamic or a
 The Traffic Manager will require cluster wide access to several resources when it lacks a namespace selector, or when it
 is configured with a dynamic namespace selector.
 
+### Traffic Manager Permissions
+
 These are the permissions required by the `traffic-manager` account in such a configuration:
 
-### Traffic Manager Permissions
 ```yaml
 ---
 apiVersion: v1

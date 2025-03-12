@@ -78,6 +78,13 @@ const config: Config = {
 						const linkToItem = ((linkItem: LinkItem) => {
 							if (linkItem.link) {
 								idSet.delete(linkItem.link);
+								if(linkItem.link.startsWith("https://")) {
+									return {
+										type: 'link',
+										label: linkItem.title,
+										href: linkItem.link
+									}
+								}
 								return {
 									type: 'doc',
 									label: linkItem.title,

@@ -47,4 +47,4 @@ Managers, as long as each one manages its own unique set of namespaces.
 
 A client that connects to a Traffic Manager will automatically be limited to its managed namespaces.
 
-See [Limiting the Namespace Scope](../install/manager.md#limiting-the-namespace-scope) for details.
+See [Installing a namespaced-scoped traffic-manager](../install/manager.md#limiting-the-namespace-scope) for details.

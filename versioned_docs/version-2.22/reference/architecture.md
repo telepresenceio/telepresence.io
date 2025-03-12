@@ -43,4 +43,4 @@ running `telepresence list` or `kubectl describe pod <pod-name>`.
 Depending on if an `replace` or `intercept` is active or not, the Traffic Agent will either route the incoming request 
 to your workstation, or it will pass it along to the container in the pod usually handling requests.
 
-Please see [Traffic Agent Sidecar](intercepts/sidecar.md) for details.
+Please see [Traffic Agent Sidecar](engagements/sidecar.md) for details.

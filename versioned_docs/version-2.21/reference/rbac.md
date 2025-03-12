@@ -266,4 +266,4 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-The user will also need the [Traffic Manager connect permission](#traffic-manager-connect-permission) described above.
+The user will also need the [Traffic Manager connect permission](#cluster-wide-installation) described above.

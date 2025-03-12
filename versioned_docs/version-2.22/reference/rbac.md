@@ -58,6 +58,7 @@ is configured with a dynamic namespace selector.
 
 These are the permissions required by the `traffic-manager` account in such a configuration:
 
+### Traffic Manager Permissions
 ```yaml
 ---
 apiVersion: v1
@@ -262,4 +263,4 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-The user will also need the [Traffic Manager connect permission](#traffic-manager-connect-permission) described above.
+The user will also need the [Traffic Manager connect permission](#traffic-manager-permissions) described above.

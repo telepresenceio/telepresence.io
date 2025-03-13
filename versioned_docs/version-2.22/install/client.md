@@ -72,7 +72,7 @@ We've developed a Powershell script to simplify the process of installing telepr
 # from PowerShell as Administrator.
 
 # 1. Download the latest windows zip containing telepresence.exe and its dependencies (~50 MB):
-Invoke-WebRequest https://github.com/telepresenceio/telepresence/releases/download/v2.21.3/telepresence-windows-amd64.zip -OutFile telepresence.zip
+Invoke-WebRequest https://github.com/telepresenceio/telepresence/releases/latest/download/telepresence-windows-amd64.zip -OutFile telepresence.zip
 
 # 2. Unzip the telepresence.zip file to the desired directory, then remove the zip file:
 Expand-Archive -Path telepresence.zip -DestinationPath telepresenceInstaller/telepresence
@@ -97,7 +97,7 @@ Remove-Item telepresenceInstaller -Recurse -Confirm:$false -Force
 # from PowerShell as Administrator.
 
 # 1. Download the latest windows zip containing telepresence.exe and its dependencies (~50 MB):
-Invoke-WebRequest https://github.com/telepresenceio/telepresence/releases/download/v2.21.3/telepresence-windows-arm64.zip -OutFile telepresence.zip
+Invoke-WebRequest https://github.com/telepresenceio/telepresence/releases/latest/download/telepresence-windows-arm64.zip -OutFile telepresence.zip
 
 # 2. Unzip the telepresence.zip file to the desired directory, then remove the zip file:
 Expand-Archive -Path telepresence.zip -DestinationPath telepresenceInstaller/telepresence

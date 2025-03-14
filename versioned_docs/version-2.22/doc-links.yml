@@ -1,0 +1,84 @@
+- title: Quick start
+  link: quick-start
+- title: Install Telepresence
+  items:
+    - title: Install Client
+      link: install/client
+    - title: Upgrade Client
+      link: install/upgrade
+    - title: Install Traffic Manager
+      link: install/manager
+    - title: Cloud Provider Prerequisites
+      link: install/cloud
+- title: Core concepts
+  items:
+    - title: The developer experience and the inner dev loop
+      link: concepts/devloop
+    - title: "Making the remote local: Faster feedback, collaboration and debugging"
+      link: concepts/faster
+    - title: Intercepts
+      link: concepts/intercepts
+- title: How do I...
+  items:
+    - title: Code and debug an application locally
+      link: howtos/engage
+    - title: Use Telepresence with Docker
+      link: howtos/docker
+    - title: Work with large clusters
+      link: howtos/large-clusters
+    - title: Host a cluster in Docker or a VM
+      link: howtos/cluster-in-vm
+    - title: Use Telepresence with Azure (Microsoft Learn)
+      link: https://learn.microsoft.com/en-us/azure/aks/use-telepresence-aks
+- title: Technical reference
+  items:
+    - title: Architecture
+      link: reference/architecture
+    - title: Client reference
+      link: reference/client
+    - title: Laptop-side configuration
+      link: reference/config
+    - title: Cluster-side configuration
+      link: reference/cluster-config
+    - title: Using Docker for engagements
+      link: reference/docker-run
+    - title: Running Telepresence in a Docker container
+      link: reference/inside-container
+    - title: Environment variables
+      link: reference/environment
+    - title: Engagements
+      items:
+        - title: Configure intercept using CLI
+          link: reference/engagements/cli
+        - title: Traffic Agent Sidecar
+          link: reference/engagements/sidecar
+        - title: Target a specific container
+          link: reference/engagements/container
+    - title: Volume mounts
+      link: reference/volume
+    - title: DNS resolution
+      link: reference/dns
+    - title: RBAC
+      link: reference/rbac
+    - title: Telepresence and VPNs
+      link: reference/vpn
+    - title: Networking through Virtual Network Interface
+      link: reference/tun-device
+    - title: Connection Routing
+      link: reference/routing
+    - title: Monitoring
+      link: reference/monitoring
+- title: Comparisons
+  items:
+    - title: Telepresence vs mirrord
+      link: compare/mirrord
+- title: FAQs
+  link: faqs
+- title: Troubleshooting
+  link: troubleshooting
+- title: Community
+  link: community
+- title: Release Notes
+  link: release-notes
+- title: Licenses
+  link: licenses

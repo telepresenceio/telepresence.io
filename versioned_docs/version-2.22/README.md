@@ -1,0 +1,48 @@
+---
+description: Main menu when using plain markdown. Excluded when generating the website
+---
+# <img src="images/logo.png" height="64px"/> Telepresence Documentation
+raw markdown version, more bells and whistles at [telepresence.io](https://telepresence.io)
+
+- [Quick start](quick-start.md)
+- Install Telepresence
+  - [Install Client](install/client.md)
+  - [Upgrade Client](install/upgrade.md)
+  - [Install Traffic Manager](install/manager.md)
+  - [Cloud Provider Prerequisites](install/cloud.md)
+- Core concepts
+  - [The developer experience and the inner dev loop](concepts/devloop.md)
+  - [Making the remote local: Faster feedback, collaboration and debugging](concepts/faster.md)
+  - [Intercepts](concepts/intercepts.md)
+- How do I...
+  - [Code and debug an application locally](howtos/engage.md)
+  - [Use Telepresence with Docker](howtos/docker.md)
+  - [Work with large clusters](howtos/large-clusters.md)
+  - [Host a cluster in Docker or a VM](howtos/cluster-in-vm.md)
+  - [Use Telepresence with Azure (Microsoft Learn)](https://learn.microsoft.com/en-us/azure/aks/use-telepresence-aks.md)
+- Technical reference
+  - [Architecture](reference/architecture.md)
+  - [Client reference](reference/client.md)
+  - [Laptop-side configuration](reference/config.md)
+  - [Cluster-side configuration](reference/cluster-config.md)
+  - [Using Docker for engagements](reference/docker-run.md)
+  - [Running Telepresence in a Docker container](reference/inside-container.md)
+  - [Environment variables](reference/environment.md)
+  - Engagements
+    - [Configure intercept using CLI](reference/engagements/cli.md)
+    - [Traffic Agent Sidecar](reference/engagements/sidecar.md)
+    - [Target a specific container](reference/engagements/container.md)
+  - [Volume mounts](reference/volume.md)
+  - [DNS resolution](reference/dns.md)
+  - [RBAC](reference/rbac.md)
+  - [Telepresence and VPNs](reference/vpn.md)
+  - [Networking through Virtual Network Interface](reference/tun-device.md)
+  - [Connection Routing](reference/routing.md)
+  - [Monitoring](reference/monitoring.md)
+- Comparisons
+  - [Telepresence vs mirrord](compare/mirrord.md)
+- [FAQs](faqs.md)
+- [Troubleshooting](troubleshooting.md)
+- [Community](community.md)
+- [Release Notes](release-notes.md)
+- [Licenses](licenses.md)

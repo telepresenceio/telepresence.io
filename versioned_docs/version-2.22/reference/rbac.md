@@ -8,7 +8,7 @@ toc_max_heading_level: 2
 The intention of this document is to provide a template for securing and limiting the permissions of Telepresence.
 This documentation covers the full extent of permissions necessary to administrate Telepresence components in a cluster.
 
-There are two general categories for cluster permissions with respect to Telepresence.  There are RBAC settings for a User and for an Administrator described above.  The User is expected to only have the minimum cluster permissions necessary to create a Telepresence [intercept](../howtos/intercepts.md), and otherwise be unable to affect Kubernetes resources.
+There are two general categories for cluster permissions with respect to Telepresence.  There are RBAC settings for a User and for an Administrator described above.  The User is expected to only have the minimum cluster permissions necessary to create a Telepresence [engagement](../howtos/engage.md), and otherwise be unable to affect Kubernetes resources.
 
 In addition to the above, there is also a consideration of how to manage Users and Groups in Kubernetes which is outside of the scope of the document.  This document will use Service Accounts to assign Roles and Bindings.  Other methods of RBAC administration and enforcement can be found on the [Kubernetes RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) page.
 
@@ -27,7 +27,7 @@ kind: Config
 clusters:
 - name: my-cluster # Must match the cluster value in the contexts config
   cluster:
-    ## The cluster field is highly cloud dependent.
+    ## The cluster field is highly cloud-dependent.
 contexts:
 - name: my-context
   context:
@@ -49,11 +49,16 @@ Telepresence administration requires permissions for creating the `traffic-manag
 done by a full cluster administrator.
 
 Once installed, the Telepresence Traffic Manager will run using the `traffic-manager` ServiceAccount. This account is
-set up differently depending on if the manager is installed cluster-wide or namespaced.
+set up differently depending on if the manager is installed using a dynamic or a static namespace selector.
 
-### Cluster Wide Installation
+### Installation without, or with dynamic, namespace selection
 
-This is the permissions required by the `traffic-manager` account in a cluster-wide configuration:
+The Traffic Manager will require cluster wide access to several resources when it lacks a namespace selector, or when it
+is configured with a dynamic namespace selector.
+
+### Traffic Manager Permissions
+
+These are the permissions required by the `traffic-manager` account in such a configuration:
 
 ```yaml
 ---
@@ -68,13 +73,6 @@ kind: ClusterRole
 metadata:
   name: traffic-manager
 rules:
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    verbs: ["create"]
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    verbs: ["get", "list", "watch"]
-    resourceNames: ["telepresence-agents"]
   - apiGroups: ["apps"]
     resources: ["deployments", "replicasets", "statefulsets"]
     verbs: ["get", "list", "watch"]
@@ -86,18 +84,22 @@ rules:
     verbs: ["get", "watch"]
   - apiGroups: [""]
     resources: ["pods"]
-    verbs: ["get", "list", "watch"]
+    verbs: ["get", "list", "watch"] # patch not needed when agentInjector.enabled is set to false
 
   # If argoRollouts.enabled is set to true
   - apiGroups: ["argoproj.io"]
     resources: ["rollouts"]
     verbs: ["get", "list", "watch"]
 
+  # When using podCIDRStrategy nodePodCIDRs
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get", "list", "watch"]
+
   # The following is not needed when agentInjector.enabled is set to false
   - apiGroups: [""]
-    resources: ["configmaps"]
-    verbs: ["update", "delete"]
-    resourceNames: ["telepresence-agents"]
+    resources: ["pods"]
+    verbs: ["patch"]
   - apiGroups: ["apps"]
     resources: ["deployments", "replicasets", "statefulsets"]
     verbs: ["patch"]
@@ -105,11 +107,6 @@ rules:
   - apiGroups: ["argoproj.io"]
     resources: ["rollouts"]
     verbs: ["patch"]
-
-  # When using podCIDRStrategy nodePodCIDRs
-  - apiGroups: [""]
-    resources: ["nodes"]
-    verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -125,11 +122,12 @@ roleRef:
   kind: ClusterRole
 ```
 
-### Namespaced Installation
 
-The permissions required by the `traffic-manager` account in a namespaced configuration is very similar to the ones
-used in a cluster-wide installation, but a `Role`/`RoleBinding` will be installed in each managed namespace instead of
-the `ClusterRole`/`ClusterRoleBinding` pair.
+### Installation with static namespace selection
+
+The permissions required by the `traffic-manager` account in a statically namespaced configuration is very similar to
+the ones used in a dynamic configuration, but a `Role`/`RoleBinding` will be installed in each managed namespace instead
+of the `ClusterRole`/`ClusterRoleBinding` pair.
 
 ## Telepresence Client Access
 
@@ -180,7 +178,7 @@ Once connected, it is desirable, but not necessary that the client can create po
 in the namespace that it is connected to. The lack of this permission will cause all traffic to be routed via the
 Traffic Manager, which will have a slightly negative impact on throughput.
 
-It's recommended that the client also has the following permissions in a cluster-wide installation:
+It's recommended that the client also has the following permissions in a dynamic namespaces installation:
 
 ```yaml
 kind: ClusterRole
@@ -224,8 +222,8 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-The corresponding configuration for a namespaced installation, for each namespaece that the client should be able to
-access:
+The corresponding configuration for a static namespace installation, for each namespaece that the client should be able
+to access:
 
 
 ```yaml
@@ -266,4 +264,4 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-The user will also need the [Traffic Manager connect permission](#cluster-wide-installation) described above.
+The user will also need the [Traffic Manager connect permission](#traffic-manager-permissions) described above.

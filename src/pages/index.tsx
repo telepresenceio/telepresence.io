@@ -98,7 +98,7 @@ const HomePage: React.FC = () => {
 						<Typography variant="body2">
 							Telepresence is
 							a {link("Cloud Native Computing Foundation", "https://www.cncf.io/")} Sandbox
-							project created by the team at {link("Ambassador Labs", "https://www.getambassador.io/")}
+							project initially created by the team at {link("Ambassador", "https://www.getambassador.io/")}
 						</Typography>
 					</Box>
 				</Grid>

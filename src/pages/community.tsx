@@ -1,13 +1,10 @@
 import React from 'react';
-import HeroIcon from '../assets/images/hero-image.svg';
-import AmbassadorLogo from '../assets/images/ambassador-logo.svg';
 import SlackLogo from '../assets/images/slack-logo.svg';
 import GithubLogo from '../assets/images/github-logo.svg';
 import Typography from "@mui/material/Typography";
-import {indigo} from "@mui/material/colors";
+
 import Grid from "@mui/material/Grid2";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
+
 import {Card, CardActionArea, CardContent, Theme} from "@mui/material";
 import Layout from "../components/Layout";
 
@@ -44,37 +41,6 @@ const CommunityPage: React.FC = () => {
 						We welcome any and all suggestions, new features, integrations, and
 						documentation!
 					</Typography>
-				</Grid>
-			</Grid>
-			<Grid container direction='row' alignItems='center' sx={{
-				color: 'white',
-				paddingBottom: '2em',
-				background: `linear-gradient(90deg, ${indigo[900]} 10%, ${indigo[500]} 100%)`
-			}}>
-				<Grid size={6.5} offset={2.75}>
-					<Typography fontWeight={"bold"} variant='h4' component="h1" padding={'2em 0'} textAlign={'center'}>
-						Ecosystem Projects Related to Telepresence
-					</Typography>
-				</Grid>
-				<Grid size={{xs: 4, md: 4}} offset={{xs: 4, md: 0}}>
-					<HeroIcon/>
-				</Grid>
-				<Grid size={{xs: 12, md: 8}} paddingX={'2em'}>
-					<Box>
-						<AmbassadorLogo width="150" height="22"/>
-						<Typography variant='h6' paddingBottom='1em'>
-							Ambassador supports Telepresence for fast, efficent development
-							of Kubernetes services for development teams. In addition to the
-							features of Telepresence for local development, Ambassador
-							includes a cloud dashboard and automatically generates preview
-							URLs for easily sharing development environments with teammates.
-							Ambassador makes it easy for developers to collaborate on
-							Kubernetes microservices without disturbing production.
-						</Typography>
-						<Button variant='contained' href="https://www.getambassador.io/products/telepresence/">
-							Learn more
-						</Button>
-					</Box>
 				</Grid>
 			</Grid>
 			<Grid container padding={'2em'} direction='row' alignItems='center' bgcolor={(theme: Theme) => theme.palette.marketing.light} textAlign={'center'}>

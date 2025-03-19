@@ -196,7 +196,7 @@ const config: Config = {
 	plugins: ["docusaurus-plugin-sass", "./src/plugins/configure-svgo.ts"],
 
 	customFields: {
-		canonicalBaseUrl: "https://www.telepresence.io",
+		canonicalBaseUrl: "https://telepresence.io",
 	}
 };
 

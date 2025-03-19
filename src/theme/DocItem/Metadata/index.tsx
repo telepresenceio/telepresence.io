@@ -12,7 +12,7 @@ type Props = WrapperProps<typeof MetadataType>;
 export default function MetadataWrapper(props: Props): JSX.Element {
   const { siteConfig: {customFields}} = useDocusaurusContext()
   const { pathname } = useLocation();
-  const canonical = `${customFields['canonicalBaseUrl']}${pathname}`
+  const canonical = `${customFields['canonicalBaseUrl']}${pathname.replace(/\/$/, "")}`
 
   return (
     <>

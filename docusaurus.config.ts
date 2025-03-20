@@ -107,6 +107,7 @@ const config: Config = {
 				},
 				sitemap: {
 					lastmod: "datetime",
+					ignorePatterns: ['/docs/[0-9]*([0-9]).[0-9]*([0-9])/**'],
 				},
 				theme: {
 					customCss: ['./src/css/custom.css', './src/css/telepresence.scss'],

@@ -16,13 +16,11 @@ The client can be either completely contained in Docker or run directly on the w
 Mirrord was designed with simplicity in mind. You install the CLI tool, and that's it. It will do the rest automatically under the hood.
 
 Mirrord solves the same problem as Telepresence, but in a different way. Instead of providing a proper network
-device and remotely mounted filesystems, mirrord will link the client application with a `mirrord-layer` shared library. This library will intercept accesses to the network, file system, and environment variables, and reroute them to a corresponding process in the cluster (the `mirrord-agent`) which then interacts with the targeted pod.
+device and remotely mounted filesystems, mirrord will link the client application with a `mirrord-layer` shared library. This library will inject code that intercepts accesses to the network, file system, and environment variables, and reroute them to a corresponding process in the cluster (the `mirrord-agent`) which then interacts with the targeted pod.
 
-### Limitations
+### Limitations with Code Injection
 
-While mirrotd is simple to set up, the chosen approach has several limitations, both on the client and the cluster side.
-
-### Limitations when using dynamic loading:
+Telepresence 1.x used the [code injection approach](https://www.getambassador.io/blog/code-injection-on-linux-and-macos), but desided to abandon it due to several limitations:
 
 1. It will only work on Linux and macOS platforms. There's no native support on Windows.
 2. It will only work with dynamically linked executables.

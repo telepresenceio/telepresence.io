@@ -114,15 +114,13 @@ const HomePage: React.FC = () => {
 				<Grid size={4}>
 					<StyledLoopIcon width="50" height="50" />
 					<Typography variant='subtitle1' component="h3" fontWeight="bold">
-						Accelerate Inner Dev Loop
+						Speed Up Your Inner Dev Loop
 					</Typography>
 					<Typography variant='body1' component="p">
-						Kubernetes was supposed to make your team faster, but now
-						everytime you make a code change you have to wait for containers
-						to build, be pushed to registry, and deployed. With Telepresence,
-						you can make changes to your service as if you&apos;re developing
-						locally, without having to run all the dependencies on your local
-						machine.
+						Kubernetes should make your team faster. 
+						But every time you make a code change, you have to wait for containers to build, be pushed to a registry and deployed. 
+						With Telepresence, you develop as if everything runs on your machine. 
+						No need to manage dependencies. Code, test, and see results immediately.
 					</Typography>
 				</Grid>
 				<Grid size={4}>
@@ -131,11 +129,11 @@ const HomePage: React.FC = () => {
 						Shift Testing Left
 					</Typography>
 					<Typography variant='body1' component="p">
-						You want to catch errors before they get shipped to production,
-						but to do that you need a realistic development environment and
-						with Kubernetes, those can be expensive. Telepresence lets you
-						connect the copy of your service locally to your remote
-						dependencies, so you can test like your laptop is in your cluster.
+						You want to catch errors before they reach production.
+						To do this, you need a realistic development environment.
+						However, Kubernetes environments can be costly. 
+						Telepresence solves this by letting you connect your local service to remote dependencies. 
+						This allows you to test as if your laptop is part of the cluster.
 					</Typography>
 				</Grid>
 				<Grid size={4}>
@@ -144,9 +142,9 @@ const HomePage: React.FC = () => {
 						Use Your Existing Workflow
 					</Typography>
 					<Typography variant='body1' component="p">
-						Missing your favorite code editor, debugger, or profiler? Anything
-						that runs on your laptop works with Telepresence - even when
-						you&apos;re working on a service running in Kubernetes.
+						Missing your favorite code editor, debugger, or profiler? 
+						You can use anything that runs on your laptop with Telepresence. 
+						This includes services running in Kubernetes.
 					</Typography>
 				</Grid>
 			</Grid>

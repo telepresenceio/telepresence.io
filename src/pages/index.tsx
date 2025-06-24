@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
 	const getStarted = (
 		<Button
 			variant="contained"
-			href={`/docs/quick-start/`}
+			href={`/docs/quick-start`}
 			sx={{
 				marginY: "4em",
 				lineHeight: "2.5",

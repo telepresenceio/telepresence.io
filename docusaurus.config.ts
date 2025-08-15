@@ -85,6 +85,17 @@ const config: Config = {
 										href: linkItem.link
 									}
 								}
+								if(linkItem.items) {
+								  return {
+									type: 'category',
+									label: linkItem.title,
+									link: {
+									  type: 'doc',
+									  id: linkItem.link
+									},
+									items: linkItem.items.map(linkToItem)
+								  }
+								}
 								return {
 									type: 'doc',
 									label: linkItem.title,

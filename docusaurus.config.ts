@@ -85,6 +85,17 @@ const config: Config = {
 										href: linkItem.link
 									}
 								}
+								if(linkItem.items) {
+								  return {
+									type: 'category',
+									label: linkItem.title,
+									link: {
+									  type: 'doc',
+									  id: linkItem.link
+									},
+									items: linkItem.items.map(linkToItem)
+								  }
+								}
 								return {
 									type: 'doc',
 									label: linkItem.title,
@@ -100,7 +111,9 @@ const config: Config = {
 						const linksPath = path.join(contentPath, "doc-links.yml");
 						const items = YAML.parse(readFileSync(linksPath, "utf-8")).map(linkToItem);
 						for (const id of idSet) {
-							logger.warn(`"${path.join(versionName, 'doc-links.yml')}" has no entry for id "${id}"`);
+							if (!id.startsWith("common/")) {
+								logger.warn(`"${path.join(versionName, 'doc-links.yml')}" has no entry for id "${id}"`);
+							}
 						}
 						return items;
 					},

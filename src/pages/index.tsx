@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
 			variant="contained"
 			href={`/docs/quick-start`}
 			sx={{
-				marginY: "4em",
+				marginTop: "3em",
 				lineHeight: "2.5",
 				fontSize: "1.5",
 				fontWeight: "bold",
@@ -41,17 +41,6 @@ const HomePage: React.FC = () => {
 	)
 	const link = (text: string, href: string) => (
 		<Link underline="hover" target={href.startsWith("https://") ? "_blank" : "_self"} href={href}>{text}</Link>
-	)
-
-	const card = (element: React.ReactElement<React.JSXElementConstructor<never>>) => (
-		<Grid size={2.4} display={"inline-grid"} direction="row" alignContent="center" sx={{
-			backgroundColor: "white",
-			aspectRatio: "2/1",
-			padding: "20px",
-			borderRadius: "8px",
-		}}>
-			{element}
-		</Grid>
 	)
 
 	const circle = (number: number, element: React.ReactElement<React.JSXElementConstructor<never>>) => (
@@ -84,7 +73,7 @@ const HomePage: React.FC = () => {
 
 	return (
 		<Layout title="Home" description="Telepresence: a local development environment for a remote Kubernetes cluster">
-			<Grid container padding={'6em 8%'} direction='row' alignItems='center' spacing={2} bgcolor={infoBg}>
+			<Grid container padding={'3em 8%'} direction='row' alignItems='center' spacing={2} bgcolor={infoBg}>
 				<Grid size={{xs: 12, md: 6}}>
 					<Typography fontWeight={"bold"} variant='h2' component="h1">
 						Telepresence
@@ -93,7 +82,7 @@ const HomePage: React.FC = () => {
 						Fast, local development for Kubernetes and OpenShift Microservices
 					</Typography>
 					{getStarted}
-					<Box>
+					<Box marginTop="3em">
 						<CNCFLogoIcon height="35px"/>
 						<Typography variant="body2">
 							Telepresence is
@@ -102,15 +91,15 @@ const HomePage: React.FC = () => {
 						</Typography>
 					</Box>
 				</Grid>
-				<Grid size={{xs: 12, md: 6}} alignContent="center" padding={'4em'}>
+				<Grid size={{xs: 12, md: 6}} alignContent="center" padding={'2em'}>
 					<TelepresenceIcon height={400} width={400}/>
 				</Grid>
 			</Grid>
-			<Grid container padding={'4em 8%'} spacing={7}>
-			<Typography width="100%" textAlign="center" paddingTop="2em" fontWeight={"bold"} variant='h4'
-			            component="h2">
-				Why Telepresence?
-			</Typography>
+			<Grid container padding={'3em 8%'} spacing={7}>
+				<Typography width="100%" textAlign="center" fontWeight={"bold"} variant='h4'
+							component="h2">
+					Why Telepresence?
+				</Typography>
 				<Grid size={4}>
 					<StyledLoopIcon width="50" height="50" />
 					<Typography variant='subtitle1' component="h3" fontWeight="bold">
@@ -148,20 +137,9 @@ const HomePage: React.FC = () => {
 					</Typography>
 				</Grid>
 			</Grid>
-			<Grid container padding={'0.7em 8% 4em'} alignItems='center' spacing={2} bgcolor={infoBg}>
-				<Typography width="100%" paddingY="1.5em" textAlign="center" fontWeight={"bold"} variant='h4'
-				            component="h2">
-					Used by
-				</Typography>
-				{card(<img src={EngelIcon} alt="Engel and voelkers" width="100%"/>)}
-				{card(<PoshLogo height="100%"/>)}
-				{card(<PtcLogo height="100%"/>)}
-				{card(<SaltLogo height="100%"/>)}
-				{card(<ManhattanLogo height="100%"/>)}
-			</Grid>
-			<Grid container padding={'4em 8%'} spacing={2}>
+			<Grid container padding={'3em 8%'} spacing={2}  bgcolor={infoBg}>
 				<Grid size={8} offset={2}>
-					<Typography width="100%" paddingY="0.6em" textAlign="center" fontWeight={"bold"} variant='h4'
+					<Typography width="100%" textAlign="center" fontWeight={"bold"} variant='h4'
 					            component="h2">
 						How does it work?
 					</Typography>

@@ -43,7 +43,6 @@ const config: Config = {
 	projectName: 'telepresence', // Usually your repo name.
 
 	onBrokenLinks: 'throw',
-	onBrokenMarkdownLinks: 'warn',
 
 	// Even if you don't use internationalization, you can use this field to set
 	// useful metadata like html lang. For example, if your site is Chinese, you
@@ -198,6 +197,9 @@ const config: Config = {
 	} satisfies Preset.ThemeConfig,
 
 	markdown: {
+		hooks: {
+			onBrokenMarkdownLinks: 'warn',
+		},
 		preprocessor({filePath, fileContent}) {
 			const vars = getDocVariables(filePath);
 			return vars? fileContent.replace(/\$(\S+)\$/g, (match, key) => {

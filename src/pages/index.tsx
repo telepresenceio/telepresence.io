@@ -183,15 +183,4 @@ const HomePage: React.FC = () => {
 	)
 }
 
-/*
-export const Head = ({location}) => {
-    return (
-        <GlobalHead location={location} title="Home" canonical="https://www.getambassador.io/products/telepresence">
-            <meta name="description"
-                  content="Telepresence: a local development environment for a remote Kubernetes cluster"/>
-        </GlobalHead>
-    )
-}
- */
-
 export default HomePage

@@ -2,7 +2,9 @@
 title: Telepresence 2.25
 description: What's new in Telepresence 2.25.
 slug: telepresence-2.25
-authors: thallgren
+authors:
+  - thallgren
+  - njayp
 ---
 
 ## Unlocking Precision Debugging

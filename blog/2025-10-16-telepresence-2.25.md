@@ -70,7 +70,7 @@ This feature shines in collaborative environments, letting multiple devs work si
 
 ## AI-Powered Development: MCP Integration
 
-Telepresence 2.25 also brings an exciting new capability: integration with the Model Context Protocol (MCP). Through the [ophis](https://github.com/njayp/ophis) library, the Telepresence CLI is now available as an MCP server, enabling AI assistants to directly interact with your Kubernetes development workflow.
+Telepresence 2.25 introduces support for the Model Context Protocol (MCP), allowing AI assistants like Claude to execute Telepresence commands on your behalf. Using the [ophis](https://github.com/njayp/ophis) library, Telepresence now runs as an MCP server that exposes its CLI commands as tools that AI assistants can call directly.
 
 ### Available Commands
 

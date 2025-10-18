@@ -2,7 +2,9 @@
 title: Telepresence 2.25
 description: What's new in Telepresence 2.25.
 slug: telepresence-2.25
-authors: thallgren
+authors:
+  - thallgren
+  - njayp
 ---
 
 ## Unlocking Precision Debugging
@@ -16,6 +18,7 @@ In the fast-paced world of Kubernetes development, efficiency and collaboration 
 Gone are the days of intercepting *all* traffic to a service, which could disrupt team workflows or overload your local setup. With HTTP-filtered intercepts, Telepresence lets you fine-tune exactly which requests get routed to your local machine. This is achieved through the Traffic Agent, which is injected into your workload's pods. The original containers keep running in the cluster, handling non-matching traffic and background tasks, while only the filtered requests come your way.
 
 ### Key New Flags for Granular Control
+
 Telepresence 2.25.0 introduces several new flags to the `telepresence intercept` command (and `wiretap` for observation-only mode):
 
 - **`--http-header`**: Filter based on specific HTTP headers in the format `'header-name=value'`. For example, `'x-user=alice'` ensures only requests with that header are intercepted. You can specify multiple headers by repeating the flag.
@@ -29,6 +32,7 @@ Telepresence 2.25.0 introduces several new flags to the `telepresence intercept`
 These flags can be combined for even more precision. If no filters are set, Telepresence falls back to intercepting all traffic on the specified port—maintaining backward compatibility with TCP intercepts.
 
 ### Routing Precedence and Conflict Detection
+
 When multiple developers are working on the same service, conflicts could arise—but Telepresence has you covered with a smart routing model:
 
 - **Header-based intercepts** take priority over path-only ones. Requests are checked against headers first, then paths.
@@ -41,6 +45,7 @@ Conflict detection kicks in only when filters would route the *same* traffic to 
 - If a true overlap is detected, Telepresence prevents the intercept and alerts you via the CLI.
 
 ### Real-World Example
+
 Imagine you're debugging an API service. Run this command to intercept only requests for your user on the `/api` path:
 
 ```
@@ -48,6 +53,7 @@ telepresence intercept example-app --http-header 'x-user=alice' --http-path-pref
 ```
 
 Output might look like:
+
 ```
 Using Deployment example-app
 intercepted
@@ -62,11 +68,46 @@ Now, only matching traffic hits your local app, while the cluster handles everyt
 
 This feature shines in collaborative environments, letting multiple devs work simultaneously on the same service by carving out their own traffic slices.
 
+## AI-Powered Development: MCP Integration
+
+Telepresence 2.25 introduces support for the Model Context Protocol (MCP), allowing AI assistants like Claude to execute Telepresence commands on your behalf. Using the [ophis](https://github.com/njayp/ophis) library, Telepresence now runs as an MCP server that exposes its CLI commands as tools that AI assistants can call directly.
+
+### Available Commands
+
+The MCP server exposes these Telepresence commands:
+
+- `telepresence connect`
+- `telepresence status`
+- `telepresence list`
+- `telepresence intercept`
+- `telepresence leave`
+- `telepresence wiretap`
+- `telepresence replace`
+- `telepresence ingest`
+- `telepresence quit`
+
+For security, the MCP server runs without root permissions and cannot start the root daemon.
+
+### Getting Started
+
+Enable Telepresence as an MCP server in Claude Desktop or VSCode:
+
+```bash
+# Claude Desktop
+telepresence mcp claude enable
+
+# VSCode (requires Copilot in Agent Mode)
+telepresence mcp vscode enable
+```
+
+Once enabled, you can interact with Telepresence through your AI assistant. For example, ask Claude to "intercept my-service on port 8080" or "check the status of my intercepts," and it will execute the appropriate Telepresence commands for you.
+
 ## Extending to Secure Environments: TLS/mTLS Support
 
 Security is non-negotiable in modern apps, but debugging encrypted traffic has historically been a pain. Telepresence 2.25.0 changes that by adding full support for HTTP-filtered intercepts on TLS/mTLS-encrypted applications. By decrypting traffic, inspecting headers/paths, and re-encrypting as needed, you can apply the same fine-grained filters to secure services.
 
 ### How It Works
+
 To handle encryption, Telepresence needs access to your app's TLS certificates. You provide this via Kubernetes annotations on your workload:
 
 - **Downstream Decryption**: For incoming traffic.
@@ -83,6 +124,7 @@ To handle encryption, Telepresence needs access to your app's TLS certificates. 
 Telepresence auto-detects protocols (HTTP/1.x, HTTP/2, TLS) via the service's `appProtocol`, port name/number, or probing.
 
 ### Setup Example
+
 Add this to your Deployment's template for downstream TLS via a secret:
 
 ```

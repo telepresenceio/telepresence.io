@@ -1,0 +1,46 @@
+---
+title: telepresence compose logs
+description: View output from containers
+hide_table_of_contents: true
+---
+
+View output from containers
+
+### Usage:
+```
+  telepresence compose logs [flags] [services]
+```
+
+### Flags:
+```
+  -h, --help   help for logs
+```
+
+### Compose flags:
+```
+      --env-file stringArray       Optional environment files
+  -f, --file stringArray           Compose configuration files
+      --profile stringArray        Profile to enable
+      --project-directory string   Specify an alternate working directory (default: the path of the, first specified, Compose file)
+      --project-name string        Project name
+```
+
+### Compose logs flags:
+```
+  -f, --follow          Follow log output
+      --index int       index of the container if service has multiple replicas
+      --no-color        Produce monochrome output
+      --no-log-prefix   Don't print prefix in logs
+      --since string    Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+  -n, --tail string     Number of lines to show from the end of the logs for each container (default &quot;all&quot;)
+  -t, --timestamps      Show timestamps
+      --until string    Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+```
+
+### Global Flags:
+```
+      --config string     Path to the Telepresence configuration file (default &quot;$HOME/.config/telepresence/config.yml&quot;)
+      --output string     Set the output format, supported values are 'json', 'yaml', and 'default' (default &quot;default&quot;)
+      --progress string   Set type of progress output (auto, tty, plain, json, quiet) (default &quot;auto&quot;)
+      --use string        Match expression that uniquely identifies the daemon container
+```

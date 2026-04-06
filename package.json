@@ -20,7 +20,7 @@
     "@docusaurus/preset-classic": "^3.9.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@mdx-js/react": "^3.0.0",
+    "@mdx-js/react": "^3.1.1",
     "@mui/icons-material": "^6.1.1",
     "@mui/lab": "^6.0.0-beta.10",
     "@mui/material": "^6.1.1",
@@ -37,10 +37,10 @@
     "@types/webpack": "^5.28.5",
     "docusaurus-plugin-sass": "^0.2.5",
     "remark-github-admonitions-to-directives": "^2.0.0",
-    "sass": "^1.79.3",
-    "sass-loader": "^16.0.2",
+    "sass": "^1.99.0",
+    "sass-loader": "^16.0.7",
     "typescript": "~5.5.2",
-    "typescript-plugin-css-modules": "^5.1.0"
+    "typescript-plugin-css-modules": "^5.2.0"
   },
   "browserslist": {
     "production": [

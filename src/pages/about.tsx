@@ -29,8 +29,7 @@ const AboutPage: React.FC = () => {
 						connecting that service to a remote Kubernetes cluster.
 					</Paragraph>
 					<Paragraph>
-						Telepresence is a CNCF sandbox tool initially built by the team at{' '}
-						<a href="https://www.getambassador.io/">Ambassador</a>, the creators
+						Telepresence is a CNCF sandbox tool initially built by the team at Ambassador, the creators
 						of Emissary-ingress (Kubernetes-native API gateway powered by Envoy Proxy).
 					</Paragraph>
 					<Paragraph>

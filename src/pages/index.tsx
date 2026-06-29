@@ -87,7 +87,7 @@ const HomePage: React.FC = () => {
 						<Typography variant="body2">
 							Telepresence is
 							a {link("Cloud Native Computing Foundation", "https://www.cncf.io/")} Sandbox
-							project initially created by the team at {link("Ambassador", "https://www.getambassador.io/")}
+							project initially created by the team at Ambassador.
 						</Typography>
 					</Box>
 				</Grid>
@@ -106,9 +106,9 @@ const HomePage: React.FC = () => {
 						Speed Up Your Inner Dev Loop
 					</Typography>
 					<Typography variant='body1' component="p">
-						Kubernetes should make your team faster. 
-						But every time you make a code change, you have to wait for containers to build, be pushed to a registry and deployed. 
-						With Telepresence, you develop as if everything runs on your machine. 
+						Kubernetes should make your team faster.
+						But every time you make a code change, you have to wait for containers to build, be pushed to a registry and deployed.
+						With Telepresence, you develop as if everything runs on your machine.
 						No need to manage dependencies. Code, test, and see results immediately.
 					</Typography>
 				</Grid>
@@ -120,8 +120,8 @@ const HomePage: React.FC = () => {
 					<Typography variant='body1' component="p">
 						You want to catch errors before they reach production.
 						To do this, you need a realistic development environment.
-						However, Kubernetes environments can be costly. 
-						Telepresence solves this by letting you connect your local service to remote dependencies. 
+						However, Kubernetes environments can be costly.
+						Telepresence solves this by letting you connect your local service to remote dependencies.
 						This allows you to test as if your laptop is part of the cluster.
 					</Typography>
 				</Grid>
@@ -131,8 +131,8 @@ const HomePage: React.FC = () => {
 						Use Your Existing Workflow
 					</Typography>
 					<Typography variant='body1' component="p">
-						Missing your favorite code editor, debugger, or profiler? 
-						You can use anything that runs on your laptop with Telepresence. 
+						Missing your favorite code editor, debugger, or profiler?
+						You can use anything that runs on your laptop with Telepresence.
 						This includes services running in Kubernetes.
 					</Typography>
 				</Grid>

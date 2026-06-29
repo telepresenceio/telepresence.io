@@ -103,9 +103,9 @@ const CaseStudiesPage: React.FC = () => {
 						Have a Telepresence story to share?
 					</Typography>
 					<Typography fontWeight={"bold"} variant='body1' component="p" padding="1em 0 2em">
-						Tell us your story
+						Tell us your story on the #telepresence-oss channel
 					</Typography>
-					<Button variant="contained" href="https://www.getambassador.io/contact-us/">contact us</Button>
+					<Button variant="contained" href="https://slack.cncf.io">contact us</Button>
 				</Grid>
 			</Grid>
 		</Layout>

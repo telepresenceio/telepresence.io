@@ -50,7 +50,8 @@ const TabsContainer: FC<Props> = ({children}) => {
 						setURL(newTab)
 					}} aria-label="intercept types">
 						<Tab value="regular" label="No intercept"/>
-						<Tab value="global" label="Intercept"/>
+						<Tab value="global" label="Global Intercept"/>
+                        <Tab value="personal" label="Personal Intercept"/>
 					</TabList>
 				</AppBar>
 				{children}

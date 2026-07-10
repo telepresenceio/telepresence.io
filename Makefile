@@ -50,6 +50,21 @@ read-branch:
 	git read-tree --prefix docs -u telepresence/$(DOCS_BRANCH):docs
 	git remote remove telepresence
 
+# TELEPRESENCE_REPO is the local clone of telepresenceio/telepresence that the
+# -local targets read from.
+TELEPRESENCE_REPO ?= ../telepresence
+
+# read-branch-local is like read-branch, but reads DOCS_BRANCH directly from
+# the local clone at TELEPRESENCE_REPO, so unpushed branches can be previewed.
+# Example:
+# DOCS_BRANCH=thallgren/docs-restructure make read-branch-local
+.PHONY: read-branch-local
+read-branch-local:
+	git fetch --no-tags $(TELEPRESENCE_REPO) $(DOCS_BRANCH)
+	rm -rf docs
+	git add docs || true
+	git read-tree --prefix docs -u FETCH_HEAD:docs
+
 # drop-version will remove the version given by DOCS_VERSION.
 # Example:
 # DOCS_VERSION=2.21 make drop-version
@@ -59,6 +74,13 @@ drop-version:
 	rm -rf "versioned_sidebars/version-$(DOCS_VERSION)-sidebars.json"
 	jq '. - ["$(DOCS_VERSION)"]' versions.json > versions.tmp && mv versions.tmp versions.json
 
+# generate-redirects regenerates the marked section of static/_redirects from
+# the redirects.yml files in the versioned docs. Hand-maintained rules outside
+# the markers are left untouched.
+.PHONY: generate-redirects
+generate-redirects:
+	node scripts/generate-redirects.mjs
+
 # generate-version will first remove the given version and then regenerate it. Assumes that
 # read-branch has been called just prior.
 .PHONY: generate-version
@@ -66,4 +88,16 @@ generate-version: read-branch drop-version
 	yarn docusaurus docs:version $(DOCS_VERSION)
 	rm -rf docs
 	git checkout HEAD -- docs
+	$(MAKE) generate-redirects
+	git add .
+
+# generate-version-local is like generate-version, but reads DOCS_BRANCH from
+# the local clone at TELEPRESENCE_REPO. Example:
+# DOCS_BRANCH=thallgren/docs-restructure DOCS_VERSION=2.30 make generate-version-local
+.PHONY: generate-version-local
+generate-version-local: read-branch-local drop-version
+	yarn docusaurus docs:version $(DOCS_VERSION)
+	rm -rf docs
+	git checkout HEAD -- docs
+	$(MAKE) generate-redirects
 	git add .

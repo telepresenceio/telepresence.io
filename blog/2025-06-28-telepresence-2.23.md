@@ -23,7 +23,7 @@ wiretap the same container.
 The `telepresence wiretap` command accepts the same flags as `telepresence intercept`, except the `to-pod` flag. Mounts
 are always read-only.
 
-More details can be found in the [Wiretap section](/docs/howtos/engage#wiretap) in our documentation.
+More details can be found in the [Wiretap section](/docs/2.23/howtos/engage#wiretap) in our documentation.
 
 ## Introducing the Teleroute Docker Network Plugin
 

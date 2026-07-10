@@ -36,7 +36,7 @@ For shared clusters, this gives developers a cleaner workflow: connect once,
 then choose the workload namespace per engagement instead of reconnecting or
 changing global context for every task.
 
-See the [engagement CLI reference](/docs/reference/engagements/cli) for the
+See the [engagement CLI reference](/docs/2.28/reference/engagements/cli) for the
 full command behavior.
 
 ---

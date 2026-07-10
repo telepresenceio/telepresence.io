@@ -28,6 +28,10 @@ function getDocVariables(filePath: string): VariablesType|null {
 	return vars
 }
 
+// Older versions are immutable snapshots, so the doc-links.yml completeness
+// check only makes sense for the latest version.
+const latestVersion: string = JSON.parse(readFileSync("versions.json", "utf-8"))[0];
+
 const config: Config = {
 	title: 'Telepresence',
 	tagline: 'Fast, local development for Kubernetes and OpenShift Microservices',
@@ -109,9 +113,11 @@ const config: Config = {
 						})
 						const linksPath = path.join(contentPath, "doc-links.yml");
 						const items = YAML.parse(readFileSync(linksPath, "utf-8")).map(linkToItem);
-						for (const id of idSet) {
-							if (!id.startsWith("common/")) {
-								logger.warn(`"${path.join(versionName, 'doc-links.yml')}" has no entry for id "${id}"`);
+						if (versionName === latestVersion) {
+							for (const id of idSet) {
+								if (!id.startsWith("common/")) {
+									logger.warn(`"${path.join(versionName, 'doc-links.yml')}" has no entry for id "${id}"`);
+								}
 							}
 						}
 						return items;

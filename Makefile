@@ -81,6 +81,19 @@ drop-version:
 generate-redirects:
 	node scripts/generate-redirects.mjs
 
+# MAX_VERSIONS is the number of docs versions the site retains. When a new
+# minor version surfaces through generate-version, versions further back are
+# scrubbed by prune-versions.
+MAX_VERSIONS ?= 5
+
+# prune-versions scrubs docs versions beyond the MAX_VERSIONS newest ones:
+# their versioned_docs tree, sidebar file, and versions.json entry. Blog posts
+# with links pinned to a scrubbed version must be repointed to a surviving
+# one; the docusaurus build fails on the broken links otherwise.
+.PHONY: prune-versions
+prune-versions:
+	node scripts/prune-versions.mjs $(MAX_VERSIONS)
+
 # generate-version will first remove the given version and then regenerate it. Assumes that
 # read-branch has been called just prior.
 .PHONY: generate-version
@@ -88,6 +101,7 @@ generate-version: read-branch drop-version
 	yarn docusaurus docs:version $(DOCS_VERSION)
 	rm -rf docs
 	git checkout HEAD -- docs
+	$(MAKE) prune-versions
 	$(MAKE) generate-redirects
 	git add .
 
@@ -99,5 +113,6 @@ generate-version-local: read-branch-local drop-version
 	yarn docusaurus docs:version $(DOCS_VERSION)
 	rm -rf docs
 	git checkout HEAD -- docs
+	$(MAKE) prune-versions
 	$(MAKE) generate-redirects
 	git add .

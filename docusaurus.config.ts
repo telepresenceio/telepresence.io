@@ -67,7 +67,7 @@ const config: Config = {
 					editUrl: ({docPath}) => {
 						return `https://github.com/telepresenceio/telepresence/tree/release/v2/docs/${docPath}`
 					},
-					exclude: ['**/release-notes.md', '**/README.md', '**/CONTRIBUTING.md'],
+					exclude: ['**/release-notes.md', '**/README.md', '**/CONTRIBUTING.md', '**/plans/**'],
 					includeCurrentVersion: false,
 					beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
 					async sidebarItemsGenerator(args) {

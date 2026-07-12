@@ -33,7 +33,8 @@ for (const { dir } of versions) {
 	}
 	for (const entry of YAML.parse(fs.readFileSync(file, "utf8")) ?? []) {
 		const { from, to } = entry;
-		if (from && to && from !== to) {
+		// from may be the empty string, redirecting /docs/ itself.
+		if (from != null && to && from !== to) {
 			rules.set(from, to);
 		}
 	}
@@ -53,6 +54,12 @@ for (const [from] of rules) {
 const block = [BEGIN];
 for (const from of [...rules.keys()].sort()) {
 	block.push(`/docs/${from} /docs/${rules.get(from)} 301`);
+}
+// A fallback per hosted version: rules without ! only apply when no file
+// matches, so this turns a versioned 404 into the same path in the latest
+// docs, where the rules above resolve renames.
+for (const { dir } of versions) {
+	block.push(`/docs/${dir.substring("version-".length)}/* /docs/:splat 301`);
 }
 block.push(END);
 

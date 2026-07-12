@@ -55,7 +55,7 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=20.19"
   },
   "resolutions": {
     "stylus": "github:stylus/stylus#0.62.0"

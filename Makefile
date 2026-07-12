@@ -49,6 +49,7 @@ read-branch:
 	git add docs || true
 	git read-tree --prefix docs -u telepresence/$(DOCS_BRANCH):docs
 	git remote remove telepresence
+	rm -rf docs/plans && git add docs/plans || true
 
 # TELEPRESENCE_REPO is the local clone of telepresenceio/telepresence that the
 # -local targets read from.
@@ -64,6 +65,7 @@ read-branch-local:
 	rm -rf docs
 	git add docs || true
 	git read-tree --prefix docs -u FETCH_HEAD:docs
+	rm -rf docs/plans && git add docs/plans || true
 
 # drop-version will remove the version given by DOCS_VERSION.
 # Example:

@@ -215,10 +215,10 @@ const HomePage: React.FC = () => {
 					)}
 					{circle(2, <Typography variant="body1">
 							Running `telepresence intercept service-name` triggers the
-							traffic-manager to install a traffic-agent proxy container
-							that runs within the Pods associated with the target Services.
-							This can route remote traffic to your local dev machine for
-							dev and test.
+							traffic-manager to install a traffic-agent — either as a
+							sidecar container inside the target Pods, or as a node-agent
+							that attaches to the Pods without modifying them. Both route
+							remote traffic to your local dev machine for dev and test.
 						</Typography>
 					)}
 					<Typography variant="body1">

@@ -8,6 +8,10 @@ import YAML from "yaml";
 import {existsSync, readFileSync} from "node:fs";
 import {Tag} from "@docusaurus/utils";
 
+const allVersions: string[] = JSON.parse(
+	readFileSync(path.join(__dirname, "versions.json"), "utf8"),
+);
+
 type VariablesType = { [key: string]: string }
 const variablesCache: { [key: string]: VariablesType } = {};
 
@@ -69,6 +73,12 @@ const config: Config = {
 					},
 					exclude: ['**/release-notes.md', '**/README.md', '**/CONTRIBUTING.md', '**/plans/**'],
 					includeCurrentVersion: false,
+					// Only the latest published version should be indexed by
+					// search engines; the site search is backed by Google and
+					// would otherwise return hits in stale versions.
+					versions: Object.fromEntries(
+						allVersions.slice(1).map((v) => [v, {noIndex: true}])
+					),
 					beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
 					async sidebarItemsGenerator(args) {
 						const {docs, version: {versionName, contentPath}} = args;

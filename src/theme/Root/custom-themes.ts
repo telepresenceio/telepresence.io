@@ -12,13 +12,6 @@ declare module "@mui/material/styles" {
 	}
 }
 
-createTheme({
-	colorSchemes: {
-		light: true,
-		dark: true,
-	}
-})
-
 export const customTheme = () => {
 	return createTheme({
 		colorSchemes: {

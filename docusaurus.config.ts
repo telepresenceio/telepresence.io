@@ -145,10 +145,8 @@ const config: Config = {
 	],
 
 	themeConfig: {
-		themeConfig: {
-			colorMode: {
-				respectPrefersColorScheme: true,
-			},
+		colorMode: {
+			respectPrefersColorScheme: true,
 		},
 		image: 'img/telepresence-social.jpg',
 		navbar: {

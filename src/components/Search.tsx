@@ -9,7 +9,7 @@ const GoogleSearch = styled('div')(() => ({
 		border: 0,
 	},
 	tr: {
-		color: "var(--ifm-navbar-color)",
+		color: "var(--ifm-navbar-link-color)",
 		border: 0,
 	},
 	td: {
@@ -95,7 +95,7 @@ const GoogleSearch = styled('div')(() => ({
 			display: 'block',
 			width: '14px',
 			height: '14px',
-			fill: "var(--ifm-navbar-color)",
+			fill: "var(--ifm-navbar-link-color)",
 		},
 		'&:hover, &:focus': {
 			backgroundColor: "var(--ifm-color-emphasis-200)",

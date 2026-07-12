@@ -19,7 +19,7 @@ The animations on this page follow requests through a small demo cluster in
 which an API service fans out to the Users and Orders services. Without an
 attachment, all requests are served inside the cluster:
 
-<Animation className="mode-regular" />
+<Animation className="mode-regular" style={{width: "100%", maxWidth: "600px", height: "auto"}} />
 
 All four modes are served by a [traffic-agent](architecture.md#traffic-agent)
 that the traffic-manager either injects into the workload's pods as a sidecar
@@ -49,7 +49,7 @@ everything intended for it to your workstation.
 Intercept reroutes requests destined for a service port to your workstation,
 while the remote container keeps running.
 
-<Animation className="mode-global" />
+<Animation className="mode-global" style={{width: "100%", maxWidth: "600px", height: "auto"}} />
 
 Here the Orders service is intercepted without a filter: every request to it
 is rerouted to the developer's workstation, and the users notice no
@@ -129,7 +129,7 @@ value and injects that header in the requests they make (browser extensions
 that add request headers make this convenient), without interfering with
 teammates or ordinary traffic.
 
-<Animation className="mode-personal" />
+<Animation className="mode-personal" style={{width: "100%", maxWidth: "600px", height: "auto"}} />
 
 Above, two developers intercept the Orders service simultaneously: orange
 requests carry Developer 2's header value, green ones Developer 1's, and the

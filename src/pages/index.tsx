@@ -11,14 +11,14 @@ import SaltLogo from '../assets/images/home/Salt_logo.svg';
 import ManhattanLogo from '../assets/images/home/Manhattan_logo.svg';
 import TPArchitectureLogo from '../assets/images/home/TP_Architecture.svg';
 import {deepPurple} from "@mui/material/colors";
-import Grid from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Layout from "../components/Layout";
 import {Theme} from "@mui/material";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material/styles";
 
 const HomePage: React.FC = () => {
 	const getStarted = (
@@ -44,15 +44,21 @@ const HomePage: React.FC = () => {
 	)
 
 	const circle = (number: number, element: React.ReactElement<React.JSXElementConstructor<never>>) => (
-		<Grid container alignItems="flex-start" spacing={1}>
-			<Grid display="inline-grid" width="1.7em" textAlign="center" sx={{
-				backgroundColor: deepPurple[300],
-				borderRadius: "50%",
-				color: "white",
-				fontWeight: "800",
-				fontSize: "1em",
-				lineHeight: "1.7em",
-			}}>{number}</Grid>
+		<Grid container spacing={1} sx={{
+            alignItems: "flex-start"
+        }}>
+			<Grid
+                sx={{
+                    display: "inline-grid",
+                    width: "1.7em",
+                    textAlign: "center",
+                    backgroundColor: deepPurple[300],
+                    borderRadius: "50%",
+                    color: "white",
+                    fontWeight: "800",
+                    fontSize: "1em",
+                    lineHeight: "1.7em"
+                }}>{number}</Grid>
 			<Grid size="grow">
 				{element}
 			</Grid>
@@ -72,17 +78,31 @@ const HomePage: React.FC = () => {
 	}));
 
 	return (
-		<Layout title="Home" description="Telepresence: a local development environment for a remote Kubernetes cluster">
-			<Grid container padding={'3em 8%'} direction='row' alignItems='center' spacing={2} bgcolor={infoBg}>
+        <Layout title="Home" description="Telepresence: a local development environment for a remote Kubernetes cluster">
+            <Grid
+                container
+                direction='row'
+                spacing={2}
+                sx={{
+                    padding: '3em 8%',
+                    alignItems: 'center',
+                    bgcolor: infoBg
+                }}>
 				<Grid size={{xs: 12, md: 6}}>
-					<Typography fontWeight={"bold"} variant='h2' component="h1">
+					<Typography variant='h2' component="h1" sx={{
+                        fontWeight: "bold"
+                    }}>
 						Telepresence
 					</Typography>
-					<Typography variant="h5" paddingTop="1.5em">
+					<Typography variant="h5" sx={{
+                        paddingTop: "1.5em"
+                    }}>
 						Fast, local development for Kubernetes and OpenShift Microservices
 					</Typography>
 					{getStarted}
-					<Box marginTop="3em">
+					<Box sx={{
+                        marginTop: "3em"
+                    }}>
 						<CNCFLogoIcon height="35px"/>
 						<Typography variant="body2">
 							Telepresence is
@@ -91,18 +111,33 @@ const HomePage: React.FC = () => {
 						</Typography>
 					</Box>
 				</Grid>
-				<Grid size={{xs: 12, md: 6}} alignContent="center" padding={'2em'}>
+				<Grid
+                    size={{xs: 12, md: 6}}
+                    sx={{
+                        alignContent: "center",
+                        padding: '2em'
+                    }}>
 					<TelepresenceIcon height={400} width={400}/>
 				</Grid>
 			</Grid>
-			<Grid container padding={'3em 8%'} spacing={7}>
-				<Typography width="100%" textAlign="center" fontWeight={"bold"} variant='h4'
-							component="h2">
+            <Grid container spacing={7} sx={{
+                padding: '3em 8%'
+            }}>
+				<Typography
+                    variant='h4'
+                    component="h2"
+                    sx={{
+                        width: "100%",
+                        textAlign: "center",
+                        fontWeight: "bold"
+                    }}>
 					Why Telepresence?
 				</Typography>
 				<Grid size={4}>
 					<StyledLoopIcon width="50" height="50" />
-					<Typography variant='subtitle1' component="h3" fontWeight="bold">
+					<Typography variant='subtitle1' component="h3" sx={{
+                        fontWeight: "bold"
+                    }}>
 						Speed Up Your Inner Dev Loop
 					</Typography>
 					<Typography variant='body1' component="p">
@@ -114,7 +149,9 @@ const HomePage: React.FC = () => {
 				</Grid>
 				<Grid size={4}>
 					<StyledLeftArrowIcon width="50" height="50"/>
-					<Typography variant='subtitle1' component="h3" fontWeight="bold">
+					<Typography variant='subtitle1' component="h3" sx={{
+                        fontWeight: "bold"
+                    }}>
 						Shift Testing Left
 					</Typography>
 					<Typography variant='body1' component="p">
@@ -127,7 +164,9 @@ const HomePage: React.FC = () => {
 				</Grid>
 				<Grid size={4}>
 					<StyledWrenchIcon width="50" height="50"/>
-					<Typography variant='subtitle1' component="h3" fontWeight="bold">
+					<Typography variant='subtitle1' component="h3" sx={{
+                        fontWeight: "bold"
+                    }}>
 						Use Your Existing Workflow
 					</Typography>
 					<Typography variant='body1' component="p">
@@ -137,10 +176,22 @@ const HomePage: React.FC = () => {
 					</Typography>
 				</Grid>
 			</Grid>
-			<Grid container padding={'3em 8%'} spacing={2}  bgcolor={infoBg}>
+            <Grid
+                container
+                spacing={2}
+                sx={{
+                    padding: '3em 8%',
+                    bgcolor: infoBg
+                }}>
 				<Grid size={8} offset={2}>
-					<Typography width="100%" textAlign="center" fontWeight={"bold"} variant='h4'
-					            component="h2">
+					<Typography
+                        variant='h4'
+                        component="h2"
+                        sx={{
+                            width: "100%",
+                            textAlign: "center",
+                            fontWeight: "bold"
+                        }}>
 						How does it work?
 					</Typography>
 					<Typography variant='subtitle1' component="p">
@@ -179,8 +230,8 @@ const HomePage: React.FC = () => {
 					{getStarted}
 				</Grid>
 			</Grid>
-		</Layout>
-	)
+        </Layout>
+    );
 }
 
 export default HomePage

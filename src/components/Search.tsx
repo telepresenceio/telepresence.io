@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material/styles";
 
 const GoogleSearch = styled('div')(() => ({
 	table: {

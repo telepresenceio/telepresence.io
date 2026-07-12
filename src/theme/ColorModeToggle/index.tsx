@@ -6,7 +6,7 @@ import {useColorScheme} from '@mui/material';
 
 type Props = WrapperProps<typeof ColorModeToggleType>;
 
-export default function ColorModeToggleWrapper(props: Props): JSX.Element {
+export default function ColorModeToggleWrapper(props: Props): React.JSX.Element {
 	// Get the MUI hook
 	const {setMode} = useColorScheme();
 

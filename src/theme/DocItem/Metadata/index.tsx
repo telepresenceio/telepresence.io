@@ -9,7 +9,7 @@ import {useDoc} from '@docusaurus/plugin-content-docs/client';
 
 type Props = WrapperProps<typeof MetadataType>;
 
-export default function MetadataWrapper(props: Props): JSX.Element {
+export default function MetadataWrapper(props: Props): React.JSX.Element {
   const { siteConfig: {customFields}} = useDocusaurusContext()
   const { pathname } = useLocation();
   const canonical = `${customFields['canonicalBaseUrl']}${pathname.replace(/\/$/, "")}`

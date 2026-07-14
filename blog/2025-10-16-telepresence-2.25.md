@@ -149,4 +149,4 @@ Combining HTTP-filtered intercepts with TLS/mTLS support means you can debug sec
 
 For more details, check out our docs on [intercepting applications](/docs/2.26/howtos/engage#intercept-your-application) and [TLS/mTLS handling](/docs/2.26/howtos/mtls).
 
-Ready to try it? Upgrade to Telepresence 2.25.0 today and intercept smarter. We'd love to hear your feedback—drop us a line or join the community discussions!
+Ready to try it? Upgrade to Telepresence 2.25.0 today and intercept smarter. We'd love to hear your feedback—drop us a line or join the [community discussions](https://github.com/telepresenceio/telepresence/discussions)!

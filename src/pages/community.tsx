@@ -1,6 +1,7 @@
 import React from 'react';
 import SlackLogo from '../assets/images/slack-logo.svg';
 import GithubLogo from '../assets/images/github-logo.svg';
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 import Typography from "@mui/material/Typography";
 
 import Grid from "@mui/material/Grid";
@@ -9,6 +10,13 @@ import {Card, CardActionArea, CardContent, Theme} from "@mui/material";
 import Layout from "../components/Layout";
 
 const SOCIAL_CARDS = [
+	{
+		logo: (<ForumOutlinedIcon sx={{fontSize: 48}}/>),
+		title: 'GitHub Discussions',
+		link: 'https://github.com/telepresenceio/telepresence/discussions',
+		description:
+			'Ask questions, share ideas, and help shape the roadmap — right where the code lives.',
+	},
 	{
 		logo: (<SlackLogo height={48} width={48}/>),
 		title: 'Slack',

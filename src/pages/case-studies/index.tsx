@@ -135,9 +135,10 @@ const CaseStudiesPage: React.FC = () => {
                             fontWeight: "bold",
                             padding: "1em 0 2em"
                         }}>
-						Tell us your story on the #telepresence-oss channel
+						Tell us your story in GitHub Discussions or the #telepresence-oss channel
 					</Typography>
-					<Button variant="contained" href="https://slack.cncf.io">contact us</Button>
+					<Button variant="contained" href="https://github.com/telepresenceio/telepresence/discussions">share your story</Button>
+					<Button variant="outlined" href="https://slack.cncf.io" sx={{ml: 2}}>CNCF Slack</Button>
 				</Grid>
 			</Grid>
         </Layout>

@@ -51,6 +51,7 @@ const IrisPage: React.FC = () => {
 					reflecting on it, and refining it. Testing your workflow with a small
 					set of users, and incrementally rolling it out is a good strategy.
 					Also,{' '}
+					<a href="https://github.com/telepresenceio/telepresence/discussions">ask the community in GitHub Discussions</a>, or{' '}
 					<a href="https://slack.cncf.io/">talk with the team behind Telepresence</a>{' '}
 					on their #telepresence-oss Slack chat; they can provide good advice and perspective.
 				</p>

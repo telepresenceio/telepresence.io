@@ -46,8 +46,9 @@ const AboutPage: React.FC = () => {
 					<Paragraph>
 						We welcome all community contributions. If you find a bug or a
 						mistake in the documentation, you can help us out by submitting an
-						issue or a pull request with a fix. If you have questions, join our
-						active <a href="https://slack.cncf.io/">Slack community</a>.
+						issue or a pull request with a fix. If you have questions, ask in
+						<a href="https://github.com/telepresenceio/telepresence/discussions">GitHub Discussions</a> or
+						join our active <a href="https://slack.cncf.io/">Slack community</a>.
 					</Paragraph>
 				</Grid>
 				<Grid size={{xs: 8, md: 5}} offset={{xs: 2, md: 0}} sx={{

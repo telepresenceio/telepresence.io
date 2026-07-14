@@ -185,4 +185,4 @@ feature, change, and fix in this release.
 
 We'd love your feedback. Open an issue on
 [GitHub](https://github.com/telepresenceio/telepresence/issues) or join the
-conversation in the community.
+conversation in [GitHub Discussions](https://github.com/telepresenceio/telepresence/discussions).

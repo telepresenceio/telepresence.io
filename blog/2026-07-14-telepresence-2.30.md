@@ -101,5 +101,6 @@ node-agent, and this release is the result. Thank you.
 The [quick start](/docs/quick-start) takes about ten minutes. The full list
 of changes in 2.30.0 is in the
 [release notes](/docs/release-notes). Questions and war stories are welcome
-in [#telepresence-oss](https://cloud-native.slack.com/archives/C06B36KJ85P)
-on the CNCF Slack.
+in [GitHub Discussions](https://github.com/telepresenceio/telepresence/discussions)
+or [#telepresence-oss](https://cloud-native.slack.com/archives/C06B36KJ85P) on the
+CNCF Slack.

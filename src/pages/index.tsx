@@ -224,8 +224,8 @@ const HomePage: React.FC = () => {
 					<Typography variant="body1">
 						To find out more about the Telepresence Architecture, check out
 						the {link("docs", `/docs/concepts/architecture/`)} or
-						join us in the #telepresence-oss channel on
-						the {link("CNCF Slack", "https://slack.cncf.io/")}.
+						join the conversation in {link("GitHub Discussions", "https://github.com/telepresenceio/telepresence/discussions")}
+						or the #telepresence-oss channel on the {link("CNCF Slack", "https://slack.cncf.io/")}.
 					</Typography>
 					{getStarted}
 				</Grid>

@@ -91,4 +91,4 @@ Upgrade to Telepresence 2.27.0 and leave `sudo` behind. If you're coming from a 
 
 Check out the [install guide](/docs/install/client) for platform-specific instructions and the full [release notes](/docs/release-notes) for details.
 
-We'd love your feedback -- open an issue on [GitHub](https://github.com/telepresenceio/telepresence/issues) or join the conversation in the community.
+We'd love your feedback -- open an issue on [GitHub](https://github.com/telepresenceio/telepresence/issues) or join the conversation in [GitHub Discussions](https://github.com/telepresenceio/telepresence/discussions).

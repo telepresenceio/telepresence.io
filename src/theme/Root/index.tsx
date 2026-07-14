@@ -5,7 +5,7 @@ import Head from '@docusaurus/Head';
 
 function Root({ children }: { children: JSX.Element }): JSX.Element {
   return (
-    <ThemeProvider theme={customTheme()}>
+    <ThemeProvider theme={customTheme()} defaultMode="system">
       {/* Add the JSON-LD Structured Data in the <head> */}
       <Head>
         <script

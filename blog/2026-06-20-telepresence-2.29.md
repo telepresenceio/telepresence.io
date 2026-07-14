@@ -158,7 +158,7 @@ A few other improvements worth calling out:
 - **Ingest in mapped namespaces** — `telepresence ingest` accepts `--namespace`
   to pick the workload namespace per engagement, mirroring `intercept`,
   `wiretap`, and `replace`. See the
-  [engagement CLI reference](/docs/reference/engagements/cli).
+  [engagement CLI reference](/docs/2.29/reference/engagements/cli).
 - **Helm chart polish** — a chart-wide `labels` value applied to every resource,
   an `agentInjector.webhook.objectSelector` to scope injection to matching pods,
   traffic-manager RBAC generated from your `workloads.*.enabled` settings, and

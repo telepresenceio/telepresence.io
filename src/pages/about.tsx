@@ -1,8 +1,8 @@
 import React from 'react';
 import TelepresenceIcon from '../assets/images/telepresence-edgy.svg';
 import Typography, {TypographyProps} from "@mui/material/Typography";
-import styled from "@mui/material/styles/styled";
-import Grid from "@mui/material/Grid2";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
 import Layout from "../components/Layout";
 import {Theme} from "@mui/material";
 
@@ -17,10 +17,21 @@ const Paragraph = styled(Typography)<TypographyProps>(({theme}) => ({
 
 const AboutPage: React.FC = () => {
 	return (
-		<Layout title="About" description="Telepresence: a local development environment for a remote Kubernetes cluster">
-			<Grid container direction='row' alignItems='center' spacing={2} bgcolor={(theme: Theme) => theme.palette.marketing.light}>
-				<Grid size={{xs: 12, md: 7}} padding={'4em'}>
-					<Typography fontWeight={"bold"} variant='h2' component="h1">
+        <Layout title="About" description="Telepresence: a local development environment for a remote Kubernetes cluster">
+            <Grid
+                container
+                direction='row'
+                spacing={2}
+                sx={{
+                    alignItems: 'center',
+                    bgcolor: (theme: Theme) => theme.palette.marketing.light
+                }}>
+				<Grid size={{xs: 12, md: 7}} sx={{
+                    padding: '4em'
+                }}>
+					<Typography variant='h2' component="h1" sx={{
+                        fontWeight: "bold"
+                    }}>
 						About
 					</Typography>
 					<Paragraph>
@@ -39,13 +50,20 @@ const AboutPage: React.FC = () => {
 						active <a href="https://slack.cncf.io/">Slack community</a>.
 					</Paragraph>
 				</Grid>
-				<Grid size={{xs: 8, md: 5}} offset={{xs: 2, md: 0}} padding={'4em'}>
+				<Grid size={{xs: 8, md: 5}} offset={{xs: 2, md: 0}} sx={{
+                    padding: '4em'
+                }}>
 					<TelepresenceIcon/>
 				</Grid>
 			</Grid>
-			<Grid direction='column' flexGrow={1} bgcolor={(theme: Theme) => theme.palette.marketing.light}/>
-		</Layout>
-	);
+            <Grid
+                container
+                sx={{
+                    flexGrow: 1,
+                    bgcolor: (theme: Theme) => theme.palette.marketing.light
+                }} />
+        </Layout>
+    );
 }
 
 /*

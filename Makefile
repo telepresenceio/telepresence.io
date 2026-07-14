@@ -49,6 +49,23 @@ read-branch:
 	git add docs || true
 	git read-tree --prefix docs -u telepresence/$(DOCS_BRANCH):docs
 	git remote remove telepresence
+	rm -rf docs/plans && git add docs/plans || true
+
+# TELEPRESENCE_REPO is the local clone of telepresenceio/telepresence that the
+# -local targets read from.
+TELEPRESENCE_REPO ?= ../telepresence
+
+# read-branch-local is like read-branch, but reads DOCS_BRANCH directly from
+# the local clone at TELEPRESENCE_REPO, so unpushed branches can be previewed.
+# Example:
+# DOCS_BRANCH=thallgren/docs-restructure make read-branch-local
+.PHONY: read-branch-local
+read-branch-local:
+	git fetch --no-tags $(TELEPRESENCE_REPO) $(DOCS_BRANCH)
+	rm -rf docs
+	git add docs || true
+	git read-tree --prefix docs -u FETCH_HEAD:docs
+	rm -rf docs/plans && git add docs/plans || true
 
 # drop-version will remove the version given by DOCS_VERSION.
 # Example:
@@ -59,6 +76,26 @@ drop-version:
 	rm -rf "versioned_sidebars/version-$(DOCS_VERSION)-sidebars.json"
 	jq '. - ["$(DOCS_VERSION)"]' versions.json > versions.tmp && mv versions.tmp versions.json
 
+# generate-redirects regenerates the marked section of static/_redirects from
+# the redirects.yml files in the versioned docs. Hand-maintained rules outside
+# the markers are left untouched.
+.PHONY: generate-redirects
+generate-redirects:
+	node scripts/generate-redirects.mjs
+
+# MAX_VERSIONS is the number of docs versions the site retains. When a new
+# minor version surfaces through generate-version, versions further back are
+# scrubbed by prune-versions.
+MAX_VERSIONS ?= 5
+
+# prune-versions scrubs docs versions beyond the MAX_VERSIONS newest ones:
+# their versioned_docs tree, sidebar file, and versions.json entry. Blog posts
+# with links pinned to a scrubbed version must be repointed to a surviving
+# one; the docusaurus build fails on the broken links otherwise.
+.PHONY: prune-versions
+prune-versions:
+	node scripts/prune-versions.mjs $(MAX_VERSIONS)
+
 # generate-version will first remove the given version and then regenerate it. Assumes that
 # read-branch has been called just prior.
 .PHONY: generate-version
@@ -66,4 +103,18 @@ generate-version: read-branch drop-version
 	yarn docusaurus docs:version $(DOCS_VERSION)
 	rm -rf docs
 	git checkout HEAD -- docs
+	$(MAKE) prune-versions
+	$(MAKE) generate-redirects
+	git add .
+
+# generate-version-local is like generate-version, but reads DOCS_BRANCH from
+# the local clone at TELEPRESENCE_REPO. Example:
+# DOCS_BRANCH=thallgren/docs-restructure DOCS_VERSION=2.30 make generate-version-local
+.PHONY: generate-version-local
+generate-version-local: read-branch-local drop-version
+	yarn docusaurus docs:version $(DOCS_VERSION)
+	rm -rf docs
+	git checkout HEAD -- docs
+	$(MAKE) prune-versions
+	$(MAKE) generate-redirects
 	git add .

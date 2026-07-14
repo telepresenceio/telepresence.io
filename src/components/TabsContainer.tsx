@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material/styles";
 
 type Props = { children: ReactNode }
 const TabsContainer: FC<Props> = ({children}) => {

@@ -8,6 +8,10 @@ import YAML from "yaml";
 import {existsSync, readFileSync} from "node:fs";
 import {Tag} from "@docusaurus/utils";
 
+const allVersions: string[] = JSON.parse(
+	readFileSync(path.join(__dirname, "versions.json"), "utf8"),
+);
+
 type VariablesType = { [key: string]: string }
 const variablesCache: { [key: string]: VariablesType } = {};
 
@@ -27,6 +31,10 @@ function getDocVariables(filePath: string): VariablesType|null {
 	}
 	return vars
 }
+
+// Older versions are immutable snapshots, so the doc-links.yml completeness
+// check only makes sense for the latest version.
+const latestVersion: string = JSON.parse(readFileSync("versions.json", "utf-8"))[0];
 
 const config: Config = {
 	title: 'Telepresence',
@@ -63,8 +71,14 @@ const config: Config = {
 					editUrl: ({docPath}) => {
 						return `https://github.com/telepresenceio/telepresence/tree/release/v2/docs/${docPath}`
 					},
-					exclude: ['**/release-notes.md', '**/README.md', '**/CONTRIBUTING.md'],
+					exclude: ['**/release-notes.md', '**/README.md', '**/CONTRIBUTING.md', '**/plans/**'],
 					includeCurrentVersion: false,
+					// Only the latest published version should be indexed by
+					// search engines; the site search is backed by Google and
+					// would otherwise return hits in stale versions.
+					versions: Object.fromEntries(
+						allVersions.slice(1).map((v) => [v, {noIndex: true}])
+					),
 					beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
 					async sidebarItemsGenerator(args) {
 						const {docs, version: {versionName, contentPath}} = args;
@@ -109,9 +123,11 @@ const config: Config = {
 						})
 						const linksPath = path.join(contentPath, "doc-links.yml");
 						const items = YAML.parse(readFileSync(linksPath, "utf-8")).map(linkToItem);
-						for (const id of idSet) {
-							if (!id.startsWith("common/")) {
-								logger.warn(`"${path.join(versionName, 'doc-links.yml')}" has no entry for id "${id}"`);
+						if (versionName === latestVersion) {
+							for (const id of idSet) {
+								if (!id.startsWith("common/")) {
+									logger.warn(`"${path.join(versionName, 'doc-links.yml')}" has no entry for id "${id}"`);
+								}
 							}
 						}
 						return items;
@@ -129,10 +145,8 @@ const config: Config = {
 	],
 
 	themeConfig: {
-		themeConfig: {
-			colorMode: {
-				respectPrefersColorScheme: true,
-			},
+		colorMode: {
+			respectPrefersColorScheme: true,
 		},
 		image: 'img/telepresence-social.jpg',
 		navbar: {

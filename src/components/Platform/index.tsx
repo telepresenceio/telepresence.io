@@ -7,7 +7,7 @@ import React, {ReactElement} from 'react';
 
 import * as allTabTypes from './tabs';
 import {AbstractTab, UnknownTab} from './tabs';
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material/styles";
 
 const allTabs = Object.values(allTabTypes)
 
@@ -174,7 +174,7 @@ const TabGroup: React.FC<TabGroupProps> = ({children}) => {
 				<AppBar elevation={0} position="static" className="TabBar">
 					<TabList onChange={handleChange} aria-label="operating system tabs">
 						{sortedChildren.map((child) => {
-							const re = child as ReactElement
+							const re = child as ReactElement<{ children?: React.ReactNode }>
 							const ct = (re.type as typeof AbstractTab)
 							const Icon = ct.icon;
 							return (
@@ -190,7 +190,7 @@ const TabGroup: React.FC<TabGroupProps> = ({children}) => {
 					</TabList>
 				</AppBar>
 				{sortedChildren.map((child) => {
-					const re = child as ReactElement
+					const re = child as ReactElement<{ children?: React.ReactNode }>
 					const ct = (re.type as typeof AbstractTab)
 					return (
 						<TabPanel

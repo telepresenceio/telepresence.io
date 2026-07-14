@@ -3,7 +3,7 @@ import SlackLogo from '../assets/images/slack-logo.svg';
 import GithubLogo from '../assets/images/github-logo.svg';
 import Typography from "@mui/material/Typography";
 
-import Grid from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 
 import {Card, CardActionArea, CardContent, Theme} from "@mui/material";
 import Layout from "../components/Layout";
@@ -27,15 +27,30 @@ const SOCIAL_CARDS = [
 
 const CommunityPage: React.FC = () => {
 	return (
-		<Layout title="Community" description="Get involved and collaborate with our outstanding community of adopters and contributors on the Telepresence project">
-			<Grid container bgcolor={(theme: Theme) => theme.palette.marketing.light} textAlign={'center'}>
+        <Layout title="Community" description="Get involved and collaborate with our outstanding community of adopters and contributors on the Telepresence project">
+            <Grid
+                container
+                sx={{
+                    bgcolor: (theme: Theme) => theme.palette.marketing.light,
+                    textAlign: 'center'
+                }}>
 				<Grid size={12}>
-					<Typography fontWeight={"bold"} variant='h2' component="h1" paddingTop={'1em'}>
+					<Typography
+                        variant='h2'
+                        component="h1"
+                        sx={{
+                            fontWeight: "bold",
+                            paddingTop: '1em'
+                        }}>
 						Join the Community
 					</Typography>
 				</Grid>
-				<Grid size={12} padding={'2rem'}>
-					<Typography variant='h5' padding={'0 7em 2em'}>
+				<Grid size={12} sx={{
+                    padding: '2rem'
+                }}>
+					<Typography variant='h5' sx={{
+                        padding: '0 7em 2em'
+                    }}>
 						Developers worldwide are contributing to Telepresence. We’re
 						building a vibrant community of contributors and related projects.
 						We welcome any and all suggestions, new features, integrations, and
@@ -43,15 +58,31 @@ const CommunityPage: React.FC = () => {
 					</Typography>
 				</Grid>
 			</Grid>
-			<Grid container padding={'2em'} direction='row' alignItems='center' bgcolor={(theme: Theme) => theme.palette.marketing.light} textAlign={'center'}>
+            <Grid
+                container
+                direction='row'
+                sx={{
+                    padding: '2em',
+                    alignItems: 'center',
+                    bgcolor: (theme: Theme) => theme.palette.marketing.light,
+                    textAlign: 'center'
+                }}>
 				<Grid size={12}>
-					<Typography fontWeight={"bolder"} variant='h4' component="h1" padding={'1em 0 2em'}>
+					<Typography
+                        variant='h4'
+                        component="h1"
+                        sx={{
+                            fontWeight: "bolder",
+                            padding: '1em 0 2em'
+                        }}>
 						Explore and Contribute to Our Networks
 					</Typography>
 				</Grid>
 				<Grid container spacing={1} size={7} offset={2.5}>
 					{SOCIAL_CARDS.map((card, index) => (
-						<Grid key={index} size={12 / SOCIAL_CARDS.length} display="flex">
+						<Grid key={index} size={12 / SOCIAL_CARDS.length} sx={{
+                            display: "flex"
+                        }}>
 							<Card variant="elevation" sx={{flexGrow: 1, backgroundColor: (theme: Theme) => theme.palette.marketing.main}}>
 								<CardActionArea href={card.link}>
 									<CardContent>
@@ -69,9 +100,13 @@ const CommunityPage: React.FC = () => {
 					))}
 				</Grid>
 			</Grid>
-			<Grid sx={{flexGrow: 1}} bgcolor={(theme: Theme) => theme.palette.marketing.light}/>
-		</Layout>
-	);
+            <Grid
+                sx={{
+                    bgcolor: (theme: Theme) => theme.palette.marketing.light,
+                    flexGrow: 1
+                }} />
+        </Layout>
+    );
 }
 
 /*

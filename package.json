@@ -21,25 +21,25 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mdx-js/react": "^3.1.1",
-    "@mui/icons-material": "^6.1.1",
-    "@mui/lab": "^6.0.0-beta.10",
-    "@mui/material": "^6.1.1",
+    "@mui/icons-material": "^9.2.0",
+    "@mui/lab": "9.0.0-beta.6",
+    "@mui/material": "^9.2.0",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/tsconfig": "^3.9.2",
     "@docusaurus/types": "^3.9.2",
-    "@types/node": "^22.5.5",
+    "@types/node": "^26.1.1",
     "@types/webpack": "^5.28.5",
     "docusaurus-plugin-sass": "^0.2.5",
     "remark-github-admonitions-to-directives": "^2.0.0",
     "sass": "^1.99.0",
-    "sass-loader": "^16.0.7",
-    "typescript": "~5.5.2",
+    "sass-loader": "^17.0.0",
+    "typescript": "~7.0.2",
     "typescript-plugin-css-modules": "^5.2.0"
   },
   "browserslist": {
@@ -55,7 +55,7 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=20.19"
   },
   "resolutions": {
     "stylus": "github:stylus/stylus#0.62.0"

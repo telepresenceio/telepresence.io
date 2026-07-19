@@ -5,6 +5,7 @@ import LoopIcon from '../assets/images/home/Loop.svg';
 import LeftArrowIcon from '../assets/images/home/Left_Arrow.svg';
 import WrenchIcon from '../assets/images/home/Wrench.svg';
 import EngelIcon from '../assets/images/case-study/engel-and-voelkers.png';
+import OpenAILogo from '../assets/images/home/OpenAI_logo.svg';
 import PoshLogo from '../assets/images/home/Posh_logo.svg';
 import PtcLogo from '../assets/images/home/ptc.svg';
 import SaltLogo from '../assets/images/home/Salt_logo.svg';
@@ -75,6 +76,9 @@ const HomePage: React.FC = () => {
 	}));
 	const StyledWrenchIcon = styled(WrenchIcon)(({theme}) => ({
 		stroke: theme.palette.marketing.main
+	}));
+	const StyledOpenAILogo = styled(OpenAILogo)(({theme}) => ({
+		fill: theme.palette.text.primary
 	}));
 
 	return (
@@ -228,6 +232,35 @@ const HomePage: React.FC = () => {
 						or the #telepresence-oss channel on the {link("CNCF Slack", "https://slack.cncf.io/")}.
 					</Typography>
 					{getStarted}
+				</Grid>
+			</Grid>
+            <Grid
+                container
+                spacing={2}
+                sx={{
+                    padding: '3em 8%'
+                }}>
+				<Typography
+                    variant='h4'
+                    component="h2"
+                    sx={{
+                        width: "100%",
+                        textAlign: "center",
+                        fontWeight: "bold"
+                    }}>
+					Sponsors
+				</Typography>
+				<Grid size={12} sx={{
+                    textAlign: "center"
+                }}>
+					<Link href="https://openai.com" target="_blank" aria-label="OpenAI">
+						<StyledOpenAILogo height="40px"/>
+					</Link>
+					<Typography variant="body2">
+						Thank you to the sponsors who support the development of
+						Telepresence. You can support the project too,
+						via {link("GitHub Sponsors", "https://github.com/sponsors/thallgren")}.
+					</Typography>
 				</Grid>
 			</Grid>
         </Layout>

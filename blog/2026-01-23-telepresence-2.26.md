@@ -35,7 +35,7 @@ This is especially useful when:
 * A client becomes unreachable
 * A shared service is blocked during active development
 
-📚 Docs: *[Engagements and intercept conflicts](/docs/2.26/reference/engagements/conflicts)*
+📚 Docs: *[Engagements and intercept conflicts](/docs/2.27/reference/engagements/conflicts)*
 
 ---
 

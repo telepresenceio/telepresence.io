@@ -14,7 +14,7 @@ proving who they were. Two advisories,
 [GHSA-j8j4-rw65-56r6](https://github.com/telepresenceio/telepresence/security/advisories/GHSA-j8j4-rw65-56r6)
 (High) and
 [GHSA-6j3h-rp73-6rvf](https://github.com/telepresenceio/telepresence/security/advisories/GHSA-6j3h-rp73-6rvf)
-(Medium), describe what that made possible. This release closes both, and we
+(High), describe what that made possible. This release closes both, and we
 recommend upgrading.
 
 <!-- truncate -->

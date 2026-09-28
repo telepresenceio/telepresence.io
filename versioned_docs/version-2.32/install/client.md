@@ -231,24 +231,17 @@ Remove-Item telepresenceInstaller -Recurse -Confirm:$false -Force
 
 ## Verifying the download
 
-`telepresence.exe` and both MSIs are Authenticode-signed. Check a file's signature with PowerShell:
-
-```powershell
-Get-AuthenticodeSignature .\telepresence.exe | Format-List Status, SignerCertificate, TimeStamperCertificate
-Get-AuthenticodeSignature .\telepresence-windows-amd64.msi | Format-List Status, SignerCertificate, TimeStamperCertificate
-Get-AuthenticodeSignature .\telepresence-windows-arm64.msi | Format-List Status, SignerCertificate, TimeStamperCertificate
-```
-
-`Status` must read `Valid`. The signer certificate is issued through the SignPath Foundation; admins can
-write an allow rule (for example in AppLocker or WDAC) against the signer certificate's subject shown by
-`SignerCertificate`. The same information is available without PowerShell: right-click the file, choose
-**Properties**, and open the **Digital Signatures** tab.
+The Windows binaries and installers are not code-signed yet. Code signing through the SignPath
+Foundation is pending approval; once it is in place, the release assets are re-signed and this
+section will describe how to check the signature. Until then, download only from the
+[GitHub releases page](https://github.com/telepresenceio/telepresence/releases), and expect Windows
+to show the publisher as unknown when the installer runs.
 
 ## Code signing policy
 
 Free code signing provided by [SignPath.io](https://about.signpath.io/), certificate by
-[SignPath Foundation](https://signpath.org/). The Windows release binaries and installers are
-Authenticode-signed with it.
+[SignPath Foundation](https://signpath.org/). The Windows release binaries and installers will be
+Authenticode-signed with it once the certificate is issued.
 
 - Committers and reviewers: [telepresence-maintainers](https://github.com/orgs/telepresenceio/teams/telepresence-maintainers) ([@thallgren](https://github.com/thallgren), [@bgruszka](https://github.com/bgruszka), [@njayp](https://github.com/njayp), [@breland-openai](https://github.com/breland-openai))
 - Approvers: [administrators](https://github.com/orgs/telepresenceio/teams/administrators) ([@khussey](https://github.com/khussey), [@thallgren](https://github.com/thallgren))

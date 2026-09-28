@@ -173,9 +173,9 @@ Connecting no longer issues a <code>SelfSubjectAccessReview</code> for <code>pod
   </Body>
 </Note>
 <Note>
-	<Title type="feature" docs="install/client">Signed Windows binaries and installers</Title>
+	<Title type="feature" docs="install/client">Windows MSI installers and version metadata</Title>
 	<Body>
-Windows releases ship <code>telepresence.exe</code> and the MSI with timestamped Authenticode signatures from a SignPath Foundation certificate, so enterprises can allow the binary by publisher instead of per-run admin approval. The exes now also carry version metadata visible in Explorer's Properties dialog. The MSI is published for both amd64 and arm64, for Intune/GPO deployment. <a href="https://github.com/telepresenceio/telepresence/issues/4284">#4284</a>
+Windows releases ship <code>telepresence.exe</code> with version metadata visible in Explorer's Properties dialog, and the MSI is published for both amd64 and arm64, for Intune/GPO deployment. Code signing through a SignPath Foundation certificate is pending approval; the release assets will be re-signed in place once it is issued. <a href="https://github.com/telepresenceio/telepresence/issues/4284">#4284</a>
   </Body>
 </Note>
 <Note>

@@ -147,10 +147,10 @@ The user daemon handled a new agent pod before telling the root daemon about it,
 Connecting no longer issues a <code>SelfSubjectAccessReview</code> for <code>pods/portforward</code> in every mapped namespace before reaching the traffic-manager. A QUIC direct path to an agent now works whether or not the client may create <code>pods/portforward</code>. An attachment in a namespace where the client may not create <code>pods/portforward</code> and the QUIC tunnel is unavailable now fails at once with a clear message instead of hanging. Against a traffic-manager at v2.32 or later, an explicit <code>--mapped-namespaces</code> list is likewise no longer probed with a <code>get pods</code> review per namespace.
 </div>
 
-## <div style="display:flex;"><img src="images/feature.png" alt="feature" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">[Signed Windows binaries and installers](install/client)</div></div>
+## <div style="display:flex;"><img src="images/feature.png" alt="feature" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">[Windows MSI installers and version metadata](install/client)</div></div>
 <div style="margin-left: 15px">
 
-Windows releases ship <code>telepresence.exe</code> and the MSI with timestamped Authenticode signatures from a SignPath Foundation certificate, so enterprises can allow the binary by publisher instead of per-run admin approval. The exes now also carry version metadata visible in Explorer's Properties dialog. The MSI is published for both amd64 and arm64, for Intune/GPO deployment. <a href="https://github.com/telepresenceio/telepresence/issues/4284">#4284</a>
+Windows releases ship <code>telepresence.exe</code> with version metadata visible in Explorer's Properties dialog, and the MSI is published for both amd64 and arm64, for Intune/GPO deployment. Code signing through a SignPath Foundation certificate is pending approval; the release assets will be re-signed in place once it is issued. <a href="https://github.com/telepresenceio/telepresence/issues/4284">#4284</a>
 </div>
 
 ## <div style="display:flex;"><img src="images/change.png" alt="change" style="width:30px;height:fit-content;"/><div style="display:flex;margin-left:7px;">[Windows MSI states its volume-mount prerequisites](install/client)</div></div>
